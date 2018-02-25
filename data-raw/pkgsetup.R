@@ -31,6 +31,11 @@ my_desc$set(Description = "Access the United States National Provider Identifier
 # The urls
 my_desc$set("URL", "https://github.com/frankfarach/npi")
 my_desc$set("BugReports", "https://github.com/frankfarach/npi/issues")
+
+# Dependencies
+my_desc$set("Depends", "R (>= 2.10")
+use_tidy_description()
+
 # Save everyting
 my_desc$write(file = "DESCRIPTION")
 
