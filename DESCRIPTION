@@ -1,0 +1,18 @@
+Package: npiapi
+Title: Access the U.S. National Provider Identifier Registry API
+Version: 0.0.0.9000
+Authors@R: person('Frank', 'Farach', email = 'frank.farach@gmail.com', role = c('cre', 'aut'))
+Description: Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
+License: MIT + file LICENSE
+URL: https://github.com/frankfarach/npiapi
+BugReports: https://github.com/frankfarach/npiapi/issues
+Imports: 
+    attempt,
+    curl,
+    httr,
+    jsonlite
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: 
+    testthat
