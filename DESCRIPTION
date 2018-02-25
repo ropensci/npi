@@ -7,7 +7,7 @@ License: MIT + file LICENSE
 URL: https://github.com/frankfarach/npi
 BugReports: https://github.com/frankfarach/npi/issues
 Depends: 
-    R (>= 2.10)
+    R (>= 3.1)
 Imports: 
     attempt,
     curl,
@@ -15,7 +15,8 @@ Imports:
     jsonlite,
     purrr
 Suggests: 
-    testthat
+    testthat,
+    covr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
