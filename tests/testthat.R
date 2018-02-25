@@ -1,4 +1,4 @@
 library(testthat)
-library(npiapi)
+library(npi)
 
-test_check("npiapi")
+test_check("npi")
