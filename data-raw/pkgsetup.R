@@ -11,7 +11,7 @@ unlink("DESCRIPTION")
 my_desc <- description$new("!new")
 
 # Set your package name
-my_desc$set("Package", "npiapi")
+my_desc$set("Package", "npi")
 
 #Set your name
 my_desc$set("Authors@R", "person('Frank', 'Farach', email = 'frank.farach@gmail.com', role = c('cre', 'aut'))")
@@ -29,8 +29,8 @@ my_desc$set(Title = "Access the U.S. National Provider Identifier Registry API")
 my_desc$set(Description = "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.")
 
 # The urls
-my_desc$set("URL", "https://github.com/frankfarach/npiapi")
-my_desc$set("BugReports", "https://github.com/frankfarach/npiapi/issues")
+my_desc$set("URL", "https://github.com/frankfarach/npi")
+my_desc$set("BugReports", "https://github.com/frankfarach/npi/issues")
 # Save everyting
 my_desc$write(file = "DESCRIPTION")
 
@@ -47,10 +47,10 @@ use_package("curl")
 use_package("attempt")
 #use_package("purrr")
 
-# Clean your description
-use_tidy_description()
-
 # Add testing, vignette, and README.Rmd
 use_testthat()
-#use_vignette("npiapi")
+#use_vignette("npi")
 use_readme_rmd()
+
+# Clean your description
+use_tidy_description()

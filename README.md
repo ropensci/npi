@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-npiapi
-======
+npi
+===
 
 > Access the U.S. National Provider Identifier Registry API
 
