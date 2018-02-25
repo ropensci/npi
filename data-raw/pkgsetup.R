@@ -45,7 +45,7 @@ use_package("httr")
 use_package("jsonlite")
 use_package("curl")
 use_package("attempt")
-#use_package("purrr")
+use_package("purrr")
 
 # Add testing, vignette, and README.Rmd
 use_testthat()
