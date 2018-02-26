@@ -57,5 +57,10 @@ use_testthat()
 #use_vignette("npi")
 use_readme_rmd()
 
+# Set up continuous integration
+use_travis()
+use_coverage()
+use_appveyor()
+
 # Clean your description
 use_tidy_description()
