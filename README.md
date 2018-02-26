@@ -5,9 +5,47 @@ npi
 
 > Access the U.S. National Provider Identifier Registry API
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)[![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi)[![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi) [![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
 
 Provide access to the API for the U.S. National Provider Identifier (NPI) Registry Public Search provided by the Center for Medicare and Medicaid Services (CMS): <https://npiregistry.cms.hhs.gov/>.
+
+Example
+-------
+
+Use `search_npi()` to search the public NPI Registry by the [available parameters](https://npiregistry.cms.hhs.gov/registry/help-api) and get the results as a complex data frame of vectors and data frames. A future release will return a simplified tidy data frame (tibble) to make the data easier to work with.
+
+``` r
+# Return the first 3 organizational provider names and NPIs
+# for providers registered in the 98101 ZIP code:
+res <- npi::search_npi(
+  postal_code = "98101",
+  enumeration_type = "NPI-2",
+  address_purpose = "LOCATION",
+  limit = 3
+)
+
+# Extract the organizational names and NPIs and bind in one data frame
+org_names <- res$basic %>%
+filter(status == "A") %>%
+select(name)
+
+npis <- res %>% select(number)
+
+bind_cols(org_names, npis)
+#>                            name     number
+#> 1 VIRGINIA MASON MEDICAL CENTER 1174527683
+#> 2         CITY CHIROPRACTIC INC 1902880578
+#> 3           BRYANT AND JUNGE PS 1588674808
+```
+
+Installation
+------------
+
+This package can be installed directly from this Github repo:
+
+``` r
+devtools::install_github("frankfarach/npi")
+```
 
 Code of Conduct
 ---------------
