@@ -13,7 +13,8 @@ Imports:
     curl,
     httr,
     jsonlite,
-    purrr
+    purrr,
+    stringr
 Suggests: 
     testthat,
     covr

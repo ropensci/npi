@@ -38,6 +38,15 @@ bind_cols(org_names, npis)
 #> 3           BRYANT AND JUNGE PS 1588674808
 ```
 
+Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
+
+``` r
+npi::is_valid_npi(1234567893)
+#> [1] TRUE
+npi::is_valid_npi(1234567898)
+#> [1] FALSE
+```
+
 Installation
 ------------
 

@@ -51,6 +51,7 @@ use_package("jsonlite")
 use_package("curl")
 use_package("attempt")
 use_package("purrr")
+use_package("stringr")
 
 # Add testing, vignette, and README.Rmd
 use_testthat()

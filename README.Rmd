@@ -47,6 +47,13 @@ bind_cols(org_names, npis)
 
 ```
 
+Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
+
+```{r valid_npi_ex}
+npi::is_valid_npi(1234567893)
+npi::is_valid_npi(1234567898)
+```
+
 ## Installation
 
 This package can be installed directly from this Github repo:
