@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 )
 library(magrittr)
 library(dplyr)
+library(npi)
 ```
 
 # npi
@@ -43,15 +44,20 @@ select(name)
 
 npis <- res %>% select(number)
 
-bind_cols(org_names, npis)
+df <- bind_cols(org_names, npis)
+df
 
 ```
 
 Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
 
 ```{r valid_npi_ex}
+# Validate one-off NPIs
 npi::is_valid_npi(1234567893)
 npi::is_valid_npi(1234567898)
+
+# Validate NPIs returned from registry
+df %>% mutate(valid_npi = is_valid_npi(number))
 ```
 
 ## Installation

@@ -31,7 +31,8 @@ select(name)
 
 npis <- res %>% select(number)
 
-bind_cols(org_names, npis)
+df <- bind_cols(org_names, npis)
+df
 #>                            name     number
 #> 1 VIRGINIA MASON MEDICAL CENTER 1174527683
 #> 2         CITY CHIROPRACTIC INC 1902880578
@@ -41,10 +42,18 @@ bind_cols(org_names, npis)
 Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
 
 ``` r
+# Validate one-off NPIs
 npi::is_valid_npi(1234567893)
 #> [1] TRUE
 npi::is_valid_npi(1234567898)
 #> [1] FALSE
+
+# Validate NPIs returned from registry
+df %>% mutate(valid_npi = is_valid_npi(number))
+#>                            name     number valid_npi
+#> 1 VIRGINIA MASON MEDICAL CENTER 1174527683      TRUE
+#> 2         CITY CHIROPRACTIC INC 1902880578      TRUE
+#> 3           BRYANT AND JUNGE PS 1588674808      TRUE
 ```
 
 Installation
