@@ -6,9 +6,11 @@ check_internet <- function() {
 
 #' @importFrom httr status_code
 check_status <- function(res) {
-  stop_if_not(.x = status_code(res),
-              .p = ~ .x == 200,
-              msg = "The API returned an error")
+  stop_if_not(
+    .x = status_code(res),
+    .p = ~ .x == 200,
+    msg = "The API returned an error"
+  )
 }
 
 
@@ -36,7 +38,8 @@ is_valid_npi <- function(x) {
     "npi must be a 10-digit number."
   )
 
-  # Prefix the NPI with code for health applications in the US per official requirements
+  # Prefix the NPI with code for health applications in the US per official
+  # requirements
   prefixed_npi <- paste0("80840", x)
 
   # Validate number using the Luhn algorithm
@@ -55,14 +58,15 @@ is_valid_npi <- function(x) {
 #' @param return_logical Boolean flag to control whether the result is a logical value or remainder
 #' @return Boolean. If \code{return_logical} is TRUE, returns a logical value indicating whether the \code{number} validates; if FALSE, returns the remainder from the expected number
 luhn_check <- function(number, return_logical = TRUE) {
-  numbers <- gsub('[^0-9]', '', as.character(number))
-  numbers <- as.numeric(strsplit(numbers, '')[[1]])
-  selector <- seq(length(numbers) - 1, 1,-2)
+  numbers <- gsub("[^0-9]", "", as.character(number))
+  numbers <- as.numeric(strsplit(numbers, "")[[1]])
+  selector <- seq(length(numbers) - 1, 1, -2)
   numbers[selector] <- numbers[selector] * 2
   numbers[numbers > 9] <- numbers[numbers > 9] - 9
   remainder <- sum(numbers) %% 10
-  if (return_logical)
+  if (return_logical) {
     return(remainder == 0)
-  else
+  } else {
     remainder
+  }
 }

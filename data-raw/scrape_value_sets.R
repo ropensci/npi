@@ -20,7 +20,8 @@ names(countries) <- c("country_abbr", "country_name")
 
 # R thinks Namibia's ISO code of "NA" is NA (missing); this fixes it
 countries$country_abbr <-
-  countries$country_abbr %>% replace_na("NA")
+  countries$country_abbr %>%
+  replace_na("NA")
 
 # Scrape state codes ------------------------------------------------------
 
@@ -36,7 +37,8 @@ names(states) <- c("state_abbr", "state_name")
 
 # Scrape Healthcare Provider Taxonomy -------------------------------------
 
-provider_taxonomy <- "http://nucc.org/images/stories/CSV/nucc_taxonomy_180.csv" %>%
+provider_taxonomy <-
+  "http://nucc.org/images/stories/CSV/nucc_taxonomy_180.csv" %>%
   read_csv(
     skip = 1,
     col_names = c(
@@ -53,4 +55,7 @@ provider_taxonomy <- "http://nucc.org/images/stories/CSV/nucc_taxonomy_180.csv" 
 
 # Make data available for internal package use ----------------------------
 
-usethis::use_data(countries, states, provider_taxonomy, internal = TRUE, overwrite = TRUE)
+usethis::use_data(
+  countries, states, provider_taxonomy,
+  internal = TRUE, overwrite = TRUE
+)

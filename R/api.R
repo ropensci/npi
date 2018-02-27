@@ -51,7 +51,11 @@ search_npi <-
         pretty = pretty
       )
     # Check that at least one argument is not null
-    attempt::stop_if_all(args, is.null, "You need to specify at least one argument")
+    attempt::stop_if_all(
+      args,
+      is.null,
+      "You need to specify at least one argument"
+    )
     # Check for internet
     check_internet()
     # Create and execute the request

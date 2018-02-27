@@ -13,8 +13,10 @@ my_desc <- description$new("!new")
 # Set your package name
 my_desc$set("Package", "npi")
 
-#Set your name
-my_desc$set("Authors@R", "person('Frank', 'Farach', email = 'frank.farach@gmail.com', role = c('cre', 'aut'))")
+# Set your name
+my_desc$set("Authors@R", "person('Frank', 'Farach',
+            email = 'frank.farach@gmail.com',
+            role = c('cre', 'aut'))")
 
 # Remove some author fields
 my_desc$del("Maintainer")
@@ -23,10 +25,13 @@ my_desc$del("Maintainer")
 my_desc$set_version("0.0.0.9000")
 
 # The title of your package
-my_desc$set(Title = "Access the U.S. National Provider Identifier Registry API")
+my_desc$set(Title = "Access the U.S. National Provider Identifier
+            Registry API")
 
 # The description of your package
-my_desc$set(Description = "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.")
+my_desc$set(Description = "Access the United States National Provider
+            Identifier Registry API (if available) and provide informative
+            error messages when it's not.")
 
 # The urls
 my_desc$set("URL", "https://github.com/frankfarach/npi")
@@ -55,7 +60,6 @@ use_package("stringr")
 
 # Add testing, vignette, and README.Rmd
 use_testthat()
-#use_vignette("npi")
 use_readme_rmd()
 
 # Set up continuous integration
