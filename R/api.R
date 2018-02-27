@@ -1,6 +1,6 @@
 #' Search the NPI Registry
 #'
-#' Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the regisry's API.
+#' Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the registry's API.
 #'
 #' @param number The NPI Number is the unique 10-digit National Provider Identifier assigned to the provider.
 #' @param enumeration_type The Read API can be refined to retrieve only Individual Providers or Organizational Providers. When it is not specified, both Type 1 and Type 2 NPIs will be returned. When using the Enumeration Type, it cannot be the only criteria entered. Additional criteria must also be entered as well. Valid values are: NPI-1: Individual Providers (Type 1) NPIs; NPI-2: Organizational Providers (Type 2) NPIs
@@ -59,7 +59,7 @@ search_npi <-
     # Check for internet
     check_internet()
     # Create and execute the request
-    res <- httr::GET(base_url, query = purrr::compact(args), )
+    res <- httr::GET(base_url, query = purrr::compact(args))
     # Check the result
     check_status(res)
     # Get the content and return it as a data.frame
