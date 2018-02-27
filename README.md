@@ -5,7 +5,7 @@ npi
 
 > Access the U.S. National Provider Identifier Registry API
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi) [![AppVeyor Build Status](https://ci.appveyor.com/project/frankfarach/npi)](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branch=master&svg=true) [![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branch=master&svg=true)](https://ci.appveyor.com/project/frankfarach/npi) [![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
 
 Provide access to the API for the U.S. National Provider Identifier (NPI) Registry Public Search provided by the Center for Medicare and Medicaid Services (CMS): <https://npiregistry.cms.hhs.gov/>.
 
