@@ -50,12 +50,27 @@ search_npi <-
         skip = skip,
         pretty = pretty
       )
+
     # Check that at least one argument is not null
-    attempt::stop_if_all(
-      args,
-      is.null,
-      "You need to specify at least one argument"
+    attempt::stop_if_all(args,
+                         is.null,
+                         "Please specify at least one argument")
+
+    # Only valid NPIs allowed
+    if (!is.null(args)) {
+      attempt::stop_if_not(args$number,
+                           is_valid_npi,
+                           "NPI is not valid. Please supply a valid NPI.")
+    }
+
+    # Validate enumeration_type
+    attempt::stop_if(
+      args$enumeration_type,
+      ~ !is.null(.) && !(. %in% c("NPI-1", "NPI-2")),
+      'If `enumeration_type` is NULL, please supply a value of either
+      "NPI-1" or "NPI-2".'
     )
+
     # Check for internet
     check_internet()
     # Create and execute the request

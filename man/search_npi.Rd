@@ -40,5 +40,5 @@ search_npi(number = NULL, enumeration_type = NULL,
 \item{pretty}{When checked, the response will be displayed in an easy to read format.}
 }
 \description{
-Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the regisry's API.
+Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the registry's API.
 }
