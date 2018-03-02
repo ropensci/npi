@@ -63,11 +63,11 @@ search_npi <-
                            "NPI is not valid. Please supply a valid NPI.")
     }
 
-    # Validate enumeration_type
+    # Validate enumeration_type value
     attempt::stop_if(
       args$enumeration_type,
       ~ !is.null(.) && !(. %in% c("NPI-1", "NPI-2")),
-      'If `enumeration_type` is NULL, please supply a value of either
+      'Please supply a value of either
       "NPI-1" or "NPI-2".'
     )
 
