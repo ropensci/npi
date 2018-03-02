@@ -1,3 +1,59 @@
+#' National Provider Identifier API client
+#'
+#' API client to the U.S. National Provider Identifier (NPI) public registry.
+#'
+#' @param query List of query parameters
+#' @return \code{npi_api} S3 class containing the API content, URL, and response.
+#' @export
+npi_api <- function(query) {
+
+  url <- httr::modify_url(base_url, query = query)
+  ua <- httr::user_agent(user_agent)
+
+  resp <- httr::GET(url, ua)
+  if (httr::http_type(resp) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+
+  parsed <-
+    jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
+
+  if (status_code(resp) != 200) {
+    stop(
+      sprintf(
+        "NPPES API request failed [%s]\n%s\n<%s>",
+        status_code(resp),
+        parsed$message,
+        parsed$documentation_url
+      ),
+      call. = FALSE
+    )
+  }
+
+  structure(list(
+    content = parsed,
+    url = url,
+    response = resp
+  ),
+  class = "npi_api")
+
+}
+
+#' Print method for npi_api S3 class
+#'
+#' Print the structure of the content in an \code{npi_api} S3 class object.
+#'
+#' @param x npi_api S3 class object
+#' @param ... Optional arguments
+#'
+#' @export
+print.npi_api <- function(x, ...) {
+  cat("<NPI ", x$url, ">\n", sep = "")
+  utils::str(x$content)
+  invisible(x)
+}
+
+
 #' Search the NPI Registry
 #'
 #' Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the registry's API.
@@ -17,6 +73,7 @@
 #' @param skip The first N (value entered) results meeting the entered criteria will be bypassed and will not be included in the output.
 #' @param pretty When checked, the response will be displayed in an easy to read format.
 #'
+#' @return \code{npi_api} S3 class containing the API content, URL, and response.
 #' @export
 search_npi <-
   function(number = NULL,
@@ -57,26 +114,12 @@ search_npi <-
                          "Please specify at least one argument")
 
     # Only valid NPIs allowed
-    if (!is.null(args)) {
-      attempt::stop_if_not(args$number,
-                           is_valid_npi,
-                           "NPI is not valid. Please supply a valid NPI.")
-    }
+#    if (!is.null(args)) {
+#      attempt::stop_if_not(args$number,
+#                           is_valid_npi,
+#                           "NPI is not valid. Please supply a valid NPI.")
+#    }
 
-    # Validate enumeration_type value
-    attempt::stop_if(
-      args$enumeration_type,
-      ~ !is.null(.) && !(. %in% c("NPI-1", "NPI-2")),
-      'Please supply a value of either
-      "NPI-1" or "NPI-2".'
-    )
+    npi_api(args)
 
-    # Check for internet
-    check_internet()
-    # Create and execute the request
-    res <- httr::GET(base_url, query = purrr::compact(args))
-    # Check the result
-    check_status(res)
-    # Get the content and return it as a data.frame
-    jsonlite::fromJSON(rawToChar(res$content))$results
   }
