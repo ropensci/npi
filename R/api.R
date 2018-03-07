@@ -16,7 +16,8 @@ npi_api <- function(query) {
   }
 
   parsed <-
-    jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
+    jsonlite::fromJSON(httr::content(resp, "text"),
+                       simplifyVector = FALSE)
 
   if (status_code(resp) != 200) {
     stop(
@@ -88,7 +89,15 @@ search_npi <-
            country_code = NULL,
            limit = 200,
            skip = NULL) {
-    args <-
+
+    if (!is.null(provider_type)) {
+      if (!provider_type %in% c("NPI-1", "NPI-2")) {
+        message('"provider_type" must be one of "NPI-1" or "NPI-2"')
+        return(data.frame())
+      }
+    }
+
+    params <-
       list(
         number = npi,
         enumeration_type = provider_type,
@@ -105,11 +114,6 @@ search_npi <-
         skip = skip
       )
 
-    # Check that at least one argument is not null
-    attempt::stop_if_all(args,
-                         is.null,
-                         "Please specify at least one argument")
-
-    npi_api(args)
+    npi_api(params)
 
   }

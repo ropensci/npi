@@ -4,24 +4,23 @@
 \alias{search_npi}
 \title{Search the NPI Registry}
 \usage{
-search_npi(number = NULL, enumeration_type = NULL,
-  taxonomy_description = NULL, first_name = NULL, last_name = NULL,
-  organization_name = NULL, address_purpose = NULL, city = NULL,
-  state = NULL, postal_code = NULL, country_code = NULL, limit = NULL,
-  skip = NULL, pretty = NULL)
+search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
+  first_name = NULL, last_name = NULL, org_name = NULL,
+  address_purpose = NULL, city = NULL, state = NULL, postal_code = NULL,
+  country_code = NULL, limit = 200, skip = NULL)
 }
 \arguments{
-\item{number}{The NPI Number is the unique 10-digit National Provider Identifier assigned to the provider.}
+\item{npi}{10-digit National Provider Identifier number assigned to the provider.}
 
-\item{enumeration_type}{The Read API can be refined to retrieve only Individual Providers or Organizational Providers. When it is not specified, both Type 1 and Type 2 NPIs will be returned. When using the Enumeration Type, it cannot be the only criteria entered. Additional criteria must also be entered as well. Valid values are: NPI-1: Individual Providers (Type 1) NPIs; NPI-2: Organizational Providers (Type 2) NPIs}
+\item{provider_type}{The API can be refined to retrieve only Individual Providers or Organizational Providers. When it is not specified, both Type 1 and Type 2 NPIs will be returned. When using the Enumeration Type, it cannot be the only criteria entered. Additional criteria must also be entered as well. Valid values are: NPI-1: Individual Providers (Type 1) NPIs; NPI-2: Organizational Providers (Type 2) NPIs}
 
-\item{taxonomy_description}{Search for providers by their taxonomy by entering the taxonomy description.}
+\item{taxonomy}{Search for providers by their taxonomy by entering the taxonomy description.}
 
 \item{first_name}{This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g. "jo*" ). This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.}
 
 \item{last_name}{This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.}
 
-\item{organization_name}{This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe,"at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.}
+\item{org_name}{This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe,"at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.}
 
 \item{address_purpose}{Refers to whether the address information entered pertains to the provider's Mailing Address or the provider's Practice Location Address. When not specified, the results will contain the providers where either the Mailing Address or the Practice Location Addresses match the entered address information. Valid values are: "LOCATION", "MAILING"}
 
@@ -36,8 +35,6 @@ search_npi(number = NULL, enumeration_type = NULL,
 \item{limit}{Limit the results returned. The default value is 10; however, the value can be set to any value from 1 to 200.}
 
 \item{skip}{The first N (value entered) results meeting the entered criteria will be bypassed and will not be included in the output.}
-
-\item{pretty}{When checked, the response will be displayed in an easy to read format.}
 }
 \value{
 \code{npi_api} S3 class containing the API content, URL, and response.
