@@ -14,7 +14,8 @@ Imports:
     httr,
     jsonlite,
     purrr,
-    stringr
+    stringr,
+    dplyr
 Suggests: 
     testthat,
     covr

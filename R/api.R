@@ -16,7 +16,7 @@ npi_api <- function(query) {
   }
 
   parsed <-
-    jsonlite::fromJSON(httr::content(resp, "text"),
+    jsonlite::fromJSON(httr::content(resp, "text", encoding = "utf8"),
                        simplifyVector = FALSE)
 
   if (status_code(resp) != 200) {
@@ -31,12 +31,20 @@ npi_api <- function(query) {
     )
   }
 
-  structure(list(
+  res <- structure(list(
     content = parsed,
     url = url,
     response = resp
   ),
   class = "npi_api")
+
+  if (!is.null(res$content$Errors)) {
+    msg <- purrr::map_chr(res$content$Errors, ~ .x)
+    message(msg)
+    return(dplyr::data_frame())
+  }
+
+  res
 
 }
 
@@ -64,7 +72,7 @@ print.npi_api <- function(x, ...) {
 #' @param taxonomy Search for providers by their taxonomy by entering the taxonomy description.
 #' @param first_name This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g. "jo*" ). This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.
 #' @param last_name This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.
-#' @param org_name This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe,"at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.
+#' @param org_name This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, "at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.
 #' @param address_purpose Refers to whether the address information entered pertains to the provider's Mailing Address or the provider's Practice Location Address. When not specified, the results will contain the providers where either the Mailing Address or the Practice Location Addresses match the entered address information. Valid values are: "LOCATION", "MAILING"
 #' @param city The City associated with the provider's address identified in Address Purpose. To search for a Military Address enter either APO or FPO into the City field. This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.
 #' @param state The State abbreviation associated with the provider's address identified in Address Purpose. This field cannot be used as the only input criterion. If this field is used, at least one other field, besides the Enumeration Type and Country, must be populated. Valid values for states: https://npiregistry.cms.hhs.gov/registry/API-State-Abbr
@@ -91,11 +99,13 @@ search_npi <-
            skip = NULL) {
 
     if (!is.null(provider_type)) {
-      if (!provider_type %in% c("NPI-1", "NPI-2")) {
-        message('"provider_type" must be one of "NPI-1" or "NPI-2"')
-        return(data.frame())
+      if (!provider_type %in% c(1, 2)) {
+        message("provider_type must be one of: NULL, 1, or 2")
+        return(dplyr::data_frame())
       }
     }
+
+    provider_type <- ifelse(provider_type == 1, "NPI-1", "NPI-2")
 
     params <-
       list(

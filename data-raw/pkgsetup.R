@@ -57,6 +57,7 @@ use_package("curl")
 use_package("attempt")
 use_package("purrr")
 use_package("stringr")
+use_package("dplyr")
 
 # Add testing, vignette, and README.Rmd
 use_testthat()
