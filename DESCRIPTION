@@ -15,7 +15,8 @@ Imports:
     jsonlite,
     purrr,
     stringr,
-    dplyr
+    dplyr,
+    magrittr
 Suggests: 
     testthat,
     covr

@@ -58,6 +58,7 @@ use_package("attempt")
 use_package("purrr")
 use_package("stringr")
 use_package("dplyr")
+use_package("magrittr")
 
 # Add testing, vignette, and README.Rmd
 use_testthat()
