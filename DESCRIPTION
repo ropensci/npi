@@ -16,6 +16,7 @@ Imports:
     purrr,
     stringr,
     dplyr,
+    tibble,
     magrittr
 Suggests: 
     testthat,
