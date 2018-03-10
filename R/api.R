@@ -1,7 +1,7 @@
 #' National Provider Identifier API client
 #'
 #' API client to the U.S. National Provider Identifier (NPI) public registry.
-#'
+#
 #' @param query List of query parameters
 #' @return \code{npi_api} S3 class containing the API content, URL, and response.
 #' @export
@@ -31,36 +31,25 @@ npi_api <- function(query) {
     )
   }
 
-  res <- structure(list(
-    content = parsed,
-    url = url,
-    response = resp
-  ),
-  class = "npi_api")
-
-  if (!is.null(res$content$Errors)) {
-    msg <- purrr::map_chr(res$content$Errors, ~ .x)
+  if (!is.null(parsed$Errors)) {
+    msg <- purrr::map_chr(parsed$Errors, ~ .x)
     message(msg)
-    return(dplyr::data_frame())
+    return(list())
   }
+
+  if (parsed$result_count == 0) {
+    message("No results returned")
+    return(list())
+  }
+
+  res <- parsed$results
+  class(res) <- "npi_api"
 
   res
 
 }
 
-#' Print method for npi_api S3 class
-#'
-#' Print the structure of the content in an \code{npi_api} S3 class object.
-#'
-#' @param x npi_api S3 class object
-#' @param ... Optional arguments
-#'
-#' @export
-print.npi_api <- function(x, ...) {
-  cat("<NPI ", x$url, ">\n", sep = "")
-  utils::str(x$content)
-  invisible(x)
-}
+
 
 
 #' Search the NPI Registry
