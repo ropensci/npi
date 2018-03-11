@@ -11,57 +11,20 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-library(magrittr)
-library(dplyr)
 library(npi)
+library(tidyverse)
+
 ```
 
 # npi
 > Access the U.S. National Provider Identifier Registry API
-
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branch=master&svg=true)](https://ci.appveyor.com/project/frankfarach/npi)
-[![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+  
+  [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+  [![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi)
+  [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branch=master&svg=true)](https://ci.appveyor.com/project/frankfarach/npi)
+  [![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
 
 Provide access to the API for the U.S. National Provider Identifier (NPI) Registry Public Search provided by the Center for Medicare and Medicaid Services (CMS): https://npiregistry.cms.hhs.gov/.
-
-## Example
-
-Use `search_npi()` to search the public NPI Registry by the [available parameters](https://npiregistry.cms.hhs.gov/registry/help-api) and get the results as a complex data frame of vectors and data frames. A future release will return a simplified tidy data frame (tibble) to make the data easier to work with.
-
-```{r ex1}
-# Return the first 3 organizational provider names and NPIs
-# for providers registered in the 98101 ZIP code:
-res <- npi::search_npi(
-  postal_code = "98101",
-  enumeration_type = "NPI-2",
-  address_purpose = "LOCATION",
-  limit = 3
-)
-
-# Extract the organizational names and NPIs and bind in one data frame
-org_names <- res$basic %>%
-filter(status == "A") %>%
-select(name)
-
-npis <- res %>% select(number)
-
-df <- bind_cols(org_names, npis)
-df
-
-```
-
-Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
-
-```{r valid_npi_ex}
-# Validate one-off NPIs
-npi::is_valid_npi(1234567893)
-npi::is_valid_npi(1234567898)
-
-# Validate NPIs returned from registry
-df %>% mutate(valid_npi = is_valid_npi(number))
-```
 
 ## Installation
 
@@ -69,6 +32,88 @@ This package can be installed directly from this Github repo:
 
 ```{r install, eval = FALSE}
 devtools::install_github("frankfarach/npi")
+library(npi)
+```
+
+## Usage
+
+### Searching
+
+`search_npi()` searches the public NPI Registry using the [parameters](https://npiregistry.cms.hhs.gov/registry/help-api) made available by the API and returns the results as a [tidy data frame](http://tibble.tidyverse.org/), or tibble.
+
+```{r ex1}
+# Search for orthopedic individual providers in Atlanta, Georgia
+res <- search_npi(provider_type = 1,
+                  taxonomy = "Orthoped*",
+                  city = "Atlanta",
+                  state = "GA")
+
+# Get results as a tibble
+df <- get_results(res)
+glimpse(df)
+
+```
+
+### Working with Search Results 
+
+Data within the data frame is organized according to its relationship to the NPI (`number` column), which should be treated as a primary key. Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles. 
+
+```{r listcol}
+df %>% 
+  select(number, taxonomies, addresses, identifiers)
+```
+
+There are three such columns:
+
+ * `taxonomies`: Service classification and licnese information
+ * `addresses`: Location and mailing address information
+ * `identifiers`: Miscellaneous provider identifiers and credential information
+
+Any of these columns can be extracted as a tidy data frame using `dplyr::unnest()`:
+
+```{r unnest}
+tax <- df %>%
+  select(number, taxonomies) %>% 
+  unnest()
+tax
+```
+
+By repeating this process with other list columns, you can create multiple tidy data frames and join them to make your own master tidy data frame.
+
+```{r multiple_listcols}
+# Create tidy data frame of identifiers
+ids <- df %>%
+  select(number, identifiers) %>% 
+  unnest()
+ids
+
+# Join taxonomies and identifiers by `number`
+left_join(tax, ids, by = "number")
+```
+
+### Paging
+
+By default, `search_npi()` will return at most 200 records per request, which is the maximum set by the API. To return additional records, specify the number of records to skip using the skip argument. The API limits the total number of returned records across requests to 1,200 for a set a query parameters:
+
+```{r skip}
+# Return records 200-400
+search_npi(
+  city = "San Francisco",
+  state = "CA",
+  skip = 200
+  ) %>%
+  get_results()
+```
+
+### Validating NPIs
+
+Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
+
+```{r valid_npi_ex}
+# Validate one-off NPIs
+is_valid_npi(1234567893)
+is_valid_npi(1234567898)
+
 ```
 
 ## Code of Conduct
