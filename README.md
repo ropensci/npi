@@ -32,8 +32,30 @@ res <- search_npi(provider_type = 1,
                   taxonomy = "Orthoped*",
                   city = "Atlanta",
                   state = "GA")
+```
 
-# Get results as a tibble
+### Working with Search Results
+
+If you just want the NPIs from the search results, use `get_npi()`: It accepts an `npi_api` S3 object, extracts the NPIs from it, and returns them as an integer vector.
+
+``` r
+get_npi(res)
+#>  [1] 1801876693 1265409692 1124088042 1558321471 1174583082 1205896693
+#>  [7] 1255392668 1215998638 1689637746 1730144775 1447216759 1124084108
+#> [13] 1083666739 1790714434 1477577484 1720167083 1740359918 1699805358
+#> [19] 1538299474 1619175395 1346439437 1720267610 1376723239 1073767216
+#> [25] 1326372293 1417283391 1588995054 1750601464 1649591173 1235450800
+#> [31] 1689985061 1982911590 1902116809 1477863157 1861910770 1710248901
+#> [37] 1992066013 1831442821 1407289622 1023449048 1619398534 1669897518
+#> [43] 1861800757 1366851107 1689073553 1952707457 1013394915 1033265319
+#> [49] 1174969398 1114329455 1417323627 1235596156 1205380342 1083168975
+#> [55] 1528515111 1538616305 1033656806 1093242620 1649791005 1881118016
+#> [61] 1508384074
+```
+
+`get_results()` accepts a `npi_api` S3 object, organizes and cleans the data, and returns it as a tibble:
+
+``` r
 df <- get_results(res)
 glimpse(df)
 #> Observations: 61
@@ -58,9 +80,7 @@ glimpse(df)
 #> $ name_prefix        <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
 ```
 
-### Working with Search Results
-
-Data within the data frame is organized according to its relationship to the NPI (`number` column), which should be treated as a primary key. Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
+The data is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
 
 ``` r
 df %>% 

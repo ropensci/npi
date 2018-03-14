@@ -41,22 +41,33 @@ library(npi)
 
 `search_npi()` searches the public NPI Registry using the [parameters](https://npiregistry.cms.hhs.gov/registry/help-api) made available by the API and returns the results as a [tidy data frame](http://tibble.tidyverse.org/), or tibble.
 
-```{r ex1}
+```{r search_npi}
 # Search for orthopedic individual providers in Atlanta, Georgia
 res <- search_npi(provider_type = 1,
                   taxonomy = "Orthoped*",
                   city = "Atlanta",
                   state = "GA")
 
-# Get results as a tibble
+```
+
+### Working with Search Results 
+
+If you just want the NPIs from the search results, use `get_npi()`: It accepts an `npi_api` S3 object, extracts the NPIs from it, and returns them as an integer vector.
+
+```{r get_npi}
+get_npi(res)
+```
+
+`get_results()` accepts a `npi_api` S3 object, organizes and cleans the data, and returns it as a tibble:
+
+```{r }
 df <- get_results(res)
 glimpse(df)
 
 ```
 
-### Working with Search Results 
 
-Data within the data frame is organized according to its relationship to the NPI (`number` column), which should be treated as a primary key. Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles. 
+The data is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
 
 ```{r listcol}
 df %>% 
