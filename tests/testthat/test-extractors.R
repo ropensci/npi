@@ -13,3 +13,9 @@ npivec <- c(1598295529, 1710977137, 1346224904, 1336125137, 1588634661)
 test_that("get_npi returns correct vector of npi numbers", {
   expect_equal(get_npi(npi:::res), npivec)
 })
+
+test_that("clean_credentials works as expected", {
+  expect_error(clean_credentials(1L), "x must be a character vector")
+  expect_equal(clean_credentials(c("M.D.", "Ph.D.", "MD, Ph.D.")),
+                                 list("MD", "PhD", c("MD", "PhD")))
+})

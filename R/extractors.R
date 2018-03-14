@@ -42,6 +42,7 @@ get_results <- function(npi_api) {
     as.POSIXct(res$created_epoch, origin = "1970-01-01")
   res$last_updated_epoch <-
     as.POSIXct(res$last_updated_epoch, origin = "1970-01-01")
+  res$credential <- clean_credentials(res$credential)
 
   res
 }
