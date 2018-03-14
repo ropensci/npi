@@ -4,6 +4,7 @@ library(rvest)
 library(magrittr)
 library(tidyr)
 library(readr)
+library(tibble)
 
 # Scrape country codes ----------------------------------------------------
 
@@ -52,10 +53,18 @@ provider_taxonomy <-
     col_types = "cccccc"
   )
 
+# Set up internal test data -----------------------------------------------
+
+# Get the first 5 records to keep the data set small
+res <- search_npi(city = "New York City", state = "NY", limit = 5)
+
+# Generate a data frame from the results object
+res_df <- get_results(res)
+
 
 # Make data available for internal package use ----------------------------
 
 usethis::use_data(
-  countries, states, provider_taxonomy,
+  countries, states, provider_taxonomy, res, res_df,
   internal = TRUE, overwrite = TRUE
 )

@@ -1,4 +1,4 @@
-#' get_resultso
+#' get_results
 #' @param npi_api npi_api S3 object
 #' @export
 get_results <- function(npi_api) {
@@ -52,9 +52,11 @@ get_results <- function(npi_api) {
 get_npi <- function(npi_api) {
   if (!inherits(npi_api, "npi_api")) {
     message('get_results expects an object of class "npi_api"')
-    return(tibble::data_frame())
+    return(vector(mode = "numeric"))
   }
 
   npi_api %>%
     purrr::map_int("number")
 }
+
+

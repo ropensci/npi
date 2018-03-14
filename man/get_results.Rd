@@ -2,7 +2,7 @@
 % Please edit documentation in R/extractors.R
 \name{get_results}
 \alias{get_results}
-\title{get_resultso}
+\title{get_results}
 \usage{
 get_results(npi_api)
 }
@@ -10,5 +10,5 @@ get_results(npi_api)
 \item{npi_api}{npi_api S3 object}
 }
 \description{
-get_resultso
+get_results
 }
