@@ -72,6 +72,10 @@ luhn_check <- function(number, return_logical = TRUE) {
   }
 }
 
+#' Clean up credentials
+#'
+#' @param x Character vector of credentials
+#' @return List of cleaned character vectors, with one list element per element of \code{x}
 clean_credentials <- function(x) {
   if (!is.character(x))
     stop("x must be a character vector")
@@ -81,3 +85,20 @@ clean_credentials <- function(x) {
   out
 }
 
+#' Add hyphen to 9-digit ZIP codes
+#'
+#' @param x Character or numeric vector containing ZIP code(s)
+#'
+#' @return Length \code{x} character vector hyphenated for ZIP+4
+hyphenate_full_zip <- function(x) {
+  ifelse(stringr::str_length(x) > 5 &
+           stringr::str_length(x) <= 9 &
+           !stringr::str_detect(x, "-"),
+         paste0(
+           stringr::str_sub(x, 1, 5),
+           "-",
+           stringr::str_sub(x, 6, 9)
+         ),
+         x
+  )
+}
