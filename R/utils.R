@@ -102,3 +102,38 @@ hyphenate_full_zip <- function(x) {
          x
   )
 }
+
+#' Create full address from elements
+#'
+#' @param df Data frame
+#' @param address_1 Quoted column name in \code{df} containing a character vector of first-street-line addresses
+#' @param address_2 Quoted column name in \code{df} containing a character vector of second-street-line addresses
+#' @param city Quoted column name in \code{df} containing a character vector of cities
+#' @param state Quoted column name in \code{df} containing a character vector of two-letter state abbreviations
+#' @param postal_code Quoted column name in \code{df} containing a character or numeric vector of postal codes
+#'
+#' @return Character vector containing full one-line addresses
+make_full_address <-
+  function(df,
+           address_1,
+           address_2,
+           city,
+           state,
+           postal_code) {
+    stopifnot(is.data.frame(df),
+              all(c(
+                address_1, address_2, city, state, postal_code
+              ) %in% names(df)))
+
+    stringr::str_c(
+        stringr::str_trim(df[[address_1]], "both"),
+        " ",
+        stringr::str_trim(df[[address_2]], "both"),
+        ", ",
+        stringr::str_trim(df[[city]], "both"),
+        ", ",
+        stringr::str_trim(df[[state]], "both"),
+        " ",
+        stringr::str_trim(df[[postal_code]], "both")
+      )
+  }
