@@ -56,13 +56,14 @@ provider_taxonomy_codes <-
 
 # NPPES Code Table Values -------------------------------------------------
 # Source: Data Dissemination Public File - Code Values
+# URL: https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/Data_Dissemination_File-Code_Values.pdf
 # Updated: July 10, 2013
 # Effective Date: Aug, 2013
 
 entity_type_codes <- tribble(
   ~code, ~desc,
-  1, "Individual",
-  2, "Organization"
+  1L, "Individual",
+  2L, "Organization"
 )
 
 # Used for sole proprietor, subart, and primary taxonomy codes
@@ -89,11 +90,11 @@ deactivation_reason_codes <- tribble(
 
 other_provider_name_type_codes <- tribble(
   ~code, ~desc, ~entity_name_type_code,
-  1, "Former Name", "I",
-  2, "Professional Name", "I",
-  3, "Doing Business As", "O",
-  4, "Former Legal Business Name", "O",
-  5, "Other Name", "B"
+  1L, "Former Name", "I",
+  2L, "Professional Name", "I",
+  3L, "Doing Business As", "O",
+  4L, "Former Legal Business Name", "O",
+  5L, "Other Name", "B"
 )
 
 name_prefix_codes <- tribble(
