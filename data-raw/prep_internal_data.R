@@ -8,7 +8,7 @@ library(tibble)
 
 # Scrape country codes ----------------------------------------------------
 
-countries <- "https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr" %>%
+country_codes <- "https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr" %>%
   read_html() %>%
   html_nodes("table") %>%
   .[1] %>%
@@ -17,16 +17,16 @@ countries <- "https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr" %>%
   as_tibble()
 
 # Fix mangled names
-names(countries) <- c("country_abbr", "country_name")
+names(country_codes) <- c("country_abbr", "country_name")
 
 # R thinks Namibia's ISO code of "NA" is NA (missing); this fixes it
-countries$country_abbr <-
-  countries$country_abbr %>%
+country_codes$country_abbr <-
+  country_codes$country_abbr %>%
   replace_na("NA")
 
 # Scrape state codes ------------------------------------------------------
 
-states <- "https://npiregistry.cms.hhs.gov/registry/API-State-Abbr" %>%
+state_codes <- "https://npiregistry.cms.hhs.gov/registry/API-State-Abbr" %>%
   read_html() %>%
   html_nodes("table") %>%
   .[1] %>%
@@ -34,11 +34,11 @@ states <- "https://npiregistry.cms.hhs.gov/registry/API-State-Abbr" %>%
   .[[1]] %>%
   as_tibble()
 
-names(states) <- c("state_abbr", "state_name")
+names(state_codes) <- c("state_abbr", "state_name")
 
 # Scrape Healthcare Provider Taxonomy -------------------------------------
 
-provider_taxonomy <-
+provider_taxonomy_codes <-
   "http://nucc.org/images/stories/CSV/nucc_taxonomy_180.csv" %>%
   read_csv(
     skip = 1,
@@ -140,18 +140,20 @@ group_taxonomy_codes <- tribble(
 
 # Bundle codes sets into a list for a tidier environment
 nppes_code_sets <- list(
-  entity_type_codes,
-  ynx_codes,
-  gender_codes,
-  deactivation_reason_codes,
-  other_provider_name_type_codes,
-  name_prefix_codes,
-  name_suffix_codes,
-  other_provider_identifier_issuer_codes,
-  group_taxonomy_codes
+  entity_type_codes = entity_type_codes,
+  ynx_codes = ynx_codes,
+  gender_codes = gender_codes,
+  deactivation_reason_codes = deactivation_reason_codes,
+  other_provider_name_type_codes = other_provider_name_type_codes,
+  name_prefix_codes = name_prefix_codes,
+  name_suffix_codes = name_suffix_codes,
+  state_codes = state_codes,
+  country_codes = country_codes,
+  other_provider_identifier_issuer_codes = other_provider_identifier_issuer_codes,
+  provider_taxonomy_codes = provider_taxonomy_codes,
+  group_taxonomy_codes = group_taxonomy_codes
 )
 
-# TODO: Set names for list elements for easier extraction
 
 # Set up internal test data -----------------------------------------------
 
@@ -165,9 +167,6 @@ res_df <- get_results(res)
 # Make data available for internal package use ----------------------------
 
 usethis::use_data(
-  countries,
-  states,
-  provider_taxonomy,
   res,
   res_df,
   nppes_code_sets,
