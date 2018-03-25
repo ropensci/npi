@@ -6,10 +6,11 @@ test_that("search_npi provides messages when provider_type value is incorrect", 
 })
 
 test_that("search_npi returns error messages from API", {
-  expect_message(search_npi(provider_type = 1),
+  expect_error(search_npi(), "Error 04 - No valid search criteria provided")
+  expect_error(search_npi(provider_type = 1),
                  "Error 09 - enumeration_type requires additional search criteria")
 })
 
-test_that("search_npi returns an empty list when there are no results", {
-  expect_identical(search_npi(postal_code = "zzz"), list())
+test_that("search_npi returns an empty tibble when there are no results", {
+  expect_identical(search_npi(postal_code = "zzz"), dplyr::data_frame())
 })

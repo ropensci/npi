@@ -1,29 +1,27 @@
 #' get_results
-#' @param npi_api npi_api S3 object
-#' @export
+#' @param npi_api List of parsed results from npi_api()
+#' @return Tibble of cleaned search results
 get_results <- function(npi_api) {
-  if (!inherits(npi_api, "npi_api")) {
-    message('get_results expects an object of class "npi_api"')
-    return(tibble::data_frame())
+  if (purrr::is_empty(npi_api)) {
+    message("Search returned no results.")
+    return(dplyr::data_frame())
   }
 
-  res <- npi_api
+  basic_cols <- purrr::map_df(npi_api, "basic")
 
-  basic_cols <- purrr::map_df(res, "basic")
-
-  tax_cols <- res %>%
+  tax_cols <- npi_api %>%
     purrr::map( ~ .x$taxonomies) %>%
     purrr::map(purrr::map_df, ~ .x)
 
-  address_cols <- res %>%
+  address_cols <- npi_api %>%
     purrr::map( ~ .x$addresses) %>%
     purrr::map(purrr::map_df, ~ .x)
 
-  id_cols <- res %>%
+  id_cols <- npi_api %>%
     purrr::map( ~ .x$identifiers) %>%
     purrr::map(purrr::map_df, ~ .x)
 
-  res <- res %>%
+  res <- npi_api %>%
     purrr::map_df(`[`,
                   c(
                     "number",
@@ -46,18 +44,3 @@ get_results <- function(npi_api) {
 
   res
 }
-
-#' get_npi
-#' @param npi_api An `npi_api` S3 object
-#' @export
-get_npi <- function(npi_api) {
-  if (!inherits(npi_api, "npi_api")) {
-    message('get_results expects an object of class "npi_api"')
-    return(vector(mode = "numeric"))
-  }
-
-  npi_api %>%
-    purrr::map_int("number")
-}
-
-

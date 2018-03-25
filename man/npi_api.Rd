@@ -10,7 +10,7 @@ npi_api(query)
 \item{query}{List of query parameters}
 }
 \value{
-\code{npi_api} S3 class containing the API content, URL, and response.
+List of parsed results
 }
 \description{
 API client to the U.S. National Provider Identifier (NPI) public registry.

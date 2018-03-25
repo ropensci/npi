@@ -7,7 +7,10 @@
 get_results(npi_api)
 }
 \arguments{
-\item{npi_api}{npi_api S3 object}
+\item{npi_api}{List of parsed results from npi_api()}
+}
+\value{
+Tibble of cleaned search results
 }
 \description{
 get_results

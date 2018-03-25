@@ -3,8 +3,7 @@
 #' API client to the U.S. National Provider Identifier (NPI) public registry.
 #
 #' @param query List of query parameters
-#' @return \code{npi_api} S3 class containing the API content, URL, and response.
-#' @export
+#' @return List of parsed results
 npi_api <- function(query) {
 
   url <- httr::modify_url(base_url, query = query)
@@ -33,7 +32,7 @@ npi_api <- function(query) {
 
   if (!is.null(parsed$Errors)) {
     msg <- purrr::map_chr(parsed$Errors, ~ .x)
-    message(msg)
+    stop(msg, call. = FALSE)
     return(list())
   }
 
@@ -42,10 +41,7 @@ npi_api <- function(query) {
     return(list())
   }
 
-  res <- parsed$results
-  class(res) <- "npi_api"
-
-  res
+  parsed$results
 
 }
 
@@ -113,6 +109,7 @@ search_npi <-
         skip = skip
       )
 
-    npi_api(params)
+    res <- npi_api(params)
+    get_results(res)
 
   }
