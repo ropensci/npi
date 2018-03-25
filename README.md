@@ -32,74 +32,30 @@ res <- search_npi(provider_type = 1,
                   taxonomy = "Orthoped*",
                   city = "Atlanta",
                   state = "GA")
+res
+#> # A tibble: 61 x 18
+#>        number enumeration_type created_epoch       last_updated_epoch 
+#>         <int> <chr>            <dttm>              <dttm>             
+#>  1 1801876693 NPI-1            2006-01-17 16:00:00 2015-05-12 15:44:26
+#>  2 1265409692 NPI-1            2006-03-02 16:00:00 2014-06-02 17:00:00
+#>  3 1124088042 NPI-1            2006-03-23 16:00:00 2008-04-07 17:00:00
+#>  4 1558321471 NPI-1            2006-03-23 16:00:00 2008-04-07 17:00:00
+#>  5 1174583082 NPI-1            2006-03-23 16:00:00 2010-03-17 17:00:00
+#>  6 1205896693 NPI-1            2006-03-27 16:00:00 2008-04-07 17:00:00
+#>  7 1255392668 NPI-1            2006-03-27 16:00:00 2008-04-07 17:00:00
+#>  8 1215998638 NPI-1            2006-03-27 16:00:00 2008-04-07 17:00:00
+#>  9 1689637746 NPI-1            2006-04-09 17:00:00 2011-06-01 17:00:00
+#> 10 1730144775 NPI-1            2006-04-19 17:00:00 2008-04-07 17:00:00
+#> # ... with 51 more rows, and 14 more variables: taxonomies <list>,
+#> #   addresses <list>, identifiers <list>, status <chr>, credential <list>,
+#> #   first_name <chr>, last_name <chr>, middle_name <chr>, name <chr>,
+#> #   gender <chr>, sole_proprietor <chr>, last_updated <chr>,
+#> #   enumeration_date <chr>, name_prefix <chr>
 ```
 
 ### Working with Search Results
 
-If you just want the NPIs from the search results, use `get_npi()`: It accepts an `npi_api` S3 object, extracts the NPIs from it, and returns them as an integer vector.
-
-``` r
-get_npi(res)
-#>  [1] 1801876693 1265409692 1124088042 1558321471 1174583082 1205896693
-#>  [7] 1255392668 1215998638 1689637746 1730144775 1447216759 1124084108
-#> [13] 1083666739 1790714434 1477577484 1720167083 1740359918 1699805358
-#> [19] 1538299474 1619175395 1346439437 1720267610 1376723239 1073767216
-#> [25] 1326372293 1417283391 1588995054 1750601464 1649591173 1235450800
-#> [31] 1689985061 1982911590 1902116809 1477863157 1861910770 1710248901
-#> [37] 1992066013 1831442821 1407289622 1023449048 1619398534 1669897518
-#> [43] 1861800757 1366851107 1689073553 1952707457 1013394915 1033265319
-#> [49] 1174969398 1114329455 1417323627 1235596156 1205380342 1083168975
-#> [55] 1528515111 1538616305 1033656806 1093242620 1649791005 1881118016
-#> [61] 1508384074
-```
-
-`get_results()` accepts a `npi_api` S3 object, organizes and cleans the data, and returns it as a tibble:
-
-``` r
-df <- get_results(res)
-glimpse(df)
-#> Observations: 61
-#> Variables: 18
-#> $ number             <int> 1801876693, 1265409692, 1124088042, 1558321...
-#> $ enumeration_type   <chr> "NPI-1", "NPI-1", "NPI-1", "NPI-1", "NPI-1"...
-#> $ created_epoch      <dttm> 2006-01-17 16:00:00, 2006-03-02 16:00:00, ...
-#> $ last_updated_epoch <dttm> 2015-05-12 15:44:26, 2014-06-02 17:00:00, ...
-#> $ taxonomies         <list> [<# A tibble: 2 x 5,   state code       pr...
-#> $ addresses          <list> [<# A tibble: 2 x 11,   city   address_2 t...
-#> $ identifiers        <list> [# A tibble: 0 x 0, <# A tibble: 1 x 5,   ...
-#> $ status             <chr> "A", "A", "A", "A", "A", "A", "A", "A", "A"...
-#> $ credential         <chr> "OPA-C", "PT", "PT, CHT", "PT", "PT", "PT",...
-#> $ first_name         <chr> "TONY", "AUGUSTUS", "HEATHER", "DOUGLAS", "...
-#> $ last_name          <chr> "GRIGGS", "WOLFF", "HOWROYD", "STURGESS", "...
-#> $ middle_name        <chr> "M", "G.", "A.", "M.", NA, "L.", "L.", "K."...
-#> $ name               <chr> "GRIGGS TONY", "WOLFF AUGUSTUS", "HOWROYD H...
-#> $ gender             <chr> "M", "M", "F", "M", "M", "M", "F", "F", "M"...
-#> $ sole_proprietor    <chr> "NO", "NO", "NO", "NO", "NO", "NO", "NO", "...
-#> $ last_updated       <chr> "2015-05-12", "2014-06-03", "2008-04-08", "...
-#> $ enumeration_date   <chr> "2006-01-18", "2006-03-03", "2006-03-24", "...
-#> $ name_prefix        <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-```
-
-The data is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
-
-``` r
-df %>% 
-  select(number, taxonomies, addresses, identifiers)
-#> # A tibble: 61 x 4
-#>        number taxonomies       addresses         identifiers     
-#>         <int> <list>           <list>            <list>          
-#>  1 1801876693 <tibble [2 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  2 1265409692 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [1 × 5]>
-#>  3 1124088042 <tibble [2 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  4 1558321471 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  5 1174583082 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  6 1205896693 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  7 1255392668 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  8 1215998638 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#>  9 1689637746 <tibble [2 × 5]> <tibble [2 × 11]> <tibble [3 × 5]>
-#> 10 1730144775 <tibble [1 × 5]> <tibble [2 × 11]> <tibble [0 × 0]>
-#> # ... with 51 more rows
-```
+The data returned from `search_npi()` is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
 
 There are three such columns:
 
@@ -110,7 +66,7 @@ There are three such columns:
 Any of these columns can be extracted as a tidy data frame using `dplyr::unnest()`:
 
 ``` r
-tax <- df %>%
+tax <- res %>%
   select(number, taxonomies) %>% 
   unnest()
 tax
@@ -134,7 +90,7 @@ By repeating this process with other list columns, you can create multiple tidy 
 
 ``` r
 # Create tidy data frame of identifiers
-ids <- df %>%
+ids <- res %>%
   select(number, identifiers) %>% 
   unnest()
 ids
@@ -172,7 +128,7 @@ left_join(tax, ids, by = "number")
 
 ### Paging
 
-By default, `search_npi()` will return at most 200 records per request, which is the maximum set by the API. To return additional records, specify the number of records to skip using the skip argument. The API limits the total number of returned records across requests to 1,200 for a set a query parameters:
+By default, `search_npi()` will return at most 200 records per request, which is the maximum set by the API. To return additional records, specify the number of records to skip using the skip argument.
 
 ``` r
 # Return records 200-400
@@ -180,26 +136,25 @@ search_npi(
   city = "San Francisco",
   state = "CA",
   skip = 200
-  ) %>%
-  get_results()
+  )
 #> # A tibble: 200 x 33
 #>        number enumeration_type created_epoch       last_updated_epoch 
 #>         <int> <chr>            <dttm>              <dttm>             
-#>  1 1003808338 NPI-1            2005-08-22 17:00:00 2008-12-10 16:00:00
-#>  2 1609868934 NPI-1            2005-08-22 17:00:00 2007-07-07 17:00:00
-#>  3 1942293071 NPI-2            2005-08-23 17:00:00 2007-07-07 17:00:00
-#>  4 1891172219 NPI-1            2015-05-04 17:00:00 2015-05-05 15:07:36
-#>  5 1639162514 NPI-1            2005-08-24 17:00:00 2012-09-17 17:00:00
-#>  6 1245223031 NPI-1            2005-08-25 17:00:00 2007-07-07 17:00:00
-#>  7 1689667495 NPI-1            2005-08-25 17:00:00 2014-03-18 17:00:00
-#>  8 1518950351 NPI-1            2005-08-25 17:00:00 2008-10-02 17:00:00
-#>  9 1780677526 NPI-1            2005-08-25 17:00:00 2007-09-04 17:00:00
-#> 10 1639162480 NPI-2            2005-08-25 17:00:00 2013-07-25 17:00:00
+#>  1 1487646758 NPI-1            2005-08-21 17:00:00 2013-03-03 16:00:00
+#>  2 1427040732 NPI-1            2005-08-21 17:00:00 2018-03-19 17:00:00
+#>  3 1417940685 NPI-1            2005-08-22 17:00:00 2016-06-06 12:55:07
+#>  4 1003808338 NPI-1            2005-08-22 17:00:00 2008-12-10 16:00:00
+#>  5 1609868934 NPI-1            2005-08-22 17:00:00 2007-07-07 17:00:00
+#>  6 1942293071 NPI-2            2005-08-23 17:00:00 2007-07-07 17:00:00
+#>  7 1891172219 NPI-1            2015-05-04 17:00:00 2015-05-05 15:07:36
+#>  8 1639162514 NPI-1            2005-08-24 17:00:00 2012-09-17 17:00:00
+#>  9 1245223031 NPI-1            2005-08-25 17:00:00 2007-07-07 17:00:00
+#> 10 1689667495 NPI-1            2005-08-25 17:00:00 2014-03-18 17:00:00
 #> # ... with 190 more rows, and 29 more variables: taxonomies <list>,
-#> #   addresses <list>, identifiers <list>, status <chr>, credential <chr>,
+#> #   addresses <list>, identifiers <list>, status <chr>, credential <list>,
 #> #   first_name <chr>, last_name <chr>, last_updated <chr>, name <chr>,
-#> #   gender <chr>, sole_proprietor <chr>, enumeration_date <chr>,
-#> #   middle_name <chr>, name_suffix <chr>, name_prefix <chr>,
+#> #   gender <chr>, sole_proprietor <chr>, name_prefix <chr>,
+#> #   enumeration_date <chr>, middle_name <chr>, name_suffix <chr>,
 #> #   authorized_official_telephone_number <chr>,
 #> #   authorized_official_middle_name <chr>,
 #> #   authorized_official_last_name <chr>, organization_name <chr>,

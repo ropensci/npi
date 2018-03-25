@@ -47,32 +47,12 @@ res <- search_npi(provider_type = 1,
                   taxonomy = "Orthoped*",
                   city = "Atlanta",
                   state = "GA")
-
+res
 ```
 
 ### Working with Search Results 
 
-If you just want the NPIs from the search results, use `get_npi()`: It accepts an `npi_api` S3 object, extracts the NPIs from it, and returns them as an integer vector.
-
-```{r get_npi}
-get_npi(res)
-```
-
-`get_results()` accepts a `npi_api` S3 object, organizes and cleans the data, and returns it as a tibble:
-
-```{r }
-df <- get_results(res)
-glimpse(df)
-
-```
-
-
-The data is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
-
-```{r listcol}
-df %>% 
-  select(number, taxonomies, addresses, identifiers)
-```
+The data returned from `search_npi()` is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
 
 There are three such columns:
 
@@ -83,7 +63,7 @@ There are three such columns:
 Any of these columns can be extracted as a tidy data frame using `dplyr::unnest()`:
 
 ```{r unnest}
-tax <- df %>%
+tax <- res %>%
   select(number, taxonomies) %>% 
   unnest()
 tax
@@ -93,7 +73,7 @@ By repeating this process with other list columns, you can create multiple tidy 
 
 ```{r multiple_listcols}
 # Create tidy data frame of identifiers
-ids <- df %>%
+ids <- res %>%
   select(number, identifiers) %>% 
   unnest()
 ids
@@ -104,7 +84,7 @@ left_join(tax, ids, by = "number")
 
 ### Paging
 
-By default, `search_npi()` will return at most 200 records per request, which is the maximum set by the API. To return additional records, specify the number of records to skip using the skip argument. The API limits the total number of returned records across requests to 1,200 for a set a query parameters:
+By default, `search_npi()` will return at most 200 records per request, which is the maximum set by the API. To return additional records, specify the number of records to skip using the skip argument.
 
 ```{r skip}
 # Return records 200-400
@@ -112,8 +92,7 @@ search_npi(
   city = "San Francisco",
   state = "CA",
   skip = 200
-  ) %>%
-  get_results()
+  )
 ```
 
 ### Validating NPIs
