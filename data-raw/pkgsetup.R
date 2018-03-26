@@ -59,6 +59,7 @@ use_package("purrr")
 use_package("stringr")
 use_package("dplyr")
 use_package("tibble")
+use_package("tidyr", type = "Suggests")
 use_pipe()
 document()
 
