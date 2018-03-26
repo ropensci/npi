@@ -55,7 +55,6 @@ get_results <- function(npi_api) {
 #' @param key key column in \code{df}
 #' @return data frame with \code{key} and unnested \code{list_col}
 get_list_col <- function(df, list_col, key) {
-  requireNamespace("tidyr", quietly = TRUE)
 
   if (!is.data.frame(df))
     stop("`df` must be a data frame")
