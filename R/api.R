@@ -31,7 +31,8 @@ npi_api <- function(query) {
   }
 
   if (!is.null(parsed$Errors)) {
-    msg <- purrr::map_chr(parsed$Errors, ~ .x$description)
+    msg <- purrr::map_chr(parsed$Errors, ~ .x$description) %>%
+      stringr::str_c(collapse = "\nError: ")
     stop(msg, call. = FALSE)
     return(list())
   }
