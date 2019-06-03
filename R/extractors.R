@@ -7,7 +7,7 @@ globalVariables(c("number", "taxonomies", "addresses", "identifiers"))
 get_results <- function(npi_api) {
   if (purrr::is_empty(npi_api)) {
     message("Search returned no results.")
-    return(dplyr::data_frame())
+    return(dplyr::tibble())
   }
 
   basic_cols <- purrr::map_df(npi_api, "basic")
@@ -43,7 +43,7 @@ get_results <- function(npi_api) {
     as.POSIXct(res$created_epoch, origin = "1970-01-01")
   res$last_updated_epoch <-
     as.POSIXct(res$last_updated_epoch, origin = "1970-01-01")
-  res$credential <- clean_credentials(res$credential)
+#  res$credential <- clean_credentials(res$credential)
 
   res
 }

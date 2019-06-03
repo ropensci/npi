@@ -31,7 +31,7 @@ npi_api <- function(query) {
   }
 
   if (!is.null(parsed$Errors)) {
-    msg <- purrr::map_chr(parsed$Errors, ~ .x)
+    msg <- purrr::map_chr(parsed$Errors, ~ .x$description)
     stop(msg, call. = FALSE)
     return(list())
   }
@@ -57,11 +57,12 @@ npi_api <- function(query) {
 #' @param taxonomy Search for providers by their taxonomy by entering the taxonomy description.
 #' @param first_name This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g. "jo*" ). This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.
 #' @param last_name This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.
+#' @param use_first_name_alias This field only applies to Individual Providers when not doing a wildcard search. When set to "True", the search results will include Providers with similar First Names. E.g., first_name=Robert, will also return Providers with the first name of Rob, Bob, Robbie, Bobby, etc. Valid Values are: TRUE: Will include alias/similar names; FALSE: Will only look for exact matches.
 #' @param org_name This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, "at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.
-#' @param address_purpose Refers to whether the address information entered pertains to the provider's Mailing Address or the provider's Practice Location Address. When not specified, the results will contain the providers where either the Mailing Address or the Practice Location Addresses match the entered address information. Valid values are: "LOCATION", "MAILING"
+#' @param address_purpose Refers to whether the address information entered pertains to the provider's Mailing Address or the provider's Practice Location Address. When not specified, the results will contain the providers where either the Mailing Address or any of Practice Location Addresses match the entered address information. Primary will only search against Primary Location Address. While Secondary will only search against Secondary Location Addresses. Valid values are: "location", "mailing", "primary", "secondary".
 #' @param city The City associated with the provider's address identified in Address Purpose. To search for a Military Address enter either APO or FPO into the City field. This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.
 #' @param state The State abbreviation associated with the provider's address identified in Address Purpose. This field cannot be used as the only input criterion. If this field is used, at least one other field, besides the Enumeration Type and Country, must be populated. Valid values for states: https://npiregistry.cms.hhs.gov/registry/API-State-Abbr
-#' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. There is an implied trailing wildcard. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data.
+#' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g., "21*").
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
 #' @param limit Limit the results returned. The default value is 10; however, the value can be set to any value from 1 to 200.
 #' @param skip The first N (value entered) results meeting the entered criteria will be bypassed and will not be included in the output.
@@ -74,23 +75,43 @@ search_npi <-
            taxonomy = NULL,
            first_name = NULL,
            last_name = NULL,
+           use_first_name_alias = NULL,
            org_name = NULL,
            address_purpose = NULL,
            city = NULL,
            state = NULL,
            postal_code = NULL,
            country_code = NULL,
-           limit = 200,
+           limit = NULL,
            skip = NULL) {
 
     if (!is.null(provider_type)) {
       if (!provider_type %in% c(1, 2)) {
         message("provider_type must be one of: NULL, 1, or 2")
-        return(dplyr::data_frame())
+        return(dplyr::tibble())
       }
     }
 
     provider_type <- ifelse(provider_type == 1, "NPI-1", "NPI-2")
+
+    if (!is.logical(use_first_name_alias) && !is.null(use_first_name_alias)) {
+      message("`use_first_name_alias` must be TRUE or FALSE if specified.")
+      return(dplyr::tibble())
+    }
+
+    if (!is.null(use_first_name_alias)) {
+      use_first_name_alias <- ifelse(isTRUE(use_first_name_alias),
+                                     "True", "False")
+    }
+
+    if (!is.null(address_purpose)) {
+      vals <- c("location", "mailing", "primary", "secondary")
+      if (!address_purpose %in% vals) {
+        msg <- paste("`address_purpose` must be one of:", vals)
+        message(msg)
+        return(dplyr::tibble())
+      }
+    }
 
     params <-
       list(
@@ -99,6 +120,7 @@ search_npi <-
         taxonomy_description = taxonomy,
         first_name = first_name,
         last_name = last_name,
+        use_first_name_alias = use_first_name_alias,
         organization_name = org_name,
         address_purpose = address_purpose,
         city = city,

@@ -1,7 +1,8 @@
 #' @importFrom attempt stop_if_not
 #' @importFrom curl has_internet
 check_internet <- function() {
-  stop_if_not(.x = has_internet(), msg = "Please check your internet connection")
+  stop_if_not(.x = has_internet(),
+              msg = "Please check your internet connection")
 }
 
 #' @importFrom httr status_code
@@ -14,7 +15,7 @@ check_status <- function(res) {
 }
 
 
-base_url <- "https://npiregistry.cms.hhs.gov/api/"
+base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
 user_agent <- "http://github.com/frankfarach/npi"
 
 
