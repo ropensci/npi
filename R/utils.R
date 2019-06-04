@@ -35,7 +35,7 @@ do_fun_wait <- function(.f, n_tries, sleep_for = 1L, ...){
   result <- NULL
   try_count <- 1
 
-  while(is.null(result) && try_count <= n_tries){
+  while(is.null(result) && try_count <= n_tries) {
     msg <- paste0("Attempt ", try_count, " of ", n_tries, "...")
     message(msg)
     try_count = try_count + 1

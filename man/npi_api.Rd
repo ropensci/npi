@@ -4,7 +4,7 @@
 \alias{npi_api}
 \title{National Provider Identifier API client}
 \usage{
-npi_api(query, n_tries = 5, sleep = 3)
+npi_api(query, n_tries, sleep)
 }
 \arguments{
 \item{query}{List of query parameters}

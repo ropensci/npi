@@ -6,29 +6,16 @@
 #' @param n_tries Number of times to try the request
 #' @param sleep Number of seconds to wait after an unsuccessful request
 #' @return List of parsed results
-npi_api <- function(query, n_tries = 5, sleep = 3) {
-
-  if (sleep < 1) {
-    stop("`sleep` must be >= 1 to avoid overloading the server")
-  }
-
-  if (n_tries <= 0 || n_tries > 10) {
-    stop("`n_tries` must be between 1 and 10")
-  }
-
+npi_api <- function(query, n_tries, sleep) {
   url <- httr::modify_url(base_url, query = query)
   ua <- httr::user_agent(user_agent)
 
   check_internet()
 
-  resp <- do_fun_wait(httr::GET,
-                      n_tries,
-                      sleep,
-                      url,
-                      ua)
+  resp <- do_fun_wait(httr::GET, n_tries = n_tries, sleep_for = sleep, url, ua)
 
   if (is.null(resp)) {
-    stop("Unable to reach API. Please try again later.", call = FALSE)
+    stop("Unable to reach API. Please try again later.", call. = FALSE)
   }
 
   if (httr::http_type(resp) != "application/json") {
@@ -72,7 +59,7 @@ npi_api <- function(query, n_tries = 5, sleep = 3) {
 
 #' Search the NPI Registry
 #'
-#' Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the registry's API.
+#' Wrapper function to search the U.S. National Provider Identifier (NPI) Registry using search parameters exposed by the registry's API (Version 2.1). By default, the function submits up to six requests to obtain up to 1,200 NPI records, the maximum allowed by the API.
 #'
 #' @param npi 10-digit National Provider Identifier number assigned to the provider.
 #' @param provider_type The API can be refined to retrieve only Individual Providers or Organizational Providers. When it is not specified, both Type 1 and Type 2 NPIs will be returned. When using the Enumeration Type, it cannot be the only criteria entered. Additional criteria must also be entered as well. Valid values are: NPI-1: Individual Providers (Type 1) NPIs; NPI-2: Organizational Providers (Type 2) NPIs
@@ -86,11 +73,10 @@ npi_api <- function(query, n_tries = 5, sleep = 3) {
 #' @param state The State abbreviation associated with the provider's address identified in Address Purpose. This field cannot be used as the only input criterion. If this field is used, at least one other field, besides the Enumeration Type and Country, must be populated. Valid values for states: https://npiregistry.cms.hhs.gov/registry/API-State-Abbr
 #' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g., "21*").
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
-#' @param limit Limit the results returned. The default value is 10; however, the value can be set to any value from 1 to 200.
-#' @param skip The first N (value entered) results meeting the entered criteria will be bypassed and will not be included in the output.
 #' @param n_tries Maximum number of times to attempt if request fails.
 #' @param sleep Number of seconds to wait after failed attempt before trying again.
 #' @return \code{npi_api} S3 class containing the API content, URL, and response.
+#' @references \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 #' @export
 search_npi <-
   function(npi = NULL,
@@ -105,8 +91,6 @@ search_npi <-
            state = NULL,
            postal_code = NULL,
            country_code = NULL,
-           limit = NULL,
-           skip = NULL,
            n_tries = 5,
            sleep = 3) {
 
@@ -119,7 +103,8 @@ search_npi <-
 
     provider_type <- ifelse(provider_type == 1, "NPI-1", "NPI-2")
 
-    if (!is.logical(use_first_name_alias) && !is.null(use_first_name_alias)) {
+    if (!is.logical(use_first_name_alias) &&
+        !is.null(use_first_name_alias)) {
       message("`use_first_name_alias` must be TRUE or FALSE if specified.")
       return(dplyr::tibble())
     }
@@ -138,6 +123,14 @@ search_npi <-
       }
     }
 
+    if (sleep < 1) {
+      stop("`sleep` must be >= 1 to avoid overloading the server")
+    }
+
+    if (n_tries <= 0 || n_tries > 10) {
+      stop("`n_tries` must be between 1 and 10")
+    }
+
     params <-
       list(
         number = npi,
@@ -152,11 +145,24 @@ search_npi <-
         state = state,
         postal_code = postal_code,
         country_code = country_code,
-        limit = limit,
-        skip = skip
+        limit = 200,
+        skip = NULL
       )
 
-    res <- npi_api(params, n_tries, sleep)
-    get_results(res)
+    # Get maximum records allowed by API in fewest requests
+    limit <- params$limit
+    res <- list()
 
+    for (i in 1:6) {
+      params$skip <- (i - 1) * limit
+      message(paste0("Retrieving records ", params$skip + 1, "-",
+                     i * limit, "..."))
+      res[[i]] <- get_results(npi_api(params, n_tries, sleep))
+      if (nrow(res[[i]]) < limit) {
+        res <- purrr::map_df(res, dplyr::bind_rows)
+        return(res)
+      }
+    }
+    res <- purrr::map_df(res, dplyr::bind_rows)
+    res
   }
