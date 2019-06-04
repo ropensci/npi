@@ -78,8 +78,12 @@ flatten_npi <- function(df) {
   if (!is.data.frame(df))
     stop("`df` must be a data frame")
 
-  if (any(!c("number", "taxonomies", "addresses", "identifiers") %in% names(df)))
-    stop('`df` must contain columns named "number", taxonomies", "addresses", and "identifiers"')
+  cols <- c("number", "taxonomies", "addresses", "identifiers")
+
+  if (any(!cols %in% names(df))) {
+    msg <- paste("`df` must contain columns named", cols)
+    stop(msg)
+  }
 
   tax <- get_list_col(df, taxonomies, number)
   addr <- get_list_col(df, addresses, number)

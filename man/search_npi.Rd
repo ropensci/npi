@@ -8,7 +8,7 @@ search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
   first_name = NULL, last_name = NULL, use_first_name_alias = NULL,
   org_name = NULL, address_purpose = NULL, city = NULL,
   state = NULL, postal_code = NULL, country_code = NULL,
-  limit = NULL, skip = NULL)
+  limit = NULL, skip = NULL, n_tries = 5, sleep = 3)
 }
 \arguments{
 \item{npi}{10-digit National Provider Identifier number assigned to the provider.}
@@ -38,6 +38,10 @@ search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
 \item{limit}{Limit the results returned. The default value is 10; however, the value can be set to any value from 1 to 200.}
 
 \item{skip}{The first N (value entered) results meeting the entered criteria will be bypassed and will not be included in the output.}
+
+\item{n_tries}{Maximum number of times to attempt if request fails.}
+
+\item{sleep}{Number of seconds to wait after failed attempt before trying again.}
 }
 \value{
 \code{npi_api} S3 class containing the API content, URL, and response.

@@ -1,15 +1,36 @@
 #' National Provider Identifier API client
 #'
-#' API client to the U.S. National Provider Identifier (NPI) public registry.
+#' API client to the U.S. National Provider Identifier (NPI) public registry. Each call to the API will be attempted up to `n-tries` times, with a pause of `sleep_for` seconds between each try.
 #
 #' @param query List of query parameters
+#' @param n_tries Number of times to try the request
+#' @param sleep Number of seconds to wait after an unsuccessful request
 #' @return List of parsed results
-npi_api <- function(query) {
+npi_api <- function(query, n_tries = 5, sleep = 3) {
+
+  if (sleep < 1) {
+    stop("`sleep` must be >= 1 to avoid overloading the server")
+  }
+
+  if (n_tries <= 0 || n_tries > 10) {
+    stop("`n_tries` must be between 1 and 10")
+  }
 
   url <- httr::modify_url(base_url, query = query)
   ua <- httr::user_agent(user_agent)
 
-  resp <- httr::GET(url, ua)
+  check_internet()
+
+  resp <- do_fun_wait(httr::GET,
+                      n_tries,
+                      sleep,
+                      url,
+                      ua)
+
+  if (is.null(resp)) {
+    stop("Unable to reach API. Please try again later.", call = FALSE)
+  }
+
   if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
@@ -67,7 +88,8 @@ npi_api <- function(query) {
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
 #' @param limit Limit the results returned. The default value is 10; however, the value can be set to any value from 1 to 200.
 #' @param skip The first N (value entered) results meeting the entered criteria will be bypassed and will not be included in the output.
-#'
+#' @param n_tries Maximum number of times to attempt if request fails.
+#' @param sleep Number of seconds to wait after failed attempt before trying again.
 #' @return \code{npi_api} S3 class containing the API content, URL, and response.
 #' @export
 search_npi <-
@@ -84,7 +106,9 @@ search_npi <-
            postal_code = NULL,
            country_code = NULL,
            limit = NULL,
-           skip = NULL) {
+           skip = NULL,
+           n_tries = 5,
+           sleep = 3) {
 
     if (!is.null(provider_type)) {
       if (!provider_type %in% c(1, 2)) {
@@ -132,7 +156,7 @@ search_npi <-
         skip = skip
       )
 
-    res <- npi_api(params)
+    res <- npi_api(params, n_tries, sleep)
     get_results(res)
 
   }
