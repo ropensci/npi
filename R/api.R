@@ -51,9 +51,7 @@ npi_api <- function(query, n_tries, sleep) {
   }
 
   parsed$results
-
 }
-
 
 
 
@@ -73,9 +71,10 @@ npi_api <- function(query, n_tries, sleep) {
 #' @param state The State abbreviation associated with the provider's address identified in Address Purpose. This field cannot be used as the only input criterion. If this field is used, at least one other field, besides the Enumeration Type and Country, must be populated. Valid values for states: https://npiregistry.cms.hhs.gov/registry/API-State-Abbr
 #' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g., "21*").
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
+#' @param limit Maximum number of records to return, from 1 to 1200 inclusive. The default is 200. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.
 #' @param n_tries Maximum number of times to attempt if request fails.
 #' @param sleep Number of seconds to wait after failed attempt before trying again.
-#' @return \code{npi_api} S3 class containing the API content, URL, and response.
+#' @return Data frame (tibble) containing the results of the search.
 #' @references \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 #' @export
 search_npi <-
@@ -91,8 +90,10 @@ search_npi <-
            state = NULL,
            postal_code = NULL,
            country_code = NULL,
+           limit = 200,
            n_tries = 5,
            sleep = 3) {
+
 
     if (!is.null(provider_type)) {
       if (!provider_type %in% c(1, 2)) {
@@ -124,13 +125,22 @@ search_npi <-
     }
 
     if (sleep < 1) {
-      stop("`sleep` must be >= 1 to avoid overloading the server")
+      message("`sleep` must be >= 1 to avoid overloading the server")
+      return(dplyr::tibble())
     }
 
     if (n_tries <= 0 || n_tries > 10) {
-      stop("`n_tries` must be between 1 and 10")
+      message("`n_tries` must be between 1 and 10")
+      return(dplyr::tibble())
     }
 
+    # Validate `limit`
+    if (limit < 1L || limit > 1200) {
+      message("`limit` must be a number between 1 and 1200")
+      return(dplyr::tibble())
+    }
+
+    # Assemble parameters to pass to API request
     params <-
       list(
         number = npi,
@@ -145,24 +155,38 @@ search_npi <-
         state = state,
         postal_code = postal_code,
         country_code = country_code,
-        limit = 200,
-        skip = NULL
+        limit = limit
       )
 
     # Get maximum records allowed by API in fewest requests
-    limit <- params$limit
-    res <- list()
+    req_limit <- 200
+    n_reqs <- ((limit - 1) %/% req_limit) + 1
 
-    for (i in 1:6) {
-      params$skip <- (i - 1) * limit
-      message(paste0("Retrieving records ", params$skip + 1, "-",
-                     i * limit, "..."))
-      res[[i]] <- get_results(npi_api(params, n_tries, sleep))
-      if (nrow(res[[i]]) < limit) {
-        res <- purrr::map_df(res, dplyr::bind_rows)
-        return(res)
+    results <- list()
+
+    for (req_no in 1:n_reqs) {
+
+      # Calculate values of skip and limit parameters
+      skip <- (req_no - 1) * req_limit
+      params$skip <- skip
+
+      remaining <- limit - skip
+      params$limit <- ifelse(
+        remaining <= req_limit,
+        remaining,
+        req_limit
+      )
+
+      message("Retrieving records...")
+      results[[req_no]] <-
+        get_results(npi_api(params, n_tries, sleep))
+
+      n_rows <- nrow(results[[req_no]])
+      if (n_rows < req_limit) {
+        break
       }
     }
-    res <- purrr::map_df(res, dplyr::bind_rows)
-    res
+
+    purrr::map_df(results, dplyr::bind_rows)
   }
+

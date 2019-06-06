@@ -1,3 +1,8 @@
+# Global variables for GET request
+base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
+user_agent <- "http://github.com/frankfarach/npi"
+
+
 #' Safe execution of a function that might fail
 #'
 #' @param .f A function
@@ -11,6 +16,7 @@
 #'   ifelse(x == 0, "OK", stop("Error: too many calls!"))
 #'   }
 #'
+#' # Check 10 times, waiting 1 second after failure
 #' # Success on 3rd attempt
 #' set.seed(556)
 #' do_fun_wait(get_data, 10, 1)
@@ -35,10 +41,10 @@ do_fun_wait <- function(.f, n_tries, sleep_for = 1L, ...){
   result <- NULL
   try_count <- 1
 
-  while(is.null(result) && try_count <= n_tries) {
+  while (is.null(result) && try_count <= n_tries) {
     msg <- paste0("Attempt ", try_count, " of ", n_tries, "...")
     message(msg)
-    try_count = try_count + 1
+    try_count <- try_count + 1
     result <- possibly_fn(...)
     Sys.sleep(sleep_for)
   }
@@ -53,6 +59,7 @@ check_internet <- function() {
               msg = "Please check your Internet connection")
 }
 
+
 #' @importFrom httr status_code
 check_status <- function(res) {
   attempt::stop_if_not(
@@ -62,9 +69,6 @@ check_status <- function(res) {
   )
 }
 
-
-base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
-user_agent <- "http://github.com/frankfarach/npi"
 
 
 #' Check if candidate NPI number is valid
@@ -134,6 +138,7 @@ clean_credentials <- function(x) {
   out
 }
 
+
 #' Add hyphen to 9-digit ZIP codes
 #'
 #' @param x Character or numeric vector containing ZIP code(s)
@@ -151,6 +156,7 @@ hyphenate_full_zip <- function(x) {
          x
   )
 }
+
 
 #' Create full address from elements
 #'

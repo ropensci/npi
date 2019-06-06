@@ -25,6 +25,7 @@ get_data <- function(p = 0.8) {
   ifelse(x == 0, "OK", stop("Error: too many calls!"))
   }
 
+# Check 10 times, waiting 1 second after failure
 # Success on 3rd attempt
 set.seed(556)
 do_fun_wait(get_data, 10, 1)

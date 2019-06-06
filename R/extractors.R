@@ -10,19 +10,14 @@ get_results <- function(npi_api) {
     return(dplyr::tibble())
   }
 
-  basic_cols <- purrr::map_df(npi_api, "basic")
+  basic_cols <- npi_api %>%
+    purrr::map("basic") %>%
+    purrr::map(tibble::as_tibble)
 
-  tax_cols <- npi_api %>%
-    purrr::map( ~ .x$taxonomies) %>%
-    purrr::map(purrr::map_df, ~ .x)
-
-  address_cols <- npi_api %>%
-    purrr::map( ~ .x$addresses) %>%
-    purrr::map(purrr::map_df, ~ .x)
-
-  id_cols <- npi_api %>%
-    purrr::map( ~ .x$identifiers) %>%
-    purrr::map(purrr::map_df, ~ .x)
+  tax_cols <- npi_api %>% prep_list_col("taxonomies")
+  address_cols <- npi_api %>% prep_list_col("addresses")
+  id_cols <- npi_api %>% prep_list_col("identifiers")
+  other_names_cols <- npi_api %>% prep_list_col("other_names")
 
   res <- npi_api %>%
     purrr::map_df(`[`,
@@ -33,20 +28,42 @@ get_results <- function(npi_api) {
                     "last_updated_epoch"
                   )) %>%
     dplyr::mutate(
+      basic = basic_cols,
+      other_names = other_names_cols,
+      identifiers = id_cols,
       taxonomies = tax_cols,
-      addresses = address_cols,
-      identifiers = id_cols
-    ) %>%
-    dplyr::bind_cols(basic_cols)
+      addresses = address_cols
+    )
 
   res$created_epoch <-
     as.POSIXct(res$created_epoch, origin = "1970-01-01")
   res$last_updated_epoch <-
     as.POSIXct(res$last_updated_epoch, origin = "1970-01-01")
-#  res$credential <- clean_credentials(res$credential)
 
-  res
+  ords <- c(1:2, 5:9, 3:4)
+
+  res[, ords]
 }
+
+
+#' Package npi_api entries as list of cleaned dfs
+#'
+#' Cleaning includes turning all empty character strings to NAs
+#'
+#' @param npi_api Search result from search_npi
+#' @param name Name of entity in search_npi result
+#' @return List of tibbles corresponding to named element
+prep_list_col <- function(npi_api, name) {
+
+  empty_char_to_na <- purrr::as_mapper(~ dplyr::na_if(.x, ""))
+
+  npi_api %>%
+    purrr::map(name) %>%
+    purrr::map(purrr::map_df, dplyr::bind_rows) %>%
+    purrr::map(dplyr::mutate_if, is.character, empty_char_to_na)
+}
+
+
 
 #' Extract list column by key
 #'
