@@ -1,17 +1,6 @@
 # Global variables for GET request
-base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
-user_agent <- "http://github.com/frankfarach/npi"
-
-
-
-#' @importFrom httr status_code
-check_status <- function(res) {
-  attempt::stop_if_not(
-    .x = status_code(res),
-    .p = ~ .x == 200,
-    msg = "The API returned an error"
-  )
-}
+.base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
+.user_agent <- "http://github.com/frankfarach/npi"
 
 
 

@@ -22,7 +22,7 @@ npi_api <- function(query) {
     jsonlite::fromJSON(httr::content(resp, "text", encoding = "utf8"),
                        simplifyVector = FALSE)
 
-  if (status_code(resp) != 200) {
+  if (httr::status_code(resp) != 200) {
     stop(
       sprintf(
         "NPPES API request failed [%s]\n%s\n<%s>",
