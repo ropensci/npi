@@ -3,56 +3,6 @@ base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
 user_agent <- "http://github.com/frankfarach/npi"
 
 
-#' Safe execution of a function that might fail
-#'
-#' @param .f A function
-#' @param n_tries Number of times to try executing the function
-#' @param sleep_for Number of seconds to make system sleep after each unsuccessful attempt
-#' @param ... Arguments for .f
-#' @examples
-#' # Function success rate is `p`
-#' get_data <- function(p = 0.8) {
-#'   x <- rbinom(1, 1, p)
-#'   ifelse(x == 0, "OK", stop("Error: too many calls!"))
-#'   }
-#'
-#' # Check 10 times, waiting 1 second after failure
-#' # Success on 3rd attempt
-#' set.seed(556)
-#' do_fun_wait(get_data, 10, 1)
-#'
-#' # NULL if failed after n_tries
-#' set.seed(55)
-#' do_fun_wait(get_data, 10, 1)
-#'
-#' # Pass .f arguments into ...
-#' do_fun_wait(get_data, 10, 1, p = 0.6)
-#' @seealso \url{https://www.brodrigues.co/blog/2018-03-12-keep_trying/}
-#' @export
-do_fun_wait <- function(.f, n_tries, sleep_for = 1L, ...){
-  attempt::stop_if_not(.f, is.function, "`.f` must be a function")
-  attempt::stop_if_not(n_tries, is.numeric,
-                        "`n_tries` must be numeric")
-  attempt::stop_if_not(sleep_for, is.numeric,
-                       "`sleep_for` must be numeric")
-
-  possibly_fn <- purrr::possibly(.f, otherwise = NULL)
-
-  result <- NULL
-  try_count <- 1
-
-  while (is.null(result) && try_count <= n_tries) {
-    msg <- paste0("Attempt ", try_count, " of ", n_tries, "...")
-    message(msg)
-    try_count <- try_count + 1
-    result <- possibly_fn(...)
-    Sys.sleep(sleep_for)
-  }
-
-  return(result)
-}
-
-
 
 #' @importFrom httr status_code
 check_status <- function(res) {

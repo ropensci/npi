@@ -11,15 +11,6 @@ multi_error <- "field state requires additional search criteria\nError: enumerat
 # Set arguments for search to be reused multiple times
 my_search <- purrr::partial(search_npi, state = "RI", first_name = "Mary")
 
-test_that("search_npi() prevents requesting too-frequent reattempts", {
-  expect_message(my_search(sleep = 0.9))
-})
-
-test_that("search_npi() prevents requesting too many reattemts", {
-  expect_message(my_search(n_tries = 11))
-  expect_message(my_search(n_tries = 0))
-})
-
 test_that("search_npi() errors on invalid values of `limit`", {
   expect_message(my_search(limit = -1))
   expect_message(my_search(limit = 0))

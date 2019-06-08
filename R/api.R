@@ -1,16 +1,14 @@
 #' National Provider Identifier API client
 #'
-#' API client to the U.S. National Provider Identifier (NPI) public registry. Each call to the API will be attempted up to `n-tries` times, with a pause of `sleep_for` seconds between each try.
+#' API client to the U.S. National Provider Identifier (NPI) public registry.
 #
 #' @param query List of query parameters
-#' @param n_tries Number of times to try the request
-#' @param sleep Number of seconds to wait after an unsuccessful request
 #' @return List of parsed results
-npi_api <- function(query, n_tries, sleep) {
+npi_api <- function(query) {
   url <- httr::modify_url(base_url, query = query)
   ua <- httr::user_agent(user_agent)
 
-  resp <- do_fun_wait(httr::GET, n_tries = n_tries, sleep_for = sleep, url, ua)
+  resp <- httr::GET(url, ua)
 
   if (is.null(resp)) {
     stop("Unable to reach API. Please try again later.", call. = FALSE)
@@ -70,8 +68,6 @@ npi_api <- function(query, n_tries, sleep) {
 #' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g., "21*").
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
 #' @param limit Maximum number of records to return, from 1 to 1200 inclusive. The default is 200. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.
-#' @param n_tries Maximum number of times to attempt if request fails.
-#' @param sleep Number of seconds to wait after failed attempt before trying again.
 #' @return Data frame (tibble) containing the results of the search.
 #' @references \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 #' @export
@@ -88,10 +84,7 @@ search_npi <-
            state = NULL,
            postal_code = NULL,
            country_code = NULL,
-           limit = 200,
-           n_tries = 5,
-           sleep = 3) {
-
+           limit = 200) {
 
     if (!is.null(provider_type)) {
       if (!provider_type %in% c(1, 2)) {
@@ -122,15 +115,6 @@ search_npi <-
       }
     }
 
-    if (sleep < 1) {
-      message("`sleep` must be >= 1 to avoid overloading the server")
-      return(dplyr::tibble())
-    }
-
-    if (n_tries <= 0 || n_tries > 10) {
-      message("`n_tries` must be between 1 and 10")
-      return(dplyr::tibble())
-    }
 
     # Validate `limit`
     if (limit < 1L || limit > 1200) {
@@ -177,7 +161,7 @@ search_npi <-
 
       message("Retrieving records...")
       results[[req_no]] <-
-        get_results(npi_api(params, n_tries, sleep))
+        get_results(npi_api(params))
 
       n_rows <- nrow(results[[req_no]])
       if (n_rows < req_limit) {
@@ -187,4 +171,3 @@ search_npi <-
 
     purrr::map_df(results, dplyr::bind_rows)
   }
-

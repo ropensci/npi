@@ -4,18 +4,14 @@
 \alias{npi_api}
 \title{National Provider Identifier API client}
 \usage{
-npi_api(query, n_tries, sleep)
+npi_api(query)
 }
 \arguments{
 \item{query}{List of query parameters}
-
-\item{n_tries}{Number of times to try the request}
-
-\item{sleep}{Number of seconds to wait after an unsuccessful request}
 }
 \value{
 List of parsed results
 }
 \description{
-API client to the U.S. National Provider Identifier (NPI) public registry. Each call to the API will be attempted up to `n-tries` times, with a pause of `sleep_for` seconds between each try.
+API client to the U.S. National Provider Identifier (NPI) public registry.
 }
