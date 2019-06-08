@@ -53,12 +53,6 @@ do_fun_wait <- function(.f, n_tries, sleep_for = 1L, ...){
 }
 
 
-#' Check for Internet connection
-check_internet <- function() {
-  attempt::stop_if_not(.x = curl::has_internet(),
-              msg = "Please check your Internet connection")
-}
-
 
 #' @importFrom httr status_code
 check_status <- function(res) {

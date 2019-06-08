@@ -10,8 +10,6 @@ npi_api <- function(query, n_tries, sleep) {
   url <- httr::modify_url(base_url, query = query)
   ua <- httr::user_agent(user_agent)
 
-  check_internet()
-
   resp <- do_fun_wait(httr::GET, n_tries = n_tries, sleep_for = sleep, url, ua)
 
   if (is.null(resp)) {
