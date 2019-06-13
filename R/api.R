@@ -153,12 +153,12 @@ search_npi <-
            limit = 10) {
 
     if (!is.null(provider_type)) {
-      if (!provider_type %in% c(1, 2)) {
+      if (!provider_type %in% c(1L, 2L)) {
         rlang::abort("provider_type must be one of: NULL, 1, or 2")
       }
     }
 
-    provider_type <- ifelse(provider_type == 1, "NPI-1", "NPI-2")
+    provider_type <- ifelse(provider_type == 1L, "NPI-1", "NPI-2")
 
     if (!is.logical(use_first_name_alias) &&
         !is.null(use_first_name_alias)) {
@@ -185,8 +185,8 @@ search_npi <-
     }
 
     params <- list(
-      npi = npi,
-      provider_type = provider_type,
+      number = npi,
+      enumeration_type = provider_type,
       taxonomy = taxonomy,
       first_name = first_name,
       last_name = last_name,

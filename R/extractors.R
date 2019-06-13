@@ -1,6 +1,3 @@
-# Suppress R CMD CHECK note about global variables in flatten_npi()
-globalVariables(c("number", "taxonomies", "addresses", "identifiers"))
-
 get_results <- function(responses) {
   if(!is.list(responses)) {
     abort_bad_argument("responses", must = "be list", not = responses)
@@ -12,11 +9,13 @@ get_results <- function(responses) {
 }
 
 
+
 pluck_vector_from_content <- function(content, col_name = NULL) {
   content %>%
     purrr::map(purrr::pluck, col_name) %>%
     unlist(recursive = FALSE)
 }
+
 
 
 tidy_results <- function(content) {
@@ -34,6 +33,7 @@ tidy_results <- function(content) {
     last_updated_date = pluck_vector_from_content(content, "last_updated_epoch")
   )
 }
+
 
 
 clean_results <- function(results) {
@@ -69,16 +69,6 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 
 
 
-prep_admin <- function(df) {
-  df %>%
-    dplyr::mutate_at(dplyr::vars(dplyr::contains("time")),
-                     as.POSIXct,
-                     origin = "1970-01-01") %>%
-    dplyr::mutate_if(is.character, ~ dplyr::na_if(.x, ""))
-}
-
-
-
 #' Extract list column by key
 #'
 #' @param df data frame
@@ -100,30 +90,24 @@ get_list_col <- function(df, list_col, key) {
 
 #' Flatten NPI search results
 #'
-#' This function takes a data frame produced by `search_npi()` and returns a data fram with several list columns flattened. It left joins the data frame by `number` (NPI number) to the unnested list columns, "taxonomies", "addresses", and "identifiers". The function adds suffixes to non-key columns with identical names to avoid name clashes and identify the source of unnested columns.
+#' This function takes a data frame produced by `search_npi()` and returns a data fram with several list columns flattened. It left joins the data frame by `npi` (NPI number) to the unnested list columns. The function adds suffixes to non-key columns with identical names to avoid name clashes and identify the source of unnested columns.
 #'
 #' @param df data frame containing columns named "number", "taxonomies", "addresses", and "identifiers"
 #' @return data frame (tibble) with flattened list columns
 #' @export
-flatten_npi <- function(df) {
+flatten_results <- function(df) {
   if (!is.data.frame(df))
     stop("`df` must be a data frame")
 
-  cols <- c("number", "taxonomies", "addresses", "identifiers")
+  list_cols <- df %>%
+    dplyr::select_if(is.list) %>%
+    names() %>%
+    rlang::syms()
 
-  if (any(!cols %in% names(df))) {
-    msg <- paste("`df` must contain columns named", cols)
-    stop(msg)
-  }
+  lst <- list_cols %>%
+    purrr::map(~ get_list_col(df, !!.x, npi)) %>%
+    magrittr::set_names(list_cols)
 
-  tax <- get_list_col(df, taxonomies, number)
-  addr <- get_list_col(df, addresses, number)
-  id <- get_list_col(df, identifiers, number)
-
-  df <- df %>%
-    dplyr::select(-taxonomies, -addresses, -identifiers)
-
-  dplyr::left_join(df, tax, by = "number", suffix = c("", "_taxonomy")) %>%
-    dplyr::left_join(addr, by = "number", suffix = c("", "_address")) %>%
-    dplyr::left_join(id, by = "number", suffix = c("", "_id"))
+  lst %>%
+    purrr::reduce(dplyr::left_join, by = "npi")
 }
