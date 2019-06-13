@@ -1,66 +1,80 @@
 # Suppress R CMD CHECK note about global variables in flatten_npi()
 globalVariables(c("number", "taxonomies", "addresses", "identifiers"))
 
-#' get_results
-#' @param npi_api List of parsed results from npi_api()
-#' @return Tibble of cleaned search results
-get_results <- function(npi_api) {
-  if (purrr::is_empty(npi_api)) {
-    message("Search returned no results.")
-    return(dplyr::tibble())
+get_results <- function(responses) {
+  if(!is.list(responses)) {
+    abort_bad_argument("responses", must = "be list", not = responses)
   }
 
-  basic_cols <- npi_api %>%
-    purrr::map("basic") %>%
-    purrr::map(tibble::as_tibble)
-
-  tax_cols <- npi_api %>% prep_list_col("taxonomies")
-  address_cols <- npi_api %>% prep_list_col("addresses")
-  id_cols <- npi_api %>% prep_list_col("identifiers")
-  other_names_cols <- npi_api %>% prep_list_col("other_names")
-
-  res <- npi_api %>%
-    purrr::map_df(`[`,
-                  c(
-                    "number",
-                    "enumeration_type",
-                    "created_epoch",
-                    "last_updated_epoch"
-                  )) %>%
-    dplyr::mutate(
-      basic = basic_cols,
-      other_names = other_names_cols,
-      identifiers = id_cols,
-      taxonomies = tax_cols,
-      addresses = address_cols
-    )
-
-  res$created_epoch <-
-    as.POSIXct(res$created_epoch, origin = "1970-01-01")
-  res$last_updated_epoch <-
-    as.POSIXct(res$last_updated_epoch, origin = "1970-01-01")
-
-  ords <- c(1:2, 5:9, 3:4)
-
-  res[, ords]
+  responses %>%
+    purrr::map("content") %>%
+    unlist(recursive = FALSE)
 }
 
 
-#' Package npi_api entries as list of cleaned dfs
-#'
-#' Cleaning includes turning all empty character strings to NAs
-#'
-#' @param npi_api Search result from search_npi
-#' @param name Name of entity in search_npi result
-#' @return List of tibbles corresponding to named element
-prep_list_col <- function(npi_api, name) {
+pluck_vector_from_content <- function(content, col_name = NULL) {
+  content %>%
+    purrr::map(purrr::pluck, col_name) %>%
+    unlist(recursive = FALSE)
+}
 
-  empty_char_to_na <- purrr::as_mapper(~ dplyr::na_if(.x, ""))
 
-  npi_api %>%
-    purrr::map(name) %>%
-    purrr::map(purrr::map_df, dplyr::bind_rows) %>%
-    purrr::map(dplyr::mutate_if, is.character, empty_char_to_na)
+tidy_results <- function(content) {
+  tibble::tibble(
+    npi = pluck_vector_from_content(content, "number"),
+    provider_type = pluck_vector_from_content(content, "enumeration_type"),
+    basic = list_to_tibble(content, "basic"),
+    other_names = list_to_tibble(content, "other_names", 2),
+    identifiers = list_to_tibble(content, "identifiers", 2),
+    taxonomies = list_to_tibble(content, "taxonomies", 2),
+    addresses = list_to_tibble(content, "addresses", 2),
+    practice_locations = list_to_tibble(content, "practice_locations", 2),
+    endpoints = list_to_tibble(content, "endpoints", 2),
+    created_date = pluck_vector_from_content(content, "created_epoch"),
+    last_updated_date = pluck_vector_from_content(content, "last_updated_epoch")
+  )
+}
+
+
+clean_results <- function(results) {
+  epoch_to_date <- purrr::as_mapper(
+    ~ as.POSIXct(.x, origin = "1970-01-01", tz = "UTC")
+  )
+
+  results %>%
+    dplyr::mutate(
+      provider_type = dplyr::case_when(
+      provider_type == "NPI-1" ~ "Individual",
+      provider_type == "NPI-2" ~ "Organization",
+      TRUE                     ~ NA_character_)) %>%
+    dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_date")), epoch_to_date)
+}
+
+
+
+list_to_tibble <- function(content, col_name, depth = 1L) {
+  if (depth < 1L || depth > 2L) {
+    stop("`depth` must be the integer 1 or 2")
+  }
+
+  level_one <- content %>% purrr::map(col_name)
+
+  if (depth == 1L) {
+    out <- level_one %>% purrr::map(tibble::as_tibble)
+    return(out)
+  }
+
+  level_one %>% purrr::map(purrr::map_df, dplyr::bind_rows)
+}
+
+
+
+prep_admin <- function(df) {
+  df %>%
+    dplyr::mutate_at(dplyr::vars(dplyr::contains("time")),
+                     as.POSIXct,
+                     origin = "1970-01-01") %>%
+    dplyr::mutate_if(is.character, ~ dplyr::na_if(.x, ""))
 }
 
 

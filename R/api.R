@@ -1,52 +1,118 @@
-#' National Provider Identifier API client
-#'
-#' API client to the U.S. National Provider Identifier (NPI) public registry.
-#
-#' @param query List of query parameters
-#' @return List of parsed results
-npi_api <- function(query) {
-  url <- httr::modify_url(base_url, query = query)
-  ua <- httr::user_agent(user_agent)
+get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = NULL) {
+  url <- httr::modify_url(url, query = query)
+  ua <- httr::user_agent(ua)
+
+  Sys.sleep(sleep)
 
   resp <- httr::GET(url, ua)
 
   if (is.null(resp)) {
-    stop("Unable to reach API. Please try again later.", call. = FALSE)
+    rlang::abort("api_unavailable_error",
+                 mesage = "Unable to reach API. Please try again later.")
   }
 
-  if (httr::http_type(resp) != "application/json") {
-    stop("API did not return json", call. = FALSE)
+  resp
+}
+
+
+
+validate_response <- function(resp) {
+
+  response_status <- httr::status_code(resp)
+  request_url <- resp$url
+
+  if (!identical(response_status, 200L)) {
+    msg <- sprintf(
+      "NPPES API request failed [%s]\n<%s>",
+      response_status,
+      request_url)
+
+    rlang::abort("request_failed_error",
+                 message = msg,
+                 status = response_status,
+                 url = request_url)
   }
 
-  parsed <-
-    jsonlite::fromJSON(httr::content(resp, "text", encoding = "utf8"),
-                       simplifyVector = FALSE)
+  errors <- httr::content(resp)$Errors
 
-  if (httr::status_code(resp) != 200) {
-    stop(
-      sprintf(
-        "NPPES API request failed [%s]\n%s\n<%s>",
-        status_code(resp),
-        parsed$message,
-        parsed$documentation_url
-      ),
-      call. = FALSE
-    )
+  if (!is.null(errors)) {
+    pretty_errors <- purrr::map_chr(errors, ~ paste0("\nField: ", .x$field,
+                                           "\n", .x$description))
+    msg <- stringr::str_c(pretty_errors, collapse = "\n\nError: ")
+    rlang::abort("request_logic_error",
+                 message = msg,
+                 url = request_url)
   }
 
-  if (!is.null(parsed$Errors)) {
-    msg <- purrr::map_chr(parsed$Errors, ~ .x$description) %>%
-      stringr::str_c(collapse = "\nError: ")
-    stop(msg, call. = FALSE)
-    return(list())
+  resp
+}
+
+
+
+nppes_api <- function(query = NULL, url = BASE_URL, ua = USER_AGENT, sleep = 0L) {
+  if (!is.list(query)) {
+    abort_bad_argument("query", must = "be list", not = query)
   }
 
-  if (parsed$result_count == 0) {
-    message("No results returned")
-    return(list())
+  if (!is.numeric(sleep) || sleep < 0L) {
+    abort_bad_argument("sleep", must = "be a positive numeric.")
   }
 
-  parsed$results
+  resp <- get_url(query = query, url = url, ua = ua, sleep = sleep)
+  resp <- validate_response(resp)
+
+  content <- httr::content(resp)$results
+  path <- resp$url
+
+  structure(
+    list(
+      content = content,
+      path = path,
+      response = resp
+    ),
+    class = "nppes_api"
+  )
+}
+
+
+print.nppes_api <- function(x, ...) {
+    cat("<NPPES ", x$path, ">\n", sep = "")
+    utils::str(x$content)
+    invisible(x)
+  }
+
+
+
+handle_requests <- function(params, req_limit = 200, sleep = 1L) {
+  max_limit <- params$limit
+
+  # Get maximum records allowed by API in fewest requests
+  n_reqs <- ((max_limit - 1) %/% req_limit) + 1
+
+  results <- list()
+
+  for (req_no in 1:n_reqs) {
+    # Calculate values of skip and limit parameters
+    this_skip <- (req_no - 1) * req_limit
+    this_remaining <- max_limit - this_skip
+    this_limit <- ifelse(this_remaining <= req_limit,
+                         this_remaining,
+                         req_limit)
+    params <- utils::modifyList(params,
+                                list(skip = this_skip,
+                                     limit = this_limit),
+                                keep.null = FALSE)
+
+    message("Retrieving records...")
+    results[[req_no]] <- nppes_api(query = params, sleep= sleep)
+
+    n_recs <- length(results[[req_no]]$content)
+    if (n_recs < req_limit) {
+      break
+    }
+  }
+
+  results
 }
 
 
@@ -67,7 +133,7 @@ npi_api <- function(query) {
 #' @param state The State abbreviation associated with the provider's address identified in Address Purpose. This field cannot be used as the only input criterion. If this field is used, at least one other field, besides the Enumeration Type and Country, must be populated. Valid values for states: https://npiregistry.cms.hhs.gov/registry/API-State-Abbr
 #' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g., "21*").
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
-#' @param limit Maximum number of records to return, from 1 to 1200 inclusive. The default is 200. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.
+#' @param limit Maximum number of records to return, from 1 to 1200 inclusive. The default is 10. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.
 #' @return Data frame (tibble) containing the results of the search.
 #' @references \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 #' @export
@@ -84,12 +150,11 @@ search_npi <-
            state = NULL,
            postal_code = NULL,
            country_code = NULL,
-           limit = 200) {
+           limit = 10) {
 
     if (!is.null(provider_type)) {
       if (!provider_type %in% c(1, 2)) {
-        message("provider_type must be one of: NULL, 1, or 2")
-        return(dplyr::tibble())
+        rlang::abort("provider_type must be one of: NULL, 1, or 2")
       }
     }
 
@@ -97,8 +162,7 @@ search_npi <-
 
     if (!is.logical(use_first_name_alias) &&
         !is.null(use_first_name_alias)) {
-      message("`use_first_name_alias` must be TRUE or FALSE if specified.")
-      return(dplyr::tibble())
+      rlang::abort("`use_first_name_alias` must be TRUE or FALSE if specified.")
     }
 
     if (!is.null(use_first_name_alias)) {
@@ -109,65 +173,35 @@ search_npi <-
     if (!is.null(address_purpose)) {
       vals <- c("location", "mailing", "primary", "secondary")
       if (!address_purpose %in% vals) {
-        msg <- paste("`address_purpose` must be one of:", vals)
-        message(msg)
-        return(dplyr::tibble())
+        msg <- paste("`address_purpose` must be one of:",
+                     stringr::str_c(vals, collapse = ", "))
+        rlang::abort(msg)
       }
     }
-
 
     # Validate `limit`
     if (limit < 1L || limit > 1200) {
-      message("`limit` must be a number between 1 and 1200")
-      return(dplyr::tibble())
+      rlang::abort("`limit` must be a number between 1 and 1200")
     }
 
-    # Assemble parameters to pass to API request
-    params <-
-      list(
-        number = npi,
-        enumeration_type = provider_type,
-        taxonomy_description = taxonomy,
-        first_name = first_name,
-        last_name = last_name,
-        use_first_name_alias = use_first_name_alias,
-        organization_name = org_name,
-        address_purpose = address_purpose,
-        city = city,
-        state = state,
-        postal_code = postal_code,
-        country_code = country_code,
-        limit = limit
-      )
+    params <- list(
+      npi = npi,
+      provider_type = provider_type,
+      taxonomy = taxonomy,
+      first_name = first_name,
+      last_name = last_name,
+      use_first_name_alias = use_first_name_alias,
+      org_name = org_name,
+      address_purpose = address_purpose,
+      city = city,
+      state = state,
+      postal_code = postal_code,
+      country_code = country_code,
+      limit = limit
+    )
 
-    # Get maximum records allowed by API in fewest requests
-    req_limit <- 200
-    n_reqs <- ((limit - 1) %/% req_limit) + 1
-
-    results <- list()
-
-    for (req_no in 1:n_reqs) {
-
-      # Calculate values of skip and limit parameters
-      skip <- (req_no - 1) * req_limit
-      params$skip <- skip
-
-      remaining <- limit - skip
-      params$limit <- ifelse(
-        remaining <= req_limit,
-        remaining,
-        req_limit
-      )
-
-      message("Retrieving records...")
-      results[[req_no]] <-
-        get_results(npi_api(params))
-
-      n_rows <- nrow(results[[req_no]])
-      if (n_rows < req_limit) {
-        break
-      }
-    }
-
-    purrr::map_df(results, dplyr::bind_rows)
+    handle_requests(params) %>%
+      get_results() %>%
+      tidy_results() %>%
+      clean_results()
   }

@@ -18,7 +18,10 @@ Imports:
     dplyr,
     tibble,
     magrittr,
-    tidyr
+    tidyr,
+    rlang,
+    glue,
+    utils
 Suggests: 
     testthat (>= 2.1.0),
     covr

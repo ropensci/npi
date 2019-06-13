@@ -1,7 +1,31 @@
 # Global variables for GET request
-.base_url <- "https://npiregistry.cms.hhs.gov/api/?version=2.1"
-.user_agent <- "http://github.com/frankfarach/npi"
+API_VERSION <- "2.1"
+BASE_URL <- paste0("https://npiregistry.cms.hhs.gov/api/?version=", API_VERSION)
+USER_AGENT <- "http://github.com/frankfarach/npi"
 
+
+#' Abort bad function arguments
+#'
+#' Error handler to abort a bad argument based on its actual vs. expected type
+#'
+#' @param arg Function argument name as character vector
+#' @param must Text to relate argument's name to its expected type
+#' @param not Function argument's name
+#' @return Error handler with templated message and metadata
+abort_bad_argument <- function(arg, must, not = NULL) {
+  msg <- glue::glue("`{arg}` must {must}")
+  if (!is.null(not)) {
+    not <- typeof(not)
+    msg <- glue::glue("{msg}, not {not}.")
+  }
+
+  rlang::abort("error_bad_argument",
+        message = msg,
+        arg = arg,
+        must = must,
+        not = not
+  )
+}
 
 
 #' Check if candidate NPI number is valid
