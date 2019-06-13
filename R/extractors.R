@@ -92,7 +92,7 @@ get_list_col <- function(df, list_col, key) {
 #'
 #' This function takes a data frame produced by `search_npi()` and returns a data fram with several list columns flattened. It left joins the data frame by `npi` (NPI number) to the unnested list columns. The function adds suffixes to non-key columns with identical names to avoid name clashes and identify the source of unnested columns.
 #'
-#' @param df data frame containing columns named "number", "taxonomies", "addresses", and "identifiers"
+#' @param df data frame containing the results of a call to `search_npi()`
 #' @return data frame (tibble) with flattened list columns
 #' @export
 flatten_results <- function(df) {

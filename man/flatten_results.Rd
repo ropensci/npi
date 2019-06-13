@@ -7,7 +7,7 @@
 flatten_results(df)
 }
 \arguments{
-\item{df}{data frame containing columns named "number", "taxonomies", "addresses", and "identifiers"}
+\item{df}{data frame containing the results of a call to `search_npi()`}
 }
 \value{
 data frame (tibble) with flattened list columns
