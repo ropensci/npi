@@ -1,9 +1,9 @@
 context("test-validators.R")
 
 test_that("is_valid_npi() requires a 10-digit number", {
-  expect_error(is_valid_npi(), "Please supply an npi as the argument.")
-  expect_error(is_valid_npi(123456789), "npi must be a 10-digit number.")
-  expect_error(is_valid_npi("123456789A"), "npi must be a 10-digit number.")
+  expect_error(is_valid_npi())
+  expect_error(is_valid_npi(123456789))
+  expect_error(is_valid_npi("123456789A"))
 })
 
 test_that("is_valid_npi() uses the Luhn algorithm", {

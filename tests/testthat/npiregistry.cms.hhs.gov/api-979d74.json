@@ -1,0 +1,160 @@
+{
+    "result_count": 2,
+    "results": [
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1053975268,
+            "last_updated_epoch": 1556104934,
+            "created_epoch": 1556064000,
+            "basic": {
+                "first_name": "KELSEY",
+                "last_name": "SPRANG",
+                "middle_name": "R",
+                "credential": "PSYD",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2019-04-24",
+                "last_updated": "2019-04-24",
+                "status": "A",
+                "name": "SPRANG KELSEY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "AA",
+                    "country_name": "Unknown Country Name for AA",
+                    "address_purpose": "LOCATION",
+                    "address_type": "FGN",
+                    "address_1": "12 EXECUTIVE PARK DRIVE NE",
+                    "address_2": "RM 388",
+                    "city": "ATLANTA",
+                    "state": "GEORGIA",
+                    "postal_code": "30329",
+                    "telephone_number": "404-778-0922"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "12 EXECUTIVE PARK DR NE RM 388",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303292206",
+                    "telephone_number": "404-778-0922"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "103TC0700X",
+                    "desc": "Psychologist Clinical",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "NA"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1063410173,
+            "last_updated_epoch": 1391644800,
+            "created_epoch": 1121126400,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "ANTHONY",
+                "last_name": "BARNES",
+                "middle_name": "EDWARD",
+                "credential": "M.D",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-07-12",
+                "last_updated": "2014-02-06",
+                "status": "A",
+                "name": "BARNES ANTHONY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "777 CLEVELAND AVE SW",
+                    "address_2": "SUITE 604",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303157129",
+                    "telephone_number": "404-768-6611",
+                    "fax_number": "404-768-3454"
+                },
+                {
+                    "country_code": "UM",
+                    "country_name": "United States Minor Outlying Islands",
+                    "address_purpose": "MAILING",
+                    "address_type": "FGN",
+                    "address_1": "777 CLEVELAND AVENUE",
+                    "address_2": "SUITE 604",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "30315",
+                    "telephone_number": "404-768-6611",
+                    "fax_number": "404-768-3454"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "208800000X",
+                    "desc": "Urology",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "041718"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "1063410173",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "BLUE CROSS BLUE SHIELD"
+                },
+                {
+                    "identifier": "331185",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "WELLCARE"
+                },
+                {
+                    "identifier": "5244142",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "AETNA"
+                },
+                {
+                    "identifier": "1916108",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "UNITED HEALTHCARE"
+                },
+                {
+                    "identifier": "000700499E",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "GA",
+                    "issuer": ""
+                }
+            ]
+        }
+    ]
+}
