@@ -1,0 +1,9 @@
+{
+    "Errors": [
+        {
+            "field": "generic",
+            "number": "04",
+            "description": "No valid search criteria provided"
+        }
+    ]
+}

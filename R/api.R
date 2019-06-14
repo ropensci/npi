@@ -1,4 +1,37 @@
-get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = NULL) {
+#' Get URL
+#'
+#' Issue a GET request to a URL with a user agent included in the header. Optionally delay the request to avoid too many requests in a short amount of time.
+#'
+#' @param query List of key-value pairs of query parameters
+#' @param url Base URL character string to which \code{query} will be appended in a URI-compliant string
+#' @param ua User agent character string
+#' @param sleep Number of seconds to pause before issuing request
+#' @return List response object from the GET request
+get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = 0L) {
+  if (!is.list(query)) {
+    abort_bad_argument(arg = "query",
+                       must = "be list",
+                       not = query)
+  }
+
+  if (!is.character(url)) {
+    abort_bad_argument(arg = "url",
+                       must = "be character vector",
+                       not = url)
+  }
+
+  if (!is.character(ua)) {
+    abort_bad_argument(arg = "ua",
+                       must = "be character vector",
+                       not = ua)
+  }
+
+  if ((!is.integer(sleep) && !is.double(double)) || sleep < 0L) {
+    abort_bad_argument(arg = "sleep",
+                       must = "be non-negative integer or double",
+                       not = sleep)
+  }
+
   url <- httr::modify_url(url, query = query)
   ua <- httr::user_agent(ua)
 
@@ -16,7 +49,16 @@ get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = NULL) {
 
 
 
+#' Handle errors from API request
+#'
+#' Inspect API response object's status and handle business logic errors returned by API.
+#'
+#' @param resp Response object from a REST API request
 validate_response <- function(resp) {
+  if (class(resp) != "response") {
+    msg <- glue::glue("`resp` class must be `response`, not {class(resp)}.")
+    rlang::abort(msg)
+  }
 
   response_status <- httr::status_code(resp)
   request_url <- resp$url
@@ -52,10 +94,6 @@ validate_response <- function(resp) {
 nppes_api <- function(query = NULL, url = BASE_URL, ua = USER_AGENT, sleep = 0L) {
   if (!is.list(query)) {
     abort_bad_argument("query", must = "be list", not = query)
-  }
-
-  if (!is.numeric(sleep) || sleep < 0L) {
-    abort_bad_argument("sleep", must = "be a positive numeric.")
   }
 
   resp <- get_url(query = query, url = url, ua = ua, sleep = sleep)

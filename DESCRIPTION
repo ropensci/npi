@@ -21,7 +21,8 @@ Imports:
     tidyr,
     rlang,
     glue,
-    utils
+    utils,
+    httptest
 Suggests: 
     testthat (>= 2.1.0),
     covr
