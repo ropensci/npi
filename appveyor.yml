@@ -15,14 +15,6 @@ cache:
 
 # Adapt as necessary starting from here
 
-environment:
-  matrix:
-  - R_VERSION: oldrel
-
-  - R_VERSION: release
-
-  - R_VERSION: devel
-
 build_script:
   - travis-tool.sh install_deps
 
@@ -51,3 +43,13 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+environment:
+  global:
+    R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+    USE_RTOOLS: true
+    WARNINGS_ARE_ERRORS: 1
+
+  matrix:
+    - R_VERSION: release
+      arch: x64
