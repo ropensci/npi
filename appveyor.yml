@@ -16,6 +16,7 @@ cache:
 # Adapt as necessary starting from here
 
 environment:
+  matrix:
   - R_VERSION: oldrel
 
   - R_VERSION: release
