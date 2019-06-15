@@ -80,6 +80,14 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 #' @param list_col list column in \code{df}
 #' @param key key column in \code{df}
 #' @return data frame with \code{key} and unnested \code{list_col}
+#' @example
+#' # Load sample data
+#' nyc <- npi:::res
+#'
+#' # Get basic list column by NPI
+#' get_list_col(nyc, basic, npi)
+#' get_list_col(nyc, taxonomies, npi)
+#' @export
 get_list_col <- function(df, list_col, key) {
 
   if (!is.data.frame(df)) {

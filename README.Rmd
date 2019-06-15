@@ -13,18 +13,18 @@ knitr::opts_chunk$set(
 )
 library(npi)
 library(tidyverse)
-
+nyc <- npi:::res
 ```
 
 # npi
 > Access the U.S. National Provider Identifier Registry API
   
-  [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+  [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
   [![Travis build status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi)
   [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branch=master&svg=true)](https://ci.appveyor.com/project/frankfarach/npi)
   [![Coverage status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
 
-Provide access to the API for the U.S. National Provider Identifier (NPI) Registry Public Search provided by the Center for Medicare and Medicaid Services (CMS): https://npiregistry.cms.hhs.gov/.
+Provide access to the free, public API for the U.S. National Provider Identifier (NPI) Registry Public Search provided by the Center for Medicare and Medicaid Services (CMS): https://npiregistry.cms.hhs.gov/. The package is compatible with version 2.1 of the API, which is the latest version available at the time of this writing.
 
 ## Installation
 
@@ -37,62 +37,71 @@ library(npi)
 
 ## Usage
 
+`npi` exports three functions:
+
+ * `search_npi()`: Search the NPI Registry and return the response as tidy data.
+ * `get_list_col()`: Extract and unnest a list column from a `search_npi()` result, joined by NPI number.
+ * `is_valid_npi()`: Check the validity of one or more NPI numbers using the same algorithm used by the National Plan and Provider Enumeration System (NPPES).
+
 ### Searching
 
-`search_npi()` searches the public NPI Registry using the [parameters](https://npiregistry.cms.hhs.gov/registry/help-api) made available by the API and returns the results as a [tidy data frame](http://tibble.tidyverse.org/), or tibble.
+`search_npi()` is a thin wrapper around the NPI Registry's API. It exposes nearly all of the [parameters](https://npiregistry.cms.hhs.gov/registry/help-api) made available by the API and returns the results as a [tidy data frame](http://tibble.tidyverse.org/), or tibble. 
 
-```{r search_npi}
-# Search for orthopedic individual providers in Atlanta, Georgia
-res <- search_npi(provider_type = 1,
-                  taxonomy = "Orthoped*",
-                  city = "Atlanta",
-                  state = "GA")
-res
+```r
+# Search for organizational providers in New York City, NY, 
+# returning the first 5 records
+nyc <- search_npi(city = "New York City", state = "NY", 
+                  provider_type = 2, limit = 5)
+```
+```{r show_nyc}
+nyc
 ```
 
-### Working with Search Results 
+### Controlling the maximum number of records returned
 
-The data returned from `search_npi()` is organized according to its relationship to the NPI (`number` column). Data elements with a 1-to-1 relationship with NPI appear in vector columns, whereas elements with a many-to-1 relationship with NPI exist within [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
+`search_npi()` allows you to optionally specify, via the `limit` argument, an upper bound on the number of records returned:
 
-There are three such columns:
+```r
+# Returns up to 10 provider records
+search_npi(city = "New York City", state = "NY")
 
- * `taxonomies`: Service classification and licnese information
+# Returns up to 1200 provider records
+search_npi(city = "New York City", state = "NY", limit = 1200)
+```
+
+If no value is supplied for `limit`, the API defaults to a maximum of 10 records. However, this behavior can be overriden by specifying a value between 1 and 1200 to `limit`. Behind the scenes, `search_npi()` will make multiple requests if necessary and bind the results together into a tidy data frame.
+
+## Working with search results 
+
+The data returned from `search_npi()` is organized according to its relationship to the NPI column, which is the primary key for the table. The columns `npi`, `provider_type`, `created_date`, and `last_updated_date` are traditional atomic vector columns; everything else is grouped into [list columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each element of a list column is a list of tibbles.
+
+There are seven such columns, which are always returned even if they contain NULL records:
+
+ * `basic`: Basic profile information about the provider
+ * `other_names`: Other names used by the provider
+ * `identifiers`: Miscellaneous provider identifiers and credential information linked to provider's NPI
+ * `taxonomies`: Service classification and license information
  * `addresses`: Location and mailing address information
- * `identifiers`: Miscellaneous provider identifiers and credential information
+ * `practice_locations`: Provider's practice locations
+ * `endpoints`: Details about provider's endpoints for health information exchange
 
-Any of these columns can be extracted as a tidy data frame using `dplyr::unnest()`:
+Any of these columns can be extracted as a tidy data frame using `get_list_col()`:
 
 ```{r unnest}
-tax <- res %>%
-  select(number, taxonomies) %>% 
-  unnest()
+# Get the basic list column joined
+basic <- get_list_col(nyc, basic, npi)
+basic
+
+# Get the taxonomies list column joined to NPI
+tax <- get_list_col(nyc, taxonomies, npi)
 tax
 ```
 
 By repeating this process with other list columns, you can create multiple tidy data frames and join them to make your own master tidy data frame.
 
 ```{r multiple_listcols}
-# Create tidy data frame of identifiers
-ids <- res %>%
-  select(number, identifiers) %>% 
-  unnest()
-ids
-
-# Join taxonomies and identifiers by `number`
-left_join(tax, ids, by = "number")
-```
-
-### Paging
-
-By default, `search_npi()` will return at most 200 records per request, which is the maximum set by the API. To return additional records, specify the number of records to skip using the skip argument.
-
-```{r skip}
-# Return records 200-400
-search_npi(
-  city = "San Francisco",
-  state = "CA",
-  skip = 200
-  )
+# Join basic and taxonomies by `npi`
+left_join(basic, tax, by = "npi")
 ```
 
 ### Validating NPIs
@@ -103,7 +112,6 @@ Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
 # Validate one-off NPIs
 is_valid_npi(1234567893)
 is_valid_npi(1234567898)
-
 ```
 
 ## Code of Conduct
