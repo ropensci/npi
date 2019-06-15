@@ -4,7 +4,7 @@
 \alias{get_url}
 \title{Get URL}
 \usage{
-get_url(query = NULL, url = NULL, ua = NULL, sleep = 0L)
+get_url(query = NULL, url = NULL, ua = NULL, sleep = NULL)
 }
 \arguments{
 \item{query}{List of key-value pairs of query parameters}

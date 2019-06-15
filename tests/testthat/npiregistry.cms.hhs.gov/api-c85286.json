@@ -1,0 +1,9 @@
+{
+    "Errors": [
+        {
+            "field": "enumeration_type",
+            "number": "09",
+            "description": "enumeration_type requires additional search criteria"
+        }
+    ]
+}

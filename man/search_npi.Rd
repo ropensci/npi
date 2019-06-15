@@ -8,7 +8,7 @@ search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
   first_name = NULL, last_name = NULL, use_first_name_alias = NULL,
   org_name = NULL, address_purpose = NULL, city = NULL,
   state = NULL, postal_code = NULL, country_code = NULL,
-  limit = 10)
+  limit = 10, sleep = 0L)
 }
 \arguments{
 \item{npi}{10-digit National Provider Identifier number assigned to the provider.}
@@ -36,6 +36,8 @@ search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
 \item{country_code}{The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr}
 
 \item{limit}{Maximum number of records to return, from 1 to 1200 inclusive. The default is 10. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.}
+
+\item{sleep}{Non-negative number of seconds to sleep between requests, if necessary.}
 }
 \value{
 Data frame (tibble) containing the results of the search.

@@ -7,29 +7,22 @@
 #' @param ua User agent character string
 #' @param sleep Number of seconds to pause before issuing request
 #' @return List response object from the GET request
-get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = 0L) {
+get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = NULL) {
+  if (isFALSE(curl::has_internet())) {
+    rlang::abort("no_internet_error",
+                 message = "No Internet connection. Try again when connected.")
+  }
+
   if (!is.list(query)) {
-    abort_bad_argument(arg = "query",
-                       must = "be list",
-                       not = query)
+    abort_bad_argument(arg = "query", must = "be list", not = query)
   }
 
   if (!is.character(url)) {
-    abort_bad_argument(arg = "url",
-                       must = "be character vector",
-                       not = url)
+    abort_bad_argument(arg = "url", must = "be character vector", not = url)
   }
 
   if (!is.character(ua)) {
-    abort_bad_argument(arg = "ua",
-                       must = "be character vector",
-                       not = ua)
-  }
-
-  if ((!is.integer(sleep) && !is.double(double)) || sleep < 0L) {
-    abort_bad_argument(arg = "sleep",
-                       must = "be non-negative integer or double",
-                       not = sleep)
+    abort_bad_argument(arg = "ua", must = "be character vector", not = ua)
   }
 
   url <- httr::modify_url(url, query = query)
@@ -37,14 +30,7 @@ get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = 0L) {
 
   Sys.sleep(sleep)
 
-  resp <- httr::GET(url, ua)
-
-  if (is.null(resp)) {
-    rlang::abort("api_unavailable_error",
-                 mesage = "Unable to reach API. Please try again later.")
-  }
-
-  resp
+  httr::GET(url, ua)
 }
 
 
@@ -91,7 +77,7 @@ validate_response <- function(resp) {
 
 
 
-nppes_api <- function(query = NULL, url = BASE_URL, ua = USER_AGENT, sleep = 0L) {
+nppes_api <- function(query = NULL, url = BASE_URL, ua = USER_AGENT, sleep = NULL) {
   if (!is.list(query)) {
     abort_bad_argument("query", must = "be list", not = query)
   }
@@ -121,12 +107,11 @@ print.nppes_api <- function(x, ...) {
 
 
 
-handle_requests <- function(params, req_limit = 200, sleep = 1L) {
+handle_requests <- function(params, req_limit = 200, sleep = NULL) {
   max_limit <- params$limit
 
   # Get maximum records allowed by API in fewest requests
   n_reqs <- ((max_limit - 1) %/% req_limit) + 1
-
   results <- list()
 
   for (req_no in 1:n_reqs) {
@@ -142,7 +127,7 @@ handle_requests <- function(params, req_limit = 200, sleep = 1L) {
                                 keep.null = FALSE)
 
     message("Retrieving records...")
-    results[[req_no]] <- nppes_api(query = params, sleep= sleep)
+    results[[req_no]] <- nppes_api(query = params, sleep = sleep)
 
     n_recs <- length(results[[req_no]]$content)
     if (n_recs < req_limit) {
@@ -172,6 +157,7 @@ handle_requests <- function(params, req_limit = 200, sleep = 1L) {
 #' @param postal_code The Postal Code associated with the provider's address identified in Address Purpose. If you enter a 5 digit postal code, it will match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g., "21*").
 #' @param country_code The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr
 #' @param limit Maximum number of records to return, from 1 to 1200 inclusive. The default is 10. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.
+#' @param sleep Non-negative number of seconds to sleep between requests, if necessary.
 #' @return Data frame (tibble) containing the results of the search.
 #' @references \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 #' @export
@@ -188,7 +174,8 @@ search_npi <-
            state = NULL,
            postal_code = NULL,
            country_code = NULL,
-           limit = 10) {
+           limit = 10,
+           sleep = 0L) {
 
     if (!is.null(provider_type)) {
       if (!provider_type %in% c(1L, 2L)) {
@@ -222,6 +209,13 @@ search_npi <-
       rlang::abort("`limit` must be a number between 1 and 1200")
     }
 
+    # Validate `sleep`
+    if ((!typeof(sleep) %in% c("integer", "double")) || sleep < 0L) {
+      abort_bad_argument(arg = "sleep",
+                         must = "be non-negative integer or double",
+                         not = sleep)
+    }
+
     params <- list(
       number = npi,
       enumeration_type = provider_type,
@@ -238,7 +232,7 @@ search_npi <-
       limit = limit
     )
 
-    handle_requests(params) %>%
+    handle_requests(params, sleep = sleep) %>%
       get_results() %>%
       tidy_results() %>%
       clean_results()

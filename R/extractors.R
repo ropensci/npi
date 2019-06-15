@@ -3,6 +3,11 @@ get_results <- function(responses) {
     abort_bad_argument("responses", must = "be list", not = responses)
   }
 
+  if(any(purrr::map_chr(responses, class) != "nppes_api")) {
+    rlang::abort(.subclass = "bad_class_error",
+                 message = "All responses must have a `nppes_api` S3 class.")
+  }
+
   responses %>%
     purrr::map("content") %>%
     unlist(recursive = FALSE)
@@ -10,7 +15,7 @@ get_results <- function(responses) {
 
 
 
-pluck_vector_from_content <- function(content, col_name = NULL) {
+pluck_vector_from_content <- function(content, col_name) {
   content %>%
     purrr::map(purrr::pluck, col_name) %>%
     unlist(recursive = FALSE)
@@ -77,8 +82,9 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 #' @return data frame with \code{key} and unnested \code{list_col}
 get_list_col <- function(df, list_col, key) {
 
-  if (!is.data.frame(df))
-    stop("`df` must be a data frame")
+  if (!is.data.frame(df)) {
+    abort_bad_argument(arg = "df", must = "be data frame", not = df)
+  }
 
   list_col <- dplyr::enquo(list_col)
   key <- dplyr::enquo(key)
@@ -93,11 +99,12 @@ get_list_col <- function(df, list_col, key) {
 #' This function takes a data frame produced by `search_npi()` and returns a data fram with several list columns flattened. It left joins the data frame by `npi` (NPI number) to the unnested list columns. The function adds suffixes to non-key columns with identical names to avoid name clashes and identify the source of unnested columns.
 #'
 #' @param df data frame containing the results of a call to `search_npi()`
+#' @param key quoted column name from \code{df} to use as a matching key
 #' @return data frame (tibble) with flattened list columns
-#' @export
-flatten_results <- function(df) {
-  if (!is.data.frame(df))
-    stop("`df` must be a data frame")
+flatten_results <- function(df, key) {
+  if (!is.data.frame(df)) {
+    abort_bad_argument(arg = "df", must = "be data frame", not = df)
+  }
 
   list_cols <- df %>%
     dplyr::select_if(is.list) %>%
@@ -105,9 +112,9 @@ flatten_results <- function(df) {
     rlang::syms()
 
   lst <- list_cols %>%
-    purrr::map(~ get_list_col(df, !!.x, npi)) %>%
+    purrr::map(~ get_list_col(df, !!.x, key)) %>%
     magrittr::set_names(list_cols)
 
   lst %>%
-    purrr::reduce(dplyr::left_join, by = "npi")
+    purrr::reduce(dplyr::left_join, by = key)
 }

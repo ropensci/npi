@@ -7,7 +7,7 @@ USER_AGENT <- "http://github.com/frankfarach/npi"
 
 
 with_mock_api({
-  test_that("Requests happen with the correct URL and user agent", {
+  test_that("Requests happen and have the correct URL and user agent", {
     npi <- "1437187390"
     req <- get_url(query = list(number = npi), url = BASE_URL,
                    ua = USER_AGENT, sleep = 0L)
@@ -20,16 +20,33 @@ with_mock_api({
 
 test_that("get_url() rejects invalid values supplied to arguments", {
   test_get_url <- purrr::partial(get_url, url = BASE_URL, ua = USER_AGENT)
-  expect_error(test_get_url(query = "foo", sleep = 0),
+  expect_error(test_get_url(query = "foo", sleep = 0L),
                class = "error_bad_argument")
-  expect_error(test_get_url(query = list(provider_type = 1), sleep = 0),
+  expect_error(get_url(list(), url = TRUE, ua = USER_AGENT, sleep = 0L),
                class = "error_bad_argument")
-  expect_error(test_get_url(query = list(provider_type = 1), sleep = -1),
+  expect_error(get_url(list(), url = BASE_URL, ua = TRUE, sleep = 0L),
                class = "error_bad_argument")
-  expect_error(get_url(list(), url = TRUE, ua = USER_AGENT, sleep = 0),
-               class = "error_bad_argument")
-  expect_error(get_url(list(), url = BASE_URL, ua = TRUE, sleep = 0),
-               class = "error_bad_argument")
+})
+
+
+test_that("get_url() throws a custom error when there's no internet", {
+  stub(get_url, "curl::has_internet", FALSE)
+  expect_error(
+    get_url(query = list(city = "Denver"), url = BASE_URL,
+            ua = USER_AGENT, sleep = 0L),
+    class = "no_internet_error")
+})
+
+
+test_that("We throw a custom error when the API resturns a bad status code", {
+  status <- 400L
+  url <- "foo"
+  stub(validate_response, "httr::status_code", status)
+  resp <- structure(list(url = url), class = "response")
+
+  expect_error(
+    validate_response(resp),
+    class = "request_failed_error")
 })
 
 
@@ -46,7 +63,7 @@ with_mock_api({
 
 test_that("nppes_api() throws an error for non-list query arguments", {
   expect_error(nppes_api(query = "foo", url = BASE_URL,
-                         ua = USER_AGENT, sleep = 0),
+                         ua = USER_AGENT, sleep = 0L),
                class = "error_bad_argument")
 })
 
@@ -78,17 +95,44 @@ test_that("search_npi() messages when argument values are invalid", {
 
   # Limit
   lim <- "`limit` must be a number between 1 and 1200"
-  my_search <- purrr::partial(search_npi, state = "RI", first_name = "Mary")
   expect_error(search_npi(limit = -1), lim)
   expect_error(search_npi(limit = 0), lim)
   expect_error(search_npi(limit = 1201), lim)
+
+  # Sleep
+  expect_error(search_npi(sleep = -1), class = "error_bad_argument")
 })
 
 
+with_mock_api({
+  test_that("We can catch request logic errors in the API response", {
+    expect_error(search_npi(provider_type = 1), class = "request_logic_error")
+  })
+})
 
 
-# test_that("search_npi() passes the correct value of use_first_name_alias", {
-#   res <- search_npi(use_first_name_alias = TRUE)
-#   expect_equal())
-#
-# })
+with_mock_api({
+  test_that("A valid search_npi() call meets structural expectations", {
+    res <- search_npi(city = "Atlanta")
+    expected_types <- c("integer", "character", rep("list", 7), rep("double", 2))
+    names(expected_types) <- c("npi", "provider_type", "basic", "other_names",
+                        "identifiers", "taxonomies", "addresses", "practice_locations",
+                        "endpoints", "created_date", "last_updated_date")
+
+    expect_is(res, c("tbl_df", "tbl", "data.frame"))
+    expect_identical(purrr::map_chr(res, typeof), expected_types)
+    expect_equal(nrow(res), 10)
+  })
+})
+
+
+test_that("get_results() catches improperly structured responses", {
+  good_resp <- structure(list(), class = "nppes_api")
+  bad_resp <- unclass(good_resp)
+  resps <- list(good_resp, bad_resp)
+  not_a_list <- "foo"
+
+  expect_error(get_results(not_a_list), class = "error_bad_argument")
+  expect_error(get_results(resps), class = "bad_class_error")
+})
+

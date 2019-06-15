@@ -4,10 +4,12 @@
 \alias{flatten_results}
 \title{Flatten NPI search results}
 \usage{
-flatten_results(df)
+flatten_results(df, key)
 }
 \arguments{
 \item{df}{data frame containing the results of a call to `search_npi()`}
+
+\item{key}{quoted column name from \code{df} to use as a matching key}
 }
 \value{
 data frame (tibble) with flattened list columns
