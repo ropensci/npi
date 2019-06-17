@@ -119,7 +119,7 @@ with_mock_api({
                         "identifiers", "taxonomies", "addresses", "practice_locations",
                         "endpoints", "created_date", "last_updated_date")
 
-    expect_is(res, c("tbl_df", "tbl", "data.frame"))
+    expect_is(res, c("npi_results", "tbl_df", "tbl", "data.frame"))
     expect_identical(purrr::map_chr(res, typeof), expected_types)
     expect_equal(nrow(res), 10)
   })

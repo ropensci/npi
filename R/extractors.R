@@ -24,7 +24,7 @@ pluck_vector_from_content <- function(content, col_name) {
 
 
 tidy_results <- function(content) {
-  tibble::tibble(
+  results <- tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
     provider_type = pluck_vector_from_content(content, "enumeration_type"),
     basic = list_to_tibble(content, "basic"),
@@ -37,6 +37,10 @@ tidy_results <- function(content) {
     created_date = pluck_vector_from_content(content, "created_epoch"),
     last_updated_date = pluck_vector_from_content(content, "last_updated_epoch")
   )
+
+  class(results) <- c("npi_results", "tbl_df", "tbl", "data.frame")
+
+  results
 }
 
 
@@ -101,6 +105,28 @@ get_list_col <- function(df, list_col, key) {
     dplyr::select(!!key, !!list_col) %>%
     tidyr::unnest(!!list_col)
 }
+
+
+summary.npi_results <- function(x, ...) {
+  basic <- get_list_col(x, basic, npi)
+  address_loc <- get_list_col(x, addresses, npi) %>%
+    filter(address_purpose == "LOCATION")
+  tax_primary <- get_list_col(x, taxonomies, npi) %>%
+    filter(primary == TRUE)
+
+  tibble::tibble(
+    npi = x$npi,
+    name = ifelse(x$provider_type == "Individual",
+                  paste(basic$first_name, basic$last_name),
+                  basic$organization_name),
+    provider_type = x$provider_type,
+    primary_practice_address = address_loc %>%
+      make_full_address("address_1", "address_2", "city", "state", "postal_code"),
+    phone = address_loc$telephone_number,
+    primary_taxonomy = tax_primary$desc
+  )
+}
+
 
 #' #' Flatten NPI search results
 #' #'

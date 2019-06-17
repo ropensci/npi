@@ -122,7 +122,7 @@ make_full_address <-
 
     stringr::str_c(
         stringr::str_trim(df[[address_1]], "both"),
-        " ",
+        ifelse(df[[address_2]] == "", "", " "),
         stringr::str_trim(df[[address_2]], "both"),
         ", ",
         stringr::str_trim(df[[city]], "both"),
