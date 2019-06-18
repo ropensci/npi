@@ -24,7 +24,7 @@ pluck_vector_from_content <- function(content, col_name) {
 
 
 tidy_results <- function(content) {
-  results <- tibble::tibble(
+  tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
     provider_type = pluck_vector_from_content(content, "enumeration_type"),
     basic = list_to_tibble(content, "basic"),
@@ -37,10 +37,6 @@ tidy_results <- function(content) {
     created_date = pluck_vector_from_content(content, "created_epoch"),
     last_updated_date = pluck_vector_from_content(content, "last_updated_epoch")
   )
-
-  class(results) <- c("npi_results", "tbl_df", "tbl", "data.frame")
-
-  results
 }
 
 
@@ -61,10 +57,48 @@ clean_results <- function(results) {
 
 
 
-list_to_tibble <- function(content, col_name, depth = 1L) {
-  if (depth < 1L || depth > 2L) {
-    stop("`depth` must be the integer 1 or 2")
+new_npi_results <- function(x, ...) {
+  checkmate::assert_tibble(x)
+
+  structure(
+    x,
+    class = c("npi_results", "tbl_df", "tbl", "data.frame")
+  )
+}
+
+
+
+validate_npi_results <- function(x, ...) {
+  obj_types <- c("integer", "character", rep("list", 7),
+                 rep("double", 2))
+  obj_col_names <- c("npi", "provider_type", "basic",
+                     "other_names", "identifiers",
+                     "taxonomies", "addresses",
+                     "practice_locations", "endpoints",
+                     "created_date", "last_updated_date")
+
+  # Ensure type- and column-safety
+  checkmate::assert_tibble(x, types = obj_types, ncols = 11)
+
+  if(!identical(names(x), obj_col_names)) {
+    rlang::abort("Columns names do not match expected names.",
+                 "bad_names_error")
   }
+
+  # `npi_results` has to be the first element of the class
+  # vector for generic methods to work.
+  if("npi_results" != class(x)[[1]]) {
+    rlang::abort("`x` is missing `npi_results` class.",
+                 "bad_class_error")
+  }
+
+  x
+}
+
+
+
+list_to_tibble <- function(content, col_name, depth = 1L) {
+  checkmate::assert_choice(depth, choices = c(1L, 2L))
 
   level_one <- content %>% purrr::map(col_name)
 
@@ -84,7 +118,7 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 #' @param list_col list column in \code{df}
 #' @param key key column in \code{df}
 #' @return data frame with \code{key} and unnested \code{list_col}
-#' @example
+#' @examples
 #' # Load sample data
 #' nyc <- npi:::res
 #'
@@ -93,7 +127,6 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 #' get_list_col(nyc, taxonomies, npi)
 #' @export
 get_list_col <- function(df, list_col, key) {
-
   if (!is.data.frame(df)) {
     abort_bad_argument(arg = "df", must = "be data frame", not = df)
   }
@@ -106,26 +139,6 @@ get_list_col <- function(df, list_col, key) {
     tidyr::unnest(!!list_col)
 }
 
-
-summary.npi_results <- function(x, ...) {
-  basic <- get_list_col(x, basic, npi)
-  address_loc <- get_list_col(x, addresses, npi) %>%
-    filter(address_purpose == "LOCATION")
-  tax_primary <- get_list_col(x, taxonomies, npi) %>%
-    filter(primary == TRUE)
-
-  tibble::tibble(
-    npi = x$npi,
-    name = ifelse(x$provider_type == "Individual",
-                  paste(basic$first_name, basic$last_name),
-                  basic$organization_name),
-    provider_type = x$provider_type,
-    primary_practice_address = address_loc %>%
-      make_full_address("address_1", "address_2", "city", "state", "postal_code"),
-    phone = address_loc$telephone_number,
-    primary_taxonomy = tax_primary$desc
-  )
-}
 
 
 #' #' Flatten NPI search results

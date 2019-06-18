@@ -79,22 +79,27 @@ clean_credentials <- function(x) {
 }
 
 
-#' Add hyphen to 9-digit ZIP codes
+#' Format United States (US) ZIP codes
 #'
-#' @param x Character or numeric vector containing ZIP code(s)
+#' @param x Character vector
 #'
-#' @return Length \code{x} character vector hyphenated for ZIP+4
+#' @return Length \code{x} character vector hyphenated for ZIP+4 or 5-digit ZIP. Invalid elements of \code{x} are not formatted.
 hyphenate_full_zip <- function(x) {
-  ifelse(stringr::str_length(x) > 5 &
-           stringr::str_length(x) <= 9 &
-           !stringr::str_detect(x, "-"),
-         paste0(
-           stringr::str_sub(x, 1, 5),
-           "-",
-           stringr::str_sub(x, 6, 9)
-         ),
-         x
+  checkmate::assert(
+    checkmate::check_character(x),
+    checkmate::check_integerish(x),
+    combine = "or"
   )
+
+  x <- as.character(x)
+
+  # Add a hyphen in the right place iff the element has exactly 9 digits;
+  # otherwise, leave the (possibly) invalid ZIP alone
+  zip_regex <- "^[[:digit:]]{9}$"
+  ifelse(
+   stringr::str_detect(x, zip_regex),
+   paste0(stringr::str_sub(x, 1, 5), "-", stringr::str_sub(x, 6, 9)),
+   x)
 }
 
 

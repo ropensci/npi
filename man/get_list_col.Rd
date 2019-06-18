@@ -19,3 +19,11 @@ data frame with \code{key} and unnested \code{list_col}
 \description{
 Extract list column by key
 }
+\examples{
+# Load sample data
+nyc <- npi:::res
+
+# Get basic list column by NPI
+get_list_col(nyc, basic, npi)
+get_list_col(nyc, taxonomies, npi)
+}

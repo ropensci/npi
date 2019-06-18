@@ -136,3 +136,16 @@ test_that("get_results() catches improperly structured responses", {
   expect_error(get_results(resps), class = "bad_class_error")
 })
 
+
+with_mock_api({
+  test_that("summary.npi_results() method works as expected", {
+    atl <- search_npi(city = "Atlanta")
+    expect_types <- c("integer", rep("character", 5))
+    expect_names <- c("npi", "name", "provider_type",
+                      "primary_practice_address", "phone",
+                      "primary_taxonomy")
+
+    checkmate::expect_tibble(summary(atl), types = expect_types)
+    expect_identical(names(summary(atl)), expect_names)
+  })
+})

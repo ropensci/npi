@@ -235,5 +235,48 @@ search_npi <-
     handle_requests(params, sleep = sleep) %>%
       get_results() %>%
       tidy_results() %>%
-      clean_results()
+      clean_results() %>%
+      new_npi_results() %>%
+      validate_npi_results()
   }
+
+
+
+#' Summary method for npi_results S3 objects
+#'
+#' Modeled after summary profile presented on the NPPES registry
+#' website.
+#'
+#' @param object `npi_results` S3 object
+#' @param ... Additional aptional arguments
+#' @return Tibble containing the following columns: `npi`, `name`, `provider_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
+#' @importFrom rlang .data
+#' @export
+summary.npi_results <- function(object, ...) {
+  basic <- get_list_col(object, .data$basic, .data$npi)
+  address_loc <- get_list_col(object, .data$addresses, .data$npi) %>%
+    dplyr::filter(.data$address_purpose == "LOCATION") %>%
+    dplyr::mutate(
+      postal_code = hyphenate_full_zip(.data$postal_code)
+    )
+
+  # Some NPI records have only one taxonomy row with primary == FALSE;
+  # include these along with those where primary == TRUE
+  tax_primary <- get_list_col(object, .data$taxonomies, .data$npi) %>%
+    dplyr::group_by(.data$npi) %>%
+    dplyr::mutate(n_primary = sum(.data$primary == TRUE)) %>%
+    dplyr::filter(.data$primary == TRUE | .data$n_primary == 0)
+
+  tibble::tibble(
+    npi = object$npi,
+    name = ifelse(object$provider_type == "Individual",
+                  paste(basic$first_name, basic$last_name),
+                  basic$organization_name),
+    provider_type = object$provider_type,
+    primary_practice_address = address_loc %>%
+      make_full_address("address_1", "address_2", "city",
+                        "state", "postal_code"),
+    phone = address_loc$telephone_number,
+    primary_taxonomy = tax_primary$desc
+  )
+}

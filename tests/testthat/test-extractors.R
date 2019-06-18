@@ -1,5 +1,31 @@
 context("test-extractors.R")
 
+test_that("new_npi_results() correctly handles inputs", {
+  expect_error(new_npi_results(data.frame(a = 1)))
+})
+
+test_that("new_npi_results() correctly constructs S3 class", {
+  tbl <- tibble::tibble(a = 1L)
+  cls <- c("npi_results", "tbl_df", "tbl", "data.frame")
+  tbl_class <- structure(.Data = tbl, class = cls)
+
+  expect_identical(new_npi_results(tbl), tbl_class)
+})
+
+test_that("validate_npi_results() catches invalid inputs", {
+  res_bad_ncol <- res_bad_name <- res_bad_class <- npi:::res
+  res_bad_ncol <- res_bad_ncol[, -11]
+  names(res_bad_name)[3] <- "basic2"
+  class(res_bad_class) <- c("tbl_df", "tbl", "data.frame")
+
+  expect_error(validate_npi_results(res_bad_ncol))
+  expect_error(validate_npi_results(res_bad_name),
+               class = "bad_names_error")
+  expect_error(validate_npi_results(res_bad_class),
+               class = "bad_class_error")
+})
+
+
 # Set up global objects for testing
 df <- tibble(
   key = letters[1:2],

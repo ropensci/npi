@@ -26,7 +26,8 @@ Suggests:
     covr,
     httptest,
     testthat (>= 2.1.0),
-    mockery
+    mockery,
+    checkmate
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

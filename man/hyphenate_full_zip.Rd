@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{hyphenate_full_zip}
 \alias{hyphenate_full_zip}
-\title{Add hyphen to 9-digit ZIP codes}
+\title{Format United States (US) ZIP codes}
 \usage{
 hyphenate_full_zip(x)
 }
 \arguments{
-\item{x}{Character or numeric vector containing ZIP code(s)}
+\item{x}{Character vector}
 }
 \value{
-Length \code{x} character vector hyphenated for ZIP+4
+Length \code{x} character vector hyphenated for ZIP+4 or 5-digit ZIP. Invalid elements of \code{x} are not formatted.
 }
 \description{
-Add hyphen to 9-digit ZIP codes
+Format United States (US) ZIP codes
 }
