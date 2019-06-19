@@ -7,6 +7,7 @@
 #' @param ua User agent character string
 #' @param sleep Number of seconds to pause before issuing request
 #' @return List response object from the GET request
+#' @noRd
 get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = NULL) {
   if (isFALSE(curl::has_internet())) {
     rlang::abort("no_internet_error",
@@ -40,6 +41,7 @@ get_url <- function(query = NULL, url = NULL, ua = NULL, sleep = NULL) {
 #' Inspect API response object's status and handle business logic errors returned by API.
 #'
 #' @param resp Response object from a REST API request
+#' @noRd
 validate_response <- function(resp) {
   if (class(resp) != "response") {
     msg <- glue::glue("`resp` class must be `response`, not {class(resp)}.")
@@ -76,7 +78,7 @@ validate_response <- function(resp) {
 }
 
 
-
+#' @noRd
 nppes_api <- function(query = NULL, url = BASE_URL, ua = USER_AGENT, sleep = NULL) {
   if (!is.list(query)) {
     abort_bad_argument("query", must = "be list", not = query)
@@ -98,7 +100,7 @@ nppes_api <- function(query = NULL, url = BASE_URL, ua = USER_AGENT, sleep = NUL
   )
 }
 
-
+#' @noRd
 print.nppes_api <- function(x, ...) {
     cat("<NPPES ", x$path, ">\n", sep = "")
     utils::str(x$content)
@@ -106,7 +108,7 @@ print.nppes_api <- function(x, ...) {
   }
 
 
-
+#' @noRd
 handle_requests <- function(params, req_limit = 200, sleep = NULL) {
   max_limit <- params$limit
 
@@ -248,7 +250,7 @@ search_npi <-
 #' website.
 #'
 #' @param object `npi_results` S3 object
-#' @param ... Additional aptional arguments
+#' @param ... Additional optional arguments
 #' @return Tibble containing the following columns: `npi`, `name`, `provider_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
 #' @importFrom rlang .data
 #' @export

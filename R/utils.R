@@ -69,6 +69,7 @@ is_valid_npi <- function(x) {
 #'
 #' @param x Character vector of credentials
 #' @return List of cleaned character vectors, with one list element per element of \code{x}
+#' @noRd
 clean_credentials <- function(x) {
   if (!is.character(x))
     stop("x must be a character vector")
@@ -84,6 +85,7 @@ clean_credentials <- function(x) {
 #' @param x Character vector
 #'
 #' @return Length \code{x} character vector hyphenated for ZIP+4 or 5-digit ZIP. Invalid elements of \code{x} are not formatted.
+#' @noRd
 hyphenate_full_zip <- function(x) {
   checkmate::assert(
     checkmate::check_character(x),
@@ -113,6 +115,7 @@ hyphenate_full_zip <- function(x) {
 #' @param postal_code Quoted column name in \code{df} containing a character or numeric vector of postal codes
 #'
 #' @return Character vector containing full one-line addresses
+#' @noRd
 make_full_address <-
   function(df,
            address_1,

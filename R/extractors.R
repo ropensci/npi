@@ -1,3 +1,4 @@
+#' @noRd
 get_results <- function(responses) {
   if(!is.list(responses)) {
     abort_bad_argument("responses", must = "be list", not = responses)
@@ -14,7 +15,7 @@ get_results <- function(responses) {
 }
 
 
-
+#' @noRd
 pluck_vector_from_content <- function(content, col_name) {
   content %>%
     purrr::map(purrr::pluck, col_name) %>%
@@ -22,7 +23,7 @@ pluck_vector_from_content <- function(content, col_name) {
 }
 
 
-
+#' @noRd
 tidy_results <- function(content) {
   tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
@@ -40,7 +41,7 @@ tidy_results <- function(content) {
 }
 
 
-
+#' @noRd
 clean_results <- function(results) {
   epoch_to_date <- purrr::as_mapper(
     ~ as.POSIXct(.x, origin = "1970-01-01", tz = "UTC")
@@ -56,7 +57,7 @@ clean_results <- function(results) {
 }
 
 
-
+#' @noRd
 new_npi_results <- function(x, ...) {
   checkmate::assert_tibble(x)
 
@@ -67,7 +68,7 @@ new_npi_results <- function(x, ...) {
 }
 
 
-
+#' @noRd
 validate_npi_results <- function(x, ...) {
   obj_types <- c("integer", "character", rep("list", 7),
                  rep("double", 2))
@@ -96,7 +97,7 @@ validate_npi_results <- function(x, ...) {
 }
 
 
-
+#' @noRd
 list_to_tibble <- function(content, col_name, depth = 1L) {
   checkmate::assert_choice(depth, choices = c(1L, 2L))
 

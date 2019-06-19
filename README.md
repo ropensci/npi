@@ -14,16 +14,18 @@ Status](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branc
 [![Coverage
 status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
 
-Provide access to the free, public API for the U.S. National Provider
-Identifier (NPI) Registry Public Search provided by the Center for
-Medicare and Medicaid Services (CMS):
-<https://npiregistry.cms.hhs.gov/>. The package is compatible with
-version 2.1 of the API, which is the latest version available at the
-time of this writing.
+Use R to access the U.S. National Provider Identifier (NPI) Registry API
+(v2.1) by the Center for Medicare and Medicaid Services (CMS):
+<https://npiregistry.cms.hhs.gov/>. Obtain rich administrative data
+linked to a specific individual or organizational healthcare provider,
+or perform advanced searches based on provider name, location, type of
+service, credentials, and many other attributes. `npi` provides
+convenience functions for data extraction so you can spend less time
+wrangling data and more time putting data to work.
 
 ## Installation
 
-This package can be installed directly from this Github repo:
+Install `npi` directly from Github using the `devtools` package:
 
 ``` r
 devtools::install_github("frankfarach/npi")
@@ -34,34 +36,31 @@ library(npi)
 
 `npi` exports three functions:
 
-  - `search_npi()`: Search the NPI Registry and return the response as
-    tidy data.
-  - `get_list_col()`: Extract and unnest a list column from a
-    `search_npi()` result, joined by NPI number.
+  - `search_npi()`: Search the NPI Registry and return the response as a
+    [tibble](http://tibble.tidyverse.org/) with high-cardinality data
+    organized into list columns.
+  - `get_list_col()`: Unnest a list column from a `search_npi()` result,
+    joined by NPI number.
   - `is_valid_npi()`: Check the validity of one or more NPI numbers
-    using the same algorithm used by the National Plan and Provider
-    Enumeration System (NPPES).
+    using the official [NPI enumeration
+    standard](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf).
 
-### Searching
+### Search the registry
 
-`search_npi()` is a thin wrapper around the NPI Registry’s API. It
-exposes nearly all of the
-[parameters](https://npiregistry.cms.hhs.gov/registry/help-api) made
-available by the API and returns the results as a [tidy data
-frame](http://tibble.tidyverse.org/), or tibble.
+`search_npi()` exposes nearly all of the NPPES API’s [search
+parameters](https://npiregistry.cms.hhs.gov/registry/help-api). Let’s
+say you wanted to find up to 5 organizational providers with primary
+locations in New York City. That’s one line:
 
 ``` r
-# Search for organizational providers in New York City, NY, 
-# returning the first 5 records
-nyc <- search_npi(city = "New York City", state = "NY", 
-                  provider_type = 2, limit = 5)
+nyc <- search_npi(city = "New York City", provider_type = 2, limit = 5)
 ```
 
 ``` r
 nyc
 #> # A tibble: 5 x 11
 #>      npi provider_type basic other_names identifiers taxonomies addresses
-#>    <int> <chr>         <lis> <list>      <list>      <list>     <list>   
+#> *  <int> <chr>         <lis> <list>      <list>      <list>     <list>   
 #> 1 1.35e9 Organization  <tib… <tibble [0… <tibble [1… <tibble [… <tibble …
 #> 2 1.59e9 Organization  <tib… <tibble [0… <tibble [3… <tibble [… <tibble …
 #> 3 1.75e9 Organization  <tib… <tibble [0… <tibble [0… <tibble [… <tibble …
@@ -71,54 +70,45 @@ nyc
 #> #   created_date <dttm>, last_updated_date <dttm>
 ```
 
-### Controlling the maximum number of records returned
-
-`search_npi()` allows you to optionally specify, via the `limit`
-argument, an upper bound on the number of records returned:
-
-``` r
-# Returns up to 10 provider records
-search_npi(city = "New York City", state = "NY")
-
-# Returns up to 1200 provider records
-search_npi(city = "New York City", state = "NY", limit = 1200)
-```
-
-If no value is supplied for `limit`, the API defaults to a maximum of 10
-records. However, this behavior can be overriden by specifying a value
-between 1 and 1200 to `limit`. Behind the scenes, `search_npi()` will
-make multiple requests if necessary and bind the results together into a
-tidy data frame.
-
-## Working with search results
-
-The data returned from `search_npi()` is organized according to its
-relationship to the NPI column, which is the primary key for the table.
-The columns `npi`, `provider_type`, `created_date`, and
-`last_updated_date` are traditional atomic vector columns; everything
-else is grouped into [list
-columns](http://r4ds.had.co.nz/many-models.html#list-columns-1). Each
-element of a list column is a list of tibbles.
-
-There are seven such columns, which are always returned even if they
-contain NULL records:
+The full search results have four regular vector columns, `npi`,
+`provider_type`, `created_date`, and `last_updated_date` and seven list
+columns. Each list column is a collection of related data:
 
   - `basic`: Basic profile information about the provider
   - `other_names`: Other names used by the provider
-  - `identifiers`: Miscellaneous provider identifiers and credential
-    information linked to provider’s NPI
+  - `identifiers`: Other provider identifiers and credential information
   - `taxonomies`: Service classification and license information
   - `addresses`: Location and mailing address information
   - `practice_locations`: Provider’s practice locations
   - `endpoints`: Details about provider’s endpoints for health
     information exchange
 
-Any of these columns can be extracted as a tidy data frame using
-`get_list_col()`:
+Although the resulting tibble is somewhat complex, `npi` has you covered
+with convenience functions to summarize and extract just the data you
+need.
+
+## Working with search results
+
+Run `summary()` on your results to see what you’ve got:
 
 ``` r
-# Get the basic list column joined
-basic <- get_list_col(nyc, basic, npi)
+summary(nyc)
+#> # A tibble: 5 x 6
+#>       npi name    provider_type primary_practice_a… phone primary_taxonomy 
+#>     <int> <chr>   <chr>         <chr>               <chr> <chr>            
+#> 1  1.35e9 NICULA… Organization  10 EAST 38TH STREE… 212-… Internal Medicin…
+#> 2  1.59e9 UNDERN… Organization  160 E 34TH ST 4TH … 212-… Durable Medical …
+#> 3  1.75e9 NEURO-… Organization  635 WEST 165 ST, N… 212-… Ophthalmology    
+#> 4  1.02e9 MEDICA… Organization  250 EAST HOUSTON S… 212-… Podiatrist       
+#> 5  1.05e9 METROP… Organization  2578 HEMPSTEAD TUR… 516-… Urology
+```
+
+Use `get_list_col()` to extract and unnest data by list column while
+preserving its relationship with NPI:
+
+``` r
+# Get the `basic` list column from `nyc` using npi as the key
+basic <- get_list_col(df = nyc, list_col = basic, key = npi)
 basic
 #> # A tibble: 5 x 14
 #>      npi organization_na… organizational_… enumeration_date last_updated
@@ -137,7 +127,7 @@ basic
 #> #   authorized_official_middle_name <chr>,
 #> #   authorized_official_name_prefix <chr>
 
-# Get the taxonomies list column joined to NPI
+# Get the `taxonomies` list column joined to NPI
 tax <- get_list_col(nyc, taxonomies, npi)
 tax
 #> # A tibble: 6 x 7

@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{`npi_results` S3 object}
 
-\item{...}{Additional aptional arguments}
+\item{...}{Additional optional arguments}
 }
 \value{
 Tibble containing the following columns: `npi`, `name`, `provider_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
