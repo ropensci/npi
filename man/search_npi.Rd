@@ -4,18 +4,18 @@
 \alias{search_npi}
 \title{Search the NPI Registry}
 \usage{
-search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
-  first_name = NULL, last_name = NULL, use_first_name_alias = NULL,
-  org_name = NULL, address_purpose = NULL, city = NULL,
-  state = NULL, postal_code = NULL, country_code = NULL,
-  limit = 10, sleep = 0L)
+search_npi(number = NULL, enumeration_type = NULL,
+  taxonomy_description = NULL, first_name = NULL, last_name = NULL,
+  use_first_name_alias = NULL, organization_name = NULL,
+  address_purpose = NULL, city = NULL, state = NULL,
+  postal_code = NULL, country_code = NULL, limit = 10)
 }
 \arguments{
-\item{npi}{10-digit National Provider Identifier number assigned to the provider.}
+\item{number}{10-digit National Provider Identifier number assigned to the provider.}
 
-\item{provider_type}{The API can be refined to retrieve only Individual Providers or Organizational Providers. When it is not specified, both Type 1 and Type 2 NPIs will be returned. When using the Enumeration Type, it cannot be the only criteria entered. Additional criteria must also be entered as well. Valid values are: NPI-1: Individual Providers (Type 1) NPIs; NPI-2: Organizational Providers (Type 2) NPIs}
+\item{enumeration_type}{The API can be refined to retrieve only Individual Providers or Organizational Providers. When it is not specified, both Type 1 and Type 2 NPIs will be returned. When using the Enumeration Type, it cannot be the only criteria entered. Additional criteria must also be entered as well. Valid values are: 'Ind': Individual Providers (Type 1) NPIs; 'Org': Organizational Providers (Type 2) NPIs.}
 
-\item{taxonomy}{Search for providers by their taxonomy by entering the taxonomy description.}
+\item{taxonomy_description}{Search for providers by their taxonomy by entering the taxonomy description.}
 
 \item{first_name}{This field only applies to Individual Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered (e.g. "jo*" ). This field allows the following special characters: ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon.}
 
@@ -23,7 +23,7 @@ search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
 
 \item{use_first_name_alias}{This field only applies to Individual Providers when not doing a wildcard search. When set to "True", the search results will include Providers with similar First Names. E.g., first_name=Robert, will also return Providers with the first name of Rob, Bob, Robbie, Bobby, etc. Valid Values are: TRUE: Will include alias/similar names; FALSE: Will only look for exact matches.}
 
-\item{org_name}{This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, "at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.}
+\item{organization_name}{This field only applies to Organizational Providers. Trailing wildcard entries are permitted requiring at least two characters to be entered. This field allows the following special characters: ampersand, apostrophe, "at" sign, colon, comma, forward slash, hyphen, left and right parentheses, period, pound sign, quotation mark, and semi-colon. Both the Organization Name and Other Organization Name fields associated with an NPI are examined for matching contents, therefore, the results might contain an organization name different from the one entered in the Organization Name criterion.}
 
 \item{address_purpose}{Refers to whether the address information entered pertains to the provider's Mailing Address or the provider's Practice Location Address. When not specified, the results will contain the providers where either the Mailing Address or any of Practice Location Addresses match the entered address information. Primary will only search against Primary Location Address. While Secondary will only search against Secondary Location Addresses. Valid values are: "location", "mailing", "primary", "secondary".}
 
@@ -36,8 +36,6 @@ search_npi(npi = NULL, provider_type = NULL, taxonomy = NULL,
 \item{country_code}{The Country associated with the provider's address identified in Address Purpose. This field can be used as the only input criterion as long as the value selected is not US (United States). Valid values for country codes: https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr}
 
 \item{limit}{Maximum number of records to return, from 1 to 1200 inclusive. The default is 10. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.}
-
-\item{sleep}{Non-negative number of seconds to sleep between requests, if necessary.}
 }
 \value{
 Data frame (tibble) containing the results of the search.

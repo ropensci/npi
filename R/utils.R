@@ -1,22 +1,39 @@
 # Global variables for GET request
-API_VERSION <- "2.1"
-BASE_URL <- paste0("https://npiregistry.cms.hhs.gov/api/?version=", API_VERSION)
+API_VERSION <- "2.1"  # Referenced in `npi_search()`
+BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
 
 
-#' Abort bad function arguments
+#' Handle bad function arguments
 #'
-#' Error handler to abort a bad argument based on its actual vs. expected type
+#' Error handler to abort a bad argument, `arg`, based on its actual vs. expected
+#' type or class, and display a templated error message.
 #'
 #' @param arg Function argument name as character vector
 #' @param must Text to relate argument's name to its expected type
-#' @param not Function argument's name
-#' @return Error handler with templated message and metadata
-abort_bad_argument <- function(arg, must, not = NULL) {
-  msg <- glue::glue("`{arg}` must {must}")
+#' @param not Function argument (optional)
+#' @param method Either "typeof" (default) or "class"
+#' @return Error handler of class `error_bad_argument` with templated message
+#' and metadata
+#' @examples
+#' a <- "foo"
+#' b <- 1L
+#'
+#' # Check argument type
+#' abort_bad_argument("a", must = "be integer", not = a) # Error
+#' abort_bad_argument("b", must = "be integer", not = b) # No error
+#'
+#' # Check argument class
+#' c <- factor(a)
+#' abort_bad_argument("a", must = "be factor", not = a, method = "class")
+#' @noRd
+abort_bad_argument <- function(arg, must, not = NULL,
+                               method = c("typeof", "class")) {
+  method <- match.arg(method)
+  msg <- paste0("`", arg, "`", " must ", must)
   if (!is.null(not)) {
-    not <- typeof(not)
-    msg <- glue::glue("{msg}, not {not}.")
+    not <- ifelse(method == "typeof", typeof(not), class(not))
+    msg <- paste0(msg, ", not ", not, ".")
   }
 
   rlang::abort("error_bad_argument",

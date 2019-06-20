@@ -2,63 +2,52 @@ context("test-api.R")
 
 # Global variables for GET request
 API_VERSION <- "2.1"
-BASE_URL <- paste0("https://npiregistry.cms.hhs.gov/api/?version=", API_VERSION)
+BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
 
 
-with_mock_api({
-  test_that("Requests happen and have the correct URL and user agent", {
-    npi <- "1437187390"
-    req <- get_url(query = list(number = npi), url = BASE_URL,
-                   ua = USER_AGENT, sleep = 0L)
-    expect_is(req, "response")
-    expect_identical(req$url, paste0(BASE_URL, "&number=", npi))
-    expect_identical(req$request$options$useragent, USER_AGENT)
-  })
+test_that("npi_config() sets default user_agent correctly", {
+  expect_identical(npi_config(), httr::config(useragent = USER_AGENT))
 })
 
-
-test_that("get_url() rejects invalid values supplied to arguments", {
-  test_get_url <- purrr::partial(get_url, url = BASE_URL, ua = USER_AGENT)
-  expect_error(test_get_url(query = "foo", sleep = 0L),
-               class = "error_bad_argument")
-  expect_error(get_url(list(), url = TRUE, ua = USER_AGENT, sleep = 0L),
-               class = "error_bad_argument")
-  expect_error(get_url(list(), url = BASE_URL, ua = TRUE, sleep = 0L),
-               class = "error_bad_argument")
+test_that("npi_config() uses customized user agent option if defined", {
+  options(npi_user_agent = "foo")
+  expect_identical(npi_config(), httr::config(useragent = "foo"))
+  options(npi_user_agent = USER_AGENT)
 })
 
+# with_mock_api({
+#   test_that("Requests happen and have the correct URL and user agent", {
+#     npi <- "1437187390"
+#     req <- get_url(query = list(number = npi), url = BASE_URL,
+#                    ua = USER_AGENT, sleep = 0L)
+#     expect_is(req, "response")
+#     expect_identical(req$url, paste0(BASE_URL, "&number=", npi))
+#     expect_identical(req$request$options$useragent, USER_AGENT)
+#   })
+# })
 
-test_that("get_url() throws a custom error when there's no internet", {
-  stub(get_url, "curl::has_internet", FALSE)
-  expect_error(
-    get_url(query = list(city = "Denver"), url = BASE_URL,
-            ua = USER_AGENT, sleep = 0L),
-    class = "no_internet_error")
-})
 
 
-test_that("We throw a custom error when the API resturns a bad status code", {
+test_that("We throw a custom error when the API returns a bad status code", {
   status <- 400L
   url <- "foo"
-  stub(validate_response, "httr::status_code", status)
+  stub(npi_handle_response, "httr::status_code", status)
   resp <- structure(list(url = url), class = "response")
 
   expect_error(
-    validate_response(resp),
+    npi_handle_response(resp),
     class = "request_failed_error")
 })
 
 
-with_mock_api({
-  test_that("Response validation catches logic errors returned by API", {
-    req <- get_url(query = list(provider_type = 1), url = BASE_URL,
-                   ua = USER_AGENT, sleep = 0L)
-    expect_error(validate_response(unclass(req)),
-                 "`resp` class must be `response`, not list.")
-    expect_error(validate_response(req), class = "request_logic_error")
-  })
-})
+# with_mock_api({
+#   test_that("Response validation catches logic errors returned by API", {
+#     req <- search_registry()
+#     expect_error(npi_handle_response(unclass(req)), class = "error_bad_argument")
+#     expect_error(npi_handle_response(req), class = "request_logic_error")
+#   })
+# })
 
 
 test_that("nppes_api() throws an error for non-list query arguments", {

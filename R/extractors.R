@@ -1,16 +1,8 @@
 #' @noRd
-get_results <- function(responses) {
-  if(!is.list(responses)) {
-    abort_bad_argument("responses", must = "be list", not = responses)
-  }
-
-  if(any(purrr::map_chr(responses, class) != "nppes_api")) {
-    rlang::abort(.subclass = "bad_class_error",
-                 message = "All responses must have a `nppes_api` S3 class.")
-  }
-
-  responses %>%
-    purrr::map("content") %>%
+get_results <- function(results) {
+  results %>%
+    purrr::compact() %>%
+    purrr::map("results") %>%
     unlist(recursive = FALSE)
 }
 
@@ -28,7 +20,7 @@ tidy_results <- function(content) {
   tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
     provider_type = pluck_vector_from_content(content, "enumeration_type"),
-    basic = list_to_tibble(content, "basic"),
+    basic = list_to_tibble(content, "basic", 1),
     other_names = list_to_tibble(content, "other_names", 2),
     identifiers = list_to_tibble(content, "identifiers", 2),
     taxonomies = list_to_tibble(content, "taxonomies", 2),
