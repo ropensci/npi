@@ -10,23 +10,12 @@ test_that("npi_config() sets default user_agent correctly", {
   expect_identical(npi_config(), httr::config(useragent = USER_AGENT))
 })
 
+
 test_that("npi_config() uses customized user agent option if defined", {
   options(npi_user_agent = "foo")
   expect_identical(npi_config(), httr::config(useragent = "foo"))
   options(npi_user_agent = USER_AGENT)
 })
-
-# with_mock_api({
-#   test_that("Requests happen and have the correct URL and user agent", {
-#     npi <- "1437187390"
-#     req <- get_url(query = list(number = npi), url = BASE_URL,
-#                    ua = USER_AGENT, sleep = 0L)
-#     expect_is(req, "response")
-#     expect_identical(req$url, paste0(BASE_URL, "&number=", npi))
-#     expect_identical(req$request$options$useragent, USER_AGENT)
-#   })
-# })
-
 
 
 test_that("We throw a custom error when the API returns a bad status code", {
@@ -41,39 +30,36 @@ test_that("We throw a custom error when the API returns a bad status code", {
 })
 
 
-# with_mock_api({
-#   test_that("Response validation catches logic errors returned by API", {
-#     req <- search_registry()
-#     expect_error(npi_handle_response(unclass(req)), class = "error_bad_argument")
-#     expect_error(npi_handle_response(req), class = "request_logic_error")
-#   })
-# })
+test_that("We throw a custom error when the API doesn't return JSON.", {
+  status <- 200L
+  http_type <- "application/xml"
+  url <- "foo"
+  stub(npi_handle_response, "httr::status_code", status)
+  stub(npi_handle_response, "httr::http_type", http_type)
+  resp <- structure(list(url = url,
+                         headers = list(
+                           `Content-Type` = http_type
+                         )),
+                    class = "response")
 
-
-test_that("nppes_api() throws an error for non-list query arguments", {
-  expect_error(nppes_api(query = "foo", url = BASE_URL,
-                         ua = USER_AGENT, sleep = 0L),
-               class = "error_bad_argument")
+  expect_error(
+    npi_handle_response(resp),
+    class = "http_type_error")
 })
 
 
 with_mock_api({
-  test_that("nppes_api() returns an object with class `nppes_api` with functioning S3 print method", {
-    req <- nppes_api(
-      query = list(provider_type = 1, city = "Atlanta", limit = 2),
-      url = BASE_URL, ua = USER_AGENT, sleep = 0L
-    )
-    expect_is(req, "nppes_api")
-    capture_output(expect_invisible(print(req)))
+  test_that("Response validation catches logic errors returned by API", {
+    expect_error(search_npi(), class = "request_logic_error")
   })
 })
 
 
 test_that("search_npi() messages when argument values are invalid", {
   # Provider type
-  pt <- "provider_type must be one of: NULL, 1, or 2"
-  expect_error(search_npi(provider_type = "NPI1"), pt)
-  expect_error(search_npi(provider_type = 3), pt)
+  pt <- "`enumeration_type` must be one of: NULL, 'ind', or 'org'."
+  expect_error(search_npi(enumeration_type = "NPI1"), pt)
+  expect_error(search_npi(enumeration_type = 3), pt)
 
   # Use first name alias
   ufna <- "`use_first_name_alias` must be TRUE or FALSE if specified."
@@ -87,15 +73,12 @@ test_that("search_npi() messages when argument values are invalid", {
   expect_error(search_npi(limit = -1), lim)
   expect_error(search_npi(limit = 0), lim)
   expect_error(search_npi(limit = 1201), lim)
-
-  # Sleep
-  expect_error(search_npi(sleep = -1), class = "error_bad_argument")
 })
 
 
 with_mock_api({
   test_that("We can catch request logic errors in the API response", {
-    expect_error(search_npi(provider_type = 1), class = "request_logic_error")
+    expect_error(search_npi(enumeration_type = "ind"), class = "request_logic_error")
   })
 })
 
@@ -104,7 +87,7 @@ with_mock_api({
   test_that("A valid search_npi() call meets structural expectations", {
     res <- search_npi(city = "Atlanta")
     expected_types <- c("integer", "character", rep("list", 7), rep("double", 2))
-    names(expected_types) <- c("npi", "provider_type", "basic", "other_names",
+    names(expected_types) <- c("npi", "enumeration_type", "basic", "other_names",
                         "identifiers", "taxonomies", "addresses", "practice_locations",
                         "endpoints", "created_date", "last_updated_date")
 
@@ -115,22 +98,11 @@ with_mock_api({
 })
 
 
-test_that("get_results() catches improperly structured responses", {
-  good_resp <- structure(list(), class = "nppes_api")
-  bad_resp <- unclass(good_resp)
-  resps <- list(good_resp, bad_resp)
-  not_a_list <- "foo"
-
-  expect_error(get_results(not_a_list), class = "error_bad_argument")
-  expect_error(get_results(resps), class = "bad_class_error")
-})
-
-
 with_mock_api({
   test_that("summary.npi_results() method works as expected", {
     atl <- search_npi(city = "Atlanta")
     expect_types <- c("integer", rep("character", 5))
-    expect_names <- c("npi", "name", "provider_type",
+    expect_names <- c("npi", "name", "enumeration_type",
                       "primary_practice_address", "phone",
                       "primary_taxonomy")
 
@@ -138,3 +110,23 @@ with_mock_api({
     expect_identical(names(summary(atl)), expect_names)
   })
 })
+
+
+with_mock_api({
+  test_that("enumeration_type controls values of enumeration_type in response", {
+    atl_ind <- search_npi(city = "Atlanta", enumeration_type = "ind")
+    atl_org <- search_npi(city = "Atlanta", enumeration_type = "org")
+
+    expect_equal(all(atl_ind$enumeration_type == "Individual"), TRUE)
+    expect_equal(all(atl_org$enumeration_type == "Organization"), TRUE)
+  })
+})
+
+
+# with_mock_api({
+#   test_that("If we search for an existing NPI, we get back the correct one", {
+#     npi <- "1568946812"
+#     res <- search_npi(number = npi)
+#     expect_equal(search_npi(number = npi), res$number)
+#   })
+# })

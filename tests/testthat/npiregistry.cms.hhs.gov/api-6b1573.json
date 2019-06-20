@@ -1,0 +1,684 @@
+{
+    "result_count": 10,
+    "results": [
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1053975268,
+            "last_updated_epoch": 1556104934,
+            "created_epoch": 1556064000,
+            "basic": {
+                "first_name": "KELSEY",
+                "last_name": "SPRANG",
+                "middle_name": "R",
+                "credential": "PSYD",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2019-04-24",
+                "last_updated": "2019-04-24",
+                "status": "A",
+                "name": "SPRANG KELSEY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "AA",
+                    "country_name": "Unknown Country Name for AA",
+                    "address_purpose": "LOCATION",
+                    "address_type": "FGN",
+                    "address_1": "12 EXECUTIVE PARK DRIVE NE",
+                    "address_2": "RM 388",
+                    "city": "ATLANTA",
+                    "state": "GEORGIA",
+                    "postal_code": "30329",
+                    "telephone_number": "404-778-0922"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "12 EXECUTIVE PARK DR NE RM 388",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303292206",
+                    "telephone_number": "404-778-0922"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "103TC0700X",
+                    "desc": "Psychologist Clinical",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "NA"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1063410173,
+            "last_updated_epoch": 1391644800,
+            "created_epoch": 1121126400,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "ANTHONY",
+                "last_name": "BARNES",
+                "middle_name": "EDWARD",
+                "credential": "M.D",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-07-12",
+                "last_updated": "2014-02-06",
+                "status": "A",
+                "name": "BARNES ANTHONY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "777 CLEVELAND AVE SW",
+                    "address_2": "SUITE 604",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303157129",
+                    "telephone_number": "404-768-6611",
+                    "fax_number": "404-768-3454"
+                },
+                {
+                    "country_code": "UM",
+                    "country_name": "United States Minor Outlying Islands",
+                    "address_purpose": "MAILING",
+                    "address_type": "FGN",
+                    "address_1": "777 CLEVELAND AVENUE",
+                    "address_2": "SUITE 604",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "30315",
+                    "telephone_number": "404-768-6611",
+                    "fax_number": "404-768-3454"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "208800000X",
+                    "desc": "Urology",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "041718"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "1063410173",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "BLUE CROSS BLUE SHIELD"
+                },
+                {
+                    "identifier": "331185",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "WELLCARE"
+                },
+                {
+                    "identifier": "5244142",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "AETNA"
+                },
+                {
+                    "identifier": "1916108",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "GA",
+                    "issuer": "UNITED HEALTHCARE"
+                },
+                {
+                    "identifier": "000700499E",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "GA",
+                    "issuer": ""
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1568726677,
+            "last_updated_epoch": 1459184964,
+            "created_epoch": 1341273600,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "BRENDA",
+                "last_name": "OIYEMHONLAN",
+                "middle_name": "ODAMEN",
+                "credential": "MD",
+                "sole_proprietor": "YES",
+                "gender": "F",
+                "enumeration_date": "2012-07-03",
+                "last_updated": "2016-03-28",
+                "status": "A",
+                "name": "OIYEMHONLAN BRENDA"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "531 ASBURY CIR",
+                    "address_2": "HOSPITAL ANNEX - SUITE N340",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303221006",
+                    "telephone_number": "404-778-2624"
+                },
+                {
+                    "country_code": "UM",
+                    "country_name": "United States Minor Outlying Islands",
+                    "address_purpose": "MAILING",
+                    "address_type": "FGN",
+                    "address_1": "531 ASBURY CIRCLE",
+                    "address_2": "HOSPITAL ANNEX - SUITE N340",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "30322"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207P00000X",
+                    "desc": "Emergency Medicine",
+                    "primary": false,
+                    "state": "NY",
+                    "license": "279979"
+                },
+                {
+                    "code": "207P00000X",
+                    "desc": "Emergency Medicine",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "75505"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1932510609,
+            "last_updated_epoch": 1410912000,
+            "created_epoch": 1400112000,
+            "basic": {
+                "first_name": "CHANDRA",
+                "last_name": "COOPER",
+                "sole_proprietor": "YES",
+                "gender": "F",
+                "enumeration_date": "2014-05-15",
+                "last_updated": "2014-09-17",
+                "status": "A",
+                "name": "COOPER CHANDRA"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "2200 GALLERIA PARKWAY",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303390148",
+                    "telephone_number": "770-444-0076"
+                },
+                {
+                    "country_code": "UM",
+                    "country_name": "United States Minor Outlying Islands",
+                    "address_purpose": "MAILING",
+                    "address_type": "FGN",
+                    "address_1": "200 GALLERIA PARKWAY",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GAS",
+                    "postal_code": "30339"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "363LF0000X",
+                    "desc": "Nurse Practitioner Family",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "RN136292"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1043467608,
+            "last_updated_epoch": 1400544000,
+            "created_epoch": 1219708800,
+            "basic": {
+                "name_prefix": "MS.",
+                "first_name": "MICHELLE",
+                "last_name": "WANSKY",
+                "middle_name": "STELLA",
+                "credential": "GNP",
+                "sole_proprietor": "YES",
+                "gender": "F",
+                "enumeration_date": "2008-08-26",
+                "last_updated": "2014-05-20",
+                "status": "A",
+                "name": "WANSKY MICHELLE"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "35 COLLIER RD NW",
+                    "address_2": "SUITE 635",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303091613",
+                    "telephone_number": "404-367-3014",
+                    "fax_number": "404-367-3558"
+                },
+                {
+                    "country_code": "UM",
+                    "country_name": "United States Minor Outlying Islands",
+                    "address_purpose": "MAILING",
+                    "address_type": "FGN",
+                    "address_1": "PO BOX 102321",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GEORGIA",
+                    "postal_code": "30368",
+                    "telephone_number": "404-367-3014",
+                    "fax_number": "404-367-3558"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "363LG0600X",
+                    "desc": "Nurse Practitioner Gerontology",
+                    "primary": false,
+                    "state": "GA",
+                    "license": "RN187265"
+                },
+                {
+                    "code": "282N00000X",
+                    "desc": "General Acute Care Hospital",
+                    "primary": false,
+                    "state": "GA",
+                    "license": "RN187265"
+                },
+                {
+                    "code": "363LA2100X",
+                    "desc": "Nurse Practitioner Acute Care",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "RN187265"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1508193921,
+            "last_updated_epoch": 1493337600,
+            "created_epoch": 1257379200,
+            "basic": {
+                "name_prefix": "MS.",
+                "first_name": "SARAH",
+                "last_name": "SMITH",
+                "middle_name": "L.",
+                "credential": "CPNP, DNP",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2009-11-05",
+                "last_updated": "2017-04-28",
+                "status": "A",
+                "name": "SMITH SARAH"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "925 CANTERBURY RD. NE #1242",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "AL",
+                    "postal_code": "303247694",
+                    "telephone_number": "404-228-0501"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 26666",
+                    "address_2": "PHS PROVIDER ENROLLMENT",
+                    "city": "ALBUQUERQUE",
+                    "state": "NM",
+                    "postal_code": "871256666",
+                    "telephone_number": "505-923-6770",
+                    "fax_number": "505-923-5354"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "363L00000X",
+                    "desc": "Nurse Practitioner",
+                    "primary": true,
+                    "state": "NM",
+                    "license": "CNP-02623"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1013090240,
+            "last_updated_epoch": 1550487563,
+            "created_epoch": 1161561600,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "BARTHOLOMEW",
+                "last_name": "PRECOURT",
+                "middle_name": "MICHAEL",
+                "credential": "DC PC",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2006-10-23",
+                "last_updated": "2019-02-18",
+                "status": "A",
+                "name": "PRECOURT BARTHOLOMEW"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1014 PIEDMONT AVENUE NE",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "CA",
+                    "postal_code": "303093702",
+                    "telephone_number": "404-876-0550",
+                    "fax_number": "404-875-4732"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1014 PLEDMONT AVENUE NE",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303093702",
+                    "telephone_number": "404-876-0550",
+                    "fax_number": "404-875-4732"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "111N00000X",
+                    "desc": "Chiropractor",
+                    "primary": false,
+                    "state": "GA",
+                    "license": "CHIR006012"
+                },
+                {
+                    "code": "111N00000X",
+                    "desc": "Chiropractor",
+                    "primary": true,
+                    "state": "FL",
+                    "license": "CH8927"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1083762025,
+            "last_updated_epoch": 1192665600,
+            "created_epoch": 1168214400,
+            "basic": {
+                "first_name": "KIMBERLY",
+                "last_name": "HODGE SPEARS",
+                "middle_name": "N",
+                "credential": "MD",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2007-01-08",
+                "last_updated": "2007-10-18",
+                "status": "A",
+                "name": "HODGE SPEARS KIMBERLY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "3640 TRAMORE POINTE PARKWAY SW",
+                    "address_2": "DEPARTMENT OF PEDIATRICS",
+                    "city": "AUSTELL",
+                    "state": "GA",
+                    "postal_code": "30106",
+                    "telephone_number": "770-439-4700"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "3495 PIEDMONT ROAD NE",
+                    "address_2": "NINE PIEDMONT CENTER",
+                    "city": "ATLANTA",
+                    "state": "CA",
+                    "postal_code": "303059775",
+                    "telephone_number": "404-364-7000",
+                    "fax_number": "404-364-4732"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "208000000X",
+                    "desc": "Pediatrics",
+                    "primary": false,
+                    "state": "GA",
+                    "license": "60084"
+                },
+                {
+                    "code": "208000000X",
+                    "desc": "Pediatrics",
+                    "primary": true,
+                    "state": "CA",
+                    "license": "A72143"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "00A721430",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "CA",
+                    "issuer": ""
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1669960134,
+            "last_updated_epoch": 1525046400,
+            "created_epoch": 1525046400,
+            "basic": {
+                "first_name": "DEREK",
+                "last_name": "MCCRANIE",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2018-04-30",
+                "last_updated": "2018-04-30",
+                "status": "A",
+                "name": "MCCRANIE DEREK"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "303 PARKWAY DRIVE",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "FL",
+                    "postal_code": "30312",
+                    "telephone_number": "404-265-4600"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "303 PARKWAY DR NE",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303121212",
+                    "telephone_number": "404-265-4600"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "390200000X",
+                    "desc": "Student in an Organized Health Care Education/Training Program",
+                    "primary": true,
+                    "state": "",
+                    "license": ""
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1972547016,
+            "last_updated_epoch": 1289952000,
+            "created_epoch": 1150416000,
+            "basic": {
+                "first_name": "LAURA",
+                "last_name": "COSTA",
+                "middle_name": "M",
+                "credential": "M.A., CCC-A",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2006-06-16",
+                "last_updated": "2010-11-17",
+                "status": "A",
+                "name": "COSTA LAURA"
+            },
+            "other_names": [
+                {
+                    "code": "1",
+                    "type": "Former Name",
+                    "last_name": "SCHULTZ",
+                    "first_name": "LAURA",
+                    "middle_name": "M"
+                }
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "235 N BROAD ST",
+                    "address_2": "",
+                    "city": "ADRIAN",
+                    "state": "MI",
+                    "postal_code": "492212728",
+                    "telephone_number": "517-264-0711",
+                    "fax_number": "517-264-0098"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "P.O. BOX 406153",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "FL",
+                    "postal_code": "303841876",
+                    "telephone_number": "561-478-8770"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "237600000X",
+                    "desc": "Audiologist-Hearing Aid Fitter",
+                    "primary": true,
+                    "state": "MI",
+                    "license": "12009261"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        }
+    ]
+}

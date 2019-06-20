@@ -12,7 +12,7 @@
 \item{...}{Additional optional arguments}
 }
 \value{
-Tibble containing the following columns: `npi`, `name`, `provider_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
+Tibble containing the following columns: `npi`, `name`, `enumeration_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
 }
 \description{
 Modeled after summary profile presented on the NPPES registry

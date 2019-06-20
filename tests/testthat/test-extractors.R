@@ -21,8 +21,6 @@ test_that("validate_npi_results() catches invalid inputs", {
   expect_error(validate_npi_results(res_bad_ncol))
   expect_error(validate_npi_results(res_bad_name),
                class = "bad_names_error")
-  expect_error(validate_npi_results(res_bad_class),
-               class = "bad_class_error")
 })
 
 

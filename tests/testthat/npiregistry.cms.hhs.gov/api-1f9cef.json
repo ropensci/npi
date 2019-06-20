@@ -1,0 +1,858 @@
+{
+    "result_count": 10,
+    "results": [
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1568946812,
+            "last_updated_epoch": 1537639861,
+            "created_epoch": 1537574400,
+            "basic": {
+                "organization_name": "CSP ANESTHESIA LLC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2018-09-22",
+                "last_updated": "2018-09-22",
+                "status": "A",
+                "authorized_official_credential": "CRNA",
+                "authorized_official_first_name": "TIMOTHY",
+                "authorized_official_last_name": "BARTON",
+                "authorized_official_middle_name": "GORDON",
+                "authorized_official_telephone_number": "888-408-0200",
+                "authorized_official_title_or_position": "MANAGING MEMBER",
+                "name": "CSP ANESTHESIA LLC"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "403 PERMIAN WAY STE D",
+                    "address_2": "",
+                    "city": "VILLA RICA",
+                    "state": "GA",
+                    "postal_code": "301803226",
+                    "telephone_number": "888-408-0200"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 1186",
+                    "address_2": "",
+                    "city": "MABLETON",
+                    "state": "GA",
+                    "postal_code": "301261003",
+                    "telephone_number": "888-408-0200"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207L00000X",
+                    "desc": "Anesthesiology",
+                    "primary": true,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193400000X SINGLE SPECIALTY  GROUP"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "5505 ROSWELL RD STE 350B",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421985",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "888-408-0200",
+                    "update_date": "2018-09-22 17:09"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1932668134,
+            "last_updated_epoch": 1552906835,
+            "created_epoch": 1552867200,
+            "basic": {
+                "organization_name": "DENTISTRY FOR CHILDREN OF MARYLAND, LLC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2019-03-18",
+                "last_updated": "2019-03-18",
+                "status": "A",
+                "authorized_official_first_name": "TAMONIA",
+                "authorized_official_last_name": "LEONARD",
+                "authorized_official_telephone_number": "678-244-4844",
+                "authorized_official_title_or_position": "CREDENTIALING SPECIALIST",
+                "name": "DENTISTRY FOR CHILDREN OF MARYLAND, LLC"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "9616 MARLBORO PIKE",
+                    "address_2": "",
+                    "city": "UPPER MARLBORO",
+                    "state": "MD",
+                    "postal_code": "20772",
+                    "telephone_number": "301-868-8838"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1350 SPRING ST NW STE 600",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303092870",
+                    "telephone_number": "770-692-1000"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "261QD0000X",
+                    "desc": "Clinic/Center Dental",
+                    "primary": true,
+                    "state": "",
+                    "license": ""
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1350 SPRING ST NW STE 600",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303092870",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "770-692-1000",
+                    "update_date": "2019-03-15 14:03"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1326083494,
+            "last_updated_epoch": 1552044398,
+            "created_epoch": 1150761600,
+            "basic": {
+                "organization_name": "IVO HORAK OD PC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2006-06-20",
+                "last_updated": "2019-03-08",
+                "status": "A",
+                "authorized_official_first_name": "IVO",
+                "authorized_official_last_name": "HORAK",
+                "authorized_official_telephone_number": "770-436-9123",
+                "authorized_official_title_or_position": "OWNER/OPTOMETRIST",
+                "name": "IVO HORAK OD PC"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1750 POWDER SPRINGS RD SW STE 210",
+                    "address_2": "",
+                    "city": "MARIETTA",
+                    "state": "GA",
+                    "postal_code": "300644848",
+                    "telephone_number": "770-436-9123",
+                    "fax_number": "770-436-9193"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1750 POWDER SPRINGS RD SW STE 210",
+                    "address_2": "",
+                    "city": "MARIETTA",
+                    "state": "GA",
+                    "postal_code": "300644848",
+                    "telephone_number": "770-436-9123",
+                    "fax_number": "770-436-9193"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "152W00000X",
+                    "desc": "Optometrist",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "1556",
+                    "taxonomy_group": "193400000X SINGLE SPECIALTY  GROUP"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "267216858A",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "GA",
+                    "issuer": ""
+                }
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "2778 COBB PKWY",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303393125",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "770-859-0444",
+                    "update_date": "2019-03-08 11:03"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1992885586,
+            "last_updated_epoch": 1553609186,
+            "created_epoch": 1161043200,
+            "basic": {
+                "organization_name": "MICHAEL D. RANDELL, M.D., P.C.",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2006-10-17",
+                "last_updated": "2019-03-26",
+                "status": "A",
+                "authorized_official_credential": "MD",
+                "authorized_official_first_name": "MICHAEL",
+                "authorized_official_last_name": "RANDELL",
+                "authorized_official_middle_name": "DAVID",
+                "authorized_official_telephone_number": "404-250-4443",
+                "authorized_official_title_or_position": "PRESIDENT",
+                "name": "MICHAEL D. RANDELL, M.D., P.C."
+            },
+            "other_names": [
+                {
+                    "organization_name": "OBGYN ATLANTA",
+                    "code": "3",
+                    "type": "Doing Business As"
+                }
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "5667 PEACHTREE DUNWOODY RD STE 280",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421714",
+                    "telephone_number": "404-250-4443",
+                    "fax_number": "404-250-4423"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "5667 PEACHTREE DUNWOODY RD STE 280",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421714",
+                    "telephone_number": "404-250-4443",
+                    "fax_number": "404-250-4423"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "174400000X",
+                    "desc": "Specialist",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "040200",
+                    "taxonomy_group": "193400000X SINGLE SPECIALTY  GROUP"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "000676629E",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "GA",
+                    "issuer": ""
+                }
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "980 JOHNSON FERRY RD NE STE 230",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421623",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "404-250-4423",
+                    "telephone_number": "404-250-4443",
+                    "update_date": "2019-03-26 14:03"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1740355304,
+            "last_updated_epoch": 1521244800,
+            "created_epoch": 1164067200,
+            "basic": {
+                "organization_name": "ATHLETIC SPINE REHABILITATION, LLC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2006-11-21",
+                "last_updated": "2018-03-17",
+                "status": "A",
+                "authorized_official_credential": "PT, DSC, OCS",
+                "authorized_official_first_name": "HERBERT",
+                "authorized_official_last_name": "SILVER",
+                "authorized_official_middle_name": "L",
+                "authorized_official_telephone_number": "770-792-7522",
+                "authorized_official_title_or_position": "OWNER",
+                "name": "ATHLETIC SPINE REHABILITATION, LLC",
+                "authorized_official_name_prefix": "DR."
+            },
+            "other_names": [
+                {
+                    "organization_name": "FYZICAL THERAPY & BALANCE CENTERS",
+                    "code": "3",
+                    "type": "Doing Business As"
+                }
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "880 CANTON RD NE STE 100",
+                    "address_2": "",
+                    "city": "MARIETTA",
+                    "state": "GA",
+                    "postal_code": "300607283",
+                    "telephone_number": "770-792-7522",
+                    "fax_number": "770-792-7508"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "880 CANTON RD NE STE 100",
+                    "address_2": "",
+                    "city": "MARIETTA",
+                    "state": "GA",
+                    "postal_code": "300607283",
+                    "telephone_number": "770-792-7522",
+                    "fax_number": "770-792-7508"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "225100000X",
+                    "desc": "Physical Therapist",
+                    "primary": true,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193400000X MULTIPLE SINGLE SPECIALTY GROUP"
+                },
+                {
+                    "code": "2251S0007X",
+                    "desc": "Physical Therapist Sports",
+                    "primary": false,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193400000X MULTIPLE SINGLE SPECIALTY GROUP"
+                },
+                {
+                    "code": "2251X0800X",
+                    "desc": "Physical Therapist Orthopedic",
+                    "primary": false,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193400000X MULTIPLE SINGLE SPECIALTY GROUP"
+                },
+                {
+                    "code": "225200000X",
+                    "desc": "Physical Therapy Assistant",
+                    "primary": false,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193400000X MULTIPLE SINGLE SPECIALTY GROUP"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "32 IRBY AVE NW",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303051808",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "770-792-7508",
+                    "telephone_number": "770-792-7522",
+                    "update_date": "2018-03-08 11:54"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1619003647,
+            "last_updated_epoch": 1555067935,
+            "created_epoch": 1172448000,
+            "basic": {
+                "organization_name": "WINSTON KYLE CARHEE JR",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2007-02-26",
+                "last_updated": "2019-04-12",
+                "status": "A",
+                "authorized_official_credential": "D.C.",
+                "authorized_official_first_name": "WINSTON",
+                "authorized_official_last_name": "CARHEE",
+                "authorized_official_middle_name": "KYLE",
+                "authorized_official_telephone_number": "404-699-0966",
+                "authorized_official_title_or_position": "PRESIDENT",
+                "name": "WINSTON KYLE CARHEE JR",
+                "authorized_official_name_prefix": "DR.",
+                "authorized_official_name_suffix": "JR."
+            },
+            "other_names": [
+                {
+                    "organization_name": "PAIN 2 WELLNESS CENTER",
+                    "code": "3",
+                    "type": "Doing Business As"
+                }
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "3910 CASCADE RD SW",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303317240",
+                    "telephone_number": "404-699-0966",
+                    "fax_number": "404-699-0988"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "3915 CASCADE RD SW",
+                    "address_2": "SUITE 220",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303318512",
+                    "telephone_number": "404-699-0966",
+                    "fax_number": "404-699-0988"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "111N00000X",
+                    "desc": "Chiropractor",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "CHIRO7578",
+                    "taxonomy_group": "193400000X SINGLE SPECIALTY  GROUP"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "3915 CASCADE RD SW",
+                    "address_2": "SUITE 220",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303318512",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "404-699-0988",
+                    "telephone_number": "404-699-0966",
+                    "update_date": "2019-04-12 11:04"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1386801454,
+            "last_updated_epoch": 1521244800,
+            "created_epoch": 1210896000,
+            "basic": {
+                "organization_name": "QUARELLS CONSULTING, P.C.",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2008-05-16",
+                "last_updated": "2018-03-17",
+                "status": "A",
+                "authorized_official_credential": "PSY.D.",
+                "authorized_official_first_name": "CARLTON",
+                "authorized_official_last_name": "QUARELLS",
+                "authorized_official_middle_name": "L.",
+                "authorized_official_telephone_number": "770-403-3124",
+                "authorized_official_title_or_position": "CEO",
+                "name": "QUARELLS CONSULTING, P.C.",
+                "authorized_official_name_prefix": "DR."
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1850 LAKE PARK DR SE STE 106",
+                    "address_2": "",
+                    "city": "SMYRNA",
+                    "state": "GA",
+                    "postal_code": "300807642",
+                    "telephone_number": "#(770) 403-3124",
+                    "fax_number": "770-739-7659"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1850 LAKE PARK DRIVE SE",
+                    "address_2": "SUITE 106",
+                    "city": "SMYRNA",
+                    "state": "GA",
+                    "postal_code": "300807647",
+                    "telephone_number": "770-403-3124",
+                    "fax_number": "770-739-7659"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "103TC0700X",
+                    "desc": "Psychologist Clinical",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "PSY002525",
+                    "taxonomy_group": "193400000X SINGLE SPECIALTY  GROUP"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "000935426H",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "GA",
+                    "issuer": ""
+                }
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1720 PEACHTREE ST NW",
+                    "address_2": "SUITE 640",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303092449",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "770-739-7659",
+                    "telephone_number": "770-403-3124",
+                    "update_date": "2017-09-13 10:13"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1447417639,
+            "last_updated_epoch": 1521244800,
+            "created_epoch": 1210896000,
+            "basic": {
+                "organization_name": "SUNCREST HOME HEALTH OF GEORGIA, INC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2008-05-16",
+                "last_updated": "2018-03-17",
+                "status": "A",
+                "authorized_official_first_name": "PATRICK",
+                "authorized_official_last_name": "LYLES",
+                "authorized_official_middle_name": "T.",
+                "authorized_official_telephone_number": "502-891-1044",
+                "authorized_official_title_or_position": "SR. VP OF ADMINISTRATION",
+                "name": "SUNCREST HOME HEALTH OF GEORGIA, INC",
+                "authorized_official_name_prefix": "MR."
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "2400 LAKE PARK DR SE STE 110",
+                    "address_2": "",
+                    "city": "SMYRNA",
+                    "state": "GA",
+                    "postal_code": "300808979",
+                    "telephone_number": "770-429-1455",
+                    "fax_number": "678-354-4755"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "9510 ORMSBY STATION RD STE 300",
+                    "address_2": "",
+                    "city": "LOUISVILLE",
+                    "state": "KY",
+                    "postal_code": "402235016",
+                    "telephone_number": "502-891-1000",
+                    "fax_number": "502-891-1427"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "251E00000X",
+                    "desc": "Home Health",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "033074"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1770 THE EXCHANGE",
+                    "address_2": "SUITE 140",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "30339",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "678-354-4755",
+                    "telephone_number": "770-429-1455",
+                    "update_date": "2018-02-19 14:25"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1417229741,
+            "last_updated_epoch": 1530527869,
+            "created_epoch": 1328054400,
+            "basic": {
+                "organization_name": "NORTHEAST ATLANTA VASCULAR CARE, LLC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2012-02-01",
+                "last_updated": "2018-07-02",
+                "status": "A",
+                "authorized_official_first_name": "LISA",
+                "authorized_official_last_name": "MCNAMARA",
+                "authorized_official_telephone_number": "239-597-2010",
+                "authorized_official_title_or_position": "CFO",
+                "name": "NORTHEAST ATLANTA VASCULAR CARE, LLC"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1 DUNWOODY PARK STE 130",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303386714",
+                    "telephone_number": "239-597-2010",
+                    "fax_number": "239-597-2313"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "9140 CORSEA DEL FONTANA WAY",
+                    "address_2": "",
+                    "city": "NAPLES",
+                    "state": "FL",
+                    "postal_code": "341094397",
+                    "telephone_number": "239-597-2010",
+                    "fax_number": "239-597-2313"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "2085R0204X",
+                    "desc": "Radiology Vascular & Interventional Radiology",
+                    "primary": false,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193200000X MULTI-SPECIALTY GROUP"
+                },
+                {
+                    "code": "2086S0129X",
+                    "desc": "Surgery Vascular Surgery",
+                    "primary": true,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193200000X MULTI-SPECIALTY GROUP"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1100 LAKE HEARN DR STE 200",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421573",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "239-597-2313",
+                    "telephone_number": "239-597-2010",
+                    "update_date": "2018-07-02 10:07"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1598037822,
+            "last_updated_epoch": 1542205766,
+            "created_epoch": 1328054400,
+            "basic": {
+                "organization_name": "PREFERRED VASCULAR SERVICES NORTHWEST, LLC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2012-02-01",
+                "last_updated": "2018-11-14",
+                "status": "A",
+                "authorized_official_first_name": "LISA",
+                "authorized_official_last_name": "MCNAMARA",
+                "authorized_official_middle_name": "A",
+                "authorized_official_telephone_number": "239-597-2010",
+                "authorized_official_title_or_position": "EXECUTIVE VICE PRESIDENT",
+                "name": "PREFERRED VASCULAR SERVICES NORTHWEST, LLC",
+                "authorized_official_name_prefix": "MRS."
+            },
+            "other_names": [
+                {
+                    "organization_name": "PREFERRED VASCULAR SERVICES OF GEORGIA, LLC",
+                    "code": "4",
+                    "type": "Former Legal Business Name"
+                }
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "711 CANTON RD NE STE 220",
+                    "address_2": "",
+                    "city": "MARIETTA",
+                    "state": "GA",
+                    "postal_code": "300608949",
+                    "telephone_number": "404-554-2196",
+                    "fax_number": "404-554-2415"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "9140 CORESA DEL FONTANA WAY",
+                    "address_2": "",
+                    "city": "NAPLES",
+                    "state": "FL",
+                    "postal_code": "34109",
+                    "telephone_number": "239-597-2010",
+                    "fax_number": "239-597-2313"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "2085R0204X",
+                    "desc": "Radiology Vascular & Interventional Radiology",
+                    "primary": false,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193200000X MULTI-SPECIALTY GROUP"
+                },
+                {
+                    "code": "2086S0129X",
+                    "desc": "Surgery Vascular Surgery",
+                    "primary": true,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193200000X MULTI-SPECIALTY GROUP"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1100 LAKE HEARN DR NE",
+                    "address_2": "SUITE 200",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421523",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "888-373-0497",
+                    "telephone_number": "404-403-8310",
+                    "update_date": "2018-11-14 14:11"
+                }
+            ]
+        }
+    ]
+}

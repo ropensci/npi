@@ -37,14 +37,16 @@ npi_api <- function(verb, url, config = list(), ...) {
 }
 
 
-
+#' Make a GET request to the API
+#'
+#' @noRd
 npi_get <- function(url, ...) {
   npi_api("GET", url, ...)
 }
 
 
 
-#' Handle any errors returned by API
+#' Handle errors returned by the API
 #'
 #' Inspect API response object's status and handle business logic errors
 #' returned by API.
@@ -73,7 +75,7 @@ npi_handle_response <- function(resp) {
   resp_http_type <- httr::http_type(resp)
   if (resp_http_type != "application/json") {
     msg <- paste0("API returned ", resp_http_type, ", not JSON.")
-    rlang::abort("bad_http_type", message = msg)
+    rlang::abort("http_type_error", message = msg)
   }
 
   # The API returns structured errors, so let's print them nicely.
@@ -94,7 +96,8 @@ npi_handle_response <- function(resp) {
 }
 
 
-#' API request controller
+
+#' Control API requests
 #'
 #' Get the maximum number of records allowed by the API
 #' in the fewest requests.
@@ -186,7 +189,7 @@ search_npi <- function(number = NULL,
 
   if (!is.null(enumeration_type) &&
       !enumeration_type %in% c("ind", "org")) {
-    rlang::abort("`enumeration_type` must be one of: NULL, 'Ind', or 'org'.")
+    rlang::abort("`enumeration_type` must be one of: NULL, 'ind', or 'org'.")
   }
 
   enumeration_type <- ifelse(enumeration_type == "ind", "NPI-1", "NPI-2")
@@ -250,7 +253,7 @@ search_npi <- function(number = NULL,
 #'
 #' @param object `npi_results` S3 object
 #' @param ... Additional optional arguments
-#' @return Tibble containing the following columns: `npi`, `name`, `provider_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
+#' @return Tibble containing the following columns: `npi`, `name`, `enumeration_type`, `primary_practice_address`, `phone`, and `primary_taxonomy`.
 #' @importFrom rlang .data
 #' @export
 summary.npi_results <- function(object, ...) {
@@ -270,10 +273,10 @@ summary.npi_results <- function(object, ...) {
 
   tibble::tibble(
     npi = object$npi,
-    name = ifelse(object$provider_type == "Individual",
+    name = ifelse(object$enumeration_type == "Individual",
                   paste(basic$first_name, basic$last_name),
                   basic$organization_name),
-    provider_type = object$provider_type,
+    enumeration_type = object$enumeration_type,
     primary_practice_address = address_loc %>%
       make_full_address("address_1", "address_2", "city",
                         "state", "postal_code"),

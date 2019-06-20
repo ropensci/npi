@@ -19,7 +19,7 @@ pluck_vector_from_content <- function(content, col_name) {
 tidy_results <- function(content) {
   tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
-    provider_type = pluck_vector_from_content(content, "enumeration_type"),
+    enumeration_type = pluck_vector_from_content(content, "enumeration_type"),
     basic = list_to_tibble(content, "basic", 1),
     other_names = list_to_tibble(content, "other_names", 2),
     identifiers = list_to_tibble(content, "identifiers", 2),
@@ -41,9 +41,9 @@ clean_results <- function(results) {
 
   results %>%
     dplyr::mutate(
-      provider_type = dplyr::case_when(
-      provider_type == "NPI-1" ~ "Individual",
-      provider_type == "NPI-2" ~ "Organization",
+      enumeration_type = dplyr::case_when(
+      enumeration_type == "NPI-1" ~ "Individual",
+      enumeration_type == "NPI-2" ~ "Organization",
       TRUE                     ~ NA_character_)) %>%
     dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_date")), epoch_to_date)
 }
@@ -64,7 +64,7 @@ new_npi_results <- function(x, ...) {
 validate_npi_results <- function(x, ...) {
   obj_types <- c("integer", "character", rep("list", 7),
                  rep("double", 2))
-  obj_col_names <- c("npi", "provider_type", "basic",
+  obj_col_names <- c("npi", "enumeration_type", "basic",
                      "other_names", "identifiers",
                      "taxonomies", "addresses",
                      "practice_locations", "endpoints",
