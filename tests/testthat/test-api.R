@@ -123,10 +123,39 @@ with_mock_api({
 })
 
 
-# with_mock_api({
-#   test_that("If we search for an existing NPI, we get back the correct one", {
-#     npi <- "1568946812"
-#     res <- search_npi(number = npi)
-#     expect_equal(search_npi(number = npi), res$number)
-#   })
-# })
+with_mock_api({
+  test_that("search_npi() returns a npi", {
+    res <- search_npi(enumeration_type = "ind",
+                      first_name = "Bob",
+                      use_first_name_alias = TRUE)
+
+    expect_is(res, "npi_results")
+  })
+})
+
+
+with_mock_api({
+  test_that("Multiple requests happen as needed", {
+    res <- search_npi(city = "Atlanta", limit = 201)
+    expect_message(search_npi(city = "Atlanta", limit = 201),
+                  "Retrieving more records...")
+    expect_identical(dim(res), c(3L, 11L)) # Recorded responses manually edited
+  })
+})
+
+
+with_mock_api({
+  test_that("If we search for an existing NPI, we get back the correct one", {
+    npi <- 1568946812
+    res <- search_npi(number = npi)
+    expect_equal(npi, res$npi)
+  })
+})
+
+
+test_that("validate_npi_results throws a `bad_class_error` appropriately", {
+  npi <- 1568946812
+  res <- search_npi(number = npi)
+  class(res) <- c("tbl_df", "tbl", "data.frame")  # Tibble class
+  expect_error(validate_npi_results(res), class = "bad_class_error")
+})

@@ -1,0 +1,92 @@
+{
+    "result_count": 1,
+    "results": [
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1720377294,
+            "last_updated_epoch": 1525737600,
+            "created_epoch": 1301961600,
+            "basic": {
+                "first_name": "ELISE",
+                "last_name": "HIZA",
+                "middle_name": "AILEEN",
+                "credential": "M.D.",
+                "sole_proprietor": "YES",
+                "gender": "F",
+                "enumeration_date": "2011-04-05",
+                "last_updated": "2018-05-08",
+                "status": "A",
+                "name": "HIZA ELISE"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "111 VICTORIA RD",
+                    "address_2": "",
+                    "city": "ASHEVILLE",
+                    "state": "NC",
+                    "postal_code": "288014811",
+                    "telephone_number": "828-252-7331"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "111 VICTORIA RD",
+                    "address_2": "",
+                    "city": "ASHEVILLE",
+                    "state": "NC",
+                    "postal_code": "288014811",
+                    "telephone_number": "828-252-7331"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207X00000X",
+                    "desc": "Orthopaedic Surgery",
+                    "primary": true,
+                    "state": "NC",
+                    "license": "2017-01132",
+                    "taxonomy_group": "193200000X MULTI-SPECIALTY GROUP"
+                },
+                {
+                    "code": "390200000X",
+                    "desc": "Student in an Organized Health Care Education/Training Program",
+                    "primary": false,
+                    "state": "",
+                    "license": ""
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "1720377294",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "NC",
+                    "issuer": ""
+                }
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "49 JESSE HILL JR DR SE # 307",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303033049",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "404-778-1567",
+                    "update_date": "2017-09-11 10:35"
+                }
+            ]
+        }
+    ]
+}

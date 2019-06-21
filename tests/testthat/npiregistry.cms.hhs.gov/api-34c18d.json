@@ -1,0 +1,775 @@
+{
+    "result_count": 10,
+    "results": [
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1114920071,
+            "last_updated_epoch": 1468867283,
+            "created_epoch": 1116892800,
+            "basic": {
+                "first_name": "BOB",
+                "last_name": "ABERNATHY",
+                "middle_name": "R",
+                "credential": "DO",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2005-05-24",
+                "last_updated": "2016-07-18",
+                "status": "A",
+                "name": "ABERNATHY BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1200 N GLENN ENGLISH",
+                    "address_2": "",
+                    "city": "CORDELL",
+                    "state": "OK",
+                    "postal_code": "736322010",
+                    "telephone_number": "580-832-3838",
+                    "fax_number": "580-832-5119"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1220 N GLENN L ENGLISH ST",
+                    "address_2": "",
+                    "city": "CORDELL",
+                    "state": "OK",
+                    "postal_code": "736322010",
+                    "telephone_number": "580-832-3339",
+                    "fax_number": "580-832-5076"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207Q00000X",
+                    "desc": "Family Medicine",
+                    "primary": true,
+                    "state": "OK",
+                    "license": "2075"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "100101100C",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "OK",
+                    "issuer": "SOONERCARE CHOICE"
+                },
+                {
+                    "identifier": "08013806",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "",
+                    "issuer": "RAILROAD MC"
+                },
+                {
+                    "identifier": "100101100A",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "OK",
+                    "issuer": ""
+                },
+                {
+                    "identifier": "125307900",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "OK",
+                    "issuer": "DOL"
+                },
+                {
+                    "identifier": "321802700",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "OK",
+                    "issuer": "DEPARTMENT OF LABOR"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1780689109,
+            "last_updated_epoch": 1313539200,
+            "created_epoch": 1118707200,
+            "basic": {
+                "first_name": "BOB",
+                "last_name": "ERDELYI",
+                "middle_name": "PAUL",
+                "credential": "MD",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-06-14",
+                "last_updated": "2011-08-17",
+                "status": "A",
+                "name": "ERDELYI BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "400 MATTHEW ST",
+                    "address_2": "STE 211",
+                    "city": "MARIETTA",
+                    "state": "OH",
+                    "postal_code": "457501656",
+                    "telephone_number": "740-373-6725",
+                    "fax_number": "740-374-4922"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 449",
+                    "address_2": "",
+                    "city": "MARIETTA",
+                    "state": "OH",
+                    "postal_code": "457500449",
+                    "telephone_number": "740-374-4500",
+                    "fax_number": "740-374-5887"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207R00000X",
+                    "desc": "Internal Medicine",
+                    "primary": true,
+                    "state": "OH",
+                    "license": "35075919"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "000000120129",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "OH",
+                    "issuer": "ANTHEM"
+                },
+                {
+                    "identifier": "6000973000",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "WV",
+                    "issuer": ""
+                },
+                {
+                    "identifier": "000000699799",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "OH",
+                    "issuer": "ANTHEM"
+                },
+                {
+                    "identifier": "2168685",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "OH",
+                    "issuer": ""
+                },
+                {
+                    "identifier": "110194369",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "OH",
+                    "issuer": "RRMCR"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1225035769,
+            "last_updated_epoch": 1260316800,
+            "created_epoch": 1120089600,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "BOB",
+                "last_name": "BILLER",
+                "middle_name": "S",
+                "credential": "D.P.M.",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-06-30",
+                "last_updated": "2009-12-09",
+                "status": "A",
+                "name": "BILLER BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "756 E PARK AVE",
+                    "address_2": "",
+                    "city": "LONG BEACH",
+                    "state": "NY",
+                    "postal_code": "115612605",
+                    "telephone_number": "516-432-7470",
+                    "fax_number": "516-432-3479"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "756 E PARK AVE",
+                    "address_2": "",
+                    "city": "LONG BEACH",
+                    "state": "NY",
+                    "postal_code": "115612605",
+                    "telephone_number": "516-432-7470",
+                    "fax_number": "516-432-3479"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "213EP1101X",
+                    "desc": "Podiatrist Primary Podiatric Medicine",
+                    "primary": false,
+                    "state": "NY",
+                    "license": "N002835"
+                },
+                {
+                    "code": "213E00000X",
+                    "desc": "Podiatrist",
+                    "primary": true,
+                    "state": "NY",
+                    "license": "N002835"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "397700",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "NY",
+                    "issuer": ""
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1548268055,
+            "last_updated_epoch": 1183852800,
+            "created_epoch": 1120780800,
+            "basic": {
+                "name_prefix": "MR.",
+                "first_name": "BOB",
+                "last_name": "DISHMAN",
+                "middle_name": "N",
+                "credential": "R.PH.",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2005-07-08",
+                "last_updated": "2007-07-08",
+                "status": "A",
+                "name": "DISHMAN BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1310 SW LEE BLVD",
+                    "address_2": "",
+                    "city": "LAWTON",
+                    "state": "OK",
+                    "postal_code": "735015610",
+                    "telephone_number": "580-353-8560",
+                    "fax_number": "580-353-7985"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1310 SW LEE BLVD",
+                    "address_2": "",
+                    "city": "LAWTON",
+                    "state": "OK",
+                    "postal_code": "735015610",
+                    "telephone_number": "580-353-8560",
+                    "fax_number": "580-353-7985"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "183500000X",
+                    "desc": "Pharmacist",
+                    "primary": true,
+                    "state": "OK",
+                    "license": "6685"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1144227976,
+            "last_updated_epoch": 1433448121,
+            "created_epoch": 1120694400,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "BOB",
+                "last_name": "KAM",
+                "credential": "MD",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-07-07",
+                "last_updated": "2015-06-04",
+                "status": "A",
+                "name": "KAM BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "117 E 57TH ST",
+                    "address_2": "36 B",
+                    "city": "NEW YORK",
+                    "state": "NY",
+                    "postal_code": "100222002",
+                    "telephone_number": "212-751-4651",
+                    "fax_number": "212-751-4651"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "117 E 57TH ST",
+                    "address_2": "36 B",
+                    "city": "NEW YORK",
+                    "state": "NY",
+                    "postal_code": "100222002",
+                    "telephone_number": "212-751-4651",
+                    "fax_number": "212-751-4651"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "174400000X",
+                    "desc": "Specialist",
+                    "primary": false,
+                    "state": "NJ",
+                    "license": "MA75669"
+                },
+                {
+                    "code": "207L00000X",
+                    "desc": "Anesthesiology",
+                    "primary": true,
+                    "state": "NY",
+                    "license": "225713"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "0000469",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "NJ",
+                    "issuer": ""
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1114924198,
+            "last_updated_epoch": 1316563200,
+            "created_epoch": 1120521600,
+            "basic": {
+                "first_name": "BOB",
+                "last_name": "GOETZ",
+                "middle_name": "ELMER",
+                "credential": "RPH",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2005-07-05",
+                "last_updated": "2011-09-21",
+                "status": "A",
+                "name": "GOETZ BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "401 WEST 3RD ST.",
+                    "address_2": "",
+                    "city": "RED WING",
+                    "state": "MN",
+                    "postal_code": "550664022",
+                    "telephone_number": "651-388-4109"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "2495 WILDWOOD RDG",
+                    "address_2": "",
+                    "city": "RED WING",
+                    "state": "MN",
+                    "postal_code": "550664022",
+                    "telephone_number": "651-388-4109"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "183500000X",
+                    "desc": "Pharmacist",
+                    "primary": true,
+                    "state": "MN",
+                    "license": "111549-9"
+                }
+            ],
+            "identifiers": [
+
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1316946544,
+            "last_updated_epoch": 1266537600,
+            "created_epoch": 1121731200,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "BOB",
+                "last_name": "GREEN",
+                "middle_name": "E",
+                "credential": "M.D.",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2005-07-19",
+                "last_updated": "2010-02-19",
+                "status": "A",
+                "name": "GREEN BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "19550 E 39TH ST S",
+                    "address_2": "SUITE 227",
+                    "city": "INDEPENDENCE",
+                    "state": "MO",
+                    "postal_code": "640572303",
+                    "telephone_number": "816-795-9716",
+                    "fax_number": "816-795-6358"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "10308 STATE LINE RD",
+                    "address_2": "SUITE A",
+                    "city": "LEAWOOD",
+                    "state": "KS",
+                    "postal_code": "662062658",
+                    "telephone_number": "913-381-7117",
+                    "fax_number": "913-383-1316"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207RC0000X",
+                    "desc": "Internal Medicine Cardiovascular Disease",
+                    "primary": true,
+                    "state": "MO",
+                    "license": "MO112759"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "100286810H",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "KS",
+                    "issuer": ""
+                },
+                {
+                    "identifier": "208692103",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "MO",
+                    "issuer": ""
+                },
+                {
+                    "identifier": "1316946544",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "MO",
+                    "issuer": ""
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1649270190,
+            "last_updated_epoch": 1432135870,
+            "created_epoch": 1122422400,
+            "basic": {
+                "first_name": "BOB",
+                "last_name": "WODECKI",
+                "middle_name": "I",
+                "credential": "MD",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2005-07-27",
+                "last_updated": "2015-05-20",
+                "status": "A",
+                "name": "WODECKI BOB"
+            },
+            "other_names": [
+                {
+                    "code": "2",
+                    "type": "Professional Name",
+                    "last_name": "WODECKI",
+                    "first_name": "BOB",
+                    "middle_name": "I"
+                }
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "124 SUNSET HILL ROAD",
+                    "address_2": "",
+                    "city": "STATESVILLE",
+                    "state": "NC",
+                    "postal_code": "286252729",
+                    "telephone_number": "704-872-8711",
+                    "fax_number": "704-872-5866"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "124 SUNSET HILL ROAD",
+                    "address_2": "",
+                    "city": "STATESVILLE",
+                    "state": "NC",
+                    "postal_code": "286252729",
+                    "telephone_number": "704-872-8711",
+                    "fax_number": "704-872-5866"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207RR0500X",
+                    "desc": "Internal Medicine Rheumatology",
+                    "primary": false,
+                    "state": "NC",
+                    "license": "36856"
+                },
+                {
+                    "code": "207R00000X",
+                    "desc": "Internal Medicine",
+                    "primary": true,
+                    "state": "NC",
+                    "license": "36856"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "4980030002",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "NC",
+                    "issuer": "DMERC"
+                },
+                {
+                    "identifier": "8988753",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "NC",
+                    "issuer": ""
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1508850702,
+            "last_updated_epoch": 1211414400,
+            "created_epoch": 1125619200,
+            "basic": {
+                "first_name": "BOB",
+                "last_name": "LAZER",
+                "middle_name": "L",
+                "credential": "OD",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-09-02",
+                "last_updated": "2008-05-22",
+                "status": "A",
+                "name": "LAZER BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "120 W PENN ST",
+                    "address_2": "",
+                    "city": "BEDFORD",
+                    "state": "PA",
+                    "postal_code": "155221223",
+                    "telephone_number": "814-623-5018",
+                    "fax_number": "814-623-7718"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "120 W PENN ST",
+                    "address_2": "",
+                    "city": "BEDFORD",
+                    "state": "PA",
+                    "postal_code": "155221223",
+                    "telephone_number": "814-623-5018",
+                    "fax_number": "814-623-7718"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "152W00000X",
+                    "desc": "Optometrist",
+                    "primary": true,
+                    "state": "PA",
+                    "license": "OEG001149"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "LA435357",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "PA",
+                    "issuer": "BLUE SHIELD"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1316934664,
+            "last_updated_epoch": 1318377600,
+            "created_epoch": 1128297600,
+            "basic": {
+                "first_name": "BOB",
+                "last_name": "SOUDER",
+                "middle_name": "T",
+                "credential": "MD",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2005-10-03",
+                "last_updated": "2011-10-12",
+                "status": "A",
+                "name": "SOUDER BOB"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "9 PHYSICIANS DR",
+                    "address_2": "",
+                    "city": "JACKSON",
+                    "state": "TN",
+                    "postal_code": "383052071",
+                    "telephone_number": "731-661-0086",
+                    "fax_number": "731-661-0281"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 11567",
+                    "address_2": "",
+                    "city": "JACKSON",
+                    "state": "TN",
+                    "postal_code": "383080126",
+                    "telephone_number": "731-661-0086",
+                    "fax_number": "731-661-9702"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207RG0100X",
+                    "desc": "Internal Medicine Gastroenterology",
+                    "primary": true,
+                    "state": "TN",
+                    "license": "8762"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "A56277518",
+                    "code": "01",
+                    "desc": "Other",
+                    "state": "",
+                    "issuer": "DEA"
+                },
+                {
+                    "identifier": "3172171",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "TN",
+                    "issuer": ""
+                }
+            ]
+        }
+    ]
+}

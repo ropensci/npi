@@ -1,0 +1,81 @@
+{
+    "result_count": 1,
+    "results": [
+        {
+            "enumeration_type": "NPI-2",
+            "number": 1568946812,
+            "last_updated_epoch": 1537639861,
+            "created_epoch": 1537574400,
+            "basic": {
+                "organization_name": "CSP ANESTHESIA LLC",
+                "organizational_subpart": "NO",
+                "enumeration_date": "2018-09-22",
+                "last_updated": "2018-09-22",
+                "status": "A",
+                "authorized_official_credential": "CRNA",
+                "authorized_official_first_name": "TIMOTHY",
+                "authorized_official_last_name": "BARTON",
+                "authorized_official_middle_name": "GORDON",
+                "authorized_official_telephone_number": "888-408-0200",
+                "authorized_official_title_or_position": "MANAGING MEMBER",
+                "name": "CSP ANESTHESIA LLC"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "403 PERMIAN WAY STE D",
+                    "address_2": "",
+                    "city": "VILLA RICA",
+                    "state": "GA",
+                    "postal_code": "301803226",
+                    "telephone_number": "888-408-0200"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 1186",
+                    "address_2": "",
+                    "city": "MABLETON",
+                    "state": "GA",
+                    "postal_code": "301261003",
+                    "telephone_number": "888-408-0200"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207L00000X",
+                    "desc": "Anesthesiology",
+                    "primary": true,
+                    "state": "",
+                    "license": "",
+                    "taxonomy_group": "193400000X SINGLE SPECIALTY  GROUP"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "5505 ROSWELL RD STE 350B",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303421985",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "888-408-0200",
+                    "update_date": "2018-09-22 17:09"
+                }
+            ]
+        }
+    ]
+}

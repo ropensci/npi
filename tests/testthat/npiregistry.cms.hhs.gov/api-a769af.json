@@ -1,0 +1,171 @@
+{
+    "result_count": 200,
+    "results": [
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1003142399,
+            "last_updated_epoch": 1553380697,
+            "created_epoch": 1256083200,
+            "basic": {
+                "first_name": "SHAREE",
+                "last_name": "ROWELL",
+                "credential": "MT",
+                "sole_proprietor": "YES",
+                "gender": "F",
+                "enumeration_date": "2009-10-21",
+                "last_updated": "2019-03-23",
+                "reactivation_date": "2019-02-13",
+                "status": "A",
+                "deactivation_date": "2015-01-14",
+                "name": "ROWELL SHAREE"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1700 E BOGARD RD STE A203",
+                    "address_2": "",
+                    "city": "WASILLA",
+                    "state": "AK",
+                    "postal_code": "996546569",
+                    "telephone_number": "256-392-6234"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 871842",
+                    "address_2": "",
+                    "city": "WASILLA",
+                    "state": "AK",
+                    "postal_code": "996871842",
+                    "telephone_number": "256-392-6234"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "225700000X",
+                    "desc": "Massage Therapist",
+                    "primary": false,
+                    "state": "GA",
+                    "license": "MT004477"
+                },
+                {
+                    "code": "225700000X",
+                    "desc": "Massage Therapist",
+                    "primary": true,
+                    "state": "AK",
+                    "license": "140733"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "501 N MAIN ST # 1842",
+                    "address_2": "",
+                    "city": "WASILLA",
+                    "state": "AK",
+                    "postal_code": "996547052",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "256-392-6234",
+                    "update_date": "2019-03-23 22:03"
+                },
+                {
+                    "address_type": "DOM",
+                    "address_1": "130 W WIEUCA RD NE",
+                    "address_2": "SUITE 204",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303423250",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "404-530-9295",
+                    "update_date": "2019-02-14 15:02"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1073979746,
+            "last_updated_epoch": 1547716853,
+            "created_epoch": 1452470400,
+            "basic": {
+                "first_name": "JENNIFER",
+                "last_name": "KETCHAM",
+                "middle_name": "ANNE TENORIO",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2016-01-11",
+                "last_updated": "2019-01-17",
+                "status": "A",
+                "name": "KETCHAM JENNIFER"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1405 CLIFTON RD NE",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303221281",
+                    "telephone_number": "404-785-6670"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1732 KODIAK CIR NE",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303454148",
+                    "telephone_number": "770-855-2283"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "367500000X",
+                    "desc": "Nurse Anesthetist, Certified Registered",
+                    "primary": true,
+                    "state": "GA",
+                    "license": "RN177251"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1968 PEACHTREE RD NW",
+                    "address_2": "",
+                    "city": "ATLANTA",
+                    "state": "GA",
+                    "postal_code": "303091281",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "404-351-1721",
+                    "telephone_number": "404-351-1745",
+                    "update_date": "2019-01-17 09:01"
+                }
+            ]
+        }
+    ]
+}
