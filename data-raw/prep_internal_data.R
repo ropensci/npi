@@ -159,8 +159,9 @@ nppes_code_sets <- list(
 # Set up internal test data -----------------------------------------------
 
 # Get the first 5 records to keep the data set small
-res <- search_npi(city = "New York City", state = "NY",
-                  provider_type = 2, limit = 5)
+res <- search_npi(city = "New York City",
+                  enumeration_type = "org",
+                  limit = 5)
 
 # Make data available for internal package use ----------------------------
 

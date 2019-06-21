@@ -1,0 +1,420 @@
+{
+    "result_count": 5,
+    "results": [
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1396949913,
+            "last_updated_epoch": 1551187349,
+            "created_epoch": 1181779200,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "AMIR",
+                "last_name": "STEINBERG",
+                "middle_name": "S",
+                "credential": "M.D.",
+                "sole_proprietor": "YES",
+                "gender": "M",
+                "enumeration_date": "2007-06-14",
+                "last_updated": "2019-02-26",
+                "status": "A",
+                "name": "STEINBERG AMIR"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "10 E 102ND ST",
+                    "address_2": "",
+                    "city": "NEW YORK",
+                    "state": "NY",
+                    "postal_code": "100296030",
+                    "telephone_number": "212-241-6756"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "25 STONEYSIDE DR",
+                    "address_2": "",
+                    "city": "LARCHMONT",
+                    "state": "NY",
+                    "postal_code": "105381417",
+                    "telephone_number": "917-721-1492"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207RX0202X",
+                    "desc": "Internal Medicine Medical Oncology",
+                    "primary": true,
+                    "state": "NY",
+                    "license": "227894-1"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1 GUSTAVE LEVY PLACE",
+                    "address_2": "MOUNT SINAI HOSPITAL",
+                    "city": "NEW YORK CITY",
+                    "state": "NY",
+                    "postal_code": "10029",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "212-410-0978",
+                    "telephone_number": "212-241-6021",
+                    "update_date": "2019-02-26 13:02"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1336333764,
+            "last_updated_epoch": 1551466437,
+            "created_epoch": 1188345600,
+            "basic": {
+                "name_prefix": "MS.",
+                "first_name": "CLAUDIA",
+                "last_name": "NARVAEZ-MEZA",
+                "middle_name": "VIRGINIA",
+                "credential": "MFA, MSW",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2007-08-29",
+                "last_updated": "2019-03-01",
+                "status": "A",
+                "name": "NARVAEZ-MEZA CLAUDIA"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1540 E COLORADO ST",
+                    "address_2": "",
+                    "city": "GLENDALE",
+                    "state": "CA",
+                    "postal_code": "912051514",
+                    "telephone_number": "818-244-7257",
+                    "fax_number": "818-243-5431"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "4760 SEPULVEDA BLVD",
+                    "address_2": "",
+                    "city": "CULVER CITY",
+                    "state": "CA",
+                    "postal_code": "902304820",
+                    "telephone_number": "310-390-6612",
+                    "fax_number": "310-398-5690"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "1041C0700X",
+                    "desc": "Social Worker Clinical",
+                    "primary": true,
+                    "state": "",
+                    "license": ""
+                },
+                {
+                    "code": "1041C0700X",
+                    "desc": "Social Worker Clinical",
+                    "primary": false,
+                    "state": "NY",
+                    "license": "P58286"
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "936 BROADWAY",
+                    "address_2": "ACKERMAN INSTITUTE FOR THE FAMILY",
+                    "city": "NEW YORK CITY",
+                    "state": "NY",
+                    "postal_code": "10010",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "718-790-2720",
+                    "update_date": "2019-03-01 18:03"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1154556637,
+            "last_updated_epoch": 1525219200,
+            "created_epoch": 1243382400,
+            "basic": {
+                "first_name": "PREMILA",
+                "last_name": "MATHEWS",
+                "middle_name": "MARIA",
+                "credential": "MD",
+                "sole_proprietor": "NO",
+                "gender": "F",
+                "enumeration_date": "2009-05-27",
+                "last_updated": "2018-05-02",
+                "status": "A",
+                "name": "MATHEWS PREMILA"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "90 S BEDFORD RD",
+                    "address_2": "",
+                    "city": "MOUNT KISCO",
+                    "state": "NY",
+                    "postal_code": "105493412",
+                    "telephone_number": "914-241-1050",
+                    "fax_number": "914-242-1516"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "90 S BEDFORD RD",
+                    "address_2": "",
+                    "city": "MOUNT KISCO",
+                    "state": "NY",
+                    "postal_code": "105493412",
+                    "telephone_number": "914-241-1050",
+                    "fax_number": "914-242-1516"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "390200000X",
+                    "desc": "Student in an Organized Health Care Education/Training Program",
+                    "primary": false,
+                    "state": "PA",
+                    "license": "MT195687"
+                },
+                {
+                    "code": "207Q00000X",
+                    "desc": "Family Medicine",
+                    "primary": true,
+                    "state": "NY",
+                    "license": "267709"
+                }
+            ],
+            "identifiers": [
+                {
+                    "identifier": "03554881",
+                    "code": "05",
+                    "desc": "MEDICAID",
+                    "state": "NY",
+                    "issuer": ""
+                }
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "16 EAST 16TH STREET",
+                    "address_2": "PHILLIPS FAMILY PRACTICE",
+                    "city": "NEW YORK CITY",
+                    "state": "NY",
+                    "postal_code": "100034206",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "212-633-0800",
+                    "update_date": "2018-05-02 09:03"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1366785115,
+            "last_updated_epoch": 1521244800,
+            "created_epoch": 1364601600,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "JEFFREY",
+                "last_name": "SHRENSEL",
+                "middle_name": "ADAM",
+                "credential": "M.D.",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2013-03-30",
+                "last_updated": "2018-03-17",
+                "status": "A",
+                "name": "SHRENSEL JEFFREY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1501 N CAMPBELL AVE",
+                    "address_2": "",
+                    "city": "TUCSON",
+                    "state": "AZ",
+                    "postal_code": "857240001",
+                    "telephone_number": "520-694-0111"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "1501 N CAMPBELL AVE",
+                    "address_2": "",
+                    "city": "TUCSON",
+                    "state": "AZ",
+                    "postal_code": "857240001",
+                    "telephone_number": "520-694-0111"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "207R00000X",
+                    "desc": "Internal Medicine",
+                    "primary": true,
+                    "state": "AZ",
+                    "license": "54985"
+                },
+                {
+                    "code": "207R00000X",
+                    "desc": "Internal Medicine",
+                    "primary": false,
+                    "state": "NJ",
+                    "license": "25MA0991300"
+                },
+                {
+                    "code": "390200000X",
+                    "desc": "Student in an Organized Health Care Education/Training Program",
+                    "primary": false,
+                    "state": "",
+                    "license": ""
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "1ST AVENUE AT 16TH STREET",
+                    "address_2": "",
+                    "city": "NEW YORK CITY",
+                    "state": "NY",
+                    "postal_code": "10003",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "telephone_number": "212-420-2000",
+                    "update_date": "2018-01-22 17:15"
+                }
+            ]
+        },
+        {
+            "enumeration_type": "NPI-1",
+            "number": 1972910164,
+            "last_updated_epoch": 1521244800,
+            "created_epoch": 1405814400,
+            "basic": {
+                "name_prefix": "DR.",
+                "first_name": "MARK HENRY",
+                "last_name": "ALON",
+                "credential": "M.D.",
+                "sole_proprietor": "NO",
+                "gender": "M",
+                "enumeration_date": "2014-07-20",
+                "last_updated": "2018-03-17",
+                "status": "A",
+                "name": "ALON MARK HENRY"
+            },
+            "other_names": [
+
+            ],
+            "addresses": [
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "LOCATION",
+                    "address_type": "DOM",
+                    "address_1": "1400 BELLINGER ST",
+                    "address_2": "",
+                    "city": "EAU CLAIRE",
+                    "state": "WI",
+                    "postal_code": "547035222",
+                    "telephone_number": "715-838-5222"
+                },
+                {
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "address_purpose": "MAILING",
+                    "address_type": "DOM",
+                    "address_1": "PO BOX 1510",
+                    "address_2": "",
+                    "city": "EAU CLAIRE",
+                    "state": "WI",
+                    "postal_code": "547021510",
+                    "telephone_number": "#(715) 838-3635"
+                }
+            ],
+            "taxonomies": [
+                {
+                    "code": "208M00000X",
+                    "desc": "Hospitalist",
+                    "primary": true,
+                    "state": "WI",
+                    "license": "66871"
+                },
+                {
+                    "code": "390200000X",
+                    "desc": "Student in an Organized Health Care Education/Training Program",
+                    "primary": false,
+                    "state": "NY",
+                    "license": ""
+                }
+            ],
+            "identifiers": [
+
+            ],
+            "practiceLocations": [
+                {
+                    "address_type": "DOM",
+                    "address_1": "501 LENOX AVE",
+                    "address_2": "",
+                    "city": "NEW YORK CITY",
+                    "state": "NY",
+                    "postal_code": "100371802",
+                    "country_code": "US",
+                    "country_name": "United States",
+                    "fax_number": "212-939-2263",
+                    "telephone_number": "212-939-2291",
+                    "update_date": "2017-06-16 17:51"
+                }
+            ]
+        }
+    ]
+}
