@@ -45,6 +45,16 @@ abort_bad_argument <- function(arg, must, not = NULL,
 }
 
 
+#' Remove NULL elements from vector
+#'
+#' Implements the basic functionality found in the \pkg{purrr} package's
+#' \code{compact} function.
+#' @noRd
+remove_null <- function(l) {
+  Filter(Negate(is.null), l)
+}
+
+
 #' Check if candidate NPI number is valid
 #'
 #' Check whether a number is a valid NPI number per the specifications detailed in the Final Rule for the Standard Unique Health Identifier for Health Care Providers (69 FR 3434).

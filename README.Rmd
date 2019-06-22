@@ -12,8 +12,9 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 library(npi)
-library(tidyverse)
-nyc <- npi:::res
+library(tibble)
+data("npis")
+nyc <- npis
 ```
 
 # npi
@@ -40,15 +41,15 @@ library(npi)
 `npi` exports three functions:
 
  * `search_npi()`: Search the NPI Registry and return the response as a [tibble](http://tibble.tidyverse.org/) with high-cardinality data organized into list columns.
- * `get_list_col()`: Unnest a list column from a `search_npi()` result, joined by NPI number.
+ * `flatten_npi()`: Flatten one or more list columns from a search result, joined by NPI number.
  * `is_valid_npi()`: Check the validity of one or more NPI numbers using the official [NPI enumeration standard](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf).
 
 ### Search the registry
 
-`search_npi()` exposes nearly all of the NPPES API's [search parameters](https://npiregistry.cms.hhs.gov/registry/help-api). Let's say you wanted to find up to 5 organizational providers with primary locations in New York City. That's one line:
+`search_npi()` exposes nearly all of the NPPES API's [search parameters](https://npiregistry.cms.hhs.gov/registry/help-api). Let's say we wanted to find up to 10 organizational providers with primary locations in New York City:
 
-```r
-nyc <- search_npi(city = "New York City", provider_type = 2, limit = 5)
+```{r, eval = FALSE}
+nyc <- search_npi(city = "New York City")
 ```
 ```{r print-nyc}
 nyc
@@ -64,44 +65,54 @@ The full search results have four regular vector columns, `npi`, `provider_type`
  * `practice_locations`: Provider's practice locations
  * `endpoints`: Details about provider's endpoints for health information exchange
 
-Although the resulting tibble is somewhat complex, `npi` has you covered with convenience functions to summarize and extract just the data you need.
+If you're comfortable [working with list columns](https://r4ds.had.co.nz/many-models.html), this may be all you need from the package. But let's not stop just yet, because `npi` provides convenience functions to summarize and extract the data you need.
 
 ## Working with search results 
 
-Run `summary()` on your results to see what you've got:
+Run `summary()` on your results to see a more human-readable overview of what we've got:
 
 ```{r summarize-nyc}
 summary(nyc)
 ```
 
-Use `get_list_col()` to extract and unnest data by list column while preserving its relationship with NPI:
+Suppose we just want the basic and taxonomy information for each NPI in the result in a flattened data frame:
 
-```{r unnest}
-# Get the `basic` list column from `nyc` using npi as the key
-basic <- get_list_col(df = nyc, list_col = basic, key = npi)
-basic
-
-# Get the `taxonomies` list column joined to NPI
-tax <- get_list_col(nyc, taxonomies, npi)
-tax
+```{r flatten-two}
+flatten_npi(nyc, c("basic", "taxonomies"))
 ```
 
-By repeating this process with other list columns, you can create multiple tidy data frames and join them to make your own master tidy data frame.
+Or we can flatten the whole thing and prune back later:
 
-```{r multiple_listcols}
-# Join basic and taxonomies by `npi`
-left_join(basic, tax, by = "npi")
+```{r flatten-all}
+flatten_npi(nyc)
 ```
+
+Now we're ready to do whatever else we need to do with this data. Under the hood, `flatten_npi()` has done a lot of data wrangling for us:
+
+  * unnested the specified list columns
+  * avoided potential naming collisions by prefixing the unnested names by their originating column name
+  * joined the data together by NPI
 
 ### Validating NPIs
 
-Use `is_valid_npi()` to check whether a candidate number is a valid NPI number:
+Use `is_valid_npi()` to check whether each element of a vector of candidate numbers is a valid NPI number:
 
 ```{r valid_npi_ex}
-# Validate one-off NPIs
-is_valid_npi(1234567893)
-is_valid_npi(1234567898)
+# Validate off NPIs
+is_valid_npi(c(1234567893, 1234567898))
 ```
+
+## Set your own user agent
+
+By default, all request headers include a user agent that references this repository. You can customize the user agent by setting the `npi_user_agent` option:
+
+```{r, eval = FALSE}
+options(npi_user_agent = "my_awesome_user_agent")
+```
+
+## Reporting Bugs
+
+Did you spot a bug? I'd love to hear about it at the [issues page](https://github.com/frankfarach/npi/issues).
 
 ## Code of Conduct
 

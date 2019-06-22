@@ -1,13 +1,15 @@
-#' @noRd
+#' Get results
+#' @param results Results object from \code{\link{search_npi}}
+#' @keywords internal
 get_results <- function(results) {
   results %>%
-    purrr::compact() %>%
+    remove_null() %>%
     purrr::map("results") %>%
     unlist(recursive = FALSE)
 }
 
 
-#' @noRd
+
 pluck_vector_from_content <- function(content, col_name) {
   content %>%
     purrr::map(purrr::pluck, col_name) %>%
@@ -15,7 +17,7 @@ pluck_vector_from_content <- function(content, col_name) {
 }
 
 
-#' @noRd
+
 tidy_results <- function(content) {
   tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
@@ -33,7 +35,6 @@ tidy_results <- function(content) {
 }
 
 
-#' @noRd
 clean_results <- function(results) {
   epoch_to_date <- purrr::as_mapper(
     ~ as.POSIXct(.x, origin = "1970-01-01", tz = "UTC")
@@ -48,45 +49,6 @@ clean_results <- function(results) {
     dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_date")), epoch_to_date)
 }
 
-
-#' @noRd
-new_npi_results <- function(x, ...) {
-  checkmate::assert_tibble(x)
-
-  structure(
-    x,
-    class = c("npi_results", "tbl_df", "tbl", "data.frame")
-  )
-}
-
-
-#' @noRd
-validate_npi_results <- function(x, ...) {
-  obj_types <- c("integer", "character", rep("list", 7),
-                 rep("double", 2))
-  obj_col_names <- c("npi", "enumeration_type", "basic",
-                     "other_names", "identifiers",
-                     "taxonomies", "addresses",
-                     "practice_locations", "endpoints",
-                     "created_date", "last_updated_date")
-
-  # Ensure type- and column-safety
-  checkmate::assert_tibble(x, types = obj_types, ncols = 11)
-
-  if(!identical(names(x), obj_col_names)) {
-    rlang::abort("Columns names do not match expected names.",
-                 "bad_names_error")
-  }
-
-  # `npi_results` has to be the first element of the class
-  # vector for generic methods to work.
-  if("npi_results" != class(x)[[1]]) {
-    rlang::abort("`x` is missing `npi_results` class.",
-                 "bad_class_error")
-  }
-
-  x
-}
 
 
 #' @noRd
@@ -107,54 +69,37 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 
 #' Extract list column by key
 #'
-#' @param df data frame
-#' @param list_col list column in \code{df}
-#' @param key key column in \code{df}
-#' @return data frame with \code{key} and unnested \code{list_col}
+#' @param df A data frame
+#' @param list_col The quoted name of a list column in \code{df}
+#' @param key One or more quoted names of columns in \code{df} to keep
+#'   alongside the unnested columns of \code{list_col} in the result.
+#'  If the value is \code{NULL}, the result will just unnest \code{list_col}.
+#' @return A data frame with the column(s) specified in \code{key}
+#'   followed by the columns unnested from \code{list_col}
 #' @examples
 #' # Load sample data
-#' nyc <- npi:::res
+#' data("npis")
 #'
 #' # Get basic list column by NPI
-#' get_list_col(nyc, basic, npi)
-#' get_list_col(nyc, taxonomies, npi)
+#' get_list_col(npis, "basic")
+#' get_list_col(npis, "taxonomies")
 #' @export
-get_list_col <- function(df, list_col, key) {
+get_list_col <- function(df, list_col = NULL, key = "npi") {
   if (!is.data.frame(df)) {
     abort_bad_argument(arg = "df", must = "be data frame", not = df)
   }
 
-  list_col <- dplyr::enquo(list_col)
-  key <- dplyr::enquo(key)
+  df <- df[, c(key, list_col)]
 
-  df %>%
-    dplyr::select(!!key, !!list_col) %>%
-    tidyr::unnest(!!list_col)
+  if (nrow(tidyr::unnest(df, !!rlang::sym(list_col))) > 0L) {
+    sep_val <- "_"
+  } else {
+    sep_val <- NULL
+  }
+
+  tidyr::unnest(df, !!rlang::sym(list_col), .sep = sep_val)
 }
 
 
 
-#' #' Flatten NPI search results
-#' #'
-#' #' This function takes a data frame produced by `search_npi()` and returns a data frame with several list columns flattened. It left joins the data frame by `npi` (NPI number) to the unnested list columns. The function adds suffixes to non-key columns with identical names to avoid name clashes and identify the source of unnested columns.
-#' #'
-#' #' @param df data frame containing the results of a call to `search_npi()`
-#' #' @param key quoted column name from \code{df} to use as a matching key
-#' #' @return data frame (tibble) with flattened list columns
-#' flatten_results <- function(df, key) {
-#'   if (!is.data.frame(df)) {
-#'     abort_bad_argument(arg = "df", must = "be data frame", not = df)
-#'   }
-#'
-#'   list_cols <- df %>%
-#'     dplyr::select_if(is.list) %>%
-#'     names() %>%
-#'     rlang::syms()
-#'
-#'   lst <- list_cols %>%
-#'     purrr::map(~ get_list_col(df, !!.x, key)) %>%
-#'     magrittr::set_names(list_cols)
-#'
-#'   lst %>%
-#'     purrr::reduce(dplyr::left_join, by = key)
-#' }
+

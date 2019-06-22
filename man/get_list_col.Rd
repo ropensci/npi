@@ -4,26 +4,29 @@
 \alias{get_list_col}
 \title{Extract list column by key}
 \usage{
-get_list_col(df, list_col, key)
+get_list_col(df, list_col = NULL, key = "npi")
 }
 \arguments{
-\item{df}{data frame}
+\item{df}{A data frame}
 
-\item{list_col}{list column in \code{df}}
+\item{list_col}{The quoted name of a list column in \code{df}}
 
-\item{key}{key column in \code{df}}
+\item{key}{One or more quoted names of columns in \code{df} to keep
+ alongside the unnested columns of \code{list_col} in the result.
+If the value is \code{NULL}, the result will just unnest \code{list_col}.}
 }
 \value{
-data frame with \code{key} and unnested \code{list_col}
+A data frame with the column(s) specified in \code{key}
+  followed by the columns unnested from \code{list_col}
 }
 \description{
 Extract list column by key
 }
 \examples{
 # Load sample data
-nyc <- npi:::res
+data("npis")
 
 # Get basic list column by NPI
-get_list_col(nyc, basic, npi)
-get_list_col(nyc, taxonomies, npi)
+get_list_col(npis, "basic")
+get_list_col(npis, "taxonomies")
 }

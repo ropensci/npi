@@ -74,3 +74,11 @@ use_appveyor()
 
 # Clean your description
 use_tidy_description()
+
+# Retrieve simple data set for demos
+npis <- search_npi(city = "New York City")
+
+# Make data available to package users ----------------------------
+
+usethis::use_data(npis, overwrite = TRUE)
+

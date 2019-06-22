@@ -13,7 +13,8 @@ test_that("new_npi_results() correctly constructs S3 class", {
 })
 
 test_that("validate_npi_results() catches invalid inputs", {
-  res_bad_ncol <- res_bad_name <- res_bad_class <- npi:::res
+  data(npis)
+  res_bad_ncol <- res_bad_name <- res_bad_class <- npis
   res_bad_ncol <- res_bad_ncol[, -11]
   names(res_bad_name)[3] <- "basic2"
   class(res_bad_class) <- c("tbl_df", "tbl", "data.frame")
@@ -28,7 +29,8 @@ test_that("validate_npi_results() catches invalid inputs", {
 df <- tibble(
   key = letters[1:2],
   lc1 = list(1, 1:2),
-  lc2 = list(LETTERS[1], LETTERS[1:5]))
+  lc2 = list(LETTERS[1], LETTERS[1:5])
+)
 
 lc1_df <- tribble(
   ~key, ~lc1,
@@ -54,9 +56,9 @@ test_that("list_to_tibble() throws an error for bad arguments", {
 
 
 test_that("get_list_col() works as expected", {
-  expect_error(get_list_col("foo", lc1, key), class = "error_bad_argument")
-  expect_identical(get_list_col(df, lc1, key), lc1_df)
-  expect_identical(get_list_col(df, lc2, key), lc2_df)
+  expect_error(get_list_col("foo", lc1, "key"), class = "error_bad_argument")
+  expect_identical(get_list_col(df, "lc1", "key"), lc1_df)
+  expect_identical(get_list_col(df, "lc2", "key"), lc2_df)
 })
 
 
