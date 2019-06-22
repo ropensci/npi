@@ -50,42 +50,42 @@ test_that("We throw a custom error when the API doesn't return JSON.", {
 
 with_mock_api({
   test_that("Response validation catches logic errors returned by API", {
-    expect_error(search_npi(), class = "request_logic_error")
+    expect_error(npi_search(), class = "request_logic_error")
   })
 })
 
 
-test_that("search_npi() messages when argument values are invalid", {
+test_that("npi_search() messages when argument values are invalid", {
   # Provider type
   pt <- "`enumeration_type` must be one of: NULL, 'ind', or 'org'."
-  expect_error(search_npi(enumeration_type = "NPI1"), pt)
-  expect_error(search_npi(enumeration_type = 3), pt)
+  expect_error(npi_search(enumeration_type = "NPI1"), pt)
+  expect_error(npi_search(enumeration_type = 3), pt)
 
   # Use first name alias
   ufna <- "`use_first_name_alias` must be TRUE or FALSE if specified."
-  expect_error(search_npi(use_first_name_alias = "foo"), ufna)
+  expect_error(npi_search(use_first_name_alias = "foo"), ufna)
 
   # Address purpose
-  expect_error(search_npi(address_purpose = "foo"))
+  expect_error(npi_search(address_purpose = "foo"))
 
   # Limit
   lim <- "`limit` must be a number between 1 and 1200"
-  expect_error(search_npi(limit = -1), lim)
-  expect_error(search_npi(limit = 0), lim)
-  expect_error(search_npi(limit = 1201), lim)
+  expect_error(npi_search(limit = -1), lim)
+  expect_error(npi_search(limit = 0), lim)
+  expect_error(npi_search(limit = 1201), lim)
 })
 
 
 with_mock_api({
   test_that("We can catch request logic errors in the API response", {
-    expect_error(search_npi(enumeration_type = "ind"), class = "request_logic_error")
+    expect_error(npi_search(enumeration_type = "ind"), class = "request_logic_error")
   })
 })
 
 
 with_mock_api({
-  test_that("A valid search_npi() call meets structural expectations", {
-    res <- search_npi(city = "Atlanta")
+  test_that("A valid npi_search() call meets structural expectations", {
+    res <- npi_search(city = "Atlanta")
     expected_types <- c("integer", "character", rep("list", 7), rep("double", 2))
     names(expected_types) <- c("npi", "enumeration_type", "basic", "other_names",
                         "identifiers", "taxonomies", "addresses", "practice_locations",
@@ -99,23 +99,23 @@ with_mock_api({
 
 
 with_mock_api({
-  test_that("summary.npi_results() method works as expected", {
-    atl <- search_npi(city = "Atlanta")
+  test_that("npi_summarizenpi_results() method works as expected", {
+    atl <- npi_search(city = "Atlanta")
     expect_types <- c("integer", rep("character", 5))
     expect_names <- c("npi", "name", "enumeration_type",
                       "primary_practice_address", "phone",
                       "primary_taxonomy")
 
-    checkmate::expect_tibble(summary(atl), types = expect_types)
-    expect_identical(names(summary(atl)), expect_names)
+    checkmate::expect_tibble(npi_summarize(atl), types = expect_types)
+    expect_identical(names(npi_summarize(atl)), expect_names)
   })
 })
 
 
 with_mock_api({
   test_that("enumeration_type controls values of enumeration_type in response", {
-    atl_ind <- search_npi(city = "Atlanta", enumeration_type = "ind")
-    atl_org <- search_npi(city = "Atlanta", enumeration_type = "org")
+    atl_ind <- npi_search(city = "Atlanta", enumeration_type = "ind")
+    atl_org <- npi_search(city = "Atlanta", enumeration_type = "org")
 
     expect_equal(all(atl_ind$enumeration_type == "Individual"), TRUE)
     expect_equal(all(atl_org$enumeration_type == "Organization"), TRUE)
@@ -124,8 +124,8 @@ with_mock_api({
 
 
 with_mock_api({
-  test_that("search_npi() returns a npi", {
-    res <- search_npi(enumeration_type = "ind",
+  test_that("npi_search() returns a npi", {
+    res <- npi_search(enumeration_type = "ind",
                       first_name = "Bob",
                       use_first_name_alias = TRUE)
 
@@ -136,8 +136,8 @@ with_mock_api({
 
 with_mock_api({
   test_that("Multiple requests happen as needed", {
-    res <- search_npi(city = "Atlanta", limit = 201)
-    expect_message(search_npi(city = "Atlanta", limit = 201),
+    res <- npi_search(city = "Atlanta", limit = 201)
+    expect_message(npi_search(city = "Atlanta", limit = 201),
                   "Retrieving more records...")
     expect_identical(dim(res), c(3L, 11L)) # Recorded responses manually edited
   })
@@ -147,7 +147,7 @@ with_mock_api({
 with_mock_api({
   test_that("If we search for an existing NPI, we get back the correct one", {
     npi <- 1568946812
-    res <- search_npi(number = npi)
+    res <- npi_search(number = npi)
     expect_equal(npi, res$npi)
   })
 })
@@ -155,7 +155,7 @@ with_mock_api({
 
 test_that("validate_npi_results throws a `bad_class_error` appropriately", {
   npi <- 1568946812
-  res <- search_npi(number = npi)
+  res <- npi_search(number = npi)
   class(res) <- c("tbl_df", "tbl", "data.frame")  # Tibble class
   expect_error(validate_npi_results(res), class = "bad_class_error")
 })

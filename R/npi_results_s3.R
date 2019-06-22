@@ -53,7 +53,7 @@ validate_npi_results <- function(x, ...) {
 #' Summary method for \code{npi_results} S3 object
 #'
 #' Print a human-readable overview of each record return in the results from a
-#' call to \code{\link{search_npi}}. The format of the summary is modeled after
+#' call to \code{\link{npi_search}}. The format of the summary is modeled after
 #' the one offered on the NPI registry website.
 #'
 #' @param object An \code{npi_results} S3 object
@@ -72,12 +72,12 @@ validate_npi_results <- function(x, ...) {
 #'   }
 #' @examples
 #' \dontrun{
-#'  atl <- search_npi(city = "Atlanta")
+#'  atl <- npi_search(city = "Atlanta")
 #'  summary(atl)
 #' }
 #' @importFrom rlang .data
 #' @export
-summary.npi_results <- function(object, ...) {
+npi_summarize.npi_results <- function(object, ...) {
   basic <- get_list_col(object, "basic")
   address_loc <- get_list_col(object, "addresses") %>%
     dplyr::filter(.data$addresses_address_purpose == "LOCATION") %>%
@@ -111,10 +111,19 @@ summary.npi_results <- function(object, ...) {
 
 
 
+#' S3 method to summarize an \code{npi_results} object
+#' @inheritParams npi_summarize.npi_results
+#' @export
+npi_summarize <- function(object, ...) {
+  UseMethod("npi_summarize")
+}
+
+
+
 #' Flatten NPI search results
 #'
 #' This function takes an \code{npi_results} S3 object returned by
-#' \code{\link{search_npi}} and flattens its list columns. It unnests the
+#' \code{\link{npi_search}} and flattens its list columns. It unnests the
 #' lists columns and left joins them by \code{npi}. You can optionally specify
 #' which columns from \code{df} to include.
 #'
@@ -124,7 +133,7 @@ summary.npi_results <- function(object, ...) {
 #' are no columns to unnest.
 #'
 #' @param df A data frame containing the results of a call to
-#'   \code{\link{search_npi}}.
+#'   \code{\link{npi_search}}.
 #' @param cols If non-NULL, only the named columns specified here will be be
 #'   flattened and returned along with \code{npi}.
 #' @param key A quoted column name from \code{df} to use as a matching key. The
@@ -133,13 +142,13 @@ summary.npi_results <- function(object, ...) {
 #' @examples
 #' # Flatten all list columns
 #' data(npis)
-#' flatten_npi(npis)
+#' npi_flatten(npis)
 #'
 #' # Only flatten specified columns
-#' flatten_npi(npis, cols = "basic")
-#' flatten_npi(npis, cols = c("basic", "identifiers"))
+#' npi_flatten(npis, cols = "basic")
+#' npi_flatten(npis, cols = c("basic", "identifiers"))
 #' @export
-flatten_npi.npi_results <- function(df, cols = NULL, key = "npi") {
+npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
   validate_npi_results(df)
 
   if (!is.null(cols)) {
@@ -156,8 +165,8 @@ flatten_npi.npi_results <- function(df, cols = NULL, key = "npi") {
 
 
 #' S3 method to flatten an \code{npi_results} object
-#' @inheritParams flatten_npi.npi_results
+#' @inheritParams npi_flatten.npi_results
 #' @export
-flatten_npi <- function(df, cols, key) {
-  UseMethod("flatten_npi")
+npi_flatten <- function(df, cols, key) {
+  UseMethod("npi_flatten")
 }

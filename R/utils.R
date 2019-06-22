@@ -62,12 +62,12 @@ remove_null <- function(l) {
 #' @param x 10-digit candidate NPI number
 #' @return Boolean indicating whether \code{npi} is valid
 #' @examples
-#' is_valid_npi(1234567893)
-#' is_valid_npi(1234567898)
+#' npi_is_valid(1234567893)
+#' npi_is_valid(1234567898)
 #' @seealso \url{https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf}
 #' @references \url{http://scott.sherrillmix.com/blog/tag/luhn-algorithm/}
 #' @export
-is_valid_npi <- function(x) {
+npi_is_valid <- function(x) {
   if (stringr::str_length(x) != 10 ||
       stringr::str_detect(x, "\\d{10}",
                           negate = TRUE)) {

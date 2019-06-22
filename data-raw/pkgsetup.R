@@ -76,7 +76,7 @@ use_appveyor()
 use_tidy_description()
 
 # Retrieve simple data set for demos
-npis <- search_npi(city = "New York City")
+npis <- npi_search(city = "New York City")
 
 # Make data available to package users ----------------------------
 

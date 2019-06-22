@@ -7,7 +7,7 @@
 get_results(results)
 }
 \arguments{
-\item{results}{Results object from \code{\link{search_npi}}}
+\item{results}{Results object from \code{\link{npi_search}}}
 }
 \description{
 Get results

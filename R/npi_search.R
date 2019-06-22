@@ -78,7 +78,7 @@
 #' @references
 #'   \href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC Healthcare Provider Taxonomy}
 #' @export
-search_npi <- function(number = NULL,
+npi_search <- function(number = NULL,
                        enumeration_type = NULL,
                        taxonomy_description = NULL,
                        first_name = NULL,

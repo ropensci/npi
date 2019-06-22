@@ -18,13 +18,12 @@ attributes. npi provides convenience functions for data extraction so you can
 spend less time wrangling data and more time putting data to work.
 
 There are three functions you're likely to need from this package. The first
-is \code{\link{search_npi}}, which allows you to query the NPI Registry and
+is \code{\link{npi_search}}, which allows you to query the NPI Registry and
 returns up to 1,200 full NPI records as a data frame (tibble). Next, you can
-use \code{\link{summary.npi_results}} (invoked by \code{summary()}) on
-these results to obtain a human-readable summary of each record. Finally,
-\code{\link{get_list_col}} extracts and flattens conceptually-related
-subsets of data into a tibble that can be joined by the `npi` column into an
-analysis-ready object.
+use \code{\link{npi_summarize}} on these results to obtain a human-readable
+summary of each record. Finally, \code{\link{npi_flatten}} extracts and
+flattens conceptually-related subsets of data into a tibble that are joined
+by the `npi` column into an analysis-ready object.
 }
 \section{Package options}{
 

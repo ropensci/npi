@@ -34,26 +34,28 @@ library(npi)
 
 ## Usage
 
-`npi` exports three functions:
+`npi` exports four functions, all of which match the pattern "npi\_\*":
 
-  - `search_npi()`: Search the NPI Registry and return the response as a
+  - `npi_search()`: Search the NPI Registry and return the response as a
     [tibble](http://tibble.tidyverse.org/) with high-cardinality data
     organized into list columns.
-  - `flatten_npi()`: Flatten one or more list columns from a search
-    result, joined by NPI number.
-  - `is_valid_npi()`: Check the validity of one or more NPI numbers
+  - `npi_summarize()`: A method for displaying a nice overview of
+    results from `npi_search()`.
+  - `npi_flatten()`: A method for flattening one or more list columns
+    from a search result, joined by NPI number.
+  - `npi_is_valid()`: Check the validity of one or more NPI numbers
     using the official [NPI enumeration
     standard](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf).
 
 ### Search the registry
 
-`search_npi()` exposes nearly all of the NPPES API’s [search
+`npi_search()` exposes nearly all of the NPPES API’s [search
 parameters](https://npiregistry.cms.hhs.gov/registry/help-api). Let’s
 say we wanted to find up to 10 organizational providers with primary
 locations in New York City:
 
 ``` r
-nyc <- search_npi(city = "New York City")
+nyc <- npi_search(city = "New York City")
 ```
 
 ``` r
@@ -96,11 +98,11 @@ need.
 
 ## Working with search results
 
-Run `summary()` on your results to see a more human-readable overview of
-what we’ve got:
+Run `npi_summarize()` on your results to see a more human-readable
+overview of what we’ve got:
 
 ``` r
-summary(nyc)
+npi_summarize(nyc)
 #> # A tibble: 10 x 6
 #>        npi name   enumeration_type primary_practice… phone primary_taxonomy
 #>      <int> <chr>  <chr>            <chr>             <chr> <chr>           
@@ -120,7 +122,7 @@ Suppose we just want the basic and taxonomy information for each NPI in
 the result in a flattened data frame:
 
 ``` r
-flatten_npi(nyc, c("basic", "taxonomies"))
+npi_flatten(nyc, c("basic", "taxonomies"))
 #> # A tibble: 19 x 27
 #>       npi basic_name_pref… basic_first_name basic_last_name
 #>     <int> <chr>            <chr>            <chr>          
@@ -163,7 +165,7 @@ flatten_npi(nyc, c("basic", "taxonomies"))
 Or we can flatten the whole thing and prune back later:
 
 ``` r
-flatten_npi(nyc)
+npi_flatten(nyc)
 #> # A tibble: 44 x 46
 #>       npi basic_name_pref… basic_first_name basic_last_name
 #>     <int> <chr>            <chr>            <chr>          
@@ -205,7 +207,7 @@ flatten_npi(nyc)
 ```
 
 Now we’re ready to do whatever else we need to do with this data. Under
-the hood, `flatten_npi()` has done a lot of data wrangling for us:
+the hood, `npi_flatten()` has done a lot of data wrangling for us:
 
   - unnested the specified list columns
   - avoided potential naming collisions by prefixing the unnested names
@@ -214,12 +216,12 @@ the hood, `flatten_npi()` has done a lot of data wrangling for us:
 
 ### Validating NPIs
 
-Use `is_valid_npi()` to check whether each element of a vector of
+Use `npi_is_valid()` to check whether each element of a vector of
 candidate numbers is a valid NPI number:
 
 ``` r
 # Validate off NPIs
-is_valid_npi(c(1234567893, 1234567898))
+npi_is_valid(c(1234567893, 1234567898))
 #> [1] TRUE
 ```
 

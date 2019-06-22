@@ -1,5 +1,5 @@
 #' Get results
-#' @param results Results object from \code{\link{search_npi}}
+#' @param results Results object from \code{\link{npi_search}}
 #' @keywords internal
 get_results <- function(results) {
   results %>%

@@ -1,14 +1,14 @@
 context("test-validators.R")
 
-test_that("is_valid_npi() requires a 10-digit number", {
-  expect_error(is_valid_npi())
-  expect_error(is_valid_npi(123456789))
-  expect_error(is_valid_npi("123456789A"))
+test_that("npi_is_valid() requires a 10-digit number", {
+  expect_error(npi_is_valid())
+  expect_error(npi_is_valid(123456789))
+  expect_error(npi_is_valid("123456789A"))
 })
 
-test_that("is_valid_npi() uses the Luhn algorithm", {
-  expect_true(is_valid_npi(1234567893))
-  expect_false(is_valid_npi(1234567898))
+test_that("npi_is_valid() uses the Luhn algorithm", {
+  expect_true(npi_is_valid(1234567893))
+  expect_false(npi_is_valid(1234567898))
 })
 
 test_that("hyphenate_full_zip() works correctly", {
