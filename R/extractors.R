@@ -1,6 +1,6 @@
 #' Get results
 #' @param results Results object from \code{\link{npi_search}}
-#' @keywords internal
+#' @noRd
 get_results <- function(results) {
   results %>%
     remove_null() %>%
@@ -9,7 +9,7 @@ get_results <- function(results) {
 }
 
 
-
+#' @noRd
 pluck_vector_from_content <- function(content, col_name) {
   content %>%
     purrr::map(purrr::pluck, col_name) %>%
@@ -17,7 +17,7 @@ pluck_vector_from_content <- function(content, col_name) {
 }
 
 
-
+#' @noRd
 tidy_results <- function(content) {
   tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
@@ -34,7 +34,7 @@ tidy_results <- function(content) {
   )
 }
 
-
+#' @noRd
 clean_results <- function(results) {
   epoch_to_date <- purrr::as_mapper(
     ~ as.POSIXct(.x, origin = "1970-01-01", tz = "UTC")
@@ -83,7 +83,7 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 #' # Get basic list column by NPI
 #' get_list_col(npis, "basic")
 #' get_list_col(npis, "taxonomies")
-#' @export
+#' @noRd
 get_list_col <- function(df, list_col = NULL, key = "npi") {
   if (!is.data.frame(df)) {
     abort_bad_argument(arg = "df", must = "be data frame", not = df)
@@ -99,7 +99,3 @@ get_list_col <- function(df, list_col = NULL, key = "npi") {
 
   tidyr::unnest(df, !!rlang::sym(list_col), .sep = sep_val)
 }
-
-
-
-

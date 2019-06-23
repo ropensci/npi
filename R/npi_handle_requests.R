@@ -5,7 +5,7 @@
 #'
 #' @param params A list of query parameters.
 #' @return A list of API responses.
-#' @keywords internal
+#' @noRd
 npi_handle_requests <- function(params) {
   max_records <- params[["limit"]]
   request_limit <- 200

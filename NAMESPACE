@@ -3,7 +3,6 @@
 S3method(npi_flatten,npi_results)
 S3method(npi_summarize,npi_results)
 export("%>%")
-export(get_list_col)
 export(npi_flatten)
 export(npi_is_valid)
 export(npi_search)

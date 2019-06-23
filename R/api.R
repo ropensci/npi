@@ -1,7 +1,7 @@
 #' Construct request URL using BASE_URL
 #'
 #' @return The value of BASE_URL set internally in \code{R/utils.R}
-#' @keywords internal
+#' @noRd
 npi_url <- function() {
   httr::modify_url(BASE_URL)
 }
@@ -12,7 +12,7 @@ npi_url <- function() {
 #'
 #' User can set their own user agent as a value for the
 #' `npi_user_agent` option via options(). See \pkg{npi} for an example.
-#' @keywords internal
+#' @noRd
 npi_config <- function() {
   httr::user_agent(
     getOption("npi_user_agent", default = USER_AGENT)
@@ -28,7 +28,7 @@ npi_config <- function() {
 #' @param config List of key-value configuration parameters
 #' @param ... Optional arguments to be passed to `httr::modify_url()`
 #' @return Response object or error
-#' @keywords internal
+#' @noRd
 npi_api <- function(verb, url, config = list(), ...) {
   FUN <- get(verb, envir = asNamespace("httr"))
   resp <- FUN(url, ..., config = c(npi_config(), config))
@@ -39,7 +39,7 @@ npi_api <- function(verb, url, config = list(), ...) {
 
 #' Make a GET request to the API
 #'
-#' @keywords internal
+#' @noRd
 npi_get <- function(url, ...) {
   npi_api("GET", url, ...)
 }
@@ -58,7 +58,7 @@ npi_get <- function(url, ...) {
 #'   }
 #' @param resp Response object from a REST API request
 #' @return An error if present, otherwise the API response
-#' @keywords internal
+#' @noRd
 npi_handle_response <- function(resp) {
   resp_status <- httr::status_code(resp)
   resp_url <- resp$url
