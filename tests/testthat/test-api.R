@@ -135,16 +135,6 @@ with_mock_api({
 
 
 with_mock_api({
-  test_that("Multiple requests happen as needed", {
-    res <- npi_search(city = "Atlanta", limit = 201)
-    expect_message(npi_search(city = "Atlanta", limit = 201),
-                  "Retrieving more records...")
-    expect_identical(dim(res), c(3L, 11L)) # Recorded responses manually edited
-  })
-})
-
-
-with_mock_api({
   test_that("If we search for an existing NPI, we get back the correct one", {
     npi <- 1568946812
     res <- npi_search(number = npi)

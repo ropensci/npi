@@ -97,5 +97,5 @@ npi_handle_response <- function(resp) {
                  url = resp_url)
   }
 
-  httr::content(resp)
+  httr::content(resp)$results
 }

@@ -1,20 +1,10 @@
-#' Get results
-#' @param results Results object from \code{\link{npi_search}}
-#' @noRd
-get_results <- function(results) {
-  results %>%
-    remove_null() %>%
-    purrr::map("results") %>%
-    unlist(recursive = FALSE)
-}
-
-
 #' @noRd
 pluck_vector_from_content <- function(content, col_name) {
   content %>%
     purrr::map(purrr::pluck, col_name) %>%
     unlist(recursive = FALSE)
 }
+
 
 
 #' @noRd
@@ -33,6 +23,8 @@ tidy_results <- function(content) {
     last_updated_date = pluck_vector_from_content(content, "last_updated_epoch")
   )
 }
+
+
 
 #' @noRd
 clean_results <- function(results) {
@@ -55,14 +47,14 @@ clean_results <- function(results) {
 list_to_tibble <- function(content, col_name, depth = 1L) {
   checkmate::assert_choice(depth, choices = c(1L, 2L))
 
-  level_one <- content %>% purrr::map(col_name)
+  level_one <- purrr::map(content, col_name)
 
   if (depth == 1L) {
-    out <- level_one %>% purrr::map(tibble::as_tibble)
+    out <- purrr::map(level_one, tibble::as_tibble)
     return(out)
   }
 
-  level_one %>% purrr::map(purrr::map_df, dplyr::bind_rows)
+  purrr::map(level_one, purrr::map_df, dplyr::bind_rows)
 }
 
 
@@ -71,11 +63,11 @@ list_to_tibble <- function(content, col_name, depth = 1L) {
 #'
 #' @param df A data frame
 #' @param list_col The quoted name of a list column in \code{df}
-#' @param key One or more quoted names of columns in \code{df} to keep
-#'   alongside the unnested columns of \code{list_col} in the result.
-#'  If the value is \code{NULL}, the result will just unnest \code{list_col}.
-#' @return A data frame with the column(s) specified in \code{key}
-#'   followed by the columns unnested from \code{list_col}
+#' @param key One or more quoted names of columns in \code{df} to keep alongside
+#'   the unnested columns of \code{list_col} in the result. If the value is
+#'   \code{NULL}, the result will just unnest \code{list_col}.
+#' @return A data frame with the column(s) specified in \code{key} followed by
+#'   the columns unnested from \code{list_col}
 #' @examples
 #' # Load sample data
 #' data("npis")

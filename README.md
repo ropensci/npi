@@ -63,16 +63,16 @@ nyc
 #> # A tibble: 10 x 11
 #>       npi enumeration_type basic other_names identifiers taxonomies
 #>  *  <int> <chr>            <lis> <list>      <list>      <list>    
-#>  1 1.40e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
-#>  2 1.34e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
-#>  3 1.15e9 Individual       <tib… <tibble [0… <tibble [1… <tibble […
-#>  4 1.37e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
-#>  5 1.97e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
-#>  6 1.16e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
-#>  7 1.35e9 Organization     <tib… <tibble [0… <tibble [1… <tibble […
-#>  8 1.59e9 Organization     <tib… <tibble [0… <tibble [3… <tibble […
-#>  9 1.75e9 Organization     <tib… <tibble [0… <tibble [0… <tibble […
-#> 10 1.02e9 Organization     <tib… <tibble [1… <tibble [2… <tibble […
+#>  1 1.19e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
+#>  2 1.31e9 Individual       <tib… <tibble [0… <tibble [1… <tibble […
+#>  3 1.64e9 Individual       <tib… <tibble [0… <tibble [3… <tibble […
+#>  4 1.35e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
+#>  5 1.56e9 Individual       <tib… <tibble [0… <tibble [1… <tibble […
+#>  6 1.79e9 Individual       <tib… <tibble [0… <tibble [1… <tibble […
+#>  7 1.56e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
+#>  8 1.96e9 Organization     <tib… <tibble [0… <tibble [0… <tibble […
+#>  9 1.43e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
+#> 10 1.33e9 Individual       <tib… <tibble [0… <tibble [0… <tibble […
 #> # … with 5 more variables: addresses <list>, practice_locations <list>,
 #> #   endpoints <list>, created_date <dttm>, last_updated_date <dttm>
 ```
@@ -106,16 +106,16 @@ npi_summarize(nyc)
 #> # A tibble: 10 x 6
 #>        npi name   enumeration_type primary_practice… phone primary_taxonomy
 #>      <int> <chr>  <chr>            <chr>             <chr> <chr>           
-#>  1  1.40e9 AMIR … Individual       10 E 102ND ST, N… 212-… Internal Medici…
-#>  2  1.34e9 CLAUD… Individual       1540 E COLORADO … 818-… Social Worker C…
-#>  3  1.15e9 PREMI… Individual       90 S BEDFORD RD,… 914-… Family Medicine 
-#>  4  1.37e9 JEFFR… Individual       1501 N CAMPBELL … 520-… Internal Medici…
-#>  5  1.97e9 MARK … Individual       1400 BELLINGER S… 715-… Hospitalist     
-#>  6  1.16e9 STACE… Individual       10 E 102ND ST, N… 212-… Internal Medici…
-#>  7  1.35e9 NICUL… Organization     10 EAST 38TH STR… 212-… Internal Medici…
-#>  8  1.59e9 UNDER… Organization     160 E 34TH ST 4T… 212-… Durable Medical…
-#>  9  1.75e9 NEURO… Organization     635 WEST 165 ST,… 212-… Ophthalmology   
-#> 10  1.02e9 MEDIC… Organization     250 EAST HOUSTON… 212-… Podiatrist
+#>  1  1.19e9 ALYSS… Individual       5 E 98TH ST FL S… 212-… Physician Assis…
+#>  2  1.31e9 MARK … Individual       16 PARK PL, NEW … 212-… Orthopaedic Sur…
+#>  3  1.64e9 SAKSH… Individual       10 E 102ND ST, N… 212-… Internal Medici…
+#>  4  1.35e9 SARAH… Individual       1335 DUBLIN RD S… 614-… Occupational Th…
+#>  5  1.56e9 AMY T… Individual       1176 5TH AVE, NE… 212-… Internal Medici…
+#>  6  1.79e9 NOAH … Individual       140 BERGEN STREE… 973-… Obstetrics & Gy…
+#>  7  1.56e9 ROBYN… Individual       9 HOPE AVE STE 5… 781-… Nurse Practitio…
+#>  8  1.96e9 LENOX… Organization     100 E 77TH ST, N… 212-… Nurse Anestheti…
+#>  9  1.43e9 YONGH… Individual       34 MAPLE ST, NOR… 203-… Psychiatry & Ne…
+#> 10  1.33e9 RAJEE… Individual       12401 E 17TH AVE… 347-… Nurse Practitio…
 ```
 
 Suppose we just want the basic and taxonomy information for each NPI in
@@ -123,87 +123,84 @@ the result in a flattened data frame:
 
 ``` r
 npi_flatten(nyc, c("basic", "taxonomies"))
-#> # A tibble: 19 x 27
-#>       npi basic_name_pref… basic_first_name basic_last_name
-#>     <int> <chr>            <chr>            <chr>          
-#>  1 1.02e9 <NA>             <NA>             <NA>           
-#>  2 1.15e9 <NA>             PREMILA          MATHEWS        
-#>  3 1.15e9 <NA>             PREMILA          MATHEWS        
-#>  4 1.16e9 <NA>             STACEY-ANN       BROWN          
-#>  5 1.16e9 <NA>             STACEY-ANN       BROWN          
-#>  6 1.16e9 <NA>             STACEY-ANN       BROWN          
-#>  7 1.16e9 <NA>             STACEY-ANN       BROWN          
-#>  8 1.34e9 MS.              CLAUDIA          NARVAEZ-MEZA   
-#>  9 1.34e9 MS.              CLAUDIA          NARVAEZ-MEZA   
-#> 10 1.35e9 <NA>             <NA>             <NA>           
-#> 11 1.35e9 <NA>             <NA>             <NA>           
-#> 12 1.37e9 DR.              JEFFREY          SHRENSEL       
-#> 13 1.37e9 DR.              JEFFREY          SHRENSEL       
-#> 14 1.37e9 DR.              JEFFREY          SHRENSEL       
-#> 15 1.40e9 DR.              AMIR             STEINBERG      
-#> 16 1.59e9 <NA>             <NA>             <NA>           
-#> 17 1.75e9 <NA>             <NA>             <NA>           
-#> 18 1.97e9 DR.              MARK HENRY       ALON           
-#> 19 1.97e9 DR.              MARK HENRY       ALON           
-#> # … with 23 more variables: basic_middle_name <chr>,
-#> #   basic_credential <chr>, basic_sole_proprietor <chr>,
+#> # A tibble: 20 x 26
+#>       npi basic_first_name basic_last_name basic_credential
+#>     <int> <chr>            <chr>           <chr>           
+#>  1 1.19e9 ALYSSA           COWNAN          PA              
+#>  2 1.31e9 MARK             MOHRMANN        MD              
+#>  3 1.31e9 MARK             MOHRMANN        MD              
+#>  4 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#>  5 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#>  6 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#>  7 1.35e9 SARAH            LOWRY           OTR/L           
+#>  8 1.35e9 SARAH            LOWRY           OTR/L           
+#>  9 1.43e9 YONGHONG         TAN             <NA>            
+#> 10 1.56e9 AMY              TIERSTEN        M.D.            
+#> 11 1.56e9 ROBYN            NOHLING         FNP-BC, RD, LDN…
+#> 12 1.56e9 ROBYN            NOHLING         FNP-BC, RD, LDN…
+#> 13 1.56e9 ROBYN            NOHLING         FNP-BC, RD, LDN…
+#> 14 1.56e9 ROBYN            NOHLING         FNP-BC, RD, LDN…
+#> 15 1.56e9 ROBYN            NOHLING         FNP-BC, RD, LDN…
+#> 16 1.56e9 ROBYN            NOHLING         FNP-BC, RD, LDN…
+#> 17 1.64e9 SAKSHI           DUA             M.D.            
+#> 18 1.64e9 SAKSHI           DUA             M.D.            
+#> 19 1.79e9 NOAH             GOLDMAN         M.D.            
+#> 20 1.96e9 <NA>             <NA>            <NA>            
+#> # … with 22 more variables: basic_sole_proprietor <chr>,
 #> #   basic_gender <chr>, basic_enumeration_date <chr>,
 #> #   basic_last_updated <chr>, basic_status <chr>, basic_name <chr>,
+#> #   basic_name_prefix <chr>, basic_middle_name <chr>,
 #> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
 #> #   basic_authorized_official_credential <chr>,
 #> #   basic_authorized_official_first_name <chr>,
 #> #   basic_authorized_official_last_name <chr>,
+#> #   basic_authorized_official_middle_name <chr>,
 #> #   basic_authorized_official_telephone_number <chr>,
 #> #   basic_authorized_official_title_or_position <chr>,
-#> #   basic_authorized_official_middle_name <chr>,
-#> #   basic_authorized_official_name_prefix <chr>, taxonomies_code <chr>,
-#> #   taxonomies_desc <chr>, taxonomies_primary <lgl>,
-#> #   taxonomies_state <chr>, taxonomies_license <chr>,
-#> #   taxonomies_taxonomy_group <chr>
+#> #   taxonomies_code <chr>, taxonomies_desc <chr>,
+#> #   taxonomies_primary <lgl>, taxonomies_state <chr>,
+#> #   taxonomies_license <chr>, taxonomies_taxonomy_group <chr>
 ```
 
 Or we can flatten the whole thing and prune back later:
 
 ``` r
 npi_flatten(nyc)
-#> # A tibble: 44 x 46
-#>       npi basic_name_pref… basic_first_name basic_last_name
-#>     <int> <chr>            <chr>            <chr>          
-#>  1 1.02e9 <NA>             <NA>             <NA>           
-#>  2 1.02e9 <NA>             <NA>             <NA>           
-#>  3 1.02e9 <NA>             <NA>             <NA>           
-#>  4 1.02e9 <NA>             <NA>             <NA>           
-#>  5 1.15e9 <NA>             PREMILA          MATHEWS        
-#>  6 1.15e9 <NA>             PREMILA          MATHEWS        
-#>  7 1.15e9 <NA>             PREMILA          MATHEWS        
-#>  8 1.15e9 <NA>             PREMILA          MATHEWS        
-#>  9 1.16e9 <NA>             STACEY-ANN       BROWN          
-#> 10 1.16e9 <NA>             STACEY-ANN       BROWN          
-#> # … with 34 more rows, and 42 more variables: basic_middle_name <chr>,
-#> #   basic_credential <chr>, basic_sole_proprietor <chr>,
+#> # A tibble: 48 x 42
+#>       npi basic_first_name basic_last_name basic_credential
+#>     <int> <chr>            <chr>           <chr>           
+#>  1 1.19e9 ALYSSA           COWNAN          PA              
+#>  2 1.19e9 ALYSSA           COWNAN          PA              
+#>  3 1.31e9 MARK             MOHRMANN        MD              
+#>  4 1.31e9 MARK             MOHRMANN        MD              
+#>  5 1.31e9 MARK             MOHRMANN        MD              
+#>  6 1.31e9 MARK             MOHRMANN        MD              
+#>  7 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#>  8 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#>  9 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#> 10 1.33e9 RAJEE            KRAUSE          AGPCNP-C        
+#> # … with 38 more rows, and 38 more variables: basic_sole_proprietor <chr>,
 #> #   basic_gender <chr>, basic_enumeration_date <chr>,
 #> #   basic_last_updated <chr>, basic_status <chr>, basic_name <chr>,
+#> #   basic_name_prefix <chr>, basic_middle_name <chr>,
 #> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
 #> #   basic_authorized_official_credential <chr>,
 #> #   basic_authorized_official_first_name <chr>,
 #> #   basic_authorized_official_last_name <chr>,
+#> #   basic_authorized_official_middle_name <chr>,
 #> #   basic_authorized_official_telephone_number <chr>,
 #> #   basic_authorized_official_title_or_position <chr>,
-#> #   basic_authorized_official_middle_name <chr>,
-#> #   basic_authorized_official_name_prefix <chr>,
-#> #   other_names_organization_name <chr>, other_names_code <chr>,
-#> #   other_names_type <chr>, identifiers_identifier <chr>,
-#> #   identifiers_code <chr>, identifiers_desc <chr>,
-#> #   identifiers_state <chr>, identifiers_issuer <chr>,
-#> #   taxonomies_code <chr>, taxonomies_desc <chr>,
-#> #   taxonomies_primary <lgl>, taxonomies_state <chr>,
-#> #   taxonomies_license <chr>, taxonomies_taxonomy_group <chr>,
-#> #   addresses_country_code <chr>, addresses_country_name <chr>,
-#> #   addresses_address_purpose <chr>, addresses_address_type <chr>,
-#> #   addresses_address_1 <chr>, addresses_address_2 <chr>,
-#> #   addresses_city <chr>, addresses_state <chr>,
-#> #   addresses_postal_code <chr>, addresses_telephone_number <chr>,
-#> #   addresses_fax_number <chr>
+#> #   identifiers_identifier <chr>, identifiers_code <chr>,
+#> #   identifiers_desc <chr>, identifiers_state <chr>,
+#> #   identifiers_issuer <chr>, taxonomies_code <chr>,
+#> #   taxonomies_desc <chr>, taxonomies_primary <lgl>,
+#> #   taxonomies_state <chr>, taxonomies_license <chr>,
+#> #   taxonomies_taxonomy_group <chr>, addresses_country_code <chr>,
+#> #   addresses_country_name <chr>, addresses_address_purpose <chr>,
+#> #   addresses_address_type <chr>, addresses_address_1 <chr>,
+#> #   addresses_address_2 <chr>, addresses_city <chr>,
+#> #   addresses_state <chr>, addresses_postal_code <chr>,
+#> #   addresses_telephone_number <chr>, addresses_fax_number <chr>
 ```
 
 Now we’re ready to do whatever else we need to do with this data. Under

@@ -8,49 +8,49 @@ npi_search(number = NULL, enumeration_type = NULL,
   taxonomy_description = NULL, first_name = NULL, last_name = NULL,
   use_first_name_alias = NULL, organization_name = NULL,
   address_purpose = NULL, city = NULL, state = NULL,
-  postal_code = NULL, country_code = NULL, limit = 10)
+  postal_code = NULL, country_code = NULL, limit = 10L)
 }
 \arguments{
 \item{number}{(Optional) 10-digit NPI number assigned to the provider.}
 
 \item{enumeration_type}{(Optional) Type of provider associated with the NPI,
-one of:
-  \describe{
-    \item{"ind"}{Individual provider (NPI-1)}
-    \item{"org"}{Organizational provider (NPI-2)}
-    }}
+one of: \describe{ \item{"ind"}{Individual provider (NPI-1)}
+\item{"org"}{Organizational provider (NPI-2)} }}
 
 \item{taxonomy_description}{(Optional) Scalar character vector with a
-taxonomy description or code from the \href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC Healthcare Provider Taxonomy}.}
+taxonomy description or code from the
+\href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC
+Healthcare Provider Taxonomy}.}
 
-\item{first_name}{(Optional) This field only applies to Individual Providers. Trailing
-wildcard entries are permitted requiring at least two characters to be
-entered (e.g. "jo*" ). This field allows the following special characters:
+\item{first_name}{(Optional) This field only applies to Individual Providers.
+Trailing wildcard entries are permitted requiring at least two characters
+to be entered (e.g. "jo*" ). This field allows the following special
+characters: ampersand, apostrophe, colon, comma, forward slash, hyphen,
+left and right parentheses, period, pound sign, quotation mark, and
+semi-colon.}
+
+\item{last_name}{(Optional) This field only applies to Individual Providers.
+Trailing wildcard entries are permitted requiring at least two characters
+to be entered. This field allows the following special characters:
 ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right
 parentheses, period, pound sign, quotation mark, and semi-colon.}
 
-\item{last_name}{(Optional) This field only applies to Individual Providers. Trailing
-wildcard entries are permitted requiring at least two characters to be
-entered. This field allows the following special characters: ampersand,
-apostrophe, colon, comma, forward slash, hyphen, left and right
-parentheses, period, pound sign, quotation mark, and semi-colon.}
+\item{use_first_name_alias}{(Optional) This field only applies to Individual
+Providers when not doing a wildcard search. When set to "True", the search
+results will include Providers with similar First Names. E.g.,
+first_name=Robert, will also return Providers with the first name of Rob,
+Bob, Robbie, Bobby, etc. Valid Values are: TRUE: Will include alias/similar
+names; FALSE: Will only look for exact matches.}
 
-\item{use_first_name_alias}{(Optional) This field only applies to Individual Providers
-when not doing a wildcard search. When set to "True", the search results
-will include Providers with similar First Names. E.g., first_name=Robert,
-will also return Providers with the first name of Rob, Bob, Robbie, Bobby,
-etc. Valid Values are: TRUE: Will include alias/similar names; FALSE: Will
-only look for exact matches.}
-
-\item{organization_name}{(Optional) This field only applies to Organizational Providers.
-Trailing wildcard entries are permitted requiring at least two characters
-to be entered. This field allows the following special characters:
-ampersand, apostrophe, "at" sign, colon, comma, forward slash, hyphen, left
-and right parentheses, period, pound sign, quotation mark, and semi-colon.
-Both the Organization Name and Other Organization Name fields associated
-with an NPI are examined for matching contents, therefore, the results
-might contain an organization name different from the one entered in the
-Organization Name criterion.}
+\item{organization_name}{(Optional) This field only applies to Organizational
+Providers. Trailing wildcard entries are permitted requiring at least two
+characters to be entered. This field allows the following special
+characters: ampersand, apostrophe, "at" sign, colon, comma, forward slash,
+hyphen, left and right parentheses, period, pound sign, quotation mark, and
+semi-colon. Both the Organization Name and Other Organization Name fields
+associated with an NPI are examined for matching contents, therefore, the
+results might contain an organization name different from the one entered
+in the Organization Name criterion.}
 
 \item{address_purpose}{Refers to whether the address information entered
 pertains to the provider's Mailing Address or the provider's Practice
@@ -93,11 +93,15 @@ values of \code{limit} greater than 200 will result in multiple API calls.}
 Data frame (tibble) containing the results of the search.
 }
 \description{
-Wrapper function to search the U.S. National Provider Identifier (NPI)
-Registry using search parameters exposed by the registry's API (Version 2.1). If necessary, multiple requests are made. Results are combined and returned as a tibble with an S3 class of \code{npi_results}. See \code{Value} below for a description of the returned object.
+Search the U.S. National Provider Identifier (NPI)
+Registry using parameters exposed by the registry's API (Version 2.1).
+Results are combined and returned
+as a tibble with an S3 class of \code{npi_results}. See \code{Value} below
+for a description of the returned object.
 }
 \details{
-By default, the function requests up to 10 records, but the \code{limit} argument accepts values from 1 to the API's limit of 1200.
+By default, the function requests up to 10 records, but the
+\code{limit} argument accepts values from 1 to the API's limit of 1200.
 }
 \references{
 \url{https://npiregistry.cms.hhs.gov/registry/help-api}
