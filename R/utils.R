@@ -3,6 +3,25 @@ API_VERSION <- "2.1"  # Referenced in `npi_search()`
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
 
+#' Delay function execution
+#'
+#' @param f A function.
+#' @param seconds Number of seconds delay to introduce before executing
+#'   \code{f}.
+#' @return A new function that executes \code{seconds} seconds after it
+#'   is called.
+#' @noRd
+delay_by <- function(f, seconds) {
+  force(f)
+  force(seconds)
+
+  function(...) {
+    Sys.sleep(seconds)
+    f(...)
+  }
+}
+
+
 
 #' Handle bad function arguments
 #'
