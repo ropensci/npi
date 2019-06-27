@@ -9,6 +9,8 @@ pluck_vector_from_content <- function(content, col_name) {
 
 #' @noRd
 tidy_results <- function(content) {
+  content <- unlist(content, recursive = FALSE)
+
   tibble::tibble(
     npi = pluck_vector_from_content(content, "number"),
     enumeration_type = pluck_vector_from_content(content, "enumeration_type"),

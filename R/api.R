@@ -23,11 +23,11 @@ npi_config <- function() {
 
 #' Make generic API request and handle the response
 #'
-#' @param verb httr request verb such as GET, POST, etc.
-#' @param url URL to which the request will be sent
-#' @param config List of key-value configuration parameters
-#' @param ... Optional arguments to be passed to `httr::modify_url()`
-#' @return Response object or error
+#' @param verb A \pkg{httr} request verb such as GET, POST, etc.
+#' @param url A URL to which the request will be sent.
+#' @param config A list of key-value configuration parameters.
+#' @param ... Optional arguments to be passed to `httr::modify_url()`.
+#' @return A response object or error
 #' @noRd
 npi_api <- function(verb, url, config = list(), ...) {
   FUN <- get(verb, envir = asNamespace("httr"))

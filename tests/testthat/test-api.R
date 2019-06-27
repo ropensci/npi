@@ -4,7 +4,17 @@ context("test-api.R")
 API_VERSION <- "2.1"
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
+MAX_N_PER_REQUEST <- 200L
 
+
+# npi_url() ---------------------------------------------------------------
+
+test_that("npi_url() returns BASE_URL.", {
+  expect_identical(npi_url(), BASE_URL)
+})
+
+
+# npi_config() ------------------------------------------------------------
 
 test_that("npi_config() sets default user_agent correctly", {
   expect_identical(npi_config(), httr::config(useragent = USER_AGENT))
@@ -17,6 +27,24 @@ test_that("npi_config() uses customized user agent option if defined", {
   options(npi_user_agent = USER_AGENT)
 })
 
+
+# npi_api() & npi_get() ----------------------------------------------------
+
+with_mock_api({
+  params <- list(version = API_VERSION, city = "Atlanta", limit = 10)
+  expected_url <- paste0(BASE_URL, "?version=2.1&city=Atlanta&limit=10")
+
+  test_that("npi_api() works with GET verb", {
+    expect_GET(npi_api("GET", npi_url(), query = params), expected_url)
+  })
+
+  test_that("npi_get() functions the same as npi_api() with `GET`", {
+    expect_GET(npi_get(npi_url(), query = params), expected_url)
+  })
+})
+
+
+# npi_handle_response() ---------------------------------------------------
 
 test_that("We throw a custom error when the API returns a bad status code", {
   status <- 400L
@@ -47,6 +75,10 @@ test_that("We throw a custom error when the API doesn't return JSON.", {
     class = "http_type_error")
 })
 
+
+# npi_search() ------------------------------------------------------------
+
+## Argument validation and error-handling
 
 with_mock_api({
   test_that("Response validation catches logic errors returned by API", {
@@ -91,29 +123,16 @@ with_mock_api({
                         "identifiers", "taxonomies", "addresses", "practice_locations",
                         "endpoints", "created_date", "last_updated_date")
 
-    expect_is(res, c("npi_results", "tbl_df", "tbl", "data.frame"))
-    expect_identical(purrr::map_chr(res, typeof), expected_types)
-    expect_equal(nrow(res), 10)
+    expect_s3_class(res, "npi_results")
+    checkmate::expect_tibble(res, types = expected_types, ncols = 11L, nrow = 10L)
   })
 })
 
 
-with_mock_api({
-  test_that("npi_summarizenpi_results() method works as expected", {
-    atl <- npi_search(city = "Atlanta")
-    expect_types <- c("integer", rep("character", 5))
-    expect_names <- c("npi", "name", "enumeration_type",
-                      "primary_practice_address", "phone",
-                      "primary_taxonomy")
-
-    checkmate::expect_tibble(npi_summarize(atl), types = expect_types)
-    expect_identical(names(npi_summarize(atl)), expect_names)
-  })
-})
-
+## Validate elements of API contract
 
 with_mock_api({
-  test_that("enumeration_type controls values of enumeration_type in response", {
+  test_that("enumeration_type controls values of `enumeration_type` in response", {
     atl_ind <- npi_search(city = "Atlanta", enumeration_type = "ind")
     atl_org <- npi_search(city = "Atlanta", enumeration_type = "org")
 
@@ -124,7 +143,7 @@ with_mock_api({
 
 
 with_mock_api({
-  test_that("npi_search() returns a npi", {
+  test_that("npi_search() returns an NPI", {
     res <- npi_search(enumeration_type = "ind",
                       first_name = "Bob",
                       use_first_name_alias = TRUE)
@@ -135,17 +154,56 @@ with_mock_api({
 
 
 with_mock_api({
+  test_that("Multiple requests happen as needed", {
+    res <- npi_search(city = "Atlanta", limit = 201L)
+    expect_identical(dim(res), c(2L, 11L)) # Recorded responses manually edited
+  })
+})
+
+
+with_mock_api({
   test_that("If we search for an existing NPI, we get back the correct one", {
-    npi <- 1568946812
+    npi <- 1568946812     # returned from a prior search
     res <- npi_search(number = npi)
     expect_equal(npi, res$npi)
   })
 })
 
 
-test_that("validate_npi_results throws a `bad_class_error` appropriately", {
-  npi <- 1568946812
-  res <- npi_search(number = npi)
-  class(res) <- c("tbl_df", "tbl", "data.frame")  # Tibble class
-  expect_error(validate_npi_results(res), class = "bad_class_error")
+
+# validate_npi_results() --------------------------------------------------
+
+with_mock_api({
+  test_that("validate_npi_results throws a `bad_class_error` appropriately", {
+    npi <- 1568946812
+    res <- npi_search(number = npi)
+    class(res) <- c("tbl_df", "tbl", "data.frame")  # Tibble class only
+
+    expect_error(validate_npi_results(res), class = "bad_class_error")
+    expect_error(validate_npi_results(res[, -11L]))
+  })
+})
+
+
+# npi_control_requests() --------------------------------------------------
+
+# test_that("An empty result from npi_control_requests() returns an empty tibble", {
+#   stub(npi_process_results, "npi_control_requests", tibble::tibble())
+#
+# })
+
+
+# npi_summarize() ---------------------------------------------------------
+
+with_mock_api({
+  test_that("npi_summarize() method works as expected", {
+    atl <- npi_search(city = "Atlanta")
+    expect_types <- c("integer", rep("character", 5))
+    expect_names <- c("npi", "name", "enumeration_type",
+                      "primary_practice_address", "phone",
+                      "primary_taxonomy")
+
+    checkmate::expect_tibble(npi_summarize(atl), types = expect_types)
+    expect_identical(names(npi_summarize(atl)), expect_names)
+  })
 })

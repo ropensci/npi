@@ -2,6 +2,7 @@
 API_VERSION <- "2.1"  # Referenced in `npi_search()`
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
+MAX_N_PER_REQUEST <- 200L
 
 #' Delay function execution
 #'

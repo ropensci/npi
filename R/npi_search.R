@@ -121,31 +121,42 @@ npi_search <- function(number = NULL,
     }
   }
 
-  # Validate `limit`
   if (limit < 1L || limit > 1200) {
     rlang::abort("`limit` must be a number between 1 and 1200.")
   }
 
-  query <- list(
-    version = API_VERSION,
-    number = number,
-    enumeration_type = enumeration_type,
-    taxonomy_description = taxonomy_description,
-    first_name = first_name,
-    last_name = last_name,
-    use_first_name_alias = use_first_name_alias,
-    organization_name = organization_name,
-    address_purpose = address_purpose,
-    city = city,
-    state = state,
-    postal_code = postal_code,
-    country_code = country_code,
-    limit = limit
+  npi_process_results(
+    list(
+      version = API_VERSION,
+      number = number,
+      enumeration_type = enumeration_type,
+      taxonomy_description = taxonomy_description,
+      first_name = first_name,
+      last_name = last_name,
+      use_first_name_alias = use_first_name_alias,
+      organization_name = organization_name,
+      address_purpose = address_purpose,
+      city = city,
+      state = state,
+      postal_code = postal_code,
+      country_code = country_code,
+      limit = limit
+    )
   )
+}
 
-  query %>%
-    npi_pager(user_n = query$limit) %>%
-    unlist(recursive = FALSE) %>%
+
+
+#' Processing pipeline for NPI search results
+#' @noRd
+npi_process_results <- function(params) {
+  results <- npi_control_requests(params, user_n = params[["limit"]])
+
+  if (rlang::is_empty(results)) {
+    return(tibble::tibble())
+  }
+
+  results %>%
     tidy_results() %>%
     clean_results() %>%
     new_npi_results() %>%
