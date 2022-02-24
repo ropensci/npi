@@ -4,11 +4,21 @@
 \alias{npi_search}
 \title{Search the NPI Registry}
 \usage{
-npi_search(number = NULL, enumeration_type = NULL,
-  taxonomy_description = NULL, first_name = NULL, last_name = NULL,
-  use_first_name_alias = NULL, organization_name = NULL,
-  address_purpose = NULL, city = NULL, state = NULL,
-  postal_code = NULL, country_code = NULL, limit = 10L)
+npi_search(
+  number = NULL,
+  enumeration_type = NULL,
+  taxonomy_description = NULL,
+  first_name = NULL,
+  last_name = NULL,
+  use_first_name_alias = NULL,
+  organization_name = NULL,
+  address_purpose = NULL,
+  city = NULL,
+  state = NULL,
+  postal_code = NULL,
+  country_code = NULL,
+  limit = 10L
+)
 }
 \arguments{
 \item{number}{(Optional) 10-digit NPI number assigned to the provider.}

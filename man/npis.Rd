@@ -4,7 +4,8 @@
 \name{npis}
 \alias{npis}
 \title{Sample results from the NPI Registry}
-\format{A tibble with 10 rows and 11 columns, organized as follows:
+\format{
+A tibble with 10 rows and 11 columns, organized as follows:
 \describe{
   \item{npi}{[integer] 10-digit National Provider Identifier number}
   \item{enumeration_type}{[character] Type of provider NPI, either
@@ -25,7 +26,8 @@
   \item{created_date}{[datetime] Date NPI record was first created (UTC).}
   \item{last_updated_date}{[datetime] UTC timestamp of the last time the
     NPI record was updated.}
-}}
+}
+}
 \source{
 \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 }
