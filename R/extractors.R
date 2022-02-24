@@ -91,5 +91,5 @@ get_list_col <- function(df, list_col = NULL, key = "npi") {
     sep_val <- NULL
   }
 
-  tidyr::unnest(df, !!rlang::sym(list_col), .sep = sep_val)
+  tidyr::unnest(df, !!rlang::sym(list_col), names_sep = sep_val)
 }
