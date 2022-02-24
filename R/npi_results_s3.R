@@ -159,7 +159,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
   out <- lapply(list_cols, function(x) get_list_col(df, x))
   out <- Reduce(function(x, y) merge(x, y, by = key, all.x = TRUE), out)
-  tibble::as.tibble(out)
+  tibble::as_tibble(out)
 }
 
 
