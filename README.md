@@ -209,6 +209,12 @@ this repository. You can customize the user agent by setting the
 options(npi_user_agent = "my_awesome_user_agent")
 ```
 
+## Package Website
+
+`npi` has a [website](https://frankfarach.github.io/npi/) with release
+notes, documentation on all user functions, and examples showing how the
+package can be used.
+
 ## Reporting Bugs
 
 Did you spot a bug? I’d love to hear about it at the [issues

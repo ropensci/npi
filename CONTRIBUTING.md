@@ -9,6 +9,7 @@ npi is an open source project created and maintained by [Frank Farach](https://w
 [repo]: https://github.com/frankfarach/npi
 [issues]: https://github.com/frankfarach/npi/issues
 [new_issue]: https://github.com/frankfarach/npi/issues/new
+[website]: https://frankfarach.github.io/npi
 
 ## Code of conduct
 
@@ -24,7 +25,7 @@ Think npi is useful? Let others discover it, by telling them in person, via Twit
 
 ### Ask a question
 
-Using npi and got stuck? Browse the [README](README.md) and [issues][issues] to see if you can find a solution. Still stuck? Post your question as an [issue on GitHub][new_issue]. I'll do my best to address it, as questions often lead to better documentation or the discovery of bugs.
+Using npi and got stuck? Browse the [documentation][website] and [issues][issues] to see if you can find a solution. Still stuck? Post your question as an [issue on GitHub][new_issue]. I'll do my best to address it, as questions often lead to better documentation or the discovery of bugs.
 
 ### Propose an idea
 

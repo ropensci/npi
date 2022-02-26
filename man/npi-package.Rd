@@ -39,6 +39,7 @@ by the `npi` column into an analysis-ready object.
 Useful links:
 \itemize{
   \item \url{https://github.com/frankfarach/npi}
+  \item \url{https://frankfarach.github.io/npi/}
   \item Report bugs at \url{https://github.com/frankfarach/npi/issues}
 }
 
