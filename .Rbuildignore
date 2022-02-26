@@ -10,3 +10,7 @@
 ^codemeta\.json$
 ^CITATION\.cff$
 ^CONTRIBUTING\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
