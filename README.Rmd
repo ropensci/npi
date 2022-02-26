@@ -119,6 +119,10 @@ Did you spot a bug? I'd love to hear about it at the [issues page](https://githu
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
+## Contributing
+
+Interested in learning how you can contribute to npi? Head over to the [contributor guide](CONTRIBUTING.md)&mdash;and thanks for considering!
+
 ## License
 
 MIT (c) [Frank Farach](https://github.com/frankfarach)
