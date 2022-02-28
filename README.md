@@ -5,13 +5,17 @@
 
 > Access the U.S. National Provider Identifier Registry API
 
+<!-- badges: start -->
+
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R-CMD-check](https://github.com/frankfarach/npi/workflows/R-CMD-check/badge.svg)](https://github.com/frankfarach/npi/actions)
 [![Travis build
 status](https://travis-ci.org/frankfarach/npi.svg?branch=master)](https://travis-ci.org/frankfarach/npi)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/frankfarach/npi?branch=master&svg=true)](https://ci.appveyor.com/project/frankfarach/npi)
 [![Coverage
 status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+<!-- badges: end -->
 
 Use R to access the U.S. National Provider Identifier (NPI) Registry API
 (v2.1) by the Center for Medicare and Medicaid Services (CMS):
