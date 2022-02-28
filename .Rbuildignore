@@ -6,7 +6,6 @@
 ^README\.Rmd$
 ^\.travis\.yml$
 ^codecov\.yml$
-^appveyor\.yml$
 ^codemeta\.json$
 ^CITATION\.cff$
 ^CONTRIBUTING\.md$
