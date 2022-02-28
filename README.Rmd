@@ -104,6 +104,8 @@ Use `npi_is_valid()` to check whether each element of a vector of candidate numb
 npi_is_valid(c(1234567893, 1234567898))
 ```
 
+This function doesn't check whether the NPI numbers are activated or deactivated (see https://github.com/frankfarach/npi/issues/22#issuecomment-787642817).
+
 ## Set your own user agent
 
 By default, all request headers include a user agent that references this repository. You can customize the user agent by setting the `npi_user_agent` option:
@@ -127,6 +129,10 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 ## Contributing
 
 Interested in learning how you can contribute to npi? Head over to the [contributor guide](CONTRIBUTING.md)&mdash;and thanks for considering!
+
+## How to cite this package
+
+For the latest citation, see the [Authors and Citation](https://frankfarach.github.io/npi/authors.html#citation) page on the package website. 
 
 ## License
 

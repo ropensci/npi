@@ -199,6 +199,10 @@ npi_is_valid(c(1234567893, 1234567898))
 #> [1] TRUE
 ```
 
+This function doesn’t check whether the NPI numbers are activated or
+deactivated (see
+<https://github.com/frankfarach/npi/issues/22#issuecomment-787642817>).
+
 ## Set your own user agent
 
 By default, all request headers include a user agent that references
@@ -230,6 +234,12 @@ to abide by its terms.
 
 Interested in learning how you can contribute to npi? Head over to the
 [contributor guide](CONTRIBUTING.md)—and thanks for considering!
+
+## How to cite this package
+
+For the latest citation, see the [Authors and
+Citation](https://frankfarach.github.io/npi/authors.html#citation) page
+on the package website.
 
 ## License
 
