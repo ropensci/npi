@@ -4,6 +4,7 @@
   "identifier": "npi",
   "description": "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.",
   "name": "npi: Access the U.S. National Provider Identifier Registry API",
+  "relatedLink": "https://frankfarach.github.io/npi/",
   "codeRepository": "https://github.com/frankfarach/npi",
   "issueTracker": "https://github.com/frankfarach/npi/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -19,7 +20,8 @@
       "@type": "Person",
       "givenName": "Frank",
       "familyName": "Farach",
-      "email": "frank.farach@gmail.com"
+      "email": "frank.farach@gmail.com",
+      "@id": "https://orcid.org/0000-0002-2145-0145"
     }
   ],
   "maintainer": [
@@ -27,7 +29,8 @@
       "@type": "Person",
       "givenName": "Frank",
       "familyName": "Farach",
-      "email": "frank.farach@gmail.com"
+      "email": "frank.farach@gmail.com",
+      "@id": "https://orcid.org/0000-0002-2145-0145"
     }
   ],
   "softwareSuggestions": [
@@ -114,30 +117,6 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "attempt",
-      "name": "attempt",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=attempt"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
-      "identifier": "curl",
-      "name": "curl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=curl"
-    },
-    "4": {
-      "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
       "provider": {
@@ -148,19 +127,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr"
     },
-    "5": {
-      "@type": "SoftwareApplication",
-      "identifier": "jsonlite",
-      "name": "jsonlite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
-    },
-    "6": {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -172,7 +139,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "7": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -184,7 +151,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "8": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
@@ -196,7 +163,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
-    "9": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -208,7 +175,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "10": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
@@ -220,7 +187,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "11": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -232,7 +199,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "12": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -244,7 +211,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "13": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
@@ -256,14 +223,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=glue"
     },
-    "14": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "207.689KB",
+  "fileSize": "207.795KB",
   "releaseNotes": "https://github.com/frankfarach/npi/blob/master/NEWS.md",
   "readme": "https://github.com/frankfarach/npi/blob/master/README.md",
   "contIntegration": ["https://travis-ci.org/frankfarach/npi", "https://ci.appveyor.com/project/frankfarach/npi", "https://codecov.io/github/frankfarach/npi?branch=master"],
