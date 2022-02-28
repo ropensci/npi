@@ -10,10 +10,7 @@ BugReports: https://github.com/frankfarach/npi/issues
 Depends: 
     R (>= 3.1)
 Imports: 
-    attempt,
-    curl,
     httr,
-    jsonlite,
     purrr,
     stringr,
     dplyr,

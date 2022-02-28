@@ -81,4 +81,3 @@ Additionally:
 
 * npi follows the [tidyverse](https://tidyverse.org/) style as detailed in the [tidyverse style guide](https://style.tidyverse.org/). Please lint your code with `lintr::lint_file()` prior to committing.
 * npi uses roxygen2 for documentation. Before running devtools::document(), ensure you've update roxygen2 to the latest version and have used `@noRd` for functions that should not be exported.
-* npi uses the [jsonlite](https://github.com/jeroen/jsonlite) package for wrangling JSON.
