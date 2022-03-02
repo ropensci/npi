@@ -71,10 +71,8 @@ validate_npi_results <- function(x, ...) {
 #'     \item{\code{primary_taxonomy}}{Primary taxonomy description}
 #'   }
 #' @examples
-#' \dontrun{
-#'  atl <- npi_search(city = "Atlanta")
-#'  summary(atl)
-#' }
+#' data(npis)
+#' npi_summarize(npis)
 #' @importFrom rlang .data
 #' @export
 npi_summarize.npi_results <- function(object, ...) {
@@ -113,6 +111,9 @@ npi_summarize.npi_results <- function(object, ...) {
 
 #' S3 method to summarize an \code{npi_results} object
 #' @inheritParams npi_summarize.npi_results
+#' @examples
+#' data(npis)
+#' npi_summarize(npis)
 #' @export
 npi_summarize <- function(object, ...) {
   UseMethod("npi_summarize")
@@ -166,6 +167,14 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
 #' S3 method to flatten an \code{npi_results} object
 #' @inheritParams npi_flatten.npi_results
+#' @examples
+#' # Flatten all list columns
+#' data(npis)
+#' npi_flatten(npis)
+#'
+#' # Only flatten specified columns
+#' npi_flatten(npis, cols = "basic")
+#' npi_flatten(npis, cols = c("basic", "identifiers"))
 #' @export
 npi_flatten <- function(df, cols, key) {
   UseMethod("npi_flatten")

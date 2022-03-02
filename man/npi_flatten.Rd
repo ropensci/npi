@@ -19,3 +19,12 @@ default value is \code{"npi"}.}
 \description{
 S3 method to flatten an \code{npi_results} object
 }
+\examples{
+# Flatten all list columns
+data(npis)
+npi_flatten(npis)
+
+# Only flatten specified columns
+npi_flatten(npis, cols = "basic")
+npi_flatten(npis, cols = c("basic", "identifiers"))
+}

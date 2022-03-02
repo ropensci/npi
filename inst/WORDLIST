@@ -1,5 +1,4 @@
 API's
-API’s
 Asclepius
 CMD
 CMS
@@ -23,6 +22,7 @@ jo
 lifecycle
 npiapi
 npiregistry
+nyc
 tibble
 tibbles
 unnest
