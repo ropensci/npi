@@ -1,0 +1,83 @@
+---
+title: "Introduction to npi"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to npi}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(npi)
+``` 
+
+This vignette provides an brief introduction to the npi package. 
+
+`npi` is an R package that allows R users to access the [U.S. National Provider Identifier (NPI) Registry](https://npiregistry.cms.hhs.gov/) API by the Center for Medicare and Medicaid Services (CMS). 
+
+The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.
+
+## Search registry
+
+To explore organizational providers with primary locations in New York City, we could use the `city` argument in the `npi_search()`. The nyc dataset here finds 10 organizational providers with primary locations in New York City, since 10 is the default number of records that are returned in `npi_search()`. The response is a tibble that has high-cardinality data organized into list columns.
+
+```{r}
+nyc <- npi_search(city = "New York City")
+nyc
+```
+
+Other search arguments for the function include npi number, enumeration type, taxonomy description, individual provider's first name, individual provider's last name, use first name alias, organization name, address purpose, state, postal code, country code, and limit. 
+
+Additionally, more than one search argument can be used at once.
+
+```{r}
+nyc_multi <- npi_search(city = "New York City", state = "NY", enumeration_type = "org")
+nyc_multi
+```
+
+Visit the function's help page via `?npi_search` after installing and loading the package for more details.
+
+## Increasing number of records returned
+
+The `limit` argument lets you set the maximum records to return from 1 to 1200 inclusive. The default is 10.
+
+```{r}
+nyc_25 <- npi_search(city = "New York City", limit = 25)
+nyc_25
+```
+
+When using `npi_search()`, searches with greater than 200 records (for example 300 records) will result in multiple API calls. This is because the API returns up to 200 records per request. The function will make multiple calls as needed and still return a tibble.
+
+```{r}
+nyc_300 <- npi_search(city = "New York City", limit = 300)
+nyc_300
+```
+
+
+## Obtaining more human-readable output
+
+`npi_summarize()` provides a more human-readable overview of output already obtained through `npi_search()`. 
+
+```{r}
+npi_summarize(nyc)
+```
+
+Additionally, users can flatten all the list columns using `npi_flatten()`.
+
+```{r}
+npi_flatten(nyc)
+```
+
+Alternatively, individual columns can be flattened for each npi by using the `cols` argument. Only the columns specified will be flattened and returned with the npi column by default.
+
+```{r}
+npi_flatten(nyc, cols = c("basic", "taxonomies"))
+```
+
