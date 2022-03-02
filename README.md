@@ -246,8 +246,10 @@ on the package website.
 MIT (c) [Frank Farach](https://github.com/frankfarach)
 
 This package’s [logo](man/figures/logo.png) is licensed under [CC BY-SA
-4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en). The logo
-uses a modified version of an
+4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en) and
+co-created by [Frank Farach](https://github.com/frankfarach) and [Sam
+Parmar](https://github.com/parmsam). The logo uses a modified version of
+an
 [image](https://commons.wikimedia.org/wiki/File:Rod_of_Asclepius_(Search).svg)
 of the [Rod of
 Asclepius](https://en.wikipedia.org/wiki/Rod_of_Asclepius) and a
