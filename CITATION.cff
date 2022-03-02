@@ -198,6 +198,16 @@ references:
   institution:
     name: R Foundation for Statistical Computing
 - type: software
+  title: checkLuhn
+  abstract: 'checkLuhn: Checks if a Number is Valid Using the Luhn Algorithm'
+  notes: Imports
+  authors:
+  - family-names: Deacon
+    given-names: Adam
+    email: adam@deaconsworld.org.uk
+  year: '2022'
+  url: https://CRAN.R-project.org/package=checkLuhn
+- type: software
   title: covr
   abstract: 'covr: Test Coverage for Packages'
   notes: Suggests
