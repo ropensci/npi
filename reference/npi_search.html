@@ -99,7 +99,7 @@ one of:</p><dl><dt>"ind"</dt>
 <dt>taxonomy_description</dt>
 <dd><p>(Optional) Scalar character vector with a
 taxonomy description or code from the
-<a href="http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50" class="external-link">NUCC
+<a href="https://taxonomy.nucc.org" class="external-link">NUCC
 Healthcare Provider Taxonomy</a>.</p></dd>
 <dt>first_name</dt>
 <dd><p>(Optional) This field only applies to Individual Providers.
@@ -181,9 +181,32 @@ values of <code>limit</code> greater than 200 will result in multiple API calls.
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p><a href="https://npiregistry.cms.hhs.gov/registry/help-api" class="external-link">https://npiregistry.cms.hhs.gov/registry/help-api</a></p>
-<p><a href="http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50" class="external-link">NUCC Healthcare Provider Taxonomy</a></p>
+<p><a href="https://taxonomy.nucc.org" class="external-link">NUCC Healthcare Provider Taxonomy</a></p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="co"># 10 NPI records for New York City</span></span>
+<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># 1O NPI records for New York City, organizations only</span></span>
+<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, enumeration_type <span class="op">=</span> <span class="st">"org"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># 1O NPI records for New York City, individuals only</span></span>
+<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, enumeration_type <span class="op">=</span> <span class="st">"ind"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># 1200 NPI records for New York City</span></span>
+<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">1200</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Nutritionists in Maine</span></span>
+<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>state <span class="op">=</span> <span class="st">"ME"</span>, taxonomy_description <span class="op">=</span> <span class="st">"Nutritionist"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Record associated with NPI 1245251222</span></span>
+<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>number <span class="op">=</span> <span class="fl">1245251222</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

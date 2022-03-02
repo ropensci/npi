@@ -99,10 +99,21 @@ the one offered on the NPI registry website.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"> <span class="va">atl</span> <span class="op">&lt;-</span> <span class="fu"><a href="npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"Atlanta"</span><span class="op">)</span></span>
-<span class="r-in"> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">atl</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">npis</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="npi_summarize.html">npi_summarize</a></span><span class="op">(</span><span class="va">npis</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           npi name      enumeration_type primary_practic… phone primary_taxonomy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">1</span>194<span style="text-decoration: underline;">276</span>360 ALYSSA C… Individual       5 E 98TH ST FL … 212-… Physician Assis…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK MOH… Individual       16 PARK PL, NEW… 212-… Orthopaedic Sur…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">1</span>639<span style="text-decoration: underline;">173</span>065 SAKSHI D… Individual       10 E 102ND ST, … 212-… Internal Medici…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">1</span>346<span style="text-decoration: underline;">604</span>592 SARAH LO… Individual       1335 DUBLIN RD … 614-… Occupational Th…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">362</span>566 AMY TIER… Individual       1176 5TH AVE, N… 212-… Internal Medici…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">1</span>790<span style="text-decoration: underline;">786</span>416 NOAH GOL… Individual       140 BERGEN STRE… 973-… Obstetrics &amp; Gy…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN NO… Individual       9 HOPE AVE STE … 781-… Nurse Practitio…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">1</span>962<span style="text-decoration: underline;">983</span>775 LENOX HI… Organization     100 E 77TH ST, … 212-… Nurse Anestheti…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">1</span>427<span style="text-decoration: underline;">454</span>529 YONGHONG… Individual       34 MAPLE ST, NO… 203-… Psychiatry &amp; Ne…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Practitio…</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
