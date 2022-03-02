@@ -6,6 +6,8 @@
 \alias{npi-package}
 \title{npi: Access the U.S. National Provider Identifier Registry API}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
 }
 \details{

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# npi
+# npi <img src="man/figures/logo.png" align="right" height="139" />
 
 > Access the U.S. National Provider Identifier Registry API
 
@@ -201,7 +201,7 @@ npi_is_valid(c(1234567893, 1234567898))
 
 This function doesn’t check whether the NPI numbers are activated or
 deactivated (see
-<https://github.com/frankfarach/npi/issues/22#issuecomment-787642817>).
+[\#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
 
 ## Set your own user agent
 
@@ -244,3 +244,11 @@ on the package website.
 ## License
 
 MIT (c) [Frank Farach](https://github.com/frankfarach)
+
+This package’s [logo](man/figures/logo.png) is licensed under [CC BY-SA
+4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en). The logo
+uses a modified version of an
+[image](https://commons.wikimedia.org/wiki/File:Rod_of_Asclepius_(Search).svg)
+of the [Rod of
+Asclepius](https://en.wikipedia.org/wiki/Rod_of_Asclepius) and a
+magnifying glass that is attributed to Evanherk, GFDL.
