@@ -16,11 +16,8 @@ Boolean indicating whether \code{npi} is valid
 Check whether a number is a valid NPI number per the specifications detailed in the Final Rule for the Standard Unique Health Identifier for Health Care Providers (69 FR 3434).
 }
 \examples{
-npi_is_valid(1234567893)
-npi_is_valid(1234567898)
-}
-\references{
-\url{http://scott.sherrillmix.com/blog/tag/luhn-algorithm/}
+npi_is_valid(1234567893) # TRUE
+npi_is_valid(1234567898) # FALSE
 }
 \seealso{
 \url{https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf}

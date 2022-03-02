@@ -22,7 +22,8 @@ Imports:
     tidyr,
     rlang,
     glue,
-    utils
+    utils,
+    checkLuhn
 Suggests: 
     covr,
     httptest,
