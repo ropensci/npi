@@ -15,7 +15,7 @@
 #'   \item{"org"}{Organizational provider (NPI-2)} }
 #' @param taxonomy_description (Optional) Scalar character vector with a
 #'   taxonomy description or code from the
-#'   \href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC
+#'   \href{https://taxonomy.nucc.org}{NUCC
 #'   Healthcare Provider Taxonomy}.
 #' @param first_name (Optional) This field only applies to Individual Providers.
 #'   Trailing wildcard entries are permitted requiring at least two characters
@@ -74,12 +74,31 @@
 #' @param limit Maximum number of records to return, from 1 to 1200 inclusive.
 #'   The default is 10. Because the API returns up to 200 records per request,
 #'   values of \code{limit} greater than 200 will result in multiple API calls.
-
+#' @examples
+#' \dontrun{
+#' # 10 NPI records for New York City
+#' npi_search(city = "New York City")
+#'
+#' # 1O NPI records for New York City, organizations only
+#' npi_search(city = "New York City", enumeration_type = "org")
+#'
+#' # 1O NPI records for New York City, individuals only
+#' npi_search(city = "New York City", enumeration_type = "ind")
+#'
+#' # 1200 NPI records for New York City
+#' npi_search(city = "New York City", limit = 1200)
+#'
+#' # Nutritionists in Maine
+#' npi_search(state = "ME", taxonomy_description = "Nutritionist")
+#'
+#' # Record associated with NPI 1245251222
+#' npi_search(number = 1245251222)
+#' }
 #' @return Data frame (tibble) containing the results of the search.
 #' @references
 #'   \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 #' @references
-#'   \href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC Healthcare Provider Taxonomy}
+#'   \href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}
 #' @export
 npi_search <- function(number = NULL,
                        enumeration_type = NULL,

@@ -29,7 +29,7 @@ one of: \describe{ \item{"ind"}{Individual provider (NPI-1)}
 
 \item{taxonomy_description}{(Optional) Scalar character vector with a
 taxonomy description or code from the
-\href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC
+\href{https://taxonomy.nucc.org}{NUCC
 Healthcare Provider Taxonomy}.}
 
 \item{first_name}{(Optional) This field only applies to Individual Providers.
@@ -113,8 +113,29 @@ for a description of the returned object.
 By default, the function requests up to 10 records, but the
 \code{limit} argument accepts values from 1 to the API's limit of 1200.
 }
+\examples{
+\dontrun{
+# 10 NPI records for New York City
+npi_search(city = "New York City")
+
+# 1O NPI records for New York City, organizations only
+npi_search(city = "New York City", enumeration_type = "org")
+
+# 1O NPI records for New York City, individuals only
+npi_search(city = "New York City", enumeration_type = "ind")
+
+# 1200 NPI records for New York City
+npi_search(city = "New York City", limit = 1200)
+
+# Nutritionists in Maine
+npi_search(state = "ME", taxonomy_description = "Nutritionist")
+
+# Record associated with NPI 1245251222
+npi_search(number = 1245251222)
+}
+}
 \references{
 \url{https://npiregistry.cms.hhs.gov/registry/help-api}
 
-\href{http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50}{NUCC Healthcare Provider Taxonomy}
+\href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}
 }
