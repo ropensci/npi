@@ -6,6 +6,8 @@
 \alias{npi-package}
 \title{npi: Access the U.S. National Provider Identifier Registry API}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
 }
 \details{
@@ -46,6 +48,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
+}
 
 }
 \keyword{internal}
