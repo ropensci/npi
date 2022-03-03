@@ -1,7 +1,10 @@
 Package: npi
 Title: Access the U.S. National Provider Identifier Registry API
 Version: 0.0.0.9000
-Authors@R: person('Frank', 'Farach', email = 'frank.farach@gmail.com', role = c('cre', 'aut'), comment = c(ORCID = "0000-0002-2145-0145"))
+Authors@R: c(
+    person('Frank', 'Farach', email = 'frank.farach@gmail.com', role = c('cre', 'aut'), comment = c(ORCID = "0000-0002-2145-0145")),
+    person('Sam', 'Parmar', email = 'parmartsam@gmail.com', role = c('ctb'))
+  )
 Description: Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
 License: MIT + file LICENSE
 URL: https://github.com/frankfarach/npi,
@@ -19,7 +22,8 @@ Imports:
     tidyr,
     rlang,
     glue,
-    utils
+    utils,
+    checkLuhn
 Suggests: 
     covr,
     httptest,

@@ -14,3 +14,7 @@ npi_summarize(object, ...)
 \description{
 S3 method to summarize an \code{npi_results} object
 }
+\examples{
+data(npis)
+npi_summarize(npis)
+}

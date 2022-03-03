@@ -15,6 +15,7 @@ authors:
 - family-names: Farach
   given-names: Frank
   email: frank.farach@gmail.com
+  orcid: https://orcid.org/0000-0002-2145-0145
 preferred-citation:
   type: manual
   title: 'npi: Access the U.S. National Provider Identifier Registry API'
@@ -22,15 +23,17 @@ preferred-citation:
   - family-names: Farach
     given-names: Frank
     email: frank.farach@gmail.com
+    orcid: https://orcid.org/0000-0002-2145-0145
   version: 0.0.0.9000
   abstract: Access the United States National Provider Identifier Registry API (if
     available) and provide informative error messages when it's not.
   repository-code: https://github.com/frankfarach/npi
-  url: https://github.com/frankfarach/npi
+  url: https://frankfarach.github.io/npi/
   contact:
   - family-names: Farach
     given-names: Frank
     email: frank.farach@gmail.com
+    orcid: https://orcid.org/0000-0002-2145-0145
   keywords:
   - api-wrapper
   - health-data
@@ -40,11 +43,12 @@ preferred-citation:
   license: MIT
   year: '2022'
 repository-code: https://github.com/frankfarach/npi
-url: https://github.com/frankfarach/npi
+url: https://frankfarach.github.io/npi/
 contact:
 - family-names: Farach
   given-names: Frank
   email: frank.farach@gmail.com
+  orcid: https://orcid.org/0000-0002-2145-0145
 keywords:
 - api-wrapper
 - health-data
@@ -65,28 +69,6 @@ references:
     name: R Foundation for Statistical Computing
   version: '>= 3.1'
 - type: software
-  title: attempt
-  abstract: 'attempt: Tools for Defensive Programming'
-  notes: Imports
-  authors:
-  - family-names: Fay
-    given-names: Colin
-    email: contact@colinfay.me
-    orcid: https://orcid.org/0000-0001-7343-1846
-  year: '2022'
-  url: https://CRAN.R-project.org/package=attempt
-- type: software
-  title: curl
-  abstract: 'curl: A Modern and Flexible Web Client for R'
-  notes: Imports
-  authors:
-  - family-names: Ooms
-    given-names: Jeroen
-    email: jeroen@berkeley.edu
-    orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2022'
-  url: https://CRAN.R-project.org/package=curl
-- type: software
   title: httr
   abstract: 'httr: Tools for Working with URLs and HTTP'
   notes: Imports
@@ -96,17 +78,6 @@ references:
     email: hadley@rstudio.com
   year: '2022'
   url: https://CRAN.R-project.org/package=httr
-- type: software
-  title: jsonlite
-  abstract: 'jsonlite: A Simple and Robust JSON Parser and Generator for R'
-  notes: Imports
-  authors:
-  - family-names: Ooms
-    given-names: Jeroen
-    email: jeroen@berkeley.edu
-    orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2022'
-  url: https://CRAN.R-project.org/package=jsonlite
 - type: software
   title: purrr
   abstract: 'purrr: Functional Programming Tools'
@@ -227,6 +198,16 @@ references:
   institution:
     name: R Foundation for Statistical Computing
 - type: software
+  title: checkLuhn
+  abstract: 'checkLuhn: Checks if a Number is Valid Using the Luhn Algorithm'
+  notes: Imports
+  authors:
+  - family-names: Deacon
+    given-names: Adam
+    email: adam@deaconsworld.org.uk
+  year: '2022'
+  url: https://CRAN.R-project.org/package=checkLuhn
+- type: software
   title: covr
   abstract: 'covr: Test Coverage for Packages'
   notes: Suggests
@@ -298,3 +279,53 @@ references:
     email: james.hester@rstudio.com
   year: '2022'
   url: https://CRAN.R-project.org/package=spelling
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2022'
+  url: https://CRAN.R-project.org/package=knitr
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Suggests
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2022'
+  url: https://CRAN.R-project.org/package=rmarkdown

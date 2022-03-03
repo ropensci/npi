@@ -31,8 +31,6 @@ call to \code{\link{npi_search}}. The format of the summary is modeled after
 the one offered on the NPI registry website.
 }
 \examples{
-\dontrun{
- atl <- npi_search(city = "Atlanta")
- summary(atl)
-}
+data(npis)
+npi_summarize(npis)
 }

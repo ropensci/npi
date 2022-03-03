@@ -82,10 +82,9 @@ remove_null <- function(l) {
 #' @param x 10-digit candidate NPI number
 #' @return Boolean indicating whether \code{npi} is valid
 #' @examples
-#' npi_is_valid(1234567893)
-#' npi_is_valid(1234567898)
+#' npi_is_valid(1234567893) # TRUE
+#' npi_is_valid(1234567898) # FALSE
 #' @seealso \url{https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf}
-#' @references \url{http://scott.sherrillmix.com/blog/tag/luhn-algorithm/}
 #' @export
 npi_is_valid <- function(x) {
   if (stringr::str_length(x) != 10 ||
@@ -101,13 +100,7 @@ npi_is_valid <- function(x) {
   x <- paste0("80840", x)
 
   # Validate number using the Luhn algorithm
-  x <- gsub("[^0-9]", "", x)
-  x <- as.integer(strsplit(x, "")[[1]])
-  selector <- seq(length(x) - 1, 1, -2)
-  x[selector] <- x[selector] * 2
-  x[x > 9] <- x[x > 9] - 9
-  remainder <- sum(x) %% 10
-  remainder == 0
+  checkLuhn::checkLuhn(x)
 }
 
 
@@ -187,3 +180,11 @@ make_full_address <-
         stringr::str_trim(df[[postal_code]], "both")
       )
   }
+
+#' Check for new tidyr interface
+#'
+#' @return Boolean indicating whether a newer version of tidyr is installed
+#' @noRd
+tidyr_new_interface <- function() {
+  utils::packageVersion("tidyr") > "0.8.99"
+}
