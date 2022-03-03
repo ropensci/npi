@@ -31,7 +31,7 @@ by the `npi` column into an analysis-ready object.
 
 
   \pkg{npi}'s default user agent is the URL of the package's GitHub
-  repository, \url{https://github.com/frankfarach/npi}. You can customize
+  repository, \url{https://www.github.com/frankfarach/npi}. You can customize
   it by setting the \code{npi_user_agent} option:
 
   \code{options(npi_user_agent = "your_user_agent_here")}

@@ -15,8 +15,8 @@
 Tibble containing the following columns:
   \describe{
     \item{\code{npi}}{National Provider Identifier (NPI) number}
-    \item{\code{name}}{Provider's first and last name for individual providers,
-      organization name for organizational providers.}
+    \item{\code{name}}{Provider's first and last name for individual
+    providers, organization name for organizational providers.}
     \item{\code{enumeration_type}}{Type of provider associated with the NPI,
       either "Individual" or "Organizational"}
     \item{\code{primary_practice_address}}{Full address of the provider's
