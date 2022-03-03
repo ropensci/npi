@@ -180,3 +180,11 @@ make_full_address <-
         stringr::str_trim(df[[postal_code]], "both")
       )
   }
+
+#' Check for new tidyr interface
+#'
+#' @return Boolean indicating whether a newer version of tidyr is installed
+#' @noRd
+tidyr_new_interface <- function() {
+  utils::packageVersion("tidyr") > "0.8.99"
+}
