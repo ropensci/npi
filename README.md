@@ -7,7 +7,10 @@
 
 <!-- badges: start -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R-CMD-check](https://github.com/frankfarach/npi/workflows/R-CMD-check/badge.svg)](https://github.com/frankfarach/npi/actions)
 [![Coverage
 status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
@@ -36,7 +39,7 @@ library(npi)
 `npi` exports four functions, all of which match the pattern “npi\_\*“:
 
 -   `npi_search()`: Search the NPI Registry and return the response as a
-    [tibble](http://tibble.tidyverse.org/) with high-cardinality data
+    [tibble](https://tibble.tidyverse.org/) with high-cardinality data
     organized into list columns.
 -   `npi_summarize()`: A method for displaying a nice overview of
     results from `npi_search()`.
@@ -196,7 +199,11 @@ candidate numbers is a valid NPI number:
 ``` r
 # Validate off NPIs
 npi_is_valid(c(1234567893, 1234567898))
-#> [1] TRUE
+#> Warning in if (nchar(number) <= 2) {: the condition has length > 1 and only the
+#> first element will be used
+#> Warning in if (!grepl("^[[:digit:]]+$", number)) {: the condition has length > 1
+#> and only the first element will be used
+#> [1] FALSE
 ```
 
 This function doesn’t check whether the NPI numbers are activated or
@@ -245,7 +252,7 @@ on the package website.
 
 MIT (c) [Frank Farach](https://github.com/frankfarach)
 
-This package’s [logo](man/figures/logo.png) is licensed under [CC BY-SA
+This package’s logo is licensed under [CC BY-SA
 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en) and
 co-created by [Frank Farach](https://github.com/frankfarach) and [Sam
 Parmar](https://github.com/parmsam). The logo uses a modified version of
