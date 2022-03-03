@@ -1,6 +1,7 @@
 #' Construct an \code{npi_results} S3 object
 #'
-#' Creates an \code{npi_results} S3 object from a tibble. See \code{\link{validate_npi_results}} for other requirements for this class.
+#' Creates an \code{npi_results} S3 object from a tibble. See
+#'   \code{\link{validate_npi_results}} for other requirements for this class.
 #'
 #' @param x A tibble
 #' @return A tibble with S3 class \code{npi_results}
@@ -18,31 +19,42 @@ new_npi_results <- function(x, ...) {
 
 #' Validate input as S3 \code{npi_results} object
 #'
-#' Accepts an object, \code{x}, and determines whether it meets the criteria to be an S3 \code{npi_results} S3 object. The criteria include tests for data types, column names, and class attributes. They are intentionally strict to provide a contract to functions that interact with it.
+#' Accepts an object, \code{x}, and determines whether it meets the criteria
+#'   to be an S3 \code{npi_results} S3 object. The criteria include tests for
+#'   data types, column names, and class attributes. They are intentionally
+#'   strict to provide a contract to functions that interact with it.
 #' @seealso \code{\link{new_npi_results}}
 #' @keywords internal
 validate_npi_results <- function(x, ...) {
-  obj_types <- c("integer", "character", rep("list", 7),
-                 rep("double", 2))
-  obj_col_names <- c("npi", "enumeration_type", "basic",
-                     "other_names", "identifiers",
-                     "taxonomies", "addresses",
-                     "practice_locations", "endpoints",
-                     "created_date", "last_updated_date")
+  obj_types <- c(
+    "integer", "character", rep("list", 7),
+    rep("double", 2)
+  )
+  obj_col_names <- c(
+    "npi", "enumeration_type", "basic",
+    "other_names", "identifiers",
+    "taxonomies", "addresses",
+    "practice_locations", "endpoints",
+    "created_date", "last_updated_date"
+  )
 
   # Ensure type- and column-safety
   checkmate::assert_tibble(x, types = obj_types, ncols = 11)
 
-  if(!identical(names(x), obj_col_names)) {
-    rlang::abort("Columns names do not match expected names.",
-                 "bad_names_error")
+  if (!identical(names(x), obj_col_names)) {
+    rlang::abort(
+      "Columns names do not match expected names.",
+      "bad_names_error"
+    )
   }
 
   # `npi_results` has to be the first element of the class
   # vector for generic methods to work.
-  if("npi_results" != class(x)[[1]]) {
-    rlang::abort("`x` is missing `npi_results` class.",
-                 "bad_class_error")
+  if ("npi_results" != class(x)[[1]]) {
+    rlang::abort(
+      "`x` is missing `npi_results` class.",
+      "bad_class_error"
+    )
   }
 
   x
@@ -61,8 +73,8 @@ validate_npi_results <- function(x, ...) {
 #' @return Tibble containing the following columns:
 #'   \describe{
 #'     \item{\code{npi}}{National Provider Identifier (NPI) number}
-#'     \item{\code{name}}{Provider's first and last name for individual providers,
-#'       organization name for organizational providers.}
+#'     \item{\code{name}}{Provider's first and last name for individual
+#'     providers, organization name for organizational providers.}
 #'     \item{\code{enumeration_type}}{Type of provider associated with the NPI,
 #'       either "Individual" or "Organizational"}
 #'     \item{\code{primary_practice_address}}{Full address of the provider's
@@ -93,15 +105,18 @@ npi_summarize.npi_results <- function(object, ...) {
   tibble::tibble(
     npi = object$npi,
     name = ifelse(object$enumeration_type == "Individual",
-                  paste(basic$basic_first_name, basic$basic_last_name),
-                  basic$basic_organization_name),
+      paste(basic$basic_first_name, basic$basic_last_name),
+      basic$basic_organization_name
+    ),
     enumeration_type = object$enumeration_type,
     primary_practice_address = address_loc %>%
-      make_full_address("addresses_address_1",
-                        "addresses_address_2",
-                        "addresses_city",
-                        "addresses_state",
-                        "addresses_postal_code"),
+      make_full_address(
+        "addresses_address_1",
+        "addresses_address_2",
+        "addresses_city",
+        "addresses_state",
+        "addresses_postal_code"
+      ),
     phone = address_loc$addresses_telephone_number,
     primary_taxonomy = tax_primary$taxonomies_desc
   )

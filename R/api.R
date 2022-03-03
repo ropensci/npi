@@ -67,12 +67,14 @@ npi_handle_response <- function(resp) {
     msg <- sprintf(
       "NPPES API request failed [%s]\n<%s>",
       resp_status,
-      resp_url)
+      resp_url
+    )
 
     rlang::abort("request_failed_error",
-                 message = msg,
-                 status = resp_status,
-                 url = resp_url)
+      message = msg,
+      status = resp_status,
+      url = resp_url
+    )
   }
 
   # The API may return other content types during maintenance,
@@ -88,13 +90,16 @@ npi_handle_response <- function(resp) {
 
   if (!is.null(errors)) {
     pretty_errors <-
-      purrr::map_chr(errors,
-                     ~ paste0("\nField: ", .x$field, "\n", .x$description))
+      purrr::map_chr(
+        errors,
+        ~ paste0("\nField: ", .x$field, "\n", .x$description)
+      )
 
     msg <- stringr::str_c(pretty_errors, collapse = "\n\nError: ")
     rlang::abort("request_logic_error",
-                 message = msg,
-                 url = resp_url)
+      message = msg,
+      url = resp_url
+    )
   }
 
   httr::content(resp)$results

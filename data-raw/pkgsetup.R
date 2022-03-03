@@ -90,5 +90,3 @@ library(hexSticker)
 img <- "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Caduceus_large.png/170px-Caduceus_large.png"
 
 sticker(img, package = "npi", p_size = 8, s_x = 1, s_y = .75, s_width = .6, s_height = .7, filename = "inst/figure/npi.png")
-
-

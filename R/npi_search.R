@@ -113,29 +113,31 @@ npi_search <- function(number = NULL,
                        postal_code = NULL,
                        country_code = NULL,
                        limit = 10L) {
-
   if (!is.null(enumeration_type) &&
-      !enumeration_type %in% c("ind", "org")) {
+    !enumeration_type %in% c("ind", "org")) {
     rlang::abort("`enumeration_type` must be one of: NULL, 'ind', or 'org'.")
   }
 
   enumeration_type <- ifelse(enumeration_type == "ind", "NPI-1", "NPI-2")
 
   if (!is.logical(use_first_name_alias) &&
-      !is.null(use_first_name_alias)) {
+    !is.null(use_first_name_alias)) {
     rlang::abort("`use_first_name_alias` must be TRUE or FALSE if specified.")
   }
 
   if (!is.null(use_first_name_alias)) {
     use_first_name_alias <- ifelse(isTRUE(use_first_name_alias),
-                                   "True", "False")
+      "True", "False"
+    )
   }
 
   if (!is.null(address_purpose)) {
     vals <- c("location", "mailing", "primary", "secondary")
     if (!address_purpose %in% vals) {
-      msg <- paste("`address_purpose` must be one of:",
-                   stringr::str_c(vals, collapse = ", "))
+      msg <- paste(
+        "`address_purpose` must be one of:",
+        stringr::str_c(vals, collapse = ", ")
+      )
       rlang::abort(msg)
     }
   }
