@@ -75,6 +75,13 @@ default value is <code>"npi"</code>.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Flatten all list columns</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">npis</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">npi_flatten</span><span class="op">(</span><span class="va">npis</span><span class="op">)</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> Use `names_sep = '_'` instead.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48 × 42</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
