@@ -234,16 +234,14 @@
 <div class="section level3">
 <h3 id="validating-npis">Validating NPIs<a class="anchor" aria-label="anchor" href="#validating-npis"></a>
 </h3>
-<p>Use <code><a href="reference/npi_is_valid.html">npi_is_valid()</a></code> to check whether each element of a vector of candidate numbers is a valid NPI number:</p>
+<p>Use <code><a href="reference/npi_is_valid.html">npi_is_valid()</a></code> to check whether each element of a vector of candidate numbers is a validly constructed NPI number:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Validate off NPIs</span>
-<span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1234567893</span>, <span class="fl">1234567898</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning in if (nchar(number) &lt;= 2) {: the condition has length &gt; 1 and only the</span>
-<span class="co">#&gt; first element will be used</span>
-<span class="co">#&gt; Warning in if (!grepl("^[[:digit:]]+$", number)) {: the condition has length &gt; 1</span>
-<span class="co">#&gt; and only the first element will be used</span>
+<span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fl">1234567893</span><span class="op">)</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fl">1234567898</span><span class="op">)</span>
 <span class="co">#&gt; [1] FALSE</span></code></pre></div>
-<p>This function doesn’t check whether the NPI numbers are activated or deactivated (see <a href="https://github.com/frankfarach/npi/issues/22#issuecomment-787642817" class="external-link">#22</a>).</p>
+<p>Note that this function doesn’t check whether the NPI numbers are activated or deactivated (see <a href="https://github.com/frankfarach/npi/issues/22#issuecomment-787642817" class="external-link">#22</a>).</p>
 </div>
 </div>
 <div class="section level2">
