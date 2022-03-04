@@ -99,14 +99,15 @@ Now we're ready to do whatever else we need to do with this data. Under the hood
 
 ### Validating NPIs
 
-Use `npi_is_valid()` to check whether each element of a vector of candidate numbers is a valid NPI number:
+Use `npi_is_valid()` to check whether each element of a vector of candidate numbers is a validly constructed NPI number:
 
 ```{r valid_npi_ex}
 # Validate off NPIs
-npi_is_valid(c(1234567893, 1234567898))
+npi_is_valid(1234567893)
+npi_is_valid(1234567898)
 ```
 
-This function doesn't check whether the NPI numbers are activated or deactivated (see [#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
+Note that this function doesn't check whether the NPI numbers are activated or deactivated (see [#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
 
 ## Set your own user agent
 

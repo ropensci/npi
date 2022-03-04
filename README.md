@@ -194,20 +194,18 @@ the hood, `npi_flatten()` has done a lot of data wrangling for us:
 ### Validating NPIs
 
 Use `npi_is_valid()` to check whether each element of a vector of
-candidate numbers is a valid NPI number:
+candidate numbers is a validly constructed NPI number:
 
 ``` r
 # Validate off NPIs
-npi_is_valid(c(1234567893, 1234567898))
-#> Warning in if (nchar(number) <= 2) {: the condition has length > 1 and only the
-#> first element will be used
-#> Warning in if (!grepl("^[[:digit:]]+$", number)) {: the condition has length > 1
-#> and only the first element will be used
+npi_is_valid(1234567893)
+#> [1] TRUE
+npi_is_valid(1234567898)
 #> [1] FALSE
 ```
 
-This function doesn’t check whether the NPI numbers are activated or
-deactivated (see
+Note that this function doesn’t check whether the NPI numbers are
+activated or deactivated (see
 [\#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
 
 ## Set your own user agent
