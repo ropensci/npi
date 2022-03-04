@@ -9,6 +9,7 @@ type: software
 license: MIT
 title: 'npi: Access the U.S. National Provider Identifier Registry API'
 version: 0.1.0
+doi: 10.5281/zenodo.6326729
 abstract: Access the United States National Provider Identifier Registry API (if available)
   and provide informative error messages when it's not.
 authors:
@@ -25,6 +26,7 @@ preferred-citation:
     given-names: Frank J
   year: '2022'
   url: https://github.com/frankfarach/npi
+  doi: 10.5281/zenodo.6326729
 repository-code: https://github.com/frankfarach/npi
 url: https://frankfarach.github.io/npi/
 contact:
@@ -46,6 +48,7 @@ references:
     given-names: Frank
   url: https://github.com/frankfarach/npi
   year: '2022'
+  doi: 10.5281/zenodo.6326729
   notes: R package version 0.1.0
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
