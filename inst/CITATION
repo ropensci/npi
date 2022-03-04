@@ -6,6 +6,7 @@ citEntry(
   author   = as.person("Frank J Farach"),
   year     = 2022,
   url      = "https://github.com/frankfarach/npi",
+  doi      = "10.5281/zenodo.6326729",
   textVersion = paste("Farach, F. J. (2022). npi: Access the U.S. National Provider Identifier Registry API (Version 0.1.0). https://github.com/frankfarach/npi"
   )
 )
@@ -16,5 +17,6 @@ bibentry(
   author = person("Frank", "Farach", role = c("cre", "aut")),
   url = "https://github.com/frankfarach/npi",
   year = 2022,
+  doi = "10.5281/zenodo.6326729",
   note = "R package version 0.1.0"
 )

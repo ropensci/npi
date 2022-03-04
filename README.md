@@ -14,6 +14,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![R-CMD-check](https://github.com/frankfarach/npi/workflows/R-CMD-check/badge.svg)](https://github.com/frankfarach/npi/actions)
 [![Coverage
 status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+[![DOI](https://zenodo.org/badge/122857655.svg)](https://zenodo.org/badge/latestdoi/122857655)
 <!-- badges: end -->
 
 Use R to access the U.S. National Provider Identifier (NPI) Registry API

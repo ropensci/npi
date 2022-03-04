@@ -274,7 +274,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "258.425KB",
+  "fileSize": "258.593KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -287,7 +287,10 @@
         }
       ],
       "name": "npi: Access the U.S. National Provider Identifier Registry API (Version 0.1.0)",
-      "url": "https://github.com/frankfarach/npi"
+      "identifier": "10.5281/zenodo.6326729",
+      "url": "https://github.com/frankfarach/npi",
+      "@id": "https://doi.org/10.5281/zenodo.6326729",
+      "sameAs": "https://doi.org/10.5281/zenodo.6326729"
     },
     {
       "@type": "SoftwareSourceCode",
@@ -300,8 +303,11 @@
         }
       ],
       "name": "{npi}: Access the U.S. National Provider Identifier Registry API",
+      "identifier": "10.5281/zenodo.6326729",
       "url": "https://github.com/frankfarach/npi",
-      "description": "R package version 0.1.0"
+      "description": "R package version 0.1.0",
+      "@id": "https://doi.org/10.5281/zenodo.6326729",
+      "sameAs": "https://doi.org/10.5281/zenodo.6326729"
     }
   ],
   "releaseNotes": "https://github.com/frankfarach/npi/blob/master/NEWS.md",
