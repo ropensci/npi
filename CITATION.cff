@@ -18,30 +18,13 @@ authors:
   orcid: https://orcid.org/0000-0002-2145-0145
 preferred-citation:
   type: manual
-  title: 'npi: Access the U.S. National Provider Identifier Registry API'
+  title: 'npi: Access the U.S. National Provider Identifier Registry API (Version
+    0.1.0)'
   authors:
   - family-names: Farach
-    given-names: Frank
-    email: frank.farach@gmail.com
-    orcid: https://orcid.org/0000-0002-2145-0145
-  version: 0.0.0.9000
-  abstract: Access the United States National Provider Identifier Registry API (if
-    available) and provide informative error messages when it's not.
-  repository-code: https://github.com/frankfarach/npi
-  url: https://frankfarach.github.io/npi/
-  contact:
-  - family-names: Farach
-    given-names: Frank
-    email: frank.farach@gmail.com
-    orcid: https://orcid.org/0000-0002-2145-0145
-  keywords:
-  - api-wrapper
-  - health-data
-  - healthcare
-  - npi-number
-  - r
-  license: MIT
+    given-names: Frank J
   year: '2022'
+  url: https://github.com/frankfarach/npi
 repository-code: https://github.com/frankfarach/npi
 url: https://frankfarach.github.io/npi/
 contact:
@@ -56,6 +39,14 @@ keywords:
 - npi-number
 - r
 references:
+- type: manual
+  title: 'npi: Access the U.S. National Provider Identifier Registry API'
+  authors:
+  - family-names: Farach
+    given-names: Frank
+  url: https://github.com/frankfarach/npi
+  year: '2022'
+  notes: R package version 0.1.0
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
   notes: Depends
@@ -329,3 +320,6 @@ references:
   year: '2022'
   url: https://CRAN.R-project.org/package=testthat
   version: '>= 2.1.0'
+identifiers:
+- type: url
+  value: https://npiregistry.cms.hhs.gov/api/
