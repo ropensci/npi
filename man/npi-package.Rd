@@ -42,6 +42,7 @@ Useful links:
 \itemize{
   \item \url{https://github.com/frankfarach/npi}
   \item \url{https://frankfarach.github.io/npi/}
+  \item \url{https://npiregistry.cms.hhs.gov/api/}
   \item Report bugs at \url{https://github.com/frankfarach/npi/issues}
 }
 
