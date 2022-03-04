@@ -4,7 +4,7 @@
   "identifier": "npi",
   "description": "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.",
   "name": "npi: Access the U.S. National Provider Identifier Registry API",
-  "relatedLink": "https://frankfarach.github.io/npi/",
+  "relatedLink": ["https://frankfarach.github.io/npi/", "https://npiregistry.cms.hhs.gov/api/"],
   "codeRepository": "https://github.com/frankfarach/npi",
   "issueTracker": "https://github.com/frankfarach/npi/issues",
   "license": "https://spdx.org/licenses/MIT",
@@ -24,6 +24,14 @@
       "@id": "https://orcid.org/0000-0002-2145-0145"
     }
   ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Sam",
+      "familyName": "Parmar",
+      "email": "parmartsam@gmail.com"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -34,6 +42,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "checkmate",
+      "name": "checkmate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=checkmate"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "covr",
@@ -60,16 +80,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "testthat",
-      "name": "testthat",
-      "version": ">= 2.1.0",
+      "identifier": "knitr",
+      "name": "knitr",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
     },
     {
       "@type": "SoftwareApplication",
@@ -85,15 +104,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "checkmate",
-      "name": "checkmate",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=checkmate"
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -106,6 +125,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=spelling"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 2.1.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "softwareRequirements": {
@@ -117,41 +149,17 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "httr",
-      "name": "httr",
+      "identifier": "checkLuhn",
+      "name": "checkLuhn",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=httr"
+      "sameAs": "https://CRAN.R-project.org/package=checkLuhn"
     },
     "3": {
-      "@type": "SoftwareApplication",
-      "identifier": "purrr",
-      "name": "purrr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=purrr"
-    },
-    "4": {
-      "@type": "SoftwareApplication",
-      "identifier": "stringr",
-      "name": "stringr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=stringr"
-    },
-    "5": {
       "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
@@ -163,55 +171,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
-    "6": {
-      "@type": "SoftwareApplication",
-      "identifier": "tibble",
-      "name": "tibble",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tibble"
-    },
-    "7": {
-      "@type": "SoftwareApplication",
-      "identifier": "magrittr",
-      "name": "magrittr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    },
-    "8": {
-      "@type": "SoftwareApplication",
-      "identifier": "tidyr",
-      "name": "tidyr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=tidyr"
-    },
-    "9": {
-      "@type": "SoftwareApplication",
-      "identifier": "rlang",
-      "name": "rlang",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rlang"
-    },
-    "10": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
@@ -223,17 +183,130 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=glue"
     },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "httr",
+      "name": "httr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=httr"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "magrittr",
+      "name": "magrittr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magrittr"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
+      "identifier": "purrr",
+      "name": "purrr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    "8": {
+      "@type": "SoftwareApplication",
+      "identifier": "rlang",
+      "name": "rlang",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rlang"
+    },
+    "9": {
+      "@type": "SoftwareApplication",
+      "identifier": "stringr",
+      "name": "stringr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stringr"
+    },
+    "10": {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
     "11": {
+      "@type": "SoftwareApplication",
+      "identifier": "tidyr",
+      "name": "tidyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tidyr"
+    },
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "207.795KB",
+  "fileSize": "258.73KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2022",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": ["Frank", "J"],
+          "familyName": "Farach"
+        }
+      ],
+      "name": "npi: Access the U.S. National Provider Identifier Registry API (Version 0.1.0)",
+      "url": "https://github.com/frankfarach/npi"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2022",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Frank",
+          "familyName": "Farach"
+        }
+      ],
+      "name": "{npi}: Access the U.S. National Provider Identifier Registry API",
+      "url": "https://github.com/frankfarach/npi",
+      "description": "R package version 0.1.0"
+    }
+  ],
   "releaseNotes": "https://github.com/frankfarach/npi/blob/master/NEWS.md",
   "readme": "https://github.com/frankfarach/npi/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.org/frankfarach/npi", "https://ci.appveyor.com/project/frankfarach/npi", "https://codecov.io/github/frankfarach/npi?branch=master"],
-  "developmentStatus": "https://www.tidyverse.org/lifecycle/#maturing",
+  "contIntegration": ["https://github.com/frankfarach/npi/actions", "https://codecov.io/github/frankfarach/npi?branch=master"],
+  "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html"],
   "keywords": ["api-wrapper", "r", "npi-number", "healthcare", "health-data"]
 }

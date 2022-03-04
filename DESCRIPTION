@@ -11,7 +11,8 @@ Description: Access the United States National Provider Identifier
     when it's not.
 License: MIT + file LICENSE
 URL: https://github.com/frankfarach/npi,
-    https://frankfarach.github.io/npi/
+    https://frankfarach.github.io/npi/,
+    https://npiregistry.cms.hhs.gov/api/
 BugReports: https://github.com/frankfarach/npi/issues
 Depends: 
     R (>= 3.1)
