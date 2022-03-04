@@ -1,6 +1,6 @@
 Package: npi
 Title: Access the U.S. National Provider Identifier Registry API
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Frank", "Farach", , "frank.farach@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-2145-0145")),
