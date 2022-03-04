@@ -203,13 +203,6 @@ with_mock_api({
 })
 
 
-# npi_control_requests() --------------------------------------------------
-
-# test_that("An empty result from npi_control_requests() returns an empty tibble", {
-#   stub(npi_process_results, "npi_control_requests", tibble::tibble())
-#
-# })
-
 
 # npi_summarize() ---------------------------------------------------------
 

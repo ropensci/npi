@@ -63,13 +63,6 @@ test_that("get_list_col() works as expected", {
 })
 
 
-# test_that("flatten_results() works as expected", {
-#   flattened_df <- dplyr::left_join(lc1_df, lc2_df, by = "key")
-#   expect_error(flatten_results("foo"), class = "error_bad_argument")
-#   expect_identical(flatten_results(df, "key"), flattened_df)
-# })
-
-
 test_that("clean_credentials works as expected", {
   expect_error(clean_credentials(1L), "x must be a character vector")
   expect_equal(
