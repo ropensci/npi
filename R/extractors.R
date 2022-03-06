@@ -37,9 +37,11 @@ clean_results <- function(results) {
   results %>%
     dplyr::mutate(
       enumeration_type = dplyr::case_when(
-      enumeration_type == "NPI-1" ~ "Individual",
-      enumeration_type == "NPI-2" ~ "Organization",
-      TRUE                     ~ NA_character_)) %>%
+        enumeration_type == "NPI-1" ~ "Individual",
+        enumeration_type == "NPI-2" ~ "Organization",
+        TRUE ~ NA_character_
+      )
+    ) %>%
     dplyr::mutate_at(dplyr::vars(dplyr::ends_with("_date")), epoch_to_date)
 }
 

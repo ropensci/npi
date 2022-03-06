@@ -1,5 +1,5 @@
 # Global variables for GET request
-API_VERSION <- "2.1"  # Referenced in `npi_search()`
+API_VERSION <- "2.1" # Referenced in `npi_search()`
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
 MAX_N_PER_REQUEST <- 200L
@@ -26,8 +26,8 @@ delay_by <- function(f, seconds) {
 
 #' Handle bad function arguments
 #'
-#' Error handler to abort a bad argument, `arg`, based on its actual vs. expected
-#' type or class, and display a templated error message.
+#' Error handler to abort a bad argument, `arg`, based on its actual vs.
+#' expected type or class, and display a templated error message.
 #'
 #' @param arg Function argument name as character vector
 #' @param must Text to relate argument's name to its expected type
@@ -57,10 +57,10 @@ abort_bad_argument <- function(arg, must, not = NULL,
   }
 
   rlang::abort("error_bad_argument",
-        message = msg,
-        arg = arg,
-        must = must,
-        not = not
+    message = msg,
+    arg = arg,
+    must = must,
+    not = not
   )
 }
 
@@ -77,19 +77,21 @@ remove_null <- function(l) {
 
 #' Check if candidate NPI number is valid
 #'
-#' Check whether a number is a valid NPI number per the specifications detailed in the Final Rule for the Standard Unique Health Identifier for Health Care Providers (69 FR 3434).
+#' Check whether a number is a valid NPI number per the specifications detailed
+#' in the Final Rule for the Standard Unique Health Identifier for Health Care
+#' Providers (69 FR 3434).
 #'
 #' @param x 10-digit candidate NPI number
 #' @return Boolean indicating whether \code{npi} is valid
 #' @examples
 #' npi_is_valid(1234567893) # TRUE
 #' npi_is_valid(1234567898) # FALSE
-#' @seealso \url{https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf}
 #' @export
 npi_is_valid <- function(x) {
   if (stringr::str_length(x) != 10 ||
-      stringr::str_detect(x, "\\d{10}",
-                          negate = TRUE)) {
+    stringr::str_detect(x, "\\d{10}",
+      negate = TRUE
+    )) {
     rlang::abort("`x` must be a 10-digit number.")
   }
 
@@ -108,11 +110,13 @@ npi_is_valid <- function(x) {
 #' Clean up credentials
 #'
 #' @param x Character vector of credentials
-#' @return List of cleaned character vectors, with one list element per element of \code{x}
+#' @return List of cleaned character vectors, with one list element per element
+#'   of \code{x}
 #' @noRd
 clean_credentials <- function(x) {
-  if (!is.character(x))
+  if (!is.character(x)) {
     stop("x must be a character vector")
+  }
 
   out <- gsub("\\.", "", x)
   out <- stringr::str_split(out, "[,\\s;]+", simplify = FALSE)
@@ -124,7 +128,8 @@ clean_credentials <- function(x) {
 #'
 #' @param x Character vector
 #'
-#' @return Length \code{x} character vector hyphenated for ZIP+4 or 5-digit ZIP. Invalid elements of \code{x} are not formatted.
+#' @return Length \code{x} character vector hyphenated for ZIP+4 or 5-digit ZIP.
+#'   Invalid elements of \code{x} are not formatted.
 #' @noRd
 hyphenate_full_zip <- function(x) {
   checkmate::assert(
@@ -139,20 +144,26 @@ hyphenate_full_zip <- function(x) {
   # otherwise, leave the (possibly) invalid ZIP alone
   zip_regex <- "^[[:digit:]]{9}$"
   ifelse(
-   stringr::str_detect(x, zip_regex),
-   paste0(stringr::str_sub(x, 1, 5), "-", stringr::str_sub(x, 6, 9)),
-   x)
+    stringr::str_detect(x, zip_regex),
+    paste0(stringr::str_sub(x, 1, 5), "-", stringr::str_sub(x, 6, 9)),
+    x
+  )
 }
 
 
 #' Create full address from elements
 #'
 #' @param df Data frame
-#' @param address_1 Quoted column name in \code{df} containing a character vector of first-street-line addresses
-#' @param address_2 Quoted column name in \code{df} containing a character vector of second-street-line addresses
-#' @param city Quoted column name in \code{df} containing a character vector of cities
-#' @param state Quoted column name in \code{df} containing a character vector of two-letter state abbreviations
-#' @param postal_code Quoted column name in \code{df} containing a character or numeric vector of postal codes
+#' @param address_1 Quoted column name in \code{df} containing a character
+#'   vector of first-street-line addresses
+#' @param address_2 Quoted column name in \code{df} containing a character
+#'   vector of second-street-line addresses
+#' @param city Quoted column name in \code{df} containing a character vector of
+#'   cities
+#' @param state Quoted column name in \code{df} containing a character vector of
+#'   two-letter state abbreviations
+#' @param postal_code Quoted column name in \code{df} containing a character or
+#'   numeric vector of postal codes
 #'
 #' @return Character vector containing full one-line addresses
 #' @noRd
@@ -163,22 +174,24 @@ make_full_address <-
            city,
            state,
            postal_code) {
-    stopifnot(is.data.frame(df),
-              all(c(
-                address_1, address_2, city, state, postal_code
-              ) %in% names(df)))
+    stopifnot(
+      is.data.frame(df),
+      all(c(
+        address_1, address_2, city, state, postal_code
+      ) %in% names(df))
+    )
 
     stringr::str_c(
-        stringr::str_trim(df[[address_1]], "both"),
-        ifelse(df[[address_2]] == "", "", " "),
-        stringr::str_trim(df[[address_2]], "both"),
-        ", ",
-        stringr::str_trim(df[[city]], "both"),
-        ", ",
-        stringr::str_trim(df[[state]], "both"),
-        " ",
-        stringr::str_trim(df[[postal_code]], "both")
-      )
+      stringr::str_trim(df[[address_1]], "both"),
+      ifelse(df[[address_2]] == "", "", " "),
+      stringr::str_trim(df[[address_2]], "both"),
+      ", ",
+      stringr::str_trim(df[[city]], "both"),
+      ", ",
+      stringr::str_trim(df[[state]], "both"),
+      " ",
+      stringr::str_trim(df[[postal_code]], "both")
+    )
   }
 
 #' Check for new tidyr interface

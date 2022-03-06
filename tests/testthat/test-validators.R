@@ -12,8 +12,11 @@ test_that("npi_is_valid() uses the Luhn algorithm", {
 })
 
 test_that("hyphenate_full_zip() works correctly", {
-  bad_zips_chr <- c("902100201", "90210", "9021", "90210-", "90210-0", "90210-020")
-  expect_zips_chr<- c("90210-0201", bad_zips_chr[2:6])
+  bad_zips_chr <- c(
+    "902100201", "90210", "9021", "90210-", "90210-0",
+    "90210-020"
+  )
+  expect_zips_chr <- c("90210-0201", bad_zips_chr[2:6])
 
   bad_zips_num <- c(902100201, 90210)
   expect_zips_num <- c("90210-0201", "90210")

@@ -7,10 +7,14 @@
 
 <!-- badges: start -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R-CMD-check](https://github.com/frankfarach/npi/workflows/R-CMD-check/badge.svg)](https://github.com/frankfarach/npi/actions)
 [![Coverage
 status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+[![DOI](https://zenodo.org/badge/122857655.svg)](https://zenodo.org/badge/latestdoi/122857655)
 <!-- badges: end -->
 
 Use R to access the U.S. National Provider Identifier (NPI) Registry API
@@ -36,7 +40,7 @@ library(npi)
 `npi` exports four functions, all of which match the pattern “npi\_\*“:
 
 -   `npi_search()`: Search the NPI Registry and return the response as a
-    [tibble](http://tibble.tidyverse.org/) with high-cardinality data
+    [tibble](https://tibble.tidyverse.org/) with high-cardinality data
     organized into list columns.
 -   `npi_summarize()`: A method for displaying a nice overview of
     results from `npi_search()`.
@@ -191,16 +195,18 @@ the hood, `npi_flatten()` has done a lot of data wrangling for us:
 ### Validating NPIs
 
 Use `npi_is_valid()` to check whether each element of a vector of
-candidate numbers is a valid NPI number:
+candidate numbers is a validly constructed NPI number:
 
 ``` r
 # Validate off NPIs
-npi_is_valid(c(1234567893, 1234567898))
+npi_is_valid(1234567893)
 #> [1] TRUE
+npi_is_valid(1234567898)
+#> [1] FALSE
 ```
 
-This function doesn’t check whether the NPI numbers are activated or
-deactivated (see
+Note that this function doesn’t check whether the NPI numbers are
+activated or deactivated (see
 [\#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
 
 ## Set your own user agent
@@ -245,7 +251,7 @@ on the package website.
 
 MIT (c) [Frank Farach](https://github.com/frankfarach)
 
-This package’s [logo](man/figures/logo.png) is licensed under [CC BY-SA
+This package’s logo is licensed under [CC BY-SA
 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en) and
 co-created by [Frank Farach](https://github.com/frankfarach) and [Sam
 Parmar](https://github.com/parmsam). The logo uses a modified version of

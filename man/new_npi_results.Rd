@@ -13,6 +13,7 @@ new_npi_results(x, ...)
 A tibble with S3 class \code{npi_results}
 }
 \description{
-Creates an \code{npi_results} S3 object from a tibble. See \code{\link{validate_npi_results}} for other requirements for this class.
+Creates an \code{npi_results} S3 object from a tibble. See
+  \code{\link{validate_npi_results}} for other requirements for this class.
 }
 \keyword{internal}

@@ -7,7 +7,8 @@
 #' @noRd
 npi_get_results <- function(results = list(), ...) {
   msg <- glue::glue(
-    "Requesting records {...$skip}-{...$skip + ...$limit}...")
+    "Requesting records {...$skip}-{...$skip + ...$limit}..."
+  )
   rlang::inform("status_pre_request", message = msg)
 
   result <- npi_get(npi_url(), query = ...)
@@ -20,8 +21,9 @@ npi_get_results <- function(results = list(), ...) {
 calc_results_stats <- function(results, user_n) {
   # Determine how many records were returned and how many are left
   last_n_returned <- ifelse(rlang::is_empty(results),
-                            0L,
-                            length(utils::tail(results, 1)[[1]]))
+    0L,
+    length(utils::tail(results, 1)[[1]])
+  )
   tot_n_returned <- sum(vapply(results, length, integer(1L)))
   n_remaining <- user_n - tot_n_returned
 
@@ -48,7 +50,8 @@ calc_results_stats <- function(results, user_n) {
 #' of requests.
 #'
 #' @param params A list of query parameters.
-#' @param user_n A scalar integer representing the maximum number of records the user requested.
+#' @param user_n A scalar integer representing the maximum number of records
+#'   the user requested.
 #' @param results A list of request results
 #' @return A final list of API results.
 #' @noRd
@@ -63,8 +66,8 @@ npi_control_requests <- function(params, user_n, results = list()) {
   # Return `results` when either (1) we have `user_n` number of records, or
   # (2) there were some records in the last result but not the max possible.
   if (result_stats[["n_remaining"]] == 0L ||
-      (result_stats[["last_n_returned"]] > 0L &&
-       result_stats[["last_n_returned"]] < MAX_N_PER_REQUEST)) {
+    (result_stats[["last_n_returned"]] > 0L &&
+      result_stats[["last_n_returned"]] < MAX_N_PER_REQUEST)) {
     return(results)
   }
 

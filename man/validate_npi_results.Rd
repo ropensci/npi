@@ -7,7 +7,10 @@
 validate_npi_results(x, ...)
 }
 \description{
-Accepts an object, \code{x}, and determines whether it meets the criteria to be an S3 \code{npi_results} S3 object. The criteria include tests for data types, column names, and class attributes. They are intentionally strict to provide a contract to functions that interact with it.
+Accepts an object, \code{x}, and determines whether it meets the criteria
+  to be an S3 \code{npi_results} S3 object. The criteria include tests for
+  data types, column names, and class attributes. They are intentionally
+  strict to provide a contract to functions that interact with it.
 }
 \seealso{
 \code{\link{new_npi_results}}
