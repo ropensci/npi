@@ -1,6 +1,8 @@
 ---
 title: "Advanced Uses"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{advanced-use}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,15 +23,9 @@ library(purrr)
 
 This vignette explores advanced uses of the npi package.
 
-`npi` is an R package that allows R users to access the [U.S. National Provider Identifier (NPI) Registry](https://npiregistry.cms.hhs.gov/) API by the Center for Medicare and Medicaid Services (CMS). 
-
-The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.
+`npi` is an R package that allows R users to access the [U.S. National Provider Identifier (NPI) Registry](https://npiregistry.cms.hhs.gov/) API by the Center for Medicare and Medicaid Services (CMS). The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.
 
 See the npi::npi vignette for an introduction to the package.
-
-List of topics covered in this vignette:
-* Note on NPI Downloadable Files
-* Run `npi_search()` on multiple search terms
 
 ## Note on NPI Downloadable Files
 
