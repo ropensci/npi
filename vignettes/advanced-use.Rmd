@@ -33,7 +33,7 @@ CMS regularly releases full NPI data files [here](https://download.cms.gov/nppes
 
 ## Run `npi_search()` on multiple search terms
 
-Users can serially execute searches for multiple values of a single query parameter by using `npi` in combination with the [`purrr`](https://purrr.tidyverse.org/) package. In the example below, we search multiple NPI numbers. A single tibble is returned with record information corresponding toe matching records.The [purrr:map()](https://purrr.tidyverse.org/reference/map.html) function is used to apply the `npi_search()` function on each element of the vector. Therafter, the [dplyr::bind_rows()](https://dplyr.tidyverse.org/reference/bind.html) function is used to combine the list of dataframes together into a single dataframe.
+`npi_search()` enables search for a defined set query parameters. The function is not designed for search on multiple values of the same argument at once, as for example in the case of multiple NPI numbers in a single function call. However, users can still serially execute searches for multiple values of a single query parameter by using `npi` in combination with the [`purrr`](https://purrr.tidyverse.org/) package. In the example below, we search multiple NPI numbers. A single tibble is returned with record information corresponding to matching records. The [purrr:map()](https://purrr.tidyverse.org/reference/map.html) function is used to apply the `npi_search()` function on each element of the vector. Thereafter, the [dplyr::bind_rows()](https://dplyr.tidyverse.org/reference/bind.html) function is used to combine the list of dataframes together into a single dataframe.
 
 ```{r}
 npis <- c(1992708929, 1831192848, 1699778688, 1111111111)  # Last element doesn't exist
