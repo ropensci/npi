@@ -1,6 +1,8 @@
 ---
 title: "Introduction to npi"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Introduction to npi}
   %\VignetteEngine{knitr::rmarkdown}
