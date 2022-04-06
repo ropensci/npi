@@ -3,6 +3,7 @@ API’s
 Asclepius
 CMD
 CMS
+DOI
 Evanherk
 GFDL
 Github
@@ -16,15 +17,18 @@ cardinality
 checkLuhn
 cms
 datetime
+dplyr
 hhs
 https
 jo
 lifecycle
 npiregistry
 nyc
+purrr
 tibble
 tibbles
 tidyr
+tidyverse
 unnest
 unnested
 unnests

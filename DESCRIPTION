@@ -4,7 +4,9 @@ Version: 0.1.0
 Authors@R: c(
     person("Frank", "Farach", , "frank.farach@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-2145-0145")),
-    person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb")
+    person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb"),
+    person("Matthias", "Grenié", , "matthias.grenie@idiv.de", role = "rev", 
+           comment = c(ORCID = "0000-0002-4659-7522"))
   )
 Description: Access the United States National Provider Identifier
     Registry API (if available) and provide informative error messages

@@ -8,9 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Access the United States National Provider Identifier
-    Registry API (if available) and provide informative error messages
-    when it's not.
+Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
 }
 \details{
 \pkg{npi} makes it easy to search and work with data from the U.S.
@@ -55,6 +53,7 @@ Useful links:
 Other contributors:
 \itemize{
   \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
+  \item Matthias Grenié \email{matthias.grenie@idiv.de} (\href{https://orcid.org/0000-0002-4659-7522}{ORCID}) [reviewer]
 }
 
 }
