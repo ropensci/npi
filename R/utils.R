@@ -4,26 +4,6 @@ BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- "http://github.com/frankfarach/npi"
 MAX_N_PER_REQUEST <- 200L
 
-#' Delay function execution
-#'
-#' @param f A function.
-#' @param seconds Number of seconds delay to introduce before executing
-#'   \code{f}.
-#' @return A new function that executes \code{seconds} seconds after it
-#'   is called.
-#' @noRd
-delay_by <- function(f, seconds) {
-  force(f)
-  force(seconds)
-
-  function(...) {
-    Sys.sleep(seconds)
-    f(...)
-  }
-}
-
-
-
 #' Handle bad function arguments
 #'
 #' Error handler to abort a bad argument, `arg`, based on its actual vs.
@@ -62,16 +42,6 @@ abort_bad_argument <- function(arg, must, not = NULL,
     must = must,
     not = not
   )
-}
-
-
-#' Remove NULL elements from vector
-#'
-#' Implements the basic functionality found in the \pkg{purrr} package's
-#' \code{compact} function.
-#' @noRd
-remove_null <- function(l) {
-  Filter(Negate(is.null), l)
 }
 
 
