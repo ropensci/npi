@@ -199,5 +199,5 @@ make_full_address <-
 #' @return Boolean indicating whether a newer version of tidyr is installed
 #' @noRd
 tidyr_new_interface <- function() {
-  utils::packageVersion("tidyr") > "0.8.99"
+  utils::packageVersion("tidyr") <= "0.8.99"
 }
