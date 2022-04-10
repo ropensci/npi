@@ -7,7 +7,7 @@ Authors@R: c(
     person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb"),
     person("Matthias", "Grenié", , "matthias.grenie@idiv.de", role = "rev", 
            comment = c(ORCID = "0000-0002-4659-7522")),
-    person("Emily", "Zabor", middle = "C.", "zabore2@ccf.org", role = "rev", 
+    person(c("Emily", "C."), "Zabor", , "zabore2@ccf.org", role = "rev", 
            comment = c(ORCID = "0000-0002-1402-4498"))
   )
 Description: Access the United States National Provider Identifier
