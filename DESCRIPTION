@@ -14,9 +14,9 @@ Description: Access the United States National Provider Identifier
     Registry API (if available) and provide informative error messages
     when it's not.
 License: MIT + file LICENSE
-URL: https://github.com/frankfarach/npi,
-    https://frankfarach.github.io/npi/,
-    https://npiregistry.cms.hhs.gov/api/
+URL: https://github.com/frankfarach/npi (devel),
+    https://frankfarach.github.io/npi/ (user manual),
+    https://npiregistry.cms.hhs.gov/api/ (API)
 BugReports: https://github.com/frankfarach/npi/issues
 Depends: 
     R (>= 3.1)
