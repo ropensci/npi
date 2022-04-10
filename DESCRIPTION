@@ -22,6 +22,7 @@ Depends:
     R (>= 3.1)
 Imports: 
     checkLuhn,
+    checkmate,
     dplyr,
     glue,
     httr,
@@ -33,7 +34,6 @@ Imports:
     tidyr,
     utils
 Suggests: 
-    checkmate,
     covr,
     httptest,
     knitr,
