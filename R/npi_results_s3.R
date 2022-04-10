@@ -100,7 +100,8 @@ npi_summarize.npi_results <- function(object, ...) {
   tax_primary <- get_list_col(object, "taxonomies") %>%
     dplyr::group_by(.data$npi) %>%
     dplyr::mutate(n_primary = sum(.data$taxonomies_primary == TRUE)) %>%
-    dplyr::filter(.data$taxonomies_primary == TRUE | .data$n_primary == 0)
+    dplyr::filter(.data$taxonomies_primary == TRUE | .data$n_primary == 0) %>%
+    dplyr::slice_head()
 
   tibble::tibble(
     npi = object$npi,
