@@ -60,7 +60,7 @@ nyc <- npi_search(city = "New York City")
 nyc
 ```
 
-The full search results have four regular vector columns, `npi`, `provider_type`, `created_date`, and `last_updated_date` and seven list columns. Each list column is a collection of related data:
+The full search results have four regular vector columns, `npi`, `enumeration_type`, `created_date`, and `last_updated_date` and seven list columns. Each list column is a collection of related data:
 
  * `basic`: Basic profile information about the provider
  * `other_names`: Other names used by the provider
@@ -69,6 +69,8 @@ The full search results have four regular vector columns, `npi`, `provider_type`
  * `addresses`: Location and mailing address information
  * `practice_locations`: Provider's practice locations
  * `endpoints`: Details about provider's endpoints for health information exchange
+
+A full list of the possible fields within these list columns can be found on the [NPPES API Help page](https://npiregistry.cms.hhs.gov/registry/Json-Conversion-Field-Map).
 
 If you're comfortable [working with list columns](https://r4ds.had.co.nz/many-models.html), this may be all you need from the package. But let's not stop just yet, because `npi` provides convenience functions to summarize and extract the data you need.
 

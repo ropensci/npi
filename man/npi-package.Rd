@@ -54,6 +54,7 @@ Other contributors:
 \itemize{
   \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
   \item Matthias Grenié \email{matthias.grenie@idiv.de} (\href{https://orcid.org/0000-0002-4659-7522}{ORCID}) [reviewer]
+  \item Emily C. Zabor \email{zabore2@ccf.org} (\href{https://orcid.org/0000-0002-1402-4498}{ORCID}) [reviewer]
 }
 
 }

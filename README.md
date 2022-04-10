@@ -81,8 +81,8 @@ nyc
 ```
 
 The full search results have four regular vector columns, `npi`,
-`provider_type`, `created_date`, and `last_updated_date` and seven list
-columns. Each list column is a collection of related data:
+`enumeration_type`, `created_date`, and `last_updated_date` and seven
+list columns. Each list column is a collection of related data:
 
 -   `basic`: Basic profile information about the provider
 -   `other_names`: Other names used by the provider
@@ -92,6 +92,10 @@ columns. Each list column is a collection of related data:
 -   `practice_locations`: Provider’s practice locations
 -   `endpoints`: Details about provider’s endpoints for health
     information exchange
+
+A full list of the possible fields within these list columns can be
+found on the [NPPES API Help
+page](https://npiregistry.cms.hhs.gov/registry/Json-Conversion-Field-Map).
 
 If you’re comfortable [working with list
 columns](https://r4ds.had.co.nz/many-models.html), this may be all you
@@ -106,6 +110,10 @@ overview of what we’ve got:
 
 ``` r
 npi_summarize(nyc)
+#> Warning: The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.
+#> Use `names_sep = '_'` instead.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 #> # A tibble: 10 × 6
 #>           npi name      enumeration_type primary_practic… phone primary_taxonomy
 #>         <int> <chr>     <chr>            <chr>            <chr> <chr>           
@@ -162,6 +170,9 @@ Or we can flatten the whole thing and prune back later:
 
 ``` r
 npi_flatten(nyc)
+#> Warning: The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.
+#> This warning is displayed once every 8 hours.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 #> # A tibble: 48 × 42
 #>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
 #>         <int> <chr>            <chr>           <chr>            <chr>           
