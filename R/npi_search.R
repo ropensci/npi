@@ -171,7 +171,12 @@ npi_search <- function(number = NULL,
 #' Processing pipeline for NPI search results
 #' @noRd
 npi_process_results <- function(params) {
-  results <- npi_control_requests(params, user_n = params[["limit"]])
+  user_n <- params[["limit"]]
+
+  msg <- glue::glue("{user_n} record", ifelse(user_n > 1, "s", ""), " requested")
+  rlang::inform("status_pre_request", message = msg)
+
+  results <- npi_control_requests(params, user_n)
 
   if (rlang::is_empty(results)) {
     return(tibble::tibble())

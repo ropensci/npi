@@ -188,6 +188,12 @@ with_mock_api({
 })
 
 
+test_that("The initial message accurately reports the requested number of records", {
+  msg_1 <- "1 record requested"
+  msg_10 <- "10 records requested"
+  expect_message(npi_search(city = "Atlanta", limit = 1), msg_1)
+  expect_message(npi_search(city = "Atlanta", limit = 10), msg_10)
+})
 
 # validate_npi_results() --------------------------------------------------
 
