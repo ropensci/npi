@@ -23,6 +23,7 @@ Depends:
 Imports: 
     checkLuhn,
     checkmate,
+    curl,
     dplyr,
     glue,
     httr,
