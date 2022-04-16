@@ -195,6 +195,16 @@ test_that("The initial message accurately reports the requested number of record
   expect_message(npi_search(city = "Atlanta", limit = 10), msg_10)
 })
 
+
+# npi_process_results() --------------------------------------------------
+
+with_mock_api({
+  test_that("npi_process_results returns an empty tibble when npi_search returns zero records", {
+    res <- npi_search(city = "ZZZZZZZ")
+    expect_identical(res, tibble::tibble())
+  })
+})
+
 # validate_npi_results() --------------------------------------------------
 
 with_mock_api({
