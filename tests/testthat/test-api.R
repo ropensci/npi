@@ -110,6 +110,30 @@ test_that("npi_search() messages when argument values are invalid", {
   expect_error(npi_search(limit = -1), lim)
   expect_error(npi_search(limit = 0), lim)
   expect_error(npi_search(limit = 1201), lim)
+
+  # Illegal characters in first_name, last_name, or city
+  bad_1 <- c("a@b", "a[")
+  for (s in bad_1) {
+    expect_error(npi_search(first_name = s), class = "illegal_character")
+    expect_error(npi_search(last_name = s), class = "illegal_character")
+    expect_error(npi_search(city = s), class = "illegal_character")
+  }
+
+  # Illegal characters in organization_name
+  bad_2 <- "a["
+  for (s in bad_2) {
+    expect_error(npi_search(organization_name = s), class = "illegal_character")
+  }
+
+  # Test regexes for allowed special characters
+  legal_1 <- "[^[:alnum:][:space:]()&:,-.#;'/\"]"
+  legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@]"
+  good_1 <- c("", "a(", "a)", "a&", "a:", "a,", "a-", "a.", "a#", "a;", "a'",
+              "a/", "a\"", "a::", "aáéíóúåâêîôûøäëïöüç")
+  good_2 <- c(good_1, "a@")
+
+  expect_true(!any(stringr::str_detect(good_1, legal_1)))
+  expect_true(!any(stringr::str_detect(good_2, legal_2)))
 })
 
 
