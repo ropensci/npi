@@ -18,7 +18,10 @@ checkLuhn
 cms
 datetime
 dplyr
+frankfarach
+github
 hhs
+http
 https
 jo
 lifecycle
@@ -32,3 +35,4 @@ tidyverse
 unnest
 unnested
 unnests
+’

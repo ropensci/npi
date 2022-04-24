@@ -110,23 +110,19 @@ overview of what we’ve got:
 
 ``` r
 npi_summarize(nyc)
-#> Warning: The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.
-#> Use `names_sep = '_'` instead.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 #> # A tibble: 10 × 6
 #>           npi name      enumeration_type primary_practic… phone primary_taxonomy
 #>         <int> <chr>     <chr>            <chr>            <chr> <chr>           
 #>  1 1194276360 ALYSSA C… Individual       5 E 98TH ST FL … 212-… Physician Assis…
 #>  2 1306849641 MARK MOH… Individual       16 PARK PL, NEW… 212-… Orthopaedic Sur…
-#>  3 1639173065 SAKSHI D… Individual       10 E 102ND ST, … 212-… Internal Medici…
+#>  3 1639173065 SAKSHI D… Individual       10 E 102ND ST, … 212-… Nurse Practitio…
 #>  4 1346604592 SARAH LO… Individual       1335 DUBLIN RD … 614-… Occupational Th…
-#>  5 1558362566 AMY TIER… Individual       1176 5TH AVE, N… 212-… Internal Medici…
-#>  6 1790786416 NOAH GOL… Individual       140 BERGEN STRE… 973-… Obstetrics & Gy…
+#>  5 1558362566 AMY TIER… Individual       1176 5TH AVE, N… 212-… Psychiatry & Ne…
+#>  6 1790786416 NOAH GOL… Individual       140 BERGEN STRE… 973-… Internal Medici…
 #>  7 1558713628 ROBYN NO… Individual       9 HOPE AVE STE … 781-… Nurse Practitio…
-#>  8 1962983775 LENOX HI… Organization     100 E 77TH ST, … 212-… Nurse Anestheti…
-#>  9 1427454529 YONGHONG… Individual       34 MAPLE ST, NO… 203-… Psychiatry & Ne…
-#> 10 1326403213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Practitio…
+#>  8 1962983775 LENOX HI… Organization     100 E 77TH ST, … 212-… Internal Medici…
+#>  9 1427454529 YONGHONG… Individual       34 MAPLE ST, NO… 203-… Obstetrics & Gy…
+#> 10 1326403213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Anestheti…
 ```
 
 Suppose we just want the basic and taxonomy information for each NPI in
@@ -170,9 +166,6 @@ Or we can flatten the whole thing and prune back later:
 
 ``` r
 npi_flatten(nyc)
-#> Warning: The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 #> # A tibble: 48 × 42
 #>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
 #>         <int> <chr>            <chr>           <chr>            <chr>           
@@ -222,12 +215,19 @@ activated or deactivated (see
 
 ## Set your own user agent
 
-By default, all request headers include a user agent that references
-this repository. You can customize the user agent by setting the
-`npi_user_agent` option:
+A [user agent](https://en.wikipedia.org/wiki/User_agent) is a way for
+the software interacting with an API to tell it who or what is making
+the request. This helps the API’s maintainers understand what systems
+are using the API. By default, when `npi` makes a request to the NPPES
+API, the request header references the name of the package and the URL
+for the repository (e.g., ‘npi/0.1.0
+(<http://github.com/frankfarach/npi>)’). If you want to set a custom
+user agent, update the value of the `npi_user_agent` option. For
+example, for version 1.0.0 of an app called “my_app”, you could run the
+following code:
 
 ``` r
-options(npi_user_agent = "my_awesome_user_agent")
+options(npi_user_agent = "my_app/1.0.0")
 ```
 
 ## Package Website

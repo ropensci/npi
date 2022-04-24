@@ -114,10 +114,10 @@ Note that this function doesn't check whether the NPI numbers are activated or d
 
 ## Set your own user agent
 
-By default, all request headers include a user agent that references this repository. You can customize the user agent by setting the `npi_user_agent` option:
+A [user agent](https://en.wikipedia.org/wiki/User_agent) is a way for the software interacting with an API to tell it who or what is making the request. This helps the API's maintainers understand what systems are using the API. By default, when `npi` makes a request to the NPPES API, the request header references the name of the package and the URL for the repository (e.g., '`r paste(paste0("npi/", utils::packageVersion("npi")), "(http://github.com/frankfarach/npi)")`'). If you want to set a custom user agent, update the value of the `npi_user_agent` option. For example, for version 1.0.0 of an app called "my_app", you could run the following code:
 
 ```{r, eval = FALSE}
-options(npi_user_agent = "my_awesome_user_agent")
+options(npi_user_agent = "my_app/1.0.0")
 ```
 
 ## Package Website
