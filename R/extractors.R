@@ -31,7 +31,7 @@ tidy_results <- function(content) {
 #' @noRd
 clean_results <- function(results) {
   epoch_to_date <- purrr::as_mapper(
-    ~ as.POSIXct(.x, origin = "1970-01-01", tz = "UTC")
+    ~ as.POSIXct(as.numeric(.x)/1000, origin = "1970-01-01", tz = "UTC")
   )
 
   results %>%
