@@ -16,8 +16,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Access the U.S. National Provider Identifier Registry API">
 <meta property="og:description" content="Access the United States National Provider Identifier
@@ -79,19 +79,16 @@
 <img src="logo.png" class="logo" alt=""><h1 id="npi-">npi <a class="anchor" aria-label="anchor" href="#npi-"></a>
 </h1>
 </div>
-<blockquote>
-<p>Access the U.S. National Provider Identifier Registry API</p>
-</blockquote>
+<blockquote><p>Access the U.S. National Provider Identifier Registry API</p></blockquote>
 <!-- badges: start -->
-
 <p>Use R to access the U.S. National Provider Identifier (NPI) Registry API (v2.1) by the Center for Medicare and Medicaid Services (CMS): <a href="https://npiregistry.cms.hhs.gov/" class="external-link uri">https://npiregistry.cms.hhs.gov/</a>. Obtain rich administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and many other attributes. <code>npi</code> provides convenience functions for data extraction so you can spend less time wrangling data and more time putting data to work.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>Install <code>npi</code> directly from Github using the <code>devtools</code> package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"frankfarach/npi"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/frankfarach/npi" class="external-link">npi</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"frankfarach/npi"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/frankfarach/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -112,24 +109,24 @@
 </h3>
 <p><code><a href="reference/npi_search.html">npi_search()</a></code> exposes nearly all of the NPPES API’s <a href="https://npiregistry.cms.hhs.gov/registry/help-api" class="external-link">search parameters</a>. Let’s say we wanted to find up to 10 organizational providers with primary locations in New York City:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nyc</span>
-<span class="co">#&gt; # A tibble: 10 × 11</span>
-<span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span>
-<span class="co">#&gt;  *  &lt;int&gt; &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;      &lt;list&gt;      &lt;list&gt;     &lt;list&gt;   </span>
-<span class="co">#&gt;  1 1.19e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  2 1.31e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  3 1.64e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  4 1.35e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  5 1.56e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  6 1.79e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  7 1.56e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  8 1.96e9 Organization     &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt;  9 1.43e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt; 10 1.33e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span>
-<span class="co">#&gt; # … with 4 more variables: practice_locations &lt;list&gt;, endpoints &lt;list&gt;,</span>
-<span class="co">#&gt; #   created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">nyc</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 11</span></span>
+<span><span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span></span>
+<span><span class="co">#&gt;  *  &lt;int&gt; &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;      &lt;list&gt;      &lt;list&gt;     &lt;list&gt;   </span></span>
+<span><span class="co">#&gt;  1 1.19e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  2 1.31e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  3 1.64e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  4 1.35e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  5 1.56e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  6 1.79e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  7 1.56e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  8 1.96e9 Organization     &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt;  9 1.43e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt; 10 1.33e9 Individual       &lt;tibble&gt; &lt;tibble&gt;    &lt;tibble&gt;    &lt;tibble&gt;   &lt;tibble&gt; </span></span>
+<span><span class="co">#&gt; # … with 4 more variables: practice_locations &lt;list&gt;, endpoints &lt;list&gt;,</span></span>
+<span><span class="co">#&gt; #   created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;</span></span></code></pre></div>
 <p>The full search results have four regular vector columns, <code>npi</code>, <code>provider_type</code>, <code>created_date</code>, and <code>last_updated_date</code> and seven list columns. Each list column is a collection of related data:</p>
 <ul>
 <li>
@@ -155,76 +152,76 @@
 </h2>
 <p>Run <code><a href="reference/npi_summarize.html">npi_summarize()</a></code> on your results to see a more human-readable overview of what we’ve got:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/npi_summarize.html">npi_summarize</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 × 6</span>
-<span class="co">#&gt;           npi name      enumeration_type primary_practic… phone primary_taxonomy</span>
-<span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 1194276360 ALYSSA C… Individual       5 E 98TH ST FL … 212-… Physician Assis…</span>
-<span class="co">#&gt;  2 1306849641 MARK MOH… Individual       16 PARK PL, NEW… 212-… Orthopaedic Sur…</span>
-<span class="co">#&gt;  3 1639173065 SAKSHI D… Individual       10 E 102ND ST, … 212-… Internal Medici…</span>
-<span class="co">#&gt;  4 1346604592 SARAH LO… Individual       1335 DUBLIN RD … 614-… Occupational Th…</span>
-<span class="co">#&gt;  5 1558362566 AMY TIER… Individual       1176 5TH AVE, N… 212-… Internal Medici…</span>
-<span class="co">#&gt;  6 1790786416 NOAH GOL… Individual       140 BERGEN STRE… 973-… Obstetrics &amp; Gy…</span>
-<span class="co">#&gt;  7 1558713628 ROBYN NO… Individual       9 HOPE AVE STE … 781-… Nurse Practitio…</span>
-<span class="co">#&gt;  8 1962983775 LENOX HI… Organization     100 E 77TH ST, … 212-… Nurse Anestheti…</span>
-<span class="co">#&gt;  9 1427454529 YONGHONG… Individual       34 MAPLE ST, NO… 203-… Psychiatry &amp; Ne…</span>
-<span class="co">#&gt; 10 1326403213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Practitio…</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/npi_summarize.html">npi_summarize</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 6</span></span>
+<span><span class="co">#&gt;           npi name      enumeration_type primary_practic… phone primary_taxonomy</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt;  1 1194276360 ALYSSA C… Individual       5 E 98TH ST FL … 212-… Physician Assis…</span></span>
+<span><span class="co">#&gt;  2 1306849641 MARK MOH… Individual       16 PARK PL, NEW… 212-… Orthopaedic Sur…</span></span>
+<span><span class="co">#&gt;  3 1639173065 SAKSHI D… Individual       10 E 102ND ST, … 212-… Internal Medici…</span></span>
+<span><span class="co">#&gt;  4 1346604592 SARAH LO… Individual       1335 DUBLIN RD … 614-… Occupational Th…</span></span>
+<span><span class="co">#&gt;  5 1558362566 AMY TIER… Individual       1176 5TH AVE, N… 212-… Internal Medici…</span></span>
+<span><span class="co">#&gt;  6 1790786416 NOAH GOL… Individual       140 BERGEN STRE… 973-… Obstetrics &amp; Gy…</span></span>
+<span><span class="co">#&gt;  7 1558713628 ROBYN NO… Individual       9 HOPE AVE STE … 781-… Nurse Practitio…</span></span>
+<span><span class="co">#&gt;  8 1962983775 LENOX HI… Organization     100 E 77TH ST, … 212-… Nurse Anestheti…</span></span>
+<span><span class="co">#&gt;  9 1427454529 YONGHONG… Individual       34 MAPLE ST, NO… 203-… Psychiatry &amp; Ne…</span></span>
+<span><span class="co">#&gt; 10 1326403213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Practitio…</span></span></code></pre></div>
 <p>Suppose we just want the basic and taxonomy information for each NPI in the result in a flattened data frame:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"taxonomies"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 20 × 26</span>
-<span class="co">#&gt;           npi basic_first_name basic_last_name basic_credential basic_sole_prop…</span>
-<span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 1194276360 ALYSSA           COWNAN          PA               NO              </span>
-<span class="co">#&gt;  2 1306849641 MARK             MOHRMANN        MD               NO              </span>
-<span class="co">#&gt;  3 1306849641 MARK             MOHRMANN        MD               NO              </span>
-<span class="co">#&gt;  4 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt;  5 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt;  6 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt;  7 1346604592 SARAH            LOWRY           OTR/L            YES             </span>
-<span class="co">#&gt;  8 1346604592 SARAH            LOWRY           OTR/L            YES             </span>
-<span class="co">#&gt;  9 1427454529 YONGHONG         TAN             &lt;NA&gt;             NO              </span>
-<span class="co">#&gt; 10 1558362566 AMY              TIERSTEN        M.D.             YES             </span>
-<span class="co">#&gt; 11 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span>
-<span class="co">#&gt; 12 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span>
-<span class="co">#&gt; 13 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span>
-<span class="co">#&gt; 14 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span>
-<span class="co">#&gt; 15 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span>
-<span class="co">#&gt; 16 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span>
-<span class="co">#&gt; 17 1639173065 SAKSHI           DUA             M.D.             YES             </span>
-<span class="co">#&gt; 18 1639173065 SAKSHI           DUA             M.D.             YES             </span>
-<span class="co">#&gt; 19 1790786416 NOAH             GOLDMAN         M.D.             NO              </span>
-<span class="co">#&gt; 20 1962983775 &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;            </span>
-<span class="co">#&gt; # … with 21 more variables: basic_gender &lt;chr&gt;, basic_enumeration_date &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;, basic_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_name_prefix &lt;chr&gt;, basic_middle_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_organization_name &lt;chr&gt;, basic_organizational_subpart &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_authorized_official_credential &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_authorized_official_first_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_authorized_official_last_name &lt;chr&gt;, …</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"taxonomies"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 20 × 26</span></span>
+<span><span class="co">#&gt;           npi basic_first_name basic_last_name basic_credential basic_sole_prop…</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt;  1 1194276360 ALYSSA           COWNAN          PA               NO              </span></span>
+<span><span class="co">#&gt;  2 1306849641 MARK             MOHRMANN        MD               NO              </span></span>
+<span><span class="co">#&gt;  3 1306849641 MARK             MOHRMANN        MD               NO              </span></span>
+<span><span class="co">#&gt;  4 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt;  5 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt;  6 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt;  7 1346604592 SARAH            LOWRY           OTR/L            YES             </span></span>
+<span><span class="co">#&gt;  8 1346604592 SARAH            LOWRY           OTR/L            YES             </span></span>
+<span><span class="co">#&gt;  9 1427454529 YONGHONG         TAN             &lt;NA&gt;             NO              </span></span>
+<span><span class="co">#&gt; 10 1558362566 AMY              TIERSTEN        M.D.             YES             </span></span>
+<span><span class="co">#&gt; 11 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span></span>
+<span><span class="co">#&gt; 12 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span></span>
+<span><span class="co">#&gt; 13 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span></span>
+<span><span class="co">#&gt; 14 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span></span>
+<span><span class="co">#&gt; 15 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span></span>
+<span><span class="co">#&gt; 16 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             </span></span>
+<span><span class="co">#&gt; 17 1639173065 SAKSHI           DUA             M.D.             YES             </span></span>
+<span><span class="co">#&gt; 18 1639173065 SAKSHI           DUA             M.D.             YES             </span></span>
+<span><span class="co">#&gt; 19 1790786416 NOAH             GOLDMAN         M.D.             NO              </span></span>
+<span><span class="co">#&gt; 20 1962983775 &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;            </span></span>
+<span><span class="co">#&gt; # … with 21 more variables: basic_gender &lt;chr&gt;, basic_enumeration_date &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;, basic_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_name_prefix &lt;chr&gt;, basic_middle_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_organization_name &lt;chr&gt;, basic_organizational_subpart &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_authorized_official_credential &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_authorized_official_first_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_authorized_official_last_name &lt;chr&gt;, …</span></span></code></pre></div>
 <p>Or we can flatten the whole thing and prune back later:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 48 × 42</span>
-<span class="co">#&gt;           npi basic_first_name basic_last_name basic_credential basic_sole_prop…</span>
-<span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;           </span>
-<span class="co">#&gt;  1 1194276360 ALYSSA           COWNAN          PA               NO              </span>
-<span class="co">#&gt;  2 1194276360 ALYSSA           COWNAN          PA               NO              </span>
-<span class="co">#&gt;  3 1306849641 MARK             MOHRMANN        MD               NO              </span>
-<span class="co">#&gt;  4 1306849641 MARK             MOHRMANN        MD               NO              </span>
-<span class="co">#&gt;  5 1306849641 MARK             MOHRMANN        MD               NO              </span>
-<span class="co">#&gt;  6 1306849641 MARK             MOHRMANN        MD               NO              </span>
-<span class="co">#&gt;  7 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt;  8 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt;  9 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt; 10 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span>
-<span class="co">#&gt; # … with 38 more rows, and 37 more variables: basic_gender &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_enumeration_date &lt;chr&gt;, basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_name &lt;chr&gt;, basic_name_prefix &lt;chr&gt;, basic_middle_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_organization_name &lt;chr&gt;, basic_organizational_subpart &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_authorized_official_credential &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_authorized_official_first_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   basic_authorized_official_last_name &lt;chr&gt;, …</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 48 × 42</span></span>
+<span><span class="co">#&gt;           npi basic_first_name basic_last_name basic_credential basic_sole_prop…</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;           </span></span>
+<span><span class="co">#&gt;  1 1194276360 ALYSSA           COWNAN          PA               NO              </span></span>
+<span><span class="co">#&gt;  2 1194276360 ALYSSA           COWNAN          PA               NO              </span></span>
+<span><span class="co">#&gt;  3 1306849641 MARK             MOHRMANN        MD               NO              </span></span>
+<span><span class="co">#&gt;  4 1306849641 MARK             MOHRMANN        MD               NO              </span></span>
+<span><span class="co">#&gt;  5 1306849641 MARK             MOHRMANN        MD               NO              </span></span>
+<span><span class="co">#&gt;  6 1306849641 MARK             MOHRMANN        MD               NO              </span></span>
+<span><span class="co">#&gt;  7 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt;  8 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt;  9 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt; 10 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              </span></span>
+<span><span class="co">#&gt; # … with 38 more rows, and 37 more variables: basic_gender &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_enumeration_date &lt;chr&gt;, basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_name &lt;chr&gt;, basic_name_prefix &lt;chr&gt;, basic_middle_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_organization_name &lt;chr&gt;, basic_organizational_subpart &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_authorized_official_credential &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_authorized_official_first_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   basic_authorized_official_last_name &lt;chr&gt;, …</span></span></code></pre></div>
 <p>Now we’re ready to do whatever else we need to do with this data. Under the hood, <code><a href="reference/npi_flatten.html">npi_flatten()</a></code> has done a lot of data wrangling for us:</p>
 <ul>
 <li>unnested the specified list columns</li>
@@ -236,11 +233,11 @@
 </h3>
 <p>Use <code><a href="reference/npi_is_valid.html">npi_is_valid()</a></code> to check whether each element of a vector of candidate numbers is a validly constructed NPI number:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Validate off NPIs</span>
-<span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fl">1234567893</span><span class="op">)</span>
-<span class="co">#&gt; [1] TRUE</span>
-<span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fl">1234567898</span><span class="op">)</span>
-<span class="co">#&gt; [1] FALSE</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Validate off NPIs</span></span>
+<span><span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fl">1234567893</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="reference/npi_is_valid.html">npi_is_valid</a></span><span class="op">(</span><span class="fl">1234567898</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 <p>Note that this function doesn’t check whether the NPI numbers are activated or deactivated (see <a href="https://github.com/frankfarach/npi/issues/22#issuecomment-787642817" class="external-link">#22</a>).</p>
 </div>
 </div>
@@ -249,7 +246,7 @@
 </h2>
 <p>By default, all request headers include a user agent that references this repository. You can customize the user agent by setting the <code>npi_user_agent</code> option:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>npi_user_agent <span class="op">=</span> <span class="st">"my_awesome_user_agent"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>npi_user_agent <span class="op">=</span> <span class="st">"my_awesome_user_agent"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="package-website">Package Website<a class="anchor" aria-label="anchor" href="#package-website"></a>
@@ -345,7 +342,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

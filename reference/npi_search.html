@@ -3,7 +3,7 @@
 Registry using parameters exposed by the registry's API (Version 2.1).
 Results are combined and returned
 as a tibble with an S3 class of npi_results. See Value below
-for a description of the returned object."><title>Search the NPI Registry — npi_search • npi</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Search the NPI Registry — npi_search"><meta property="og:description" content="Search the U.S. National Provider Identifier (NPI)
+for a description of the returned object."><title>Search the NPI Registry — npi_search • npi</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Search the NPI Registry — npi_search"><meta property="og:description" content="Search the U.S. National Provider Identifier (NPI)
 Registry using parameters exposed by the registry's API (Version 2.1).
 Results are combined and returned
 as a tibble with an S3 class of npi_results. See Value below
@@ -66,27 +66,29 @@ for a description of the returned object.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">npi_search</span><span class="op">(</span>
-  number <span class="op">=</span> <span class="cn">NULL</span>,
-  enumeration_type <span class="op">=</span> <span class="cn">NULL</span>,
-  taxonomy_description <span class="op">=</span> <span class="cn">NULL</span>,
-  first_name <span class="op">=</span> <span class="cn">NULL</span>,
-  last_name <span class="op">=</span> <span class="cn">NULL</span>,
-  use_first_name_alias <span class="op">=</span> <span class="cn">NULL</span>,
-  organization_name <span class="op">=</span> <span class="cn">NULL</span>,
-  address_purpose <span class="op">=</span> <span class="cn">NULL</span>,
-  city <span class="op">=</span> <span class="cn">NULL</span>,
-  state <span class="op">=</span> <span class="cn">NULL</span>,
-  postal_code <span class="op">=</span> <span class="cn">NULL</span>,
-  country_code <span class="op">=</span> <span class="cn">NULL</span>,
-  limit <span class="op">=</span> <span class="fl">10L</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">npi_search</span><span class="op">(</span></span>
+<span>  number <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  enumeration_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  taxonomy_description <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  first_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  last_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  use_first_name_alias <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  organization_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  address_purpose <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  city <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  state <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  postal_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  country_code <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  limit <span class="op">=</span> <span class="fl">10L</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>number</dt>
 <dd><p>(Optional) 10-digit NPI number assigned to the provider.</p></dd>
+
+
 <dt>enumeration_type</dt>
 <dd><p>(Optional) Type of provider associated with the NPI,
 one of:</p><dl><dt>"ind"</dt>
@@ -96,11 +98,15 @@ one of:</p><dl><dt>"ind"</dt>
 <dd><p>Organizational provider (NPI-2)</p></dd>
  
 </dl></dd>
+
+
 <dt>taxonomy_description</dt>
 <dd><p>(Optional) Scalar character vector with a
 taxonomy description or code from the
 <a href="https://taxonomy.nucc.org" class="external-link">NUCC
 Healthcare Provider Taxonomy</a>.</p></dd>
+
+
 <dt>first_name</dt>
 <dd><p>(Optional) This field only applies to Individual Providers.
 Trailing wildcard entries are permitted requiring at least two characters
@@ -108,12 +114,16 @@ to be entered (e.g. "jo*" ). This field allows the following special
 characters: ampersand, apostrophe, colon, comma, forward slash, hyphen,
 left and right parentheses, period, pound sign, quotation mark, and
 semi-colon.</p></dd>
+
+
 <dt>last_name</dt>
 <dd><p>(Optional) This field only applies to Individual Providers.
 Trailing wildcard entries are permitted requiring at least two characters
 to be entered. This field allows the following special characters:
 ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right
 parentheses, period, pound sign, quotation mark, and semi-colon.</p></dd>
+
+
 <dt>use_first_name_alias</dt>
 <dd><p>(Optional) This field only applies to Individual
 Providers when not doing a wildcard search. When set to "True", the search
@@ -121,6 +131,8 @@ results will include Providers with similar First Names. E.g.,
 first_name=Robert, will also return Providers with the first name of Rob,
 Bob, Robbie, Bobby, etc. Valid Values are: TRUE: Will include alias/similar
 names; FALSE: Will only look for exact matches.</p></dd>
+
+
 <dt>organization_name</dt>
 <dd><p>(Optional) This field only applies to Organizational
 Providers. Trailing wildcard entries are permitted requiring at least two
@@ -131,6 +143,8 @@ semi-colon. Both the Organization Name and Other Organization Name fields
 associated with an NPI are examined for matching contents, therefore, the
 results might contain an organization name different from the one entered
 in the Organization Name criterion.</p></dd>
+
+
 <dt>address_purpose</dt>
 <dd><p>Refers to whether the address information entered
 pertains to the provider's Mailing Address or the provider's Practice
@@ -140,38 +154,51 @@ Addresses match the entered address information. Primary will only search
 against Primary Location Address. While Secondary will only search against
 Secondary Location Addresses. Valid values are: "location", "mailing",
 "primary", "secondary".</p></dd>
+
+
 <dt>city</dt>
 <dd><p>The City associated with the provider's address identified in
 Address Purpose. To search for a Military Address enter either APO or FPO
 into the City field. This field allows the following special characters:
 ampersand, apostrophe, colon, comma, forward slash, hyphen, left and right
 parentheses, period, pound sign, quotation mark, and semi-colon.</p></dd>
+
+
 <dt>state</dt>
 <dd><p>The State abbreviation associated with the provider's address
 identified in Address Purpose. This field cannot be used as the only input
 criterion. If this field is used, at least one other field, besides the
 Enumeration Type and Country, must be populated. Valid values for states:
 <a href="https://npiregistry.cms.hhs.gov/registry/API-State-Abbr" class="external-link">https://npiregistry.cms.hhs.gov/registry/API-State-Abbr</a></p></dd>
+
+
 <dt>postal_code</dt>
 <dd><p>The Postal Code associated with the provider's address
 identified in Address Purpose. If you enter a 5 digit postal code, it will
 match any appropriate 9 digit (zip+4) codes in the data. Trailing wildcard
 entries are permitted requiring at least two characters to be entered
 (e.g., "21*").</p></dd>
+
+
 <dt>country_code</dt>
 <dd><p>The Country associated with the provider's address
 identified in Address Purpose. This field can be used as the only input
 criterion as long as the value selected is not US (United States). Valid
 values for country codes:
 <a href="https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr" class="external-link">https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr</a></p></dd>
+
+
 <dt>limit</dt>
 <dd><p>Maximum number of records to return, from 1 to 1200 inclusive.
 The default is 10. Because the API returns up to 200 records per request,
 values of <code>limit</code> greater than 200 will result in multiple API calls.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>Data frame (tibble) containing the results of the search.</p>
+    
+
+<p>Data frame (tibble) containing the results of the search.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -186,25 +213,25 @@ values of <code>limit</code> greater than 200 will result in multiple API calls.
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># 10 NPI records for New York City</span></span>
-<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 1O NPI records for New York City, organizations only</span></span>
-<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, enumeration_type <span class="op">=</span> <span class="st">"org"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 1O NPI records for New York City, individuals only</span></span>
-<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, enumeration_type <span class="op">=</span> <span class="st">"ind"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 1200 NPI records for New York City</span></span>
-<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">1200</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Nutritionists in Maine</span></span>
-<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>state <span class="op">=</span> <span class="st">"ME"</span>, taxonomy_description <span class="op">=</span> <span class="st">"Nutritionist"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Record associated with NPI 1245251222</span></span>
-<span class="r-in"><span class="fu">npi_search</span><span class="op">(</span>number <span class="op">=</span> <span class="fl">1245251222</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># 10 NPI records for New York City</span></span></span>
+<span class="r-in"><span><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 1O NPI records for New York City, organizations only</span></span></span>
+<span class="r-in"><span><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, enumeration_type <span class="op">=</span> <span class="st">"org"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 1O NPI records for New York City, individuals only</span></span></span>
+<span class="r-in"><span><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, enumeration_type <span class="op">=</span> <span class="st">"ind"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 1200 NPI records for New York City</span></span></span>
+<span class="r-in"><span><span class="fu">npi_search</span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">1200</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Nutritionists in Maine</span></span></span>
+<span class="r-in"><span><span class="fu">npi_search</span><span class="op">(</span>state <span class="op">=</span> <span class="st">"ME"</span>, taxonomy_description <span class="op">=</span> <span class="st">"Nutritionist"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Record associated with NPI 1245251222</span></span></span>
+<span class="r-in"><span><span class="fu">npi_search</span><span class="op">(</span>number <span class="op">=</span> <span class="fl">1245251222</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -216,7 +243,7 @@ values of <code>limit</code> greater than 200 will result in multiple API calls.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>
