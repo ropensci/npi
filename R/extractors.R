@@ -30,8 +30,16 @@ tidy_results <- function(content) {
 
 #' @noRd
 clean_results <- function(results) {
+  convert_epoch_date <- function(col){
+    ifelse(
+      nchar(as.character(col)) == 13,
+      as.numeric(col)/1000,
+      as.numeric(col)
+    )
+  }
+
   epoch_to_date <- purrr::as_mapper(
-    ~ as.POSIXct(.x, origin = "1970-01-01", tz = "UTC")
+    ~ as.POSIXct(convert_epoch_date(.x), origin = "1970-01-01", tz = "UTC")
   )
 
   results %>%
