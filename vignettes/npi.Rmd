@@ -35,7 +35,7 @@ nyc <- npi_search(city = "New York City")
 nyc
 ```
 
-Other search arguments for the function include npi number, enumeration type, taxonomy description, individual provider's first name, individual provider's last name, use first name alias, organization name, address purpose, state, postal code, country code, and limit. 
+Other search arguments for the function include `number`, `enumeration_type`, `taxonomy_description`, `first_name`, `last_name`, `use_first_name_alias`, `organization_name`, `address_purpose`, `state`, `postal_code`, `country_code`, and `limit`. 
 
 Additionally, more than one search argument can be used at once.
 
