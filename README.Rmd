@@ -57,6 +57,7 @@ library(npi)
 nyc <- npi_search(city = "New York City")
 ```
 ```{r print-nyc}
+# Your results may differ since the data in the NPPES database changes over time
 nyc
 ```
 
