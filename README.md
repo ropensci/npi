@@ -26,6 +26,16 @@ service, credentials, and many other attributes. `npi` provides
 convenience functions for data extraction so you can spend less time
 wrangling data and more time putting data to work.
 
+Analysts working with healthcare and public health data frequently need
+to join data from multiple sources to answer their business or research
+questions. Unfortunately, joining data in healthcare is hard because so
+few entities have unique, consistent identifiers across organizational
+boundaries. NPI numbers, however, do not suffer from these limitations,
+as all U.S. providers meeting certain common criteria must have an NPI
+number in order to be reimbursed for the services they provide. This
+makes NPI numbers incredibly useful for joining multiple datasets by
+provider, which is the primary motivation for developing this package.
+
 ## Installation
 
 Install `npi` directly from Github using the `devtools` package:
