@@ -102,7 +102,7 @@ Now we're ready to do whatever else we need to do with this data. Under the hood
 
 ### Validating NPIs
 
-Use `npi_is_valid()` to check whether each element of a vector of candidate numbers is a validly constructed NPI number:
+Just like credit card numbers, NPI numbers can be mistyped or corrupted in transit. Likewise, officially-issued NPI numbers have a [check digit](https://en.wikipedia.org/wiki/Check_digit) for error-checking purposes. Use `npi_is_valid()` to check whether an NPI number you've encountered is [validly constructed](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf):
 
 ```{r valid_npi_ex}
 # Validate off NPIs
@@ -110,7 +110,7 @@ npi_is_valid(1234567893)
 npi_is_valid(1234567898)
 ```
 
-Note that this function doesn't check whether the NPI numbers are activated or deactivated (see [#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
+Note that this function doesn't check whether the NPI numbers are activated or deactivated (see [#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)). It merely checks for the number's consistency with the NPI specification. As such, it can help you detect data quality issues early.
 
 ## Set your own user agent
 

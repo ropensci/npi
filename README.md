@@ -39,16 +39,16 @@ library(npi)
 
 `npi` exports four functions, all of which match the pattern “npi\_\*“:
 
--   `npi_search()`: Search the NPI Registry and return the response as a
-    [tibble](https://tibble.tidyverse.org/) with high-cardinality data
-    organized into list columns.
--   `npi_summarize()`: A method for displaying a nice overview of
-    results from `npi_search()`.
--   `npi_flatten()`: A method for flattening one or more list columns
-    from a search result, joined by NPI number.
--   `npi_is_valid()`: Check the validity of one or more NPI numbers
-    using the official [NPI enumeration
-    standard](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf).
+- `npi_search()`: Search the NPI Registry and return the response as a
+  [tibble](https://tibble.tidyverse.org/) with high-cardinality data
+  organized into list columns.
+- `npi_summarize()`: A method for displaying a nice overview of results
+  from `npi_search()`.
+- `npi_flatten()`: A method for flattening one or more list columns from
+  a search result, joined by NPI number.
+- `npi_is_valid()`: Check the validity of one or more NPI numbers using
+  the official [NPI enumeration
+  standard](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf).
 
 ### Search the registry
 
@@ -84,14 +84,14 @@ The full search results have four regular vector columns, `npi`,
 `enumeration_type`, `created_date`, and `last_updated_date` and seven
 list columns. Each list column is a collection of related data:
 
--   `basic`: Basic profile information about the provider
--   `other_names`: Other names used by the provider
--   `identifiers`: Other provider identifiers and credential information
--   `taxonomies`: Service classification and license information
--   `addresses`: Location and mailing address information
--   `practice_locations`: Provider’s practice locations
--   `endpoints`: Details about provider’s endpoints for health
-    information exchange
+- `basic`: Basic profile information about the provider
+- `other_names`: Other names used by the provider
+- `identifiers`: Other provider identifiers and credential information
+- `taxonomies`: Service classification and license information
+- `addresses`: Location and mailing address information
+- `practice_locations`: Provider’s practice locations
+- `endpoints`: Details about provider’s endpoints for health information
+  exchange
 
 A full list of the possible fields within these list columns can be
 found on the [NPPES API Help
@@ -191,15 +191,19 @@ npi_flatten(nyc)
 Now we’re ready to do whatever else we need to do with this data. Under
 the hood, `npi_flatten()` has done a lot of data wrangling for us:
 
--   unnested the specified list columns
--   avoided potential naming collisions by prefixing the unnested names
-    by their originating column name
--   joined the data together by NPI
+- unnested the specified list columns
+- avoided potential naming collisions by prefixing the unnested names by
+  their originating column name
+- joined the data together by NPI
 
 ### Validating NPIs
 
-Use `npi_is_valid()` to check whether each element of a vector of
-candidate numbers is a validly constructed NPI number:
+Just like credit card numbers, NPI numbers can be mistyped or corrupted
+in transit. Likewise, officially-issued NPI numbers have a [check
+digit](https://en.wikipedia.org/wiki/Check_digit) for error-checking
+purposes. Use `npi_is_valid()` to check whether an NPI number you’ve
+encountered is [validly
+constructed](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf):
 
 ``` r
 # Validate off NPIs
@@ -212,6 +216,9 @@ npi_is_valid(1234567898)
 Note that this function doesn’t check whether the NPI numbers are
 activated or deactivated (see
 [\#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
+It merely checks for the number’s consistency with the NPI
+specification. As such, it can help you detect data quality issues
+early.
 
 ## Set your own user agent
 
