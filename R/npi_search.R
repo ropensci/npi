@@ -74,6 +74,7 @@
 #' @param limit Maximum number of records to return, from 1 to 1200 inclusive.
 #'   The default is 10. Because the API returns up to 200 records per request,
 #'   values of \code{limit} greater than 200 will result in multiple API calls.
+#' @family search functions
 #' @examples
 #' \dontrun{
 #' # 10 NPI records for New York City

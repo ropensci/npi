@@ -54,6 +54,7 @@ abort_bad_argument <- function(arg, must, not = NULL,
 #'
 #' @param x 10-digit candidate NPI number
 #' @return Boolean indicating whether \code{npi} is valid
+#' @family utility functions
 #' @examples
 #' npi_is_valid(1234567893) # TRUE
 #' npi_is_valid(1234567898) # FALSE

@@ -140,3 +140,4 @@ npi_search(number = 1245251222)
 
 \href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}
 }
+\concept{search functions}

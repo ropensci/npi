@@ -18,3 +18,4 @@ S3 method to summarize an \code{npi_results} object
 data(npis)
 npi_summarize(npis)
 }
+\concept{summary functions}

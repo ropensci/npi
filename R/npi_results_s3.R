@@ -127,6 +127,7 @@ npi_summarize.npi_results <- function(object, ...) {
 
 #' S3 method to summarize an \code{npi_results} object
 #' @inheritParams npi_summarize.npi_results
+#' @family summary functions
 #' @examples
 #' data(npis)
 #' npi_summarize(npis)
@@ -183,6 +184,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
 #' S3 method to flatten an \code{npi_results} object
 #' @inheritParams npi_flatten.npi_results
+#' @family data wrangling functions
 #' @examples
 #' # Flatten all list columns
 #' data(npis)
