@@ -136,6 +136,7 @@ npi_search(number = 1245251222)
 }
 \references{
 \url{https://npiregistry.cms.hhs.gov/registry/help-api}
+  \href{https://npiregistry.cms.hhs.gov/help-api/json-conversion}{Data dictionary for fields returned}
 
 \href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}
 }

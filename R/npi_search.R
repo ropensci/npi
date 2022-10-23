@@ -97,6 +97,7 @@
 #' @return Data frame (tibble) containing the results of the search.
 #' @references
 #'   \url{https://npiregistry.cms.hhs.gov/registry/help-api}
+#'   \href{https://npiregistry.cms.hhs.gov/help-api/json-conversion}{Data dictionary for fields returned}
 #' @references
 #'   \href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}
 #' @export
