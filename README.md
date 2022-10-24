@@ -117,7 +117,10 @@ need.
 ## Working with search results
 
 Run `npi_summarize()` on your results to see a more human-readable
-overview of what we’ve got:
+overview of what we’ve got. Specifically, the function returns the NPI
+number, provider’s name, enumeration type (individual or organizational
+provider), primary address, phone number, and primary taxonomy (area of
+practice):
 
 ``` r
 npi_summarize(nyc)
