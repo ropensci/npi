@@ -220,7 +220,7 @@ encountered is [validly
 constructed](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf):
 
 ``` r
-# Validate off NPIs
+# Validate NPIs
 npi_is_valid(1234567893)
 #> [1] TRUE
 npi_is_valid(1234567898)
@@ -231,8 +231,8 @@ Note that this function doesn’t check whether the NPI numbers are
 activated or deactivated (see
 [\#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
 It merely checks for the number’s consistency with the NPI
-specification. As such, it can help you detect data quality issues
-early.
+specification. As such, it can help you detect and handle data quality
+issues early.
 
 ## Set your own user agent
 
