@@ -110,17 +110,21 @@ page](https://npiregistry.cms.hhs.gov/registry/Json-Conversion-Field-Map).
 
 If you’re comfortable [working with list
 columns](https://r4ds.had.co.nz/many-models.html), this may be all you
-need from the package. But let’s not stop just yet, because `npi`
-provides convenience functions to summarize and extract the data you
-need.
+need from the package. However, `npi` also provides functions that can
+help you summarize and transform your search results.
 
 ## Working with search results
 
+`npi` has two main helper functions for working with search results:
+`npi_summarize()` and `npi_flatten()`.
+
+### Summarizing results
+
 Run `npi_summarize()` on your results to see a more human-readable
-overview of what we’ve got. Specifically, the function returns the NPI
-number, provider’s name, enumeration type (individual or organizational
-provider), primary address, phone number, and primary taxonomy (area of
-practice):
+overview of your search results. Specifically, the function returns the
+NPI number, provider’s name, enumeration type (individual or
+organizational provider), primary address, phone number, and primary
+taxonomy (area of practice):
 
 ``` r
 npi_summarize(nyc)
@@ -139,8 +143,52 @@ npi_summarize(nyc)
 #> 10 1326403213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Anestheti…
 ```
 
-Suppose we just want the basic and taxonomy information for each NPI in
-the result in a flattened data frame:
+### Flattening results
+
+As seen above, the data frame returned by `npi_search()` has a nested
+structure. Although all the data in a single row relates to one NPI,
+each list column contains a list of one or more values corresponding to
+the NPI for that row. For example, a provider’s NPI record may have
+multiple associated addresses, phone numbers, taxonomies, and other
+attributes, all of which is stored in a single row of the data frame.
+
+Because nested structures can be a little tricky to work with, the `npi`
+includes `npi_flatten()`, a function that transforms the data frame into
+a flatter (i.e., unnested) structure that’s easier to use.
+`npi_flatten()` performs the following transformations:
+
+- unnest the list columns
+- prefix the name of each unnested column with the name of its original
+  list column
+- join the data together by NPI
+
+``` r
+npi_flatten(nyc)
+#> # A tibble: 48 × 42
+#>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
+#>         <int> <chr>            <chr>           <chr>            <chr>           
+#>  1 1194276360 ALYSSA           COWNAN          PA               NO              
+#>  2 1194276360 ALYSSA           COWNAN          PA               NO              
+#>  3 1306849641 MARK             MOHRMANN        MD               NO              
+#>  4 1306849641 MARK             MOHRMANN        MD               NO              
+#>  5 1306849641 MARK             MOHRMANN        MD               NO              
+#>  6 1306849641 MARK             MOHRMANN        MD               NO              
+#>  7 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
+#>  8 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
+#>  9 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
+#> 10 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
+#> # … with 38 more rows, and 37 more variables: basic_gender <chr>,
+#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
+#> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
+#> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
+#> #   basic_authorized_official_credential <chr>,
+#> #   basic_authorized_official_first_name <chr>,
+#> #   basic_authorized_official_last_name <chr>, …
+```
+
+If you only want to flatten a subset of the original data frame, you can
+optionally pass in a vector containing the list columns you want to
+unnest:
 
 ``` r
 npi_flatten(nyc, c("basic", "taxonomies"))
@@ -175,40 +223,6 @@ npi_flatten(nyc, c("basic", "taxonomies"))
 #> #   basic_authorized_official_first_name <chr>,
 #> #   basic_authorized_official_last_name <chr>, …
 ```
-
-Or we can flatten the whole thing and prune back later:
-
-``` r
-npi_flatten(nyc)
-#> # A tibble: 48 × 42
-#>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
-#>         <int> <chr>            <chr>           <chr>            <chr>           
-#>  1 1194276360 ALYSSA           COWNAN          PA               NO              
-#>  2 1194276360 ALYSSA           COWNAN          PA               NO              
-#>  3 1306849641 MARK             MOHRMANN        MD               NO              
-#>  4 1306849641 MARK             MOHRMANN        MD               NO              
-#>  5 1306849641 MARK             MOHRMANN        MD               NO              
-#>  6 1306849641 MARK             MOHRMANN        MD               NO              
-#>  7 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  8 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  9 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#> 10 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#> # … with 38 more rows, and 37 more variables: basic_gender <chr>,
-#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
-#> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
-#> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
-#> #   basic_authorized_official_credential <chr>,
-#> #   basic_authorized_official_first_name <chr>,
-#> #   basic_authorized_official_last_name <chr>, …
-```
-
-Now we’re ready to do whatever else we need to do with this data. Under
-the hood, `npi_flatten()` has done a lot of data wrangling for us:
-
-- unnested the specified list columns
-- avoided potential naming collisions by prefixing the unnested names by
-  their originating column name
-- joined the data together by NPI
 
 ### Validating NPIs
 
