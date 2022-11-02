@@ -93,7 +93,7 @@ with_mock_api({
 })
 
 
-test_that("npi_search() messages when argument values are invalid", {
+test_that("npi_search() throws an error when argument values are invalid", {
   # Provider type
   pt <- "`enumeration_type` must be one of: NULL, 'ind', or 'org'."
   expect_error(npi_search(enumeration_type = "NPI1"), pt)
@@ -135,6 +135,17 @@ test_that("npi_search() messages when argument values are invalid", {
 
   expect_true(!any(stringr::str_detect(good_1, legal_1)))
   expect_true(!any(stringr::str_detect(good_2, legal_2)))
+
+  # Wildcard rules
+  arg <- "A*"
+  err <- "bad_wildcard_error"
+
+  expect_error(npi_search(taxonomy_description = arg), class = err)
+  expect_error(npi_search(first_name = arg), class = err)
+  expect_error(npi_search(last_name = arg), class = err)
+  expect_error(npi_search(organization_name = arg), class = err)
+  expect_error(npi_search(postal_code = arg), class = err)
+  expect_error(npi_search(city = arg), class = err)
 })
 
 

@@ -173,3 +173,62 @@ make_full_address <-
 tidyr_new_interface <- function() {
   utils::packageVersion("tidyr") <= "0.8.99"
 }
+
+
+#' Validate wildcard rules
+#' @param x Length 1 character vector
+#' @return Boolean indicated whether the rules pass (TRUE) or fail (FALSE)
+#' @noRd
+validate_wildcard_rules <- function(x) {
+  if ((!is.character(x) && !is.numeric(x)) || length(x) > 1) {
+    rlang::abort("x must be a character vector with length 1",
+                 "bad_wildcard_error")
+  }
+
+  wildcard_pattern <- "\\*"
+
+  # Atomic test functions
+  n_wildcards <- function(x)
+    stringr::str_count(x, wildcard_pattern)
+  ends_in_wildcard <-
+    function(x)
+      stringr::str_ends(x, wildcard_pattern)
+  enough_chars <- function(x)
+    (nchar(x) - n_wildcards(x)) >= 2
+
+  # 2 or more wildcards present --> FAIL
+  if (n_wildcards(x) > 1) {
+    rlang::abort(
+      paste0(
+        n_wildcards(x),
+        " wildcard characters (*) detected.\nA maximum of one wildcard \
+        character is allowed per argument."
+      ),
+      "bad_wildcard_error"
+    )
+  }
+
+  # 1 wildcard present
+  if (n_wildcards(x) == 1) {
+    # non-trailing wildcard
+    if (isFALSE(ends_in_wildcard(x))) {
+      rlang::abort(
+        "Argument ending in a non-trailing wildcard character (*) detected.\n \
+        When present, the wildcard character must appear at the end of the \
+        character string.",
+        "bad_wildcard_error"
+      )
+    }
+
+    # 1 trailing wildcard and less than 2 non-wildcard characters precede it
+    if (isFALSE(enough_chars(x))) {
+      rlang::abort(
+      "Arguments ending in a wildcard character (*) must be preceded by two \
+        or more non-wildcard characters.",
+        "bad_wildcard_error"
+      )
+    }
+  }
+
+  TRUE
+}

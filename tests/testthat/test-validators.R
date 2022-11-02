@@ -24,3 +24,27 @@ test_that("hyphenate_full_zip() works correctly", {
   expect_equal(hyphenate_full_zip(bad_zips_num), expect_zips_num)
   expect_equal(hyphenate_full_zip(bad_zips_chr), expect_zips_chr)
 })
+
+test_that("validate_wildcard_rules() works correctly", {
+  xs_pass <- c("Mall*", "Ma*", "M")
+  xs_error <- c("Mal*l", "Mal**", "M**", "M*")
+  xs_too_long <- c("a", "b")
+  xs_not_char <- TRUE
+  xs_numeric <- 23414
+
+  expect_error(validate_wildcard_rules(xs_too_long), class = "bad_wildcard_error")
+  expect_error(validate_wildcard_rules(xs_not_char), class = "bad_wildcard_error")
+  expect_true(validate_wildcard_rules(xs_numeric))
+  expect_equal(
+    setNames(c(TRUE, TRUE, TRUE), xs_pass),
+    vapply(
+      xs_pass,
+      FUN = function(x)
+        validate_wildcard_rules(x),
+      FUN.VALUE = logical(1L)
+    )
+  )
+  lapply(xs_error,
+         function(x)
+           expect_error(validate_wildcard_rules(x), class = "bad_wildcard_error"))
+})

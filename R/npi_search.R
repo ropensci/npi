@@ -123,8 +123,8 @@ npi_search <- function(number = NULL,
   enumeration_type <- ifelse(enumeration_type == "ind", "NPI-1", "NPI-2")
 
   # Check for illegal characters
-  legal_1 <- "[^[:alnum:][:space:]()&:,-.#;'/\"]"
-  legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@]"
+  legal_1 <- "[^[:alnum:][:space:]()&:,-.#;'/\"\\*]"
+  legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@\\*]"
 
   if (any(stringr::str_detect(c(first_name, last_name, city), legal_1)) ||
       any(stringr::str_detect(organization_name, legal_2))) {
@@ -157,6 +157,10 @@ npi_search <- function(number = NULL,
   if (limit < 1L || limit > 1200) {
     rlang::abort("`limit` must be a number between 1 and 1200.")
   }
+
+  # Validate wildcard rules on applicable fields
+  wild_args <- list(taxonomy_description, first_name, last_name, organization_name, city, postal_code)
+  lapply(wild_args, function(x) if (!is.null(x)) validate_wildcard_rules(x))
 
   npi_process_results(
     list(
