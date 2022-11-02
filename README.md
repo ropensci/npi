@@ -150,17 +150,21 @@ structure. Although all the data in a single row relates to one NPI,
 each list column contains a list of one or more values corresponding to
 the NPI for that row. For example, a provider’s NPI record may have
 multiple associated addresses, phone numbers, taxonomies, and other
-attributes, all of which is stored in a single row of the data frame.
+attributes, all of which live in the same row of the data frame.
 
 Because nested structures can be a little tricky to work with, the `npi`
 includes `npi_flatten()`, a function that transforms the data frame into
-a flatter (i.e., unnested) structure that’s easier to use.
+a flatter (i.e., unnested and merged) structure that’s easier to use.
 `npi_flatten()` performs the following transformations:
 
 - unnest the list columns
 - prefix the name of each unnested column with the name of its original
   list column
-- join the data together by NPI
+- left-join the data together by NPI
+
+`npi_flatten()` supports a variety of approaches to flattening the
+results from `npi_search()`. One extreme is to flatten everything at
+once:
 
 ``` r
 npi_flatten(nyc)
@@ -186,12 +190,18 @@ npi_flatten(nyc)
 #> #   basic_authorized_official_last_name <chr>, …
 ```
 
-If you only want to flatten a subset of the original data frame, you can
-optionally pass in a vector containing the list columns you want to
-unnest:
+However, due to the number of fields and the large number of potential
+combinations of values, this approach is best suited to small datasets.
+More likely, you’ll want to flatten a small number of list columns from
+the original data frame in one pass, repeating the process with other
+list columns you want and merging after the fact. For example, to
+flatten basic provider and provider taxonomy information, supply the
+corresponding list columns as a vector of names to the `cols` argument:
 
 ``` r
-npi_flatten(nyc, c("basic", "taxonomies"))
+# Flatten basic provider info and provider taxonomy, preserving the relationship
+# of each to NPI number and discarding other list columns.
+npi_flatten(nyc, cols = c("basic", "taxonomies"))
 #> # A tibble: 20 × 26
 #>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
 #>         <int> <chr>            <chr>           <chr>            <chr>           
