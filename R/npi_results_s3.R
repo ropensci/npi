@@ -175,7 +175,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
   list_cols <- names(Filter(is.list, df))
 
-  out <- lapply(list_cols, function(x) get_list_col(df, x))
+  out <- lapply(list_cols, function(x) get_list_col(df, list_col = x, key = key))
   out <- Reduce(function(x, y) merge(x, y, by = key, all.x = TRUE), out)
   tibble::as_tibble(out)
 }
@@ -195,5 +195,12 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 #' npi_flatten(npis, cols = c("basic", "identifiers"))
 #' @export
 npi_flatten <- function(df, cols, key) {
+  if (!inherits(df, "npi_results")) {
+      abort_bad_argument(arg = "df",
+                         must = "be an npi_results S3 object",
+                         not = df,
+                         method = "class")
+    }
+
   UseMethod("npi_flatten")
 }
