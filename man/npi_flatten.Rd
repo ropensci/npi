@@ -28,3 +28,4 @@ npi_flatten(npis)
 npi_flatten(npis, cols = "basic")
 npi_flatten(npis, cols = c("basic", "identifiers"))
 }
+\concept{data wrangling functions}

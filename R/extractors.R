@@ -30,7 +30,7 @@ tidy_results <- function(content) {
 
 #' @noRd
 clean_results <- function(results) {
-  convert_epoch_date <- function(col){
+  convert_epoch_to_date <- function(col){
     ifelse(
       nchar(as.character(col)) == 13,
       as.numeric(col)/1000,
@@ -39,7 +39,7 @@ clean_results <- function(results) {
   }
 
   epoch_to_date <- purrr::as_mapper(
-    ~ as.POSIXct(convert_epoch_date(.x), origin = "1970-01-01", tz = "UTC")
+    ~ as.POSIXct(convert_epoch_to_date(.x), origin = "1970-01-01", tz = "UTC")
   )
 
   results %>%
@@ -103,10 +103,10 @@ get_list_col <- function(df, list_col = NULL, key = "npi") {
 
   # Make unnest work with older and newer versions of tidyr
   if (tidyr_new_interface()) {
-    # Code for tidyr v1.0.0
+    # Old interface
     tidyr::unnest(df, !!rlang::sym(list_col), .sep = sep_val)
   } else {
-    # Code for v0.8.3
+    # New interface
     tidyr::unnest(df, !!rlang::sym(list_col), names_sep = sep_val)
   }
 }

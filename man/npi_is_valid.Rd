@@ -21,3 +21,4 @@ Providers (69 FR 3434).
 npi_is_valid(1234567893) # TRUE
 npi_is_valid(1234567898) # FALSE
 }
+\concept{utility functions}

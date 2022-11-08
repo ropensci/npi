@@ -8,9 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Access the United States National Provider Identifier
-    Registry API (if available) and provide informative error messages
-    when it's not.
+Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
 }
 \details{
 \pkg{npi} makes it easy to search and work with data from the U.S.
@@ -42,9 +40,9 @@ by the `npi` column into an analysis-ready object.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/frankfarach/npi}
-  \item \url{https://frankfarach.github.io/npi/}
-  \item \url{https://npiregistry.cms.hhs.gov/api/}
+  \item \url{https://github.com/frankfarach/npi (devel)}
+  \item \url{https://frankfarach.github.io/npi/ (user manual)}
+  \item \url{https://npiregistry.cms.hhs.gov/api/ (API)}
   \item Report bugs at \url{https://github.com/frankfarach/npi/issues}
 }
 
@@ -55,6 +53,8 @@ Useful links:
 Other contributors:
 \itemize{
   \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
+  \item Matthias Grenié \email{matthias.grenie@idiv.de} (\href{https://orcid.org/0000-0002-4659-7522}{ORCID}) [reviewer]
+  \item Emily C. Zabor \email{zabore2@ccf.org} (\href{https://orcid.org/0000-0002-1402-4498}{ORCID}) [reviewer]
 }
 
 }

@@ -11,17 +11,17 @@ A tibble with 10 rows and 11 columns, organized as follows:
   \item{enumeration_type}{[character] Type of provider NPI, either
     "Individual" or "Organizational".}
   \item{basic}{[list of 1 tibble] Basic information about the provider.}
-  \item{other_names}{[list of 0-n tibbles] Other names the provider
+  \item{other_names}{[list of tibbles] Other names the provider
     goes by.}
-  \item{identifiers}{[list of 0-50 tibbles] Other identifiers linked to
+  \item{identifiers}{[list of tibbles] Other identifiers linked to
     the NPI.}
-  \item{taxonomies}{[list of 0-15 tibbles] Healthcare Provider Taxonomy
+  \item{taxonomies}{[list of tibbles] Healthcare Provider Taxonomy
     classification.}
-  \item{addresses}{[list of 2 tibbles] Addresses for the provider's
+  \item{addresses}{[list of tibbles] Addresses for the provider's
     primary practice location and primary mailing address.}
-  \item{practice_locations}{[list of 0-n tibbles] Addresses for the
+  \item{practice_locations}{[list of tibbles] Addresses for the
     provider's other practice locations.}
-  \item{endpoints}{[list of 0-n tibbles] Details about provider's endpoints
+  \item{endpoints}{[list of tibbles] Details about provider's endpoints
     for health information exchange.}
   \item{created_date}{[datetime] Date NPI record was first created (UTC).}
   \item{last_updated_date}{[datetime] UTC timestamp of the last time the
