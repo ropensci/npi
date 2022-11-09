@@ -13,9 +13,9 @@ Review](https://badges.ropensci.org/505_status.svg)](https://github.com/ropensci
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
-[![R-CMD-check](https://github.com/frankfarach/npi/workflows/R-CMD-check/badge.svg)](https://github.com/frankfarach/npi/actions)
-[![Coverage
-status](https://codecov.io/gh/frankfarach/npi/branch/master/graph/badge.svg)](https://codecov.io/github/frankfarach/npi?branch=master)
+[![R-CMD-check](https://github.com/ropensci/npi/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/npi/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/ropensci/npi/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/npi?branch=master)
 [![DOI](https://zenodo.org/badge/122857655.svg)](https://zenodo.org/badge/latestdoi/122857655)
 <!-- badges: end -->
 
@@ -40,10 +40,19 @@ provider, which is the primary motivation for developing this package.
 
 ## Installation
 
-Install `npi` directly from Github using the `devtools` package:
+There are two ways to install `npi`:
+
+1.  From Github using the `devtools` package:
 
 ``` r
-devtools::install_github("frankfarach/npi")
+devtools::install_github("ropensci/npi")
+library(npi)
+```
+
+1.  From [R-universe](https://ropensci.org/r-universe/):
+
+``` r
+install.packages("npi", repos = "https://ropensci.r-universe.dev")
 library(npi)
 ```
 
@@ -255,7 +264,7 @@ npi_is_valid(1234567898)
 
 Note that this function doesn’t check whether the NPI numbers are
 activated or deactivated (see
-[\#22](https://github.com/frankfarach/npi/issues/22#issuecomment-787642817)).
+[\#22](https://github.com/ropensci/npi/issues/22#issuecomment-787642817)).
 It merely checks for the number’s consistency with the NPI
 specification. As such, it can help you detect and handle data quality
 issues early.
@@ -268,10 +277,10 @@ the request. This helps the API’s maintainers understand what systems
 are using the API. By default, when `npi` makes a request to the NPPES
 API, the request header references the name of the package and the URL
 for the repository (e.g., ‘npi/0.1.0
-(<http://github.com/frankfarach/npi>)’). If you want to set a custom
-user agent, update the value of the `npi_user_agent` option. For
-example, for version 1.0.0 of an app called “my_app”, you could run the
-following code:
+(<http://github.com/ropensci/npi>)’). If you want to set a custom user
+agent, update the value of the `npi_user_agent` option. For example, for
+version 1.0.0 of an app called “my_app”, you could run the following
+code:
 
 ``` r
 options(npi_user_agent = "my_app/1.0.0")
@@ -279,20 +288,20 @@ options(npi_user_agent = "my_app/1.0.0")
 
 ## Package Website
 
-`npi` has a [website](https://frankfarach.github.io/npi/) with release
+`npi` has a [website](https://docs.ropensci.org/npi/) with release
 notes, documentation on all user functions, and examples showing how the
 package can be used.
 
 ## Reporting Bugs
 
 Did you spot a bug? I’d love to hear about it at the [issues
-page](https://github.com/frankfarach/npi/issues).
+page](https://github.com/ropensci/npi/issues).
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
-to abide by its terms.
+Please note that this package is released with a [Contributor Code of
+Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
+project, you agree to abide by its terms.
 
 ## Contributing
 
@@ -302,8 +311,8 @@ Interested in learning how you can contribute to npi? Head over to the
 ## How to cite this package
 
 For the latest citation, see the [Authors and
-Citation](https://frankfarach.github.io/npi/authors.html#citation) page
-on the package website.
+Citation](https://docs.ropensci.org/npi/authors.html) page on the
+package website.
 
 ## License
 

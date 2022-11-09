@@ -6,14 +6,16 @@ Thanks for considering contributing to npi! It's people like you that make it re
 
 npi is an open source project created and maintained by [Frank Farach](https://www.frankfarach.com/about) in his spare time. 
 
-[repo]: https://github.com/frankfarach/npi
-[issues]: https://github.com/frankfarach/npi/issues
-[new_issue]: https://github.com/frankfarach/npi/issues/new
-[website]: https://frankfarach.github.io/npi
+[repo]: https://github.com/ropensci/npi
+[issues]: https://github.com/ropensci/npi/issues
+[new_issue]: https://github.com/ropensci/npi/issues/new
+[website]: https://docs.ropensci.org/npi
 
 ## Code of conduct
 
-This project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this package is released with a [Contributor
+Code of Conduct](https://ropensci.org/code-of-conduct/). 
+By contributing to this project, you agree to abide by its terms.
 
 ## How you can contribute
 
