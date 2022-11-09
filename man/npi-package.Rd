@@ -41,14 +41,14 @@ by the `npi` column into an analysis-ready object.
 Useful links:
 \itemize{
   \item \url{https://github.com/ropensci/npi (devel)}
-  \item \url{https://docs.ropensci.org/npi/ (user manual)}
+  \item \url{https://docs.ropensci.org/npi (user manual)}
   \item \url{https://npiregistry.cms.hhs.gov/api/ (API)}
   \item Report bugs at \url{https://github.com/ropensci/npi/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID})
+\strong{Maintainer}: Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID}) [copyright holder]
 
 Other contributors:
 \itemize{

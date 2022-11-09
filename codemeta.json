@@ -4,11 +4,11 @@
   "identifier": "npi",
   "description": "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.",
   "name": "npi: Access the U.S. National Provider Identifier Registry API",
-  "relatedLink": ["https://docs.ropensci.org/npi/", "https://npiregistry.cms.hhs.gov/api/"],
+  "relatedLink": ["https://docs.ropensci.org/npi", "https://npiregistry.cms.hhs.gov/api/"],
   "codeRepository": "https://github.com/ropensci/npi",
   "issueTracker": "https://github.com/ropensci/npi/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -30,6 +30,15 @@
       "givenName": "Sam",
       "familyName": "Parmar",
       "email": "parmartsam@gmail.com"
+    }
+  ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Frank",
+      "familyName": "Farach",
+      "email": "frank.farach@gmail.com",
+      "@id": "https://orcid.org/0000-0002-2145-0145"
     }
   ],
   "maintainer": [
@@ -286,7 +295,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "276.165KB",
+  "fileSize": "276.202KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
