@@ -40,10 +40,10 @@ by the `npi` column into an analysis-ready object.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/frankfarach/npi (devel)}
-  \item \url{https://frankfarach.github.io/npi/ (user manual)}
+  \item \url{https://github.com/ropensci/npi (devel)}
+  \item \url{https://docs.ropensci.org/npi/ (user manual)}
   \item \url{https://npiregistry.cms.hhs.gov/api/ (API)}
-  \item Report bugs at \url{https://github.com/frankfarach/npi/issues}
+  \item Report bugs at \url{https://github.com/ropensci/npi/issues}
 }
 
 }

@@ -4,7 +4,7 @@ context("test-api.R")
 API_VERSION <- "2.1"
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
 USER_AGENT <- paste(paste0("npi/", utils::packageVersion("npi")),
-                    "(http://github.com/frankfarach/npi)")
+                    "(http://github.com/ropensci/npi)")
 MAX_N_PER_REQUEST <- 200L
 
 
