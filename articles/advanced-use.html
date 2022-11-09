@@ -98,7 +98,7 @@
 <div class="section level2">
 <h2 id="note-on-npi-downloadable-files">Note on NPI Downloadable Files<a class="anchor" aria-label="anchor" href="#note-on-npi-downloadable-files"></a>
 </h2>
-<p>CMS regularly releases full NPI data files <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">here</a>. We recommend that users download the data file if they need to work with the entire dataset. The API and <code><a href="../reference/npi_search.html">npi_search()</a></code> returns a maximum of 1,200 records. Also consider downloading the entire data if you need to work with more than the maximum. Data dissemination files are zipped and will exceed 4GB upon decompression. Additional documentation is provided <a href="https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination" class="external-link">here</a>.</p>
+<p>CMS regularly releases full NPI data files <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">here</a>. We recommend that users download the data file if they need to work with the entire dataset. The API and <code><a href="../reference/npi_search.html">npi_search()</a></code> returns a maximum of 1,200 records. Also consider downloading the entire data if you need to work with more than the maximum. Data dissemination files are zipped and will exceed 4GB upon decompression.</p>
 </div>
 <div class="section level2">
 <h2 id="run-npi_search-on-multiple-search-terms">Run <code>npi_search()</code> on multiple search terms<a class="anchor" aria-label="anchor" href="#run-npi_search-on-multiple-search-terms"></a>
@@ -168,7 +168,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1992708929</span>, <span class="fl">1831192848</span>, <span class="fl">1699778688</span>, <span class="fl">1111111111</span><span class="op">)</span>  <span class="co"># Last element doesn't exist</span></span>
 <span><span class="va">combined_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">npis</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">npis</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">combined_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">combined_df</span>, <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>number <span class="op">=</span> <span class="va">i</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; 10 records requested</span></span>
