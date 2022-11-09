@@ -169,7 +169,7 @@ By contributing to this project, you agree to abide by its terms.
 
 ## Contributing
 
-Interested in learning how you can contribute to npi? Head over to the [contributor guide](CONTRIBUTING.md)&mdash;and thanks for considering!
+Interested in learning how you can contribute to npi? Head over to the [contributor guide](https://docs.ropensci.org/npi/CONTRIBUTING.html)&mdash;and thanks for considering!
 
 ## How to cite this package
 

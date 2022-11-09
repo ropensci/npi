@@ -92,20 +92,21 @@ nyc <- npi_search(city = "New York City")
 # Your results may differ since the data in the NPPES database changes over time
 nyc
 #> # A tibble: 10 × 11
-#>       npi enumeration_type basic    other_names identifiers taxonomies addresses
-#>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.19e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  2 1.31e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  3 1.64e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  4 1.35e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  5 1.56e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  6 1.79e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  7 1.56e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  8 1.96e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  9 1.43e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> 10 1.33e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> # … with 4 more variables: practice_locations <list>, endpoints <list>,
-#> #   created_date <dttm>, last_updated_date <dttm>
+#>       npi enume…¹ basic    other_…² identi…³ taxono…⁴ addres…⁵ practi…⁶ endpoi…⁷
+#>  *  <int> <chr>   <list>   <list>   <list>   <list>   <list>   <list>   <list>  
+#>  1 1.19e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  2 1.31e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  3 1.64e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  4 1.35e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  5 1.56e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  6 1.79e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  7 1.56e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  8 1.96e9 Organi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#>  9 1.43e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#> 10 1.33e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
+#> # … with 2 more variables: created_date <dttm>, last_updated_date <dttm>, and
+#> #   abbreviated variable names ¹​enumeration_type, ²​other_names, ³​identifiers,
+#> #   ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations, ⁷​endpoints
 ```
 
 The full search results have four regular vector columns, `npi`,
@@ -146,18 +147,20 @@ taxonomy (area of practice):
 ``` r
 npi_summarize(nyc)
 #> # A tibble: 10 × 6
-#>           npi name      enumeration_type primary_practic… phone primary_taxonomy
-#>         <int> <chr>     <chr>            <chr>            <chr> <chr>           
-#>  1 1194276360 ALYSSA C… Individual       5 E 98TH ST FL … 212-… Physician Assis…
-#>  2 1306849641 MARK MOH… Individual       16 PARK PL, NEW… 212-… Orthopaedic Sur…
-#>  3 1639173065 SAKSHI D… Individual       10 E 102ND ST, … 212-… Nurse Practitio…
-#>  4 1346604592 SARAH LO… Individual       1335 DUBLIN RD … 614-… Occupational Th…
-#>  5 1558362566 AMY TIER… Individual       1176 5TH AVE, N… 212-… Psychiatry & Ne…
-#>  6 1790786416 NOAH GOL… Individual       140 BERGEN STRE… 973-… Internal Medici…
-#>  7 1558713628 ROBYN NO… Individual       9 HOPE AVE STE … 781-… Nurse Practitio…
-#>  8 1962983775 LENOX HI… Organization     100 E 77TH ST, … 212-… Internal Medici…
-#>  9 1427454529 YONGHONG… Individual       34 MAPLE ST, NO… 203-… Obstetrics & Gy…
-#> 10 1326403213 RAJEE KR… Individual       12401 E 17TH AV… 347-… Nurse Anestheti…
+#>           npi name                                 enume…¹ prima…² phone prima…³
+#>         <int> <chr>                                <chr>   <chr>   <chr> <chr>  
+#>  1 1194276360 ALYSSA COWNAN                        Indivi… 5 E 98… 212-… Physic…
+#>  2 1306849641 MARK MOHRMANN                        Indivi… 16 PAR… 212-… Orthop…
+#>  3 1639173065 SAKSHI DUA                           Indivi… 10 E 1… 212-… Nurse …
+#>  4 1346604592 SARAH LOWRY                          Indivi… 1335 D… 614-… Occupa…
+#>  5 1558362566 AMY TIERSTEN                         Indivi… 1176 5… 212-… Psychi…
+#>  6 1790786416 NOAH GOLDMAN                         Indivi… 140 BE… 973-… Intern…
+#>  7 1558713628 ROBYN NOHLING                        Indivi… 9 HOPE… 781-… Nurse …
+#>  8 1962983775 LENOX HILL MEDICAL ANESTHESIOLOGY, … Organi… 100 E … 212-… Intern…
+#>  9 1427454529 YONGHONG TAN                         Indivi… 34 MAP… 203-… Obstet…
+#> 10 1326403213 RAJEE KRAUSE                         Indivi… 12401 … 347-… Nurse …
+#> # … with abbreviated variable names ¹​enumeration_type,
+#> #   ²​primary_practice_address, ³​primary_taxonomy
 ```
 
 ### Flattening results
@@ -186,25 +189,25 @@ once:
 ``` r
 npi_flatten(nyc)
 #> # A tibble: 48 × 42
-#>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
-#>         <int> <chr>            <chr>           <chr>            <chr>           
-#>  1 1194276360 ALYSSA           COWNAN          PA               NO              
-#>  2 1194276360 ALYSSA           COWNAN          PA               NO              
-#>  3 1306849641 MARK             MOHRMANN        MD               NO              
-#>  4 1306849641 MARK             MOHRMANN        MD               NO              
-#>  5 1306849641 MARK             MOHRMANN        MD               NO              
-#>  6 1306849641 MARK             MOHRMANN        MD               NO              
-#>  7 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  8 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  9 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#> 10 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#> # … with 38 more rows, and 37 more variables: basic_gender <chr>,
-#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
-#> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
+#>           npi basic_fi…¹ basic…² basic…³ basic…⁴ basic…⁵ basic…⁶ basic…⁷ basic…⁸
+#>         <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <chr>   <chr>  
+#>  1 1194276360 ALYSSA     COWNAN  PA      NO      F       2016-1… 2018-0… A      
+#>  2 1194276360 ALYSSA     COWNAN  PA      NO      F       2016-1… 2018-0… A      
+#>  3 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
+#>  4 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
+#>  5 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
+#>  6 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
+#>  7 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#>  8 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#>  9 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#> 10 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#> # … with 38 more rows, 33 more variables: basic_name <chr>,
+#> #   basic_name_prefix <chr>, basic_middle_name <chr>,
 #> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
 #> #   basic_authorized_official_credential <chr>,
 #> #   basic_authorized_official_first_name <chr>,
-#> #   basic_authorized_official_last_name <chr>, …
+#> #   basic_authorized_official_last_name <chr>,
+#> #   basic_authorized_official_middle_name <chr>, …
 ```
 
 However, due to the number of fields and the large number of potential
@@ -220,35 +223,35 @@ corresponding list columns as a vector of names to the `cols` argument:
 # of each to NPI number and discarding other list columns.
 npi_flatten(nyc, cols = c("basic", "taxonomies"))
 #> # A tibble: 20 × 26
-#>           npi basic_first_name basic_last_name basic_credential basic_sole_prop…
-#>         <int> <chr>            <chr>           <chr>            <chr>           
-#>  1 1194276360 ALYSSA           COWNAN          PA               NO              
-#>  2 1306849641 MARK             MOHRMANN        MD               NO              
-#>  3 1306849641 MARK             MOHRMANN        MD               NO              
-#>  4 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  5 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  6 1326403213 RAJEE            KRAUSE          AGPCNP-C         NO              
-#>  7 1346604592 SARAH            LOWRY           OTR/L            YES             
-#>  8 1346604592 SARAH            LOWRY           OTR/L            YES             
-#>  9 1427454529 YONGHONG         TAN             <NA>             NO              
-#> 10 1558362566 AMY              TIERSTEN        M.D.             YES             
-#> 11 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             
-#> 12 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             
-#> 13 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             
-#> 14 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             
-#> 15 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             
-#> 16 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN… YES             
-#> 17 1639173065 SAKSHI           DUA             M.D.             YES             
-#> 18 1639173065 SAKSHI           DUA             M.D.             YES             
-#> 19 1790786416 NOAH             GOLDMAN         M.D.             NO              
-#> 20 1962983775 <NA>             <NA>            <NA>             <NA>            
-#> # … with 21 more variables: basic_gender <chr>, basic_enumeration_date <chr>,
-#> #   basic_last_updated <chr>, basic_status <chr>, basic_name <chr>,
-#> #   basic_name_prefix <chr>, basic_middle_name <chr>,
-#> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
+#>           npi basic_fi…¹ basic…² basic…³ basic…⁴ basic…⁵ basic…⁶ basic…⁷ basic…⁸
+#>         <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <chr>   <chr>  
+#>  1 1194276360 ALYSSA     COWNAN  PA      NO      F       2016-1… 2018-0… A      
+#>  2 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
+#>  3 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
+#>  4 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#>  5 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#>  6 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
+#>  7 1346604592 SARAH      LOWRY   OTR/L   YES     F       2016-0… 2018-0… A      
+#>  8 1346604592 SARAH      LOWRY   OTR/L   YES     F       2016-0… 2018-0… A      
+#>  9 1427454529 YONGHONG   TAN     <NA>    NO      F       2014-1… 2018-1… A      
+#> 10 1558362566 AMY        TIERST… M.D.    YES     F       2005-0… 2019-0… A      
+#> 11 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
+#> 12 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
+#> 13 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
+#> 14 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
+#> 15 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
+#> 16 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
+#> 17 1639173065 SAKSHI     DUA     M.D.    YES     F       2005-0… 2019-0… A      
+#> 18 1639173065 SAKSHI     DUA     M.D.    YES     F       2005-0… 2019-0… A      
+#> 19 1790786416 NOAH       GOLDMAN M.D.    NO      M       2005-0… 2018-0… A      
+#> 20 1962983775 <NA>       <NA>    <NA>    <NA>    <NA>    2018-0… 2018-0… A      
+#> # … with 17 more variables: basic_name <chr>, basic_name_prefix <chr>,
+#> #   basic_middle_name <chr>, basic_organization_name <chr>,
+#> #   basic_organizational_subpart <chr>,
 #> #   basic_authorized_official_credential <chr>,
 #> #   basic_authorized_official_first_name <chr>,
-#> #   basic_authorized_official_last_name <chr>, …
+#> #   basic_authorized_official_last_name <chr>,
+#> #   basic_authorized_official_middle_name <chr>, …
 ```
 
 ### Validating NPIs
@@ -311,7 +314,8 @@ project, you agree to abide by its terms.
 ## Contributing
 
 Interested in learning how you can contribute to npi? Head over to the
-[contributor guide](CONTRIBUTING.md)—and thanks for considering!
+[contributor guide](https://docs.ropensci.org/npi/CONTRIBUTING.html)—and
+thanks for considering!
 
 ## How to cite this package
 
