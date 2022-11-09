@@ -39,12 +39,16 @@ test_that("validate_wildcard_rules() works correctly", {
     setNames(c(TRUE, TRUE, TRUE), xs_pass),
     vapply(
       xs_pass,
-      FUN = function(x)
-        validate_wildcard_rules(x),
+      FUN = function(x) {
+        validate_wildcard_rules(x)
+      },
       FUN.VALUE = logical(1L)
     )
   )
-  lapply(xs_error,
-         function(x)
-           expect_error(validate_wildcard_rules(x), class = "bad_wildcard_error"))
+  lapply(
+    xs_error,
+    function(x) {
+      expect_error(validate_wildcard_rules(x), class = "bad_wildcard_error")
+    }
+  )
 })

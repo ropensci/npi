@@ -127,7 +127,7 @@ npi_search <- function(number = NULL,
   legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@\\*]"
 
   if (any(stringr::str_detect(c(first_name, last_name, city), legal_1)) ||
-      any(stringr::str_detect(organization_name, legal_2))) {
+    any(stringr::str_detect(organization_name, legal_2))) {
     msg <- "Field contains at least one illegal character. See `?npi_search`."
     rlang::abort(msg, class = "illegal_character")
   }

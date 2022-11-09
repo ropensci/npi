@@ -196,11 +196,13 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 #' @export
 npi_flatten <- function(df, cols, key) {
   if (!inherits(df, "npi_results")) {
-      abort_bad_argument(arg = "df",
-                         must = "be an npi_results S3 object",
-                         not = df,
-                         method = "class")
-    }
+    abort_bad_argument(
+      arg = "df",
+      must = "be an npi_results S3 object",
+      not = df,
+      method = "class"
+    )
+  }
 
   UseMethod("npi_flatten")
 }

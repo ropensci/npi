@@ -30,10 +30,10 @@ tidy_results <- function(content) {
 
 #' @noRd
 clean_results <- function(results) {
-  convert_epoch_to_date <- function(col){
+  convert_epoch_to_date <- function(col) {
     ifelse(
       nchar(as.character(col)) == 13,
-      as.numeric(col)/1000,
+      as.numeric(col) / 1000,
       as.numeric(col)
     )
   }

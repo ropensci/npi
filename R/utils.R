@@ -1,8 +1,10 @@
 # Global variables for GET request
 API_VERSION <- "2.1" # Referenced in `npi_search()`
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
-USER_AGENT <- paste(paste0("npi/", utils::packageVersion("npi")),
-                    "(http://github.com/ropensci/npi)")
+USER_AGENT <- paste(
+  paste0("npi/", utils::packageVersion("npi")),
+  "(http://github.com/ropensci/npi)"
+)
 MAX_N_PER_REQUEST <- 200L
 
 #' Handle bad function arguments
@@ -181,20 +183,25 @@ tidyr_new_interface <- function() {
 #' @noRd
 validate_wildcard_rules <- function(x) {
   if ((!is.character(x) && !is.numeric(x)) || length(x) > 1) {
-    rlang::abort("x must be a character vector with length 1",
-                 "bad_wildcard_error")
+    rlang::abort(
+      "x must be a character vector with length 1",
+      "bad_wildcard_error"
+    )
   }
 
   wildcard_pattern <- "\\*"
 
   # Atomic test functions
-  n_wildcards <- function(x)
+  n_wildcards <- function(x) {
     stringr::str_count(x, wildcard_pattern)
+  }
   ends_in_wildcard <-
-    function(x)
+    function(x) {
       stringr::str_ends(x, wildcard_pattern)
-  enough_chars <- function(x)
+    }
+  enough_chars <- function(x) {
     (nchar(x) - n_wildcards(x)) >= 2
+  }
 
   # 2 or more wildcards present --> FAIL
   if (n_wildcards(x) > 1) {
@@ -223,7 +230,7 @@ validate_wildcard_rules <- function(x) {
     # 1 trailing wildcard and less than 2 non-wildcard characters precede it
     if (isFALSE(enough_chars(x))) {
       rlang::abort(
-      "Arguments ending in a wildcard character (*) must be preceded by two \
+        "Arguments ending in a wildcard character (*) must be preceded by two \
         or more non-wildcard characters.",
         "bad_wildcard_error"
       )

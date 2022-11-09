@@ -3,8 +3,10 @@ context("test-api.R")
 # Global variables for GET request
 API_VERSION <- "2.1"
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
-USER_AGENT <- paste(paste0("npi/", utils::packageVersion("npi")),
-                    "(http://github.com/ropensci/npi)")
+USER_AGENT <- paste(
+  paste0("npi/", utils::packageVersion("npi")),
+  "(http://github.com/ropensci/npi)"
+)
 MAX_N_PER_REQUEST <- 200L
 
 
@@ -129,8 +131,10 @@ test_that("npi_search() throws an error when argument values are invalid", {
   # Test regexes for allowed special characters
   legal_1 <- "[^[:alnum:][:space:]()&:,-.#;'/\"]"
   legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@]"
-  good_1 <- c("", "a(", "a)", "a&", "a:", "a,", "a-", "a.", "a#", "a;", "a'",
-              "a/", "a\"", "a::", "aáéíóúåâêîôûøäëïöüç")
+  good_1 <- c(
+    "", "a(", "a)", "a&", "a:", "a,", "a-", "a.", "a#", "a;", "a'",
+    "a/", "a\"", "a::", "aáéíóúåâêîôûøäëïöüç"
+  )
   good_2 <- c(good_1, "a@")
 
   expect_true(!any(stringr::str_detect(good_1, legal_1)))

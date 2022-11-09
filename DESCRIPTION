@@ -1,8 +1,9 @@
 Package: npi
 Title: Access the U.S. National Provider Identifier Registry API
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
-    person("Frank", "Farach", , "frank.farach@gmail.com", role = c("cre", "aut"),
+    person("Frank", "Farach", , "frank.farach@gmail.com", 
+           role = c("cre", "aut", "cph"),
            comment = c(ORCID = "0000-0002-2145-0145")),
     person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb"),
     person("Matthias", "Grenié", , "matthias.grenie@idiv.de", role = "rev", 
@@ -14,8 +15,8 @@ Description: Access the United States National Provider Identifier
     Registry API (if available) and provide informative error messages
     when it's not.
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/npi (devel),
-    https://docs.ropensci.org/npi/ (user manual),
+URL: https://github.com/ropensci/npi (devel), 
+    https://docs.ropensci.org/npi (user manual),
     https://npiregistry.cms.hhs.gov/api/ (API)
 BugReports: https://github.com/ropensci/npi/issues
 Depends: 
