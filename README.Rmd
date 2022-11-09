@@ -38,19 +38,20 @@ Analysts working with healthcare and public health data frequently need to join 
 
 There are two ways to install `npi`:
 
-#. From Github using the `devtools` package:
+Install from [R-universe](https://ropensci.org/r-universe/):
+
+```{r install-r-universe, eval = FALSE}
+install.packages("npi", repos = "https://ropensci.r-universe.dev")
+library(npi)
+```
+
+Install from GitHub using the `devtools` package:
 
 ```{r install-github, eval = FALSE}
 devtools::install_github("ropensci/npi")
 library(npi)
 ```
 
-#. From [R-universe](https://ropensci.org/r-universe/):
-
-```{r install-r-universe, eval = FALSE}
-install.packages("npi", repos = "https://ropensci.r-universe.dev")
-library(npi)
-```
 
 
 ## Usage

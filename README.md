@@ -42,17 +42,17 @@ provider, which is the primary motivation for developing this package.
 
 There are two ways to install `npi`:
 
-1.  From Github using the `devtools` package:
-
-``` r
-devtools::install_github("ropensci/npi")
-library(npi)
-```
-
-1.  From [R-universe](https://ropensci.org/r-universe/):
+Install from [R-universe](https://ropensci.org/r-universe/):
 
 ``` r
 install.packages("npi", repos = "https://ropensci.r-universe.dev")
+library(npi)
+```
+
+Install from GitHub using the `devtools` package:
+
+``` r
+devtools::install_github("ropensci/npi")
 library(npi)
 ```
 
