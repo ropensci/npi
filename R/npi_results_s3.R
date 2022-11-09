@@ -175,7 +175,6 @@ npi_summarize <- function(object, ...) {
 #' npi_flatten(npis)
 #'
 #' # Only flatten specified columns
-#' npi_flatten(npis, cols = "basic")
 #' npi_flatten(npis, cols = c("basic", "identifiers"))
 #' @export
 npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
@@ -204,7 +203,6 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 #' npi_flatten(npis)
 #'
 #' # Only flatten specified columns
-#' npi_flatten(npis, cols = "basic")
 #' npi_flatten(npis, cols = c("basic", "identifiers"))
 #' @export
 npi_flatten <- function(df, cols, key) {

@@ -37,6 +37,5 @@ data(npis)
 npi_flatten(npis)
 
 # Only flatten specified columns
-npi_flatten(npis, cols = "basic")
 npi_flatten(npis, cols = c("basic", "identifiers"))
 }
