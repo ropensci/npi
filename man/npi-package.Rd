@@ -40,19 +40,21 @@ by the `npi` column into an analysis-ready object.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/frankfarach/npi}
-  \item \url{https://frankfarach.github.io/npi/}
-  \item \url{https://npiregistry.cms.hhs.gov/api/}
-  \item Report bugs at \url{https://github.com/frankfarach/npi/issues}
+  \item \url{https://github.com/ropensci/npi (devel)}
+  \item \url{https://docs.ropensci.org/npi (user manual)}
+  \item \url{https://npiregistry.cms.hhs.gov/api/ (API)}
+  \item Report bugs at \url{https://github.com/ropensci/npi/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID})
+\strong{Maintainer}: Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID}) [copyright holder]
 
 Other contributors:
 \itemize{
   \item Sam Parmar \email{parmartsam@gmail.com} [contributor]
+  \item Matthias Grenié \email{matthias.grenie@idiv.de} (\href{https://orcid.org/0000-0002-4659-7522}{ORCID}) [reviewer]
+  \item Emily C. Zabor \email{zabore2@ccf.org} (\href{https://orcid.org/0000-0002-1402-4498}{ORCID}) [reviewer]
 }
 
 }

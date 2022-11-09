@@ -8,7 +8,7 @@ message: 'To cite package "npi" in publications use:'
 type: software
 license: MIT
 title: 'npi: Access the U.S. National Provider Identifier Registry API'
-version: 0.1.0
+version: 0.2.0
 doi: 10.5281/zenodo.6326729
 abstract: Access the United States National Provider Identifier Registry API (if available)
   and provide informative error messages when it's not.
@@ -27,8 +27,8 @@ preferred-citation:
   year: '2022'
   url: https://github.com/frankfarach/npi
   doi: 10.5281/zenodo.6326729
-repository-code: https://github.com/frankfarach/npi
-url: https://frankfarach.github.io/npi/
+repository-code: https://github.com/ropensci/npi
+url: https://docs.ropensci.org/npi
 contact:
 - family-names: Farach
   given-names: Frank
@@ -40,6 +40,8 @@ keywords:
 - healthcare
 - npi-number
 - r
+- r-package
+- rstats
 references:
 - type: manual
   title: 'npi: Access the U.S. National Provider Identifier Registry API'
@@ -72,6 +74,28 @@ references:
     email: adam@deaconsworld.org.uk
   year: '2022'
   url: https://CRAN.R-project.org/package=checkLuhn
+- type: software
+  title: checkmate
+  abstract: 'checkmate: Fast and Versatile Argument Checks'
+  notes: Imports
+  authors:
+  - family-names: Lang
+    given-names: Michel
+    email: michellang@gmail.com
+    orcid: https://orcid.org/0000-0001-9754-0393
+  year: '2022'
+  url: https://CRAN.R-project.org/package=checkmate
+- type: software
+  title: curl
+  abstract: 'curl: A Modern and Flexible Web Client for R'
+  notes: Imports
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2022'
+  url: https://CRAN.R-project.org/package=curl
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -201,17 +225,6 @@ references:
   url: https://www.R-project.org/
   institution:
     name: R Foundation for Statistical Computing
-- type: software
-  title: checkmate
-  abstract: 'checkmate: Fast and Versatile Argument Checks'
-  notes: Suggests
-  authors:
-  - family-names: Lang
-    given-names: Michel
-    email: michellang@gmail.com
-    orcid: https://orcid.org/0000-0001-9754-0393
-  year: '2022'
-  url: https://CRAN.R-project.org/package=checkmate
 - type: software
   title: covr
   abstract: 'covr: Test Coverage for Packages'

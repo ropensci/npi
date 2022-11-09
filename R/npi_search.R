@@ -74,6 +74,7 @@
 #' @param limit Maximum number of records to return, from 1 to 1200 inclusive.
 #'   The default is 10. Because the API returns up to 200 records per request,
 #'   values of \code{limit} greater than 200 will result in multiple API calls.
+#' @family search functions
 #' @examples
 #' \dontrun{
 #' # 10 NPI records for New York City
@@ -97,6 +98,7 @@
 #' @return Data frame (tibble) containing the results of the search.
 #' @references
 #'   \url{https://npiregistry.cms.hhs.gov/registry/help-api}
+#'   \href{https://npiregistry.cms.hhs.gov/help-api/json-conversion}{Data dictionary for fields returned}
 #' @references
 #'   \href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}
 #' @export
@@ -119,6 +121,16 @@ npi_search <- function(number = NULL,
   }
 
   enumeration_type <- ifelse(enumeration_type == "ind", "NPI-1", "NPI-2")
+
+  # Check for illegal characters
+  legal_1 <- "[^[:alnum:][:space:]()&:,-.#;'/\"\\*]"
+  legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@\\*]"
+
+  if (any(stringr::str_detect(c(first_name, last_name, city), legal_1)) ||
+    any(stringr::str_detect(organization_name, legal_2))) {
+    msg <- "Field contains at least one illegal character. See `?npi_search`."
+    rlang::abort(msg, class = "illegal_character")
+  }
 
   if (!is.logical(use_first_name_alias) &&
     !is.null(use_first_name_alias)) {
@@ -146,6 +158,10 @@ npi_search <- function(number = NULL,
     rlang::abort("`limit` must be a number between 1 and 1200.")
   }
 
+  # Validate wildcard rules on applicable fields
+  wild_args <- list(taxonomy_description, first_name, last_name, organization_name, city, postal_code)
+  lapply(wild_args, function(x) if (!is.null(x)) validate_wildcard_rules(x))
+
   npi_process_results(
     list(
       version = API_VERSION,
@@ -171,7 +187,12 @@ npi_search <- function(number = NULL,
 #' Processing pipeline for NPI search results
 #' @noRd
 npi_process_results <- function(params) {
-  results <- npi_control_requests(params, user_n = params[["limit"]])
+  user_n <- params[["limit"]]
+
+  msg <- glue::glue("{user_n} record", ifelse(user_n > 1, "s", ""), " requested")
+  rlang::inform("status_pre_request", message = msg)
+
+  results <- npi_control_requests(params, user_n)
 
   if (rlang::is_empty(results)) {
     return(tibble::tibble())

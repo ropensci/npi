@@ -1,6 +1,8 @@
 ---
 title: "Introduction to npi"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Introduction to npi}
   %\VignetteEngine{knitr::rmarkdown}
@@ -33,7 +35,7 @@ nyc <- npi_search(city = "New York City")
 nyc
 ```
 
-Other search arguments for the function include npi number, enumeration type, taxonomy description, individual provider's first name, individual provider's last name, use first name alias, organization name, address purpose, state, postal code, country code, and limit. 
+Other search arguments for the function include `number`, `enumeration_type`, `taxonomy_description`, `first_name`, `last_name`, `use_first_name_alias`, `organization_name`, `address_purpose`, `state`, `postal_code`, `country_code`, and `limit`. 
 
 Additionally, more than one search argument can be used at once.
 
@@ -46,20 +48,21 @@ Visit the function's help page via `?npi_search` after installing and loading th
 
 ## Increasing number of records returned
 
-The `limit` argument lets you set the maximum records to return from 1 to 1200 inclusive. The default is 10.
+The `limit` argument of `npi_search()` lets you set the maximum records to return from 1 to 1200 inclusive, defaulting to 10 records if no value is specified.
 
 ```{r}
 nyc_25 <- npi_search(city = "New York City", limit = 25)
 nyc_25
 ```
 
-When using `npi_search()`, searches with greater than 200 records (for example 300 records) will result in multiple API calls. This is because the API returns up to 200 records per request. The function will make multiple calls as needed and still return a tibble.
+When using `npi_search()`, searches with greater than 200 records (for example 300 records) may result in multiple API calls. This is because the API itself returns up to 200 records per request, but allows previously requested records to be skipped. `npi_search()` will automatically make additional API calls up to the API's limit of 1200 records for a unique set of query parameter values, and will still return a single tibble. However, to save time, the function only makes additional requests if needed. For example, if you request 1200 records, and 199 are returned in the first request, then the function does not need to make a second request because there are no more records to return.
 
 ```{r}
 nyc_300 <- npi_search(city = "New York City", limit = 300)
 nyc_300
 ```
 
+The NPPES API documentation does not specify additional API rate limitations. However, if you need more than 1200 NPI records for a set of search terms, you will need to download the [NPPES Data Dissemination File](https://download.cms.gov/nppes/NPI_Files.html).
 
 ## Obtaining more human-readable output
 

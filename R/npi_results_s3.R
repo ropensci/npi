@@ -100,7 +100,8 @@ npi_summarize.npi_results <- function(object, ...) {
   tax_primary <- get_list_col(object, "taxonomies") %>%
     dplyr::group_by(.data$npi) %>%
     dplyr::mutate(n_primary = sum(.data$taxonomies_primary == TRUE)) %>%
-    dplyr::filter(.data$taxonomies_primary == TRUE | .data$n_primary == 0)
+    dplyr::filter(.data$taxonomies_primary == TRUE | .data$n_primary == 0) %>%
+    dplyr::slice_head()
 
   tibble::tibble(
     npi = object$npi,
@@ -126,6 +127,7 @@ npi_summarize.npi_results <- function(object, ...) {
 
 #' S3 method to summarize an \code{npi_results} object
 #' @inheritParams npi_summarize.npi_results
+#' @family summary functions
 #' @examples
 #' data(npis)
 #' npi_summarize(npis)
@@ -173,7 +175,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
   list_cols <- names(Filter(is.list, df))
 
-  out <- lapply(list_cols, function(x) get_list_col(df, x))
+  out <- lapply(list_cols, function(x) get_list_col(df, list_col = x, key = key))
   out <- Reduce(function(x, y) merge(x, y, by = key, all.x = TRUE), out)
   tibble::as_tibble(out)
 }
@@ -182,6 +184,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
 #' S3 method to flatten an \code{npi_results} object
 #' @inheritParams npi_flatten.npi_results
+#' @family data wrangling functions
 #' @examples
 #' # Flatten all list columns
 #' data(npis)
@@ -192,5 +195,14 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 #' npi_flatten(npis, cols = c("basic", "identifiers"))
 #' @export
 npi_flatten <- function(df, cols, key) {
+  if (!inherits(df, "npi_results")) {
+    abort_bad_argument(
+      arg = "df",
+      must = "be an npi_results S3 object",
+      not = df,
+      method = "class"
+    )
+  }
+
   UseMethod("npi_flatten")
 }

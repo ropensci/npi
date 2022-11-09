@@ -1,23 +1,30 @@
 Package: npi
 Title: Access the U.S. National Provider Identifier Registry API
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
-    person("Frank", "Farach", , "frank.farach@gmail.com", role = c("cre", "aut"),
+    person("Frank", "Farach", , "frank.farach@gmail.com", 
+           role = c("cre", "aut", "cph"),
            comment = c(ORCID = "0000-0002-2145-0145")),
-    person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb")
+    person("Sam", "Parmar", , "parmartsam@gmail.com", role = "ctb"),
+    person("Matthias", "Grenié", , "matthias.grenie@idiv.de", role = "rev", 
+           comment = c(ORCID = "0000-0002-4659-7522")),
+    person(c("Emily", "C."), "Zabor", , "zabore2@ccf.org", role = "rev", 
+           comment = c(ORCID = "0000-0002-1402-4498"))
   )
 Description: Access the United States National Provider Identifier
     Registry API (if available) and provide informative error messages
     when it's not.
 License: MIT + file LICENSE
-URL: https://github.com/frankfarach/npi,
-    https://frankfarach.github.io/npi/,
-    https://npiregistry.cms.hhs.gov/api/
-BugReports: https://github.com/frankfarach/npi/issues
+URL: https://github.com/ropensci/npi (devel), 
+    https://docs.ropensci.org/npi (user manual),
+    https://npiregistry.cms.hhs.gov/api/ (API)
+BugReports: https://github.com/ropensci/npi/issues
 Depends: 
     R (>= 3.1)
 Imports: 
     checkLuhn,
+    checkmate,
+    curl,
     dplyr,
     glue,
     httr,
@@ -29,7 +36,6 @@ Imports:
     tidyr,
     utils
 Suggests: 
-    checkmate,
     covr,
     httptest,
     knitr,

@@ -30,6 +30,11 @@ npi_config <- function() {
 #' @return A response object or error
 #' @noRd
 npi_api <- function(verb, url, config = list(), ...) {
+  if (!curl::has_internet()) {
+    msg <- "Unable to access Internet. Check network connection and try again."
+    rlang::abort("internet_error", message = msg)
+  }
+
   FUN <- get(verb, envir = asNamespace("httr"))
   resp <- FUN(url, ..., config = c(npi_config(), config))
   npi_handle_response(resp)

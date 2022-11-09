@@ -3,7 +3,10 @@ context("test-api.R")
 # Global variables for GET request
 API_VERSION <- "2.1"
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
-USER_AGENT <- "http://github.com/frankfarach/npi"
+USER_AGENT <- paste(
+  paste0("npi/", utils::packageVersion("npi")),
+  "(http://github.com/ropensci/npi)"
+)
 MAX_N_PER_REQUEST <- 200L
 
 
@@ -92,7 +95,7 @@ with_mock_api({
 })
 
 
-test_that("npi_search() messages when argument values are invalid", {
+test_that("npi_search() throws an error when argument values are invalid", {
   # Provider type
   pt <- "`enumeration_type` must be one of: NULL, 'ind', or 'org'."
   expect_error(npi_search(enumeration_type = "NPI1"), pt)
@@ -110,6 +113,43 @@ test_that("npi_search() messages when argument values are invalid", {
   expect_error(npi_search(limit = -1), lim)
   expect_error(npi_search(limit = 0), lim)
   expect_error(npi_search(limit = 1201), lim)
+
+  # Illegal characters in first_name, last_name, or city
+  bad_1 <- c("a@b", "a[")
+  for (s in bad_1) {
+    expect_error(npi_search(first_name = s), class = "illegal_character")
+    expect_error(npi_search(last_name = s), class = "illegal_character")
+    expect_error(npi_search(city = s), class = "illegal_character")
+  }
+
+  # Illegal characters in organization_name
+  bad_2 <- "a["
+  for (s in bad_2) {
+    expect_error(npi_search(organization_name = s), class = "illegal_character")
+  }
+
+  # Test regexes for allowed special characters
+  legal_1 <- "[^[:alnum:][:space:]()&:,-.#;'/\"]"
+  legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@]"
+  good_1 <- c(
+    "", "a(", "a)", "a&", "a:", "a,", "a-", "a.", "a#", "a;", "a'",
+    "a/", "a\"", "a::", "aáéíóúåâêîôûøäëïöüç"
+  )
+  good_2 <- c(good_1, "a@")
+
+  expect_true(!any(stringr::str_detect(good_1, legal_1)))
+  expect_true(!any(stringr::str_detect(good_2, legal_2)))
+
+  # Wildcard rules
+  arg <- "A*"
+  err <- "bad_wildcard_error"
+
+  expect_error(npi_search(taxonomy_description = arg), class = err)
+  expect_error(npi_search(first_name = arg), class = err)
+  expect_error(npi_search(last_name = arg), class = err)
+  expect_error(npi_search(organization_name = arg), class = err)
+  expect_error(npi_search(postal_code = arg), class = err)
+  expect_error(npi_search(city = arg), class = err)
 })
 
 
@@ -188,6 +228,22 @@ with_mock_api({
 })
 
 
+test_that("The initial message accurately reports the requested number of records", {
+  msg_1 <- "1 record requested"
+  msg_10 <- "10 records requested"
+  expect_message(npi_search(city = "Atlanta", limit = 1), msg_1)
+  expect_message(npi_search(city = "Atlanta", limit = 10), msg_10)
+})
+
+
+# npi_process_results() --------------------------------------------------
+
+with_mock_api({
+  test_that("npi_process_results returns an empty tibble when npi_search returns zero records", {
+    res <- npi_search(city = "ZZZZZZZ")
+    expect_identical(res, tibble::tibble())
+  })
+})
 
 # validate_npi_results() --------------------------------------------------
 

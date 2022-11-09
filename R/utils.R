@@ -1,28 +1,11 @@
 # Global variables for GET request
 API_VERSION <- "2.1" # Referenced in `npi_search()`
 BASE_URL <- "https://npiregistry.cms.hhs.gov/api/"
-USER_AGENT <- "http://github.com/frankfarach/npi"
+USER_AGENT <- paste(
+  paste0("npi/", utils::packageVersion("npi")),
+  "(http://github.com/ropensci/npi)"
+)
 MAX_N_PER_REQUEST <- 200L
-
-#' Delay function execution
-#'
-#' @param f A function.
-#' @param seconds Number of seconds delay to introduce before executing
-#'   \code{f}.
-#' @return A new function that executes \code{seconds} seconds after it
-#'   is called.
-#' @noRd
-delay_by <- function(f, seconds) {
-  force(f)
-  force(seconds)
-
-  function(...) {
-    Sys.sleep(seconds)
-    f(...)
-  }
-}
-
-
 
 #' Handle bad function arguments
 #'
@@ -65,16 +48,6 @@ abort_bad_argument <- function(arg, must, not = NULL,
 }
 
 
-#' Remove NULL elements from vector
-#'
-#' Implements the basic functionality found in the \pkg{purrr} package's
-#' \code{compact} function.
-#' @noRd
-remove_null <- function(l) {
-  Filter(Negate(is.null), l)
-}
-
-
 #' Check if candidate NPI number is valid
 #'
 #' Check whether a number is a valid NPI number per the specifications detailed
@@ -83,6 +56,7 @@ remove_null <- function(l) {
 #'
 #' @param x 10-digit candidate NPI number
 #' @return Boolean indicating whether \code{npi} is valid
+#' @family utility functions
 #' @examples
 #' npi_is_valid(1234567893) # TRUE
 #' npi_is_valid(1234567898) # FALSE
@@ -199,5 +173,69 @@ make_full_address <-
 #' @return Boolean indicating whether a newer version of tidyr is installed
 #' @noRd
 tidyr_new_interface <- function() {
-  utils::packageVersion("tidyr") > "0.8.99"
+  utils::packageVersion("tidyr") <= "0.8.99"
+}
+
+
+#' Validate wildcard rules
+#' @param x Length 1 character vector
+#' @return Boolean indicated whether the rules pass (TRUE) or fail (FALSE)
+#' @noRd
+validate_wildcard_rules <- function(x) {
+  if ((!is.character(x) && !is.numeric(x)) || length(x) > 1) {
+    rlang::abort(
+      "x must be a character vector with length 1",
+      "bad_wildcard_error"
+    )
+  }
+
+  wildcard_pattern <- "\\*"
+
+  # Atomic test functions
+  n_wildcards <- function(x) {
+    stringr::str_count(x, wildcard_pattern)
+  }
+  ends_in_wildcard <-
+    function(x) {
+      stringr::str_ends(x, wildcard_pattern)
+    }
+  enough_chars <- function(x) {
+    (nchar(x) - n_wildcards(x)) >= 2
+  }
+
+  # 2 or more wildcards present --> FAIL
+  if (n_wildcards(x) > 1) {
+    rlang::abort(
+      paste0(
+        n_wildcards(x),
+        " wildcard characters (*) detected.\nA maximum of one wildcard \
+        character is allowed per argument."
+      ),
+      "bad_wildcard_error"
+    )
+  }
+
+  # 1 wildcard present
+  if (n_wildcards(x) == 1) {
+    # non-trailing wildcard
+    if (isFALSE(ends_in_wildcard(x))) {
+      rlang::abort(
+        "Argument ending in a non-trailing wildcard character (*) detected.\n \
+        When present, the wildcard character must appear at the end of the \
+        character string.",
+        "bad_wildcard_error"
+      )
+    }
+
+    # 1 trailing wildcard and less than 2 non-wildcard characters precede it
+    if (isFALSE(enough_chars(x))) {
+      rlang::abort(
+        "Arguments ending in a wildcard character (*) must be preceded by two \
+        or more non-wildcard characters.",
+        "bad_wildcard_error"
+      )
+    }
+  }
+
+  TRUE
 }

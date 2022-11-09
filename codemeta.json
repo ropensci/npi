@@ -4,11 +4,11 @@
   "identifier": "npi",
   "description": "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.",
   "name": "npi: Access the U.S. National Provider Identifier Registry API",
-  "relatedLink": ["https://frankfarach.github.io/npi/", "https://npiregistry.cms.hhs.gov/api/"],
-  "codeRepository": "https://github.com/frankfarach/npi",
-  "issueTracker": "https://github.com/frankfarach/npi/issues",
+  "relatedLink": ["https://docs.ropensci.org/npi", "https://npiregistry.cms.hhs.gov/api/"],
+  "codeRepository": "https://github.com/ropensci/npi",
+  "issueTracker": "https://github.com/ropensci/npi/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -32,6 +32,15 @@
       "email": "parmartsam@gmail.com"
     }
   ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Frank",
+      "familyName": "Farach",
+      "email": "frank.farach@gmail.com",
+      "@id": "https://orcid.org/0000-0002-2145-0145"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -42,18 +51,6 @@
     }
   ],
   "softwareSuggestions": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "checkmate",
-      "name": "checkmate",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=checkmate"
-    },
     {
       "@type": "SoftwareApplication",
       "identifier": "covr",
@@ -161,6 +158,30 @@
     },
     "3": {
       "@type": "SoftwareApplication",
+      "identifier": "checkmate",
+      "name": "checkmate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=checkmate"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "curl",
+      "name": "curl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=curl"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
       "identifier": "dplyr",
       "name": "dplyr",
       "provider": {
@@ -171,7 +192,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
-    "4": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "glue",
       "name": "glue",
@@ -183,7 +204,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=glue"
     },
-    "5": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
@@ -195,7 +216,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=httr"
     },
-    "6": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
@@ -207,7 +228,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
     },
-    "7": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -219,7 +240,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "8": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -231,7 +252,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "9": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "stringr",
       "name": "stringr",
@@ -243,7 +264,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=stringr"
     },
-    "10": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -255,7 +276,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "11": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
@@ -267,14 +288,14 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidyr"
     },
-    "12": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "258.593KB",
+  "fileSize": "276.202KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -310,9 +331,14 @@
       "sameAs": "https://doi.org/10.5281/zenodo.6326729"
     }
   ],
-  "releaseNotes": "https://github.com/frankfarach/npi/blob/master/NEWS.md",
-  "readme": "https://github.com/frankfarach/npi/blob/master/README.md",
-  "contIntegration": ["https://github.com/frankfarach/npi/actions", "https://codecov.io/github/frankfarach/npi?branch=master"],
+  "releaseNotes": "https://github.com/ropensci/npi/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/npi/blob/master/README.md",
+  "contIntegration": ["https://github.com/ropensci/npi/actions", "https://codecov.io/github/ropensci/npi?branch=master"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html"],
-  "keywords": ["api-wrapper", "r", "npi-number", "healthcare", "health-data"]
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/505",
+    "provider": "https://ropensci.org"
+  },
+  "keywords": ["api-wrapper", "r", "npi-number", "healthcare", "health-data", "r-package", "rstats"]
 }
