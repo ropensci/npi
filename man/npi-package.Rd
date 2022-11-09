@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.
+Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not. Obtain rich administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.
 }
 \details{
 \pkg{npi} makes it easy to search and work with data from the U.S.
@@ -31,7 +31,7 @@ by the `npi` column into an analysis-ready object.
 
 
   \pkg{npi}'s default user agent is the URL of the package's GitHub
-  repository, \url{https://www.github.com/frankfarach/npi}. You can customize
+  repository, \url{https://github.com/ropensci/npi}. You can customize
   it by setting the \code{npi_user_agent} option:
 
   \code{options(npi_user_agent = "your_user_agent_here")}
@@ -40,10 +40,10 @@ by the `npi` column into an analysis-ready object.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ropensci/npi (devel)}
-  \item \url{https://docs.ropensci.org/npi (user manual)}
-  \item \url{https://npiregistry.cms.hhs.gov/api/ (API)}
-  \item Report bugs at \url{https://github.com/ropensci/npi/issues}
+  \item \url{https://github.com/ropensci/npi/}
+  \item \url{https://docs.ropensci.org/npi/}
+  \item \url{https://npiregistry.cms.hhs.gov/api/}
+  \item Report bugs at \url{https://github.com/ropensci/npi/issues/}
 }
 
 }

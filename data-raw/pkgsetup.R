@@ -16,7 +16,7 @@ my_desc$set("Package", "npi")
 # Set your name
 my_desc$set("Authors@R", "person('Frank', 'Farach',
             email = 'frank.farach@gmail.com',
-            role = c('cre', 'aut'))")
+            role = c('cre', 'aut', 'cph'))")
 
 # Remove some author fields
 my_desc$del("Maintainer")
@@ -34,8 +34,8 @@ my_desc$set(Description = "Access the United States National Provider
             error messages when it's not.")
 
 # The urls
-my_desc$set("URL", "https://github.com/frankfarach/npi")
-my_desc$set("BugReports", "https://github.com/frankfarach/npi/issues")
+my_desc$set("URL", "https://github.com/ropensci/npi")
+my_desc$set("BugReports", "https://github.com/ropensci/npi/issues")
 
 # Dependencies
 my_desc$set("Depends", "R (>= 2.10")
@@ -47,7 +47,7 @@ my_desc$write(file = "DESCRIPTION")
 # If you want to use the MIT licence, code of conduct, and lifecycle badge
 use_mit_license(name = "Frank Farach")
 use_code_of_conduct()
-use_lifecycle_badge("Experimental")
+use_lifecycle_badge("Maturing")
 use_news_md()
 
 # Get the dependencies

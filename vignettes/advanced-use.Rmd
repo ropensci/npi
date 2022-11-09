@@ -29,7 +29,7 @@ See the npi::npi vignette for an introduction to the package.
 
 ## Note on NPI Downloadable Files
 
-CMS regularly releases full NPI data files [here](https://download.cms.gov/nppes/NPI_Files.html). We recommend that users download the data file if they need to work with the entire dataset. The API and `npi_search()` returns a maximum of 1,200 records. Also consider downloading the entire data if you need to work with more than the maximum. Data dissemination files are zipped and will exceed 4GB upon decompression. Additional documentation is provided [here](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination).
+CMS regularly releases full NPI data files [here](https://download.cms.gov/nppes/NPI_Files.html). We recommend that users download the data file if they need to work with the entire dataset. The API and `npi_search()` returns a maximum of 1,200 records. Also consider downloading the entire data if you need to work with more than the maximum. Data dissemination files are zipped and will exceed 4GB upon decompression.
 
 ## Run `npi_search()` on multiple search terms
 
@@ -64,7 +64,7 @@ Alternatively, you can use a simple for loop instead if you are unfamiliar with 
 ```{r}
 npis <- c(1992708929, 1831192848, 1699778688, 1111111111)  # Last element doesn't exist
 combined_df  <- data.frame()
-for(i in npis){
+for (i in npis) {
   combined_df <- rbind(combined_df, npi_search(number = i))
 }
 

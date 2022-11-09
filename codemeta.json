@@ -2,11 +2,11 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "npi",
-  "description": "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not.",
+  "description": "Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not. Obtain rich administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.",
   "name": "npi: Access the U.S. National Provider Identifier Registry API",
-  "relatedLink": ["https://docs.ropensci.org/npi", "https://npiregistry.cms.hhs.gov/api/"],
-  "codeRepository": "https://github.com/ropensci/npi",
-  "issueTracker": "https://github.com/ropensci/npi/issues",
+  "relatedLink": ["https://docs.ropensci.org/npi/", "https://npiregistry.cms.hhs.gov/api/"],
+  "codeRepository": "https://github.com/ropensci/npi/",
+  "issueTracker": "https://github.com/ropensci/npi/issues/",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.2.0",
   "programmingLanguage": {
@@ -295,7 +295,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "276.202KB",
+  "fileSize": "277.638KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -307,9 +307,9 @@
           "familyName": "Farach"
         }
       ],
-      "name": "npi: Access the U.S. National Provider Identifier Registry API (Version 0.1.0)",
+      "name": "npi: Access the U.S. National Provider Identifier Registry API (Version 0.2.0)",
       "identifier": "10.5281/zenodo.6326729",
-      "url": "https://github.com/frankfarach/npi",
+      "url": "https://github.com/ropensci/npi",
       "@id": "https://doi.org/10.5281/zenodo.6326729",
       "sameAs": "https://doi.org/10.5281/zenodo.6326729"
     },
@@ -325,15 +325,15 @@
       ],
       "name": "{npi}: Access the U.S. National Provider Identifier Registry API",
       "identifier": "10.5281/zenodo.6326729",
-      "url": "https://github.com/frankfarach/npi",
-      "description": "R package version 0.1.0",
+      "url": "https://github.com/ropensci/npi",
+      "description": "R package version 0.2.0",
       "@id": "https://doi.org/10.5281/zenodo.6326729",
       "sameAs": "https://doi.org/10.5281/zenodo.6326729"
     }
   ],
   "releaseNotes": "https://github.com/ropensci/npi/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/npi/blob/master/README.md",
-  "contIntegration": ["https://github.com/ropensci/npi/actions", "https://codecov.io/github/ropensci/npi?branch=master"],
+  "contIntegration": ["https://github.com/ropensci/npi/actions", "https://app.codecov.io/gh/ropensci/npi?branch=master"],
   "developmentStatus": ["https://www.repostatus.org/#active", "https://lifecycle.r-lib.org/articles/stages.html"],
   "review": {
     "@type": "Review",

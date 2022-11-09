@@ -16,6 +16,9 @@ flattened and returned along with \code{npi}.}
 \item{key}{A quoted column name from \code{df} to use as a matching key. The
 default value is \code{"npi"}.}
 }
+\value{
+A data frame (tibble) with flattened list columns.
+}
 \description{
 S3 method to flatten an \code{npi_results} object
 }

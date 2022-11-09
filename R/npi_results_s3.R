@@ -127,6 +127,18 @@ npi_summarize.npi_results <- function(object, ...) {
 
 #' S3 method to summarize an \code{npi_results} object
 #' @inheritParams npi_summarize.npi_results
+#' @return Tibble containing the following columns:
+#'   \describe{
+#'     \item{\code{npi}}{National Provider Identifier (NPI) number}
+#'     \item{\code{name}}{Provider's first and last name for individual
+#'     providers, organization name for organizational providers.}
+#'     \item{\code{enumeration_type}}{Type of provider associated with the NPI,
+#'       either "Individual" or "Organizational"}
+#'     \item{\code{primary_practice_address}}{Full address of the provider's
+#'       primary practice location}
+#'     \item{\code{phone}}{Provider's telephone number}
+#'     \item{\code{primary_taxonomy}}{Primary taxonomy description}
+#'   }
 #' @family summary functions
 #' @examples
 #' data(npis)
@@ -184,6 +196,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
 #' S3 method to flatten an \code{npi_results} object
 #' @inheritParams npi_flatten.npi_results
+#' @return A data frame (tibble) with flattened list columns.
 #' @family data wrangling functions
 #' @examples
 #' # Flatten all list columns

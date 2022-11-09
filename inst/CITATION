@@ -2,12 +2,12 @@ citHeader("To cite npi in publications, please use:")
 
 citEntry(
   entry    = "Manual",
-  title    = "npi: Access the U.S. National Provider Identifier Registry API (Version 0.1.0)",
+  title    = "npi: Access the U.S. National Provider Identifier Registry API (Version 0.2.0)",
   author   = as.person("Frank J Farach"),
   year     = 2022,
-  url      = "https://github.com/frankfarach/npi",
+  url      = "https://github.com/ropensci/npi",
   doi      = "10.5281/zenodo.6326729",
-  textVersion = paste("Farach, F. J. (2022). npi: Access the U.S. National Provider Identifier Registry API (Version 0.1.0). https://github.com/frankfarach/npi"
+  textVersion = paste("Farach, F. J. (2022). npi: Access the U.S. National Provider Identifier Registry API (Version 0.2.0). https://github.com/ropensci/npi"
   )
 )
 
@@ -15,8 +15,8 @@ bibentry(
   bibtype = "Manual",
   title = "{npi}: Access the U.S. National Provider Identifier Registry API",
   author = person("Frank", "Farach", role = c("cre", "aut")),
-  url = "https://github.com/frankfarach/npi",
+  url = "https://github.com/ropensci/npi",
   year = 2022,
   doi = "10.5281/zenodo.6326729",
-  note = "R package version 0.1.0"
+  note = "R package version 0.2.0"
 )

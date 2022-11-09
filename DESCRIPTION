@@ -13,12 +13,15 @@ Authors@R: c(
   )
 Description: Access the United States National Provider Identifier
     Registry API (if available) and provide informative error messages
-    when it's not.
+    when it's not. Obtain rich administrative data linked to a specific 
+    individual or organizational healthcare provider, or perform advanced 
+    searches based on provider name, location, type of service, credentials, 
+    and many other attributes.
 License: MIT + file LICENSE
-URL: https://github.com/ropensci/npi (devel), 
-    https://docs.ropensci.org/npi (user manual),
-    https://npiregistry.cms.hhs.gov/api/ (API)
-BugReports: https://github.com/ropensci/npi/issues
+URL: https://github.com/ropensci/npi/, 
+    https://docs.ropensci.org/npi/, 
+    https://npiregistry.cms.hhs.gov/api/
+BugReports: https://github.com/ropensci/npi/issues/
 Depends: 
     R (>= 3.1)
 Imports: 

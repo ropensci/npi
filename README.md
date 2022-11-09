@@ -40,16 +40,23 @@ provider, which is the primary motivation for developing this package.
 
 ## Installation
 
-There are two ways to install `npi`:
+There are three ways to install the `npi` package:
 
-Install from [R-universe](https://ropensci.org/r-universe/):
+1.  Install from CRAN:
+
+``` r
+install.packages("npi")
+library(npi)
+```
+
+2.  Install from [R-universe](https://ropensci.org/r-universe/):
 
 ``` r
 install.packages("npi", repos = "https://ropensci.r-universe.dev")
 library(npi)
 ```
 
-Install from GitHub using the `devtools` package:
+3.  Install from GitHub using the `devtools` package:
 
 ``` r
 devtools::install_github("ropensci/npi")
@@ -68,15 +75,14 @@ library(npi)
 - `npi_flatten()`: A method for flattening one or more list columns from
   a search result, joined by NPI number.
 - `npi_is_valid()`: Check the validity of one or more NPI numbers using
-  the official [NPI enumeration
-  standard](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf).
+  the official NPI enumeration standard.
 
 ### Search the registry
 
 `npi_search()` exposes nearly all of the NPPES API’s [search
 parameters](https://npiregistry.cms.hhs.gov/registry/help-api). Let’s
-say we wanted to find up to 10 organizational providers with primary
-locations in New York City:
+say we wanted to find up to 10 providers with primary locations in New
+York City:
 
 ``` r
 nyc <- npi_search(city = "New York City")
@@ -251,8 +257,7 @@ Just like credit card numbers, NPI numbers can be mistyped or corrupted
 in transit. Likewise, officially-issued NPI numbers have a [check
 digit](https://en.wikipedia.org/wiki/Check_digit) for error-checking
 purposes. Use `npi_is_valid()` to check whether an NPI number you’ve
-encountered is [validly
-constructed](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/Downloads/NPIcheckdigit.pdf):
+encountered is validly constructed:
 
 ``` r
 # Validate NPIs
@@ -276,8 +281,8 @@ the software interacting with an API to tell it who or what is making
 the request. This helps the API’s maintainers understand what systems
 are using the API. By default, when `npi` makes a request to the NPPES
 API, the request header references the name of the package and the URL
-for the repository (e.g., ‘npi/0.1.0
-(<http://github.com/ropensci/npi>)’). If you want to set a custom user
+for the repository (e.g., ‘npi/0.2.0
+(<https://github.com/ropensci/npi>)’). If you want to set a custom user
 agent, update the value of the `npi_user_agent` option. For example, for
 version 1.0.0 of an app called “my_app”, you could run the following
 code:
