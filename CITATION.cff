@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1
+# CITATION file created with {cffr} R package, v0.3.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -23,12 +23,12 @@ authors:
 preferred-citation:
   type: manual
   title: 'npi: Access the U.S. National Provider Identifier Registry API (Version
-    0.1.0)'
+    0.2.0)'
   authors:
   - family-names: Farach
     given-names: Frank J
   year: '2022'
-  url: https://github.com/frankfarach/npi
+  url: https://github.com/ropensci/npi
   doi: 10.5281/zenodo.6326729
 repository-code: https://github.com/ropensci/npi/issues/
 url: https://github.com/ropensci/npi/
@@ -43,10 +43,10 @@ references:
   authors:
   - family-names: Farach
     given-names: Frank
-  url: https://github.com/frankfarach/npi
+  url: https://github.com/ropensci/npi
   year: '2022'
   doi: 10.5281/zenodo.6326729
-  notes: R package version 0.1.0
+  notes: R package version 0.2.0
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
   notes: Depends
