@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="index.html">npi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,12 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/advanced-use.html">Advanced Uses</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -31,7 +37,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/frankfarach/npi/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/ropensci/npi/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -44,7 +50,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="logo.png" class="logo" alt=""><h1>Contributing to npi</h1>
-      <small class="dont-index">Source: <a href="https://github.com/frankfarach/npi/blob/HEAD/CONTRIBUTING.md" class="external-link"><code>CONTRIBUTING.md</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/npi/blob/HEAD/CONTRIBUTING.md" class="external-link"><code>CONTRIBUTING.md</code></a></small>
     </div>
 
 <div id="contributing-to-npi" class="section level1">
@@ -52,7 +58,7 @@
 <p>npi is an open source project created and maintained by <a href="https://www.frankfarach.com/about" class="external-link">Frank Farach</a> in his spare time.</p>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a></h2>
-<p>This project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p>Please note that this package is released with a <a href="https://ropensci.org/code-of-conduct/" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 <div class="section level2">
 <h2 id="how-you-can-contribute">How you can contribute<a class="anchor" aria-label="anchor" href="#how-you-can-contribute"></a></h2>
@@ -63,11 +69,11 @@
 </div>
 <div class="section level3">
 <h3 id="ask-a-question">Ask a question<a class="anchor" aria-label="anchor" href="#ask-a-question"></a></h3>
-<p>Using npi and got stuck? Browse the <a href="https://frankfarach.github.io/npi" class="external-link">documentation</a> and <a href="https://github.com/frankfarach/npi/issues" class="external-link">issues</a> to see if you can find a solution. Still stuck? Post your question as an <a href="https://github.com/frankfarach/npi/issues/new" class="external-link">issue on GitHub</a>. I’ll do my best to address it, as questions often lead to better documentation or the discovery of bugs.</p>
+<p>Using npi and got stuck? Browse the <a href="https://docs.ropensci.org/npi" class="external-link">documentation</a> and <a href="https://github.com/ropensci/npi/issues" class="external-link">issues</a> to see if you can find a solution. Still stuck? Post your question as an <a href="https://github.com/ropensci/npi/issues/new" class="external-link">issue on GitHub</a>. I’ll do my best to address it, as questions often lead to better documentation or the discovery of bugs.</p>
 </div>
 <div class="section level3">
 <h3 id="propose-an-idea">Propose an idea<a class="anchor" aria-label="anchor" href="#propose-an-idea"></a></h3>
-<p>Have an idea for a new npi feature? Take a look at the <a href="https://github.com/frankfarach/npi/issues" class="external-link">issue list</a> to see if it isn’t included or suggested yet. If not, suggest your idea as an <a href="https://github.com/frankfarach/npi/issues/new" class="external-link">issue on GitHub</a>. While I can’t promise to implement your idea, it helps to:</p>
+<p>Have an idea for a new npi feature? Take a look at the <a href="https://github.com/ropensci/npi/issues" class="external-link">issue list</a> to see if it isn’t included or suggested yet. If not, suggest your idea as an <a href="https://github.com/ropensci/npi/issues/new" class="external-link">issue on GitHub</a>. While I can’t promise to implement your idea, it helps to:</p>
 <ul><li>Explain in detail how it would work.</li>
 <li>Keep the scope as narrow as possible.</li>
 </ul><p>See below if you want to contribute code for your idea.</p>
@@ -75,7 +81,7 @@
 </div>
 <div class="section level3">
 <h3 id="report-a-bug">Report a bug<a class="anchor" aria-label="anchor" href="#report-a-bug"></a></h3>
-<p>Using npi and think you’ve discovered a bug? That’s annoying! Don’t let others have the same experience and report it as an <a href="https://github.com/frankfarach/npi/issues/new" class="external-link">issue on GitHub</a> so I can fix it. A good bug report makes it easier for me to do so in the limited time I have to work on this project, so kindly include the following in your report:</p>
+<p>Using npi and think you’ve discovered a bug? That’s annoying! Don’t let others have the same experience and report it as an <a href="https://github.com/ropensci/npi/issues/new" class="external-link">issue on GitHub</a> so I can fix it. A good bug report makes it easier for me to do so in the limited time I have to work on this project, so kindly include the following in your report:</p>
 <ul><li>Your operating system name and version (e.g. Mac OS 10.13.6)</li>
 <li>Any details about your local setup that might be helpful in troubleshooting, such as the output from running <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> from the R console</li>
 <li>Detailed steps to reproduce the bug, preferably in the form of a <a href="https://robjhyndman.com/hyndsight/minimal-reproducible-examples/" class="external-link">minimum reproducible example</a>
@@ -87,7 +93,7 @@
 <div class="section level4">
 <h4 id="function-documentation">Function documentation<a class="anchor" aria-label="anchor" href="#function-documentation"></a></h4>
 <p>Functions are described as comments near their code and translated to documentation using <a href="https://klutometis.github.io/roxygen/" class="external-link"><code>roxygen2</code></a>. If you want to improve a function description:</p>
-<ol style="list-style-type: decimal"><li>Go to <code>R/</code> directory in the <a href="https://github.com/frankfarach/npi" class="external-link">code repository</a>.</li>
+<ol style="list-style-type: decimal"><li>Go to <code>R/</code> directory in the <a href="https://github.com/ropensci/npi" class="external-link">code repository</a>.</li>
 <li>Look for the file with the name of the function.</li>
 <li>
 <a href="https://help.github.com/articles/editing-files-in-another-user-s-repository/" class="external-link">Propose a file change</a> to update the function documentation in the roxygen comments (starting with <code>#'</code>).</li>
@@ -95,13 +101,13 @@
 </div>
 <div class="section level3">
 <h3 id="contribute-code">Contribute code<a class="anchor" aria-label="anchor" href="#contribute-code"></a></h3>
-<p>Care to fix bugs or implement new functionality for npi? Awesome! 👏 Have a look at the <a href="https://github.com/frankfarach/npi/issues" class="external-link">issue list</a> and leave a comment on the things you want to work on. See also the development guidelines below.</p>
+<p>Care to fix bugs or implement new functionality for npi? Awesome! 👏 Have a look at the <a href="https://github.com/ropensci/npi/issues" class="external-link">issue list</a> and leave a comment on the things you want to work on. See also the development guidelines below.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="development-guidelines">Development guidelines<a class="anchor" aria-label="anchor" href="#development-guidelines"></a></h2>
 <p>Please follow <a href="https://guides.github.com/introduction/flow/" class="external-link">GitHub flow</a> for development.</p>
-<ol style="list-style-type: decimal"><li>Fork <a href="https://github.com/frankfarach/npi" class="external-link">this repo</a> and clone it to your computer. To learn more about this process, see <a href="https://guides.github.com/activities/forking/" class="external-link">this guide</a>.</li>
+<ol style="list-style-type: decimal"><li>Fork <a href="https://github.com/ropensci/npi" class="external-link">this repo</a> and clone it to your computer. To learn more about this process, see <a href="https://guides.github.com/activities/forking/" class="external-link">this guide</a>.</li>
 <li>If you have forked and cloned the project before and it has been a while since you worked on it, <a href="https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/" class="external-link">pull changes from the original repo</a> to your clone by using <code>git pull upstream master</code>.</li>
 <li>Open the RStudio project file (<code>.Rproj</code>).</li>
 <li>Make your changes:<ul><li>Write your code.</li>

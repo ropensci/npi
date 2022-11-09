@@ -2,6 +2,7 @@ pandoc: 2.7.3
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
+  advanced-use: advanced-use.html
   npi: npi.html
-last_built: 2022-10-22T00:28Z
+last_built: 2022-11-09T02:44Z
 

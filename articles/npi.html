@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">npi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,6 +48,12 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/advanced-use.html">Advanced Uses</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
@@ -58,7 +64,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/frankfarach/npi/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/ropensci/npi/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -77,14 +83,14 @@
       <img src="../logo.png" class="logo" alt=""><h1>Introduction to npi</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/frankfarach/npi/blob/HEAD/vignettes/npi.Rmd" class="external-link"><code>vignettes/npi.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/npi/blob/HEAD/vignettes/npi.Rmd" class="external-link"><code>vignettes/npi.Rmd</code></a></small>
       <div class="d-none name"><code>npi.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/frankfarach/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
 <p>This vignette provides an brief introduction to the npi package.</p>
 <p><code>npi</code> is an R package that allows R users to access the <a href="https://npiregistry.cms.hhs.gov/" class="external-link">U.S. National Provider Identifier (NPI) Registry</a> API by the Center for Medicare and Medicaid Services (CMS).</p>
 <p>The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.</p>
@@ -94,6 +100,7 @@
 <p>To explore organizational providers with primary locations in New York City, we could use the <code>city</code> argument in the <code><a href="../reference/npi_search.html">npi_search()</a></code>. The nyc dataset here finds 10 organizational providers with primary locations in New York City, since 10 is the default number of records that are returned in <code><a href="../reference/npi_search.html">npi_search()</a></code>. The response is a tibble that has high-cardinality data organized into list columns.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10 records requested</span></span>
 <span><span class="co">#&gt; Requesting records 0-10...</span></span>
 <span><span class="va">nyc</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 11</span></span></span>
@@ -112,10 +119,11 @@
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;, and</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   abbreviated variable names ¹​enumeration_type, ²​other_names, ³​identifiers,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations, ⁷​endpoints</span></span></span></code></pre></div>
-<p>Other search arguments for the function include npi number, enumeration type, taxonomy description, individual provider’s first name, individual provider’s last name, use first name alias, organization name, address purpose, state, postal code, country code, and limit.</p>
+<p>Other search arguments for the function include <code>number</code>, <code>enumeration_type</code>, <code>taxonomy_description</code>, <code>first_name</code>, <code>last_name</code>, <code>use_first_name_alias</code>, <code>organization_name</code>, <code>address_purpose</code>, <code>state</code>, <code>postal_code</code>, <code>country_code</code>, and <code>limit</code>.</p>
 <p>Additionally, more than one search argument can be used at once.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, state <span class="op">=</span> <span class="st">"NY"</span>, enumeration_type <span class="op">=</span> <span class="st">"org"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 10 records requested</span></span>
 <span><span class="co">#&gt; Requesting records 0-10...</span></span>
 <span><span class="va">nyc_multi</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 11</span></span></span>
@@ -139,9 +147,10 @@
 <div class="section level2">
 <h2 id="increasing-number-of-records-returned">Increasing number of records returned<a class="anchor" aria-label="anchor" href="#increasing-number-of-records-returned"></a>
 </h2>
-<p>The <code>limit</code> argument lets you set the maximum records to return from 1 to 1200 inclusive. The default is 10.</p>
+<p>The <code>limit</code> argument of <code><a href="../reference/npi_search.html">npi_search()</a></code> lets you set the maximum records to return from 1 to 1200 inclusive, defaulting to 10 records if no value is specified.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_25</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 25 records requested</span></span>
 <span><span class="co">#&gt; Requesting records 0-25...</span></span>
 <span><span class="va">nyc_25</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 25 × 11</span></span></span>
@@ -161,9 +170,10 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   last_updated_date &lt;dttm&gt;, and abbreviated variable names ¹​enumeration_type,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​other_names, ³​identifiers, ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁷​endpoints</span></span></span></code></pre></div>
-<p>When using <code><a href="../reference/npi_search.html">npi_search()</a></code>, searches with greater than 200 records (for example 300 records) will result in multiple API calls. This is because the API returns up to 200 records per request. The function will make multiple calls as needed and still return a tibble.</p>
+<p>When using <code><a href="../reference/npi_search.html">npi_search()</a></code>, searches with greater than 200 records (for example 300 records) may result in multiple API calls. This is because the API itself returns up to 200 records per request, but allows previously requested records to be skipped. <code><a href="../reference/npi_search.html">npi_search()</a></code> will automatically make additional API calls up to the API’s limit of 1200 records for a unique set of query parameter values, and will still return a single tibble. However, to save time, the function only makes additional requests if needed. For example, if you request 1200 records, and 199 are returned in the first request, then the function does not need to make a second request because there are no more records to return.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_300</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 300 records requested</span></span>
 <span><span class="co">#&gt; Requesting records 0-200...</span></span>
 <span><span class="co">#&gt; Requesting records 200-300...</span></span>
 <span><span class="va">nyc_300</span></span>
@@ -184,6 +194,7 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   last_updated_date &lt;dttm&gt;, and abbreviated variable names ¹​enumeration_type,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​other_names, ³​identifiers, ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁷​endpoints</span></span></span></code></pre></div>
+<p>The NPPES API documentation does not specify additional API rate limitations. However, if you need more than 1200 NPI records for a set of search terms, you will need to download the <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">NPPES Data Dissemination File</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="obtaining-more-human-readable-output">Obtaining more human-readable output<a class="anchor" aria-label="anchor" href="#obtaining-more-human-readable-output"></a>
@@ -191,31 +202,24 @@
 <p><code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> provides a more human-readable overview of output already obtained through <code><a href="../reference/npi_search.html">npi_search()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_summarize.html">npi_summarize</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `names_sep = '_'` instead.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">npi</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/frankfarach/npi/issues&gt;</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
 <span><span class="co">#&gt;    npi        name               enumeration_type primary_practi…¹ phone prima…²</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1326214693 BENJAMIN BOWLING   Individual       <span style="color: #BB0000;">NA</span>               212-… Intern…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1356498703 MICHAEL SCHMIDT    Individual       4401 BRONX BOUL… 718-… Social…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1326214693 BENJAMIN BOWLING   Individual       <span style="color: #BB0000;">NA</span>               212-… Psychi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1356498703 MICHAEL SCHMIDT    Individual       4401 BRONX BOUL… 718-… Intern…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1497228076 VIVIAN AYALA       Individual       <span style="color: #BB0000;">NA</span>               212-… Social…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1972840189 BEVERLY SUAREZ LLC Organization     220-18 HORACE H… 718-… Day Tr…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1972840189 BEVERLY SUAREZ LLC Organization     220-18 HORACE H… 718-… Psychi…</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1407906092 MELINDA SCHROEDER  Individual       <span style="color: #BB0000;">NA</span>               212-… Social…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1366591505 ANNE GRIFFIN       Individual       205 EAST 78TH S… 212-… Psychi…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1851622625 TOD GRAPES         Individual       169 MANHATTAN A… 212-… Kinesi…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1659422525 ELLEN FEINSTEIN    Individual       441 W END AVE S… 212-… Social…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1669524237 LEE SHECHTMAN      Individual       247 3RD AVE SUI… 212-… Intern…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1093868499 BENJAMIN SADOCK    Individual       <span style="color: #BB0000;">NA</span>               212-… Psychi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1366591505 ANNE GRIFFIN       Individual       205 EAST 78TH S… 212-… Social…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1851622625 TOD GRAPES         Individual       169 MANHATTAN A… 212-… Social…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1659422525 ELLEN FEINSTEIN    Individual       441 W END AVE S… 212-… Intern…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1669524237 LEE SHECHTMAN      Individual       247 3RD AVE SUI… 212-… Kinesi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1093868499 BENJAMIN SADOCK    Individual       <span style="color: #BB0000;">NA</span>               212-… Day Tr…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​primary_practice_address,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​primary_taxonomy</span></span></span></code></pre></div>
 <p>Additionally, users can flatten all the list columns using <code><a href="../reference/npi_flatten.html">npi_flatten()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: The `.sep` argument of `unnest()` is deprecated as of tidyr 1.0.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">npi</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/frankfarach/npi/issues&gt;</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 30 × 48</span></span></span>
 <span><span class="co">#&gt;    npi   basic…¹ basic…² basic…³ basic…⁴ basic…⁵ basic…⁶ basic…⁷ basic…⁸ basic…⁹</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>

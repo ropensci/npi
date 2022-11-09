@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">npi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,12 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/advanced-use.html">Advanced Uses</a>
+  </div>
+</li>
 <li class="active nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
@@ -31,7 +37,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/frankfarach/npi/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/ropensci/npi/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -44,18 +50,65 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/frankfarach/npi/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/ropensci/npi/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="npi-020-2022-11-08">npi 0.2.0 (2022-11-08)<a class="anchor" aria-label="anchor" href="#npi-020-2022-11-08"></a></h2>
+<div class="section level4">
+<h4 id="minor-improvements-0-2-0">MINOR IMPROVEMENTS<a class="anchor" aria-label="anchor" href="#minor-improvements-0-2-0"></a></h4>
+<ul><li>
+<code><a href="../reference/npi_flatten.html">npi_flatten()</a></code> is now covered by unit tests (<a href="https://github.com/ropensci/npi/issues/15" class="external-link">#15</a> and <a href="https://github.com/ropensci/npi/issues/73" class="external-link">#73</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> provides an informative error message when internet is off or the endpoint is unreachable (<a href="https://github.com/ropensci/npi/issues/52" class="external-link">#52</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> now checks for legal use of special characters prior to submitting an API request (<a href="https://github.com/ropensci/npi/issues/53" class="external-link">#53</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> now checks for legal use of wildcard characters prior to submitting an API request (<a href="https://github.com/ropensci/npi/issues/54" class="external-link">#54</a>).</li>
+<li>User agent default now includes the installed package version (e.g., “npi/0.2.0”) (<a href="https://github.com/ropensci/npi/issues/55" class="external-link">#55</a>).</li>
+<li>
+<code>checkmate</code> package is now in Imports rather than Suggests so tests are run on it (<a href="https://github.com/ropensci/npi/issues/57" class="external-link">#57</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> now has test coverage for the case where empty results are returned (<a href="https://github.com/ropensci/npi/issues/59" class="external-link">#59</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> now provides a message indicating how many records are being requested (<a href="https://github.com/ropensci/npi/issues/72" class="external-link">#72</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> now handles epoch field conversion to date format, fixing a breaking API change. Thanks to <a href="https://github.com/trang-n" class="external-link">@trang-n</a> for reporting the problem (<a href="https://github.com/ropensci/npi/issues/74" class="external-link">#74</a>) and <a href="https://github.com/parmsam" class="external-link">@parmsam</a> for submitting a PR that fixed it (<a href="https://github.com/ropensci/npi/issues/75" class="external-link">#75</a>).</li>
+</ul></div>
+<div class="section level4">
+<h4 id="bug-fixes-0-2-0">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-0"></a></h4>
+<ul><li>
+<code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> now handles NPI records in which all provider taxonomy records have been flagged as non-primary (<a href="https://github.com/ropensci/npi/issues/51" class="external-link">#51</a>).</li>
+<li>User functions are now backwards-compatible with <code>tidyr</code> &lt;= 0.8.99 (<a href="https://github.com/ropensci/npi/issues/56" class="external-link">#56</a>).</li>
+</ul></div>
+<div class="section level4">
+<h4 id="documentation-fixes-0-2-0">DOCUMENTATION FIXES<a class="anchor" aria-label="anchor" href="#documentation-fixes-0-2-0"></a></h4>
+<ul><li>Grouped the reference index to highlight the most important functions (<a href="https://github.com/ropensci/npi/issues/45" class="external-link">#45</a>).</li>
+<li>Added API URL to DESCRIPTION file (<a href="https://github.com/ropensci/npi/issues/47" class="external-link">#47</a>).</li>
+<li>Clarified description of the <code>npis</code> dataset (<a href="https://github.com/ropensci/npi/issues/48" class="external-link">#48</a>).</li>
+<li>Added <a href="https://docs.ropensci.org/npi/articles/advanced-use.html" class="external-link">Advanced Use</a> vignette (<a href="https://github.com/ropensci/npi/issues/49" class="external-link">#49</a>).</li>
+<li>Clarified the API’s rate limitation (<a href="https://github.com/ropensci/npi/issues/50" class="external-link">#50</a>).</li>
+<li>Removed unused internal functions <code>delay_by()</code> and <code>remove_null()</code> (<a href="https://github.com/ropensci/npi/issues/58" class="external-link">#58</a>).</li>
+<li>Acknowledged rOpenSci reviewers, <a href="https://github.com/zabore" class="external-link">Emily Zabore</a> (<a href="https://github.com/ropensci/npi/issues/63" class="external-link">#63</a>) and <a href="https://github.com/Rekyt" class="external-link">Mattias Grenié</a>, in DESCRIPTION. Thanks! (<a href="https://github.com/ropensci/npi/issues/60" class="external-link">#60</a>)</li>
+<li>README now clarifies that <code>enumeration_type</code> is returned, not <code>provider_type</code> (<a href="https://github.com/ropensci/npi/issues/64" class="external-link">#64</a>).</li>
+<li>README warns that code results in README may not be reproducible since they reflect dynamic, stateful data (<a href="https://github.com/ropensci/npi/issues/65" class="external-link">#65</a>).</li>
+<li>Vignettes organize search arguments by name instead of description (<a href="https://github.com/ropensci/npi/issues/66" class="external-link">#66</a>).</li>
+<li>
+<code>npi</code> vignette details what <code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> (<a href="https://github.com/ropensci/npi/issues/67" class="external-link">#67</a>) and <code><a href="../reference/npi_flatten.html">npi_flatten()</a></code> (<a href="https://github.com/ropensci/npi/issues/68" class="external-link">#68</a>) do.</li>
+<li>REAMDE and <code>npi</code> vignette provide use cases for <code><a href="../reference/npi_is_valid.html">npi_is_valid()</a></code> (<a href="https://github.com/ropensci/npi/issues/69" class="external-link">#69</a>).</li>
+<li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> documentation now links to the NPPES data dictionary to help users understand the API results (<a href="https://github.com/ropensci/npi/issues/70" class="external-link">#70</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="npi-010-2020-03-03">npi 0.1.0 (2020-03-03)<a class="anchor" aria-label="anchor" href="#npi-010-2020-03-03"></a></h2>
 <div class="section level4">
 <h4 id="minor-improvements-0-1-0">MINOR IMPROVEMENTS<a class="anchor" aria-label="anchor" href="#minor-improvements-0-1-0"></a></h4>
 <ul><li>Added package website</li>
-<li>Added introductory vignette (<a href="https://github.com/frankfarach/npi/issues/13" class="external-link">#13</a>) (<a href="https://github.com/frankfarach/npi/issues/29" class="external-link">#29</a>) <a href="https://github.com/parmsam" class="external-link">@parmsam</a></li>
-<li>Added example to documentation of each exported function (<a href="https://github.com/frankfarach/npi/issues/32" class="external-link">#32</a>)</li>
+<li>Added introductory vignette (<a href="https://github.com/ropensci/npi/issues/13" class="external-link">#13</a>) (<a href="https://github.com/ropensci/npi/issues/29" class="external-link">#29</a>) <a href="https://github.com/parmsam" class="external-link">@parmsam</a></li>
+<li>Added example to documentation of each exported function (<a href="https://github.com/ropensci/npi/issues/32" class="external-link">#32</a>)</li>
 <li>
-<code><a href="../reference/npi_is_valid.html">npi_is_valid()</a></code> now uses the checkLuhn package for Luhn checking (<a href="https://github.com/frankfarach/npi/issues/34" class="external-link">#34</a>)</li>
+<code><a href="../reference/npi_is_valid.html">npi_is_valid()</a></code> now uses the checkLuhn package for Luhn checking (<a href="https://github.com/ropensci/npi/issues/34" class="external-link">#34</a>)</li>
 <li>
 <code><a href="https://tidyr.tidyverse.org/reference/nest.html" class="external-link">tidyr::unnest()</a></code> now works with old and new versions of tidyr</li>
 </ul></div>
