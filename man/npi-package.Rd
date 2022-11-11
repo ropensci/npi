@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Access the United States National Provider Identifier Registry API (if available) and provide informative error messages when it's not. Obtain rich administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.
+Access the United States National Provider Identifier Registry API \url{https://npiregistry.cms.hhs.gov/api/}. Obtain and transform administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and other attributes exposed by the API.
 }
 \details{
 \pkg{npi} makes it easy to search and work with data from the U.S.

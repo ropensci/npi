@@ -12,11 +12,11 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-1402-4498"))
   )
 Description: Access the United States National Provider Identifier
-    Registry API (if available) and provide informative error messages
-    when it's not. Obtain rich administrative data linked to a specific 
-    individual or organizational healthcare provider, or perform advanced 
-    searches based on provider name, location, type of service, credentials, 
-    and many other attributes.
+    Registry API <https://npiregistry.cms.hhs.gov/api/>. Obtain and transform
+    administrative data linked to a specific individual or organizational
+    healthcare provider, or perform advanced searches based on provider name,
+    location, type of service, credentials, and other attributes exposed by
+    the API.
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/npi/, 
     https://docs.ropensci.org/npi/, 
