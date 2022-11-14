@@ -1,7 +1,6 @@
-npi 0.2.0 (2022-11-08)
-========================
+# npi 0.2.0
 
-### MINOR IMPROVEMENTS
+## MINOR IMPROVEMENTS
 
   * `npi_flatten()` is now covered by unit tests (#15 and #73).
   * `npi_search()` provides an informative error message when internet is off or the endpoint is unreachable (#52).
@@ -13,13 +12,13 @@ npi 0.2.0 (2022-11-08)
   * `npi_search()` now provides a message indicating how many records are being requested (#72).
   * `npi_search()` now handles epoch field conversion to date format, fixing a breaking API change. Thanks to @trang-n for reporting the problem (#74) and @parmsam for submitting a PR that fixed it (#75).
 
-### BUG FIXES
+## BUG FIXES
 
   * `npi_summarize()` now handles NPI records in which all provider taxonomy records have been flagged as non-primary (#51).
   * User functions are now backwards-compatible with `tidyr` <= 0.8.99 (#56).
   
 
-### DOCUMENTATION FIXES
+## DOCUMENTATION FIXES
 
   * Grouped the reference index to highlight the most important functions (#45).
   * Added API URL to DESCRIPTION file (#47).
@@ -36,10 +35,9 @@ npi 0.2.0 (2022-11-08)
   * `npi_search()` documentation now links to the NPPES data dictionary to help users understand the API results (#70).
 
 
-npi 0.1.0 (2020-03-03)
-=========================
+# npi 0.1.0 (2020-03-03)
 
-### MINOR IMPROVEMENTS
+## MINOR IMPROVEMENTS
 
   * Added package website
   * Added introductory vignette (#13) (#29) @parmsam
@@ -47,6 +45,6 @@ npi 0.1.0 (2020-03-03)
   * `npi_is_valid()` now uses the checkLuhn package for Luhn checking (#34)
   * `tidyr::unnest()` now works with old and new versions of tidyr 
 
-### DOCUMENTATION FIXES
+## DOCUMENTATION FIXES
 
   * Updated redirected URLs to new targets
