@@ -24,10 +24,10 @@ datetime
 dplyr
 github
 hhs
-http
 https
 jo
 lifecycle
+magrittr
 mistyped
 npiregistry
 nyc
