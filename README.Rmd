@@ -28,6 +28,7 @@ nyc <- npis
   [![R-CMD-check](https://github.com/ropensci/npi/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/npi/actions)
   [![Codecov test coverage](https://codecov.io/gh/ropensci/npi/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/npi?branch=master)
   [![DOI](https://zenodo.org/badge/122857655.svg)](https://zenodo.org/badge/latestdoi/122857655)
+[![CRAN status](https://www.r-pkg.org/badges/version/npi)](https://CRAN.R-project.org/package=npi)
 <!-- badges: end -->
 
 Use R to access the U.S. National Provider Identifier (NPI) Registry API (v2.1) by the Center for Medicare and Medicaid Services (CMS): https://npiregistry.cms.hhs.gov/. Obtain rich administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and many other attributes. `npi` provides convenience functions for data extraction so you can spend less time wrangling data and more time putting data to work.
