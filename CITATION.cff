@@ -10,11 +10,10 @@ license: MIT
 title: 'npi: Access the U.S. National Provider Identifier Registry API'
 version: 0.2.0
 doi: 10.5281/zenodo.6326729
-abstract: Access the United States National Provider Identifier Registry API (if available)
-  and provide informative error messages when it's not. Obtain rich administrative
-  data linked to a specific individual or organizational healthcare provider, or perform
-  advanced searches based on provider name, location, type of service, credentials,
-  and many other attributes.
+abstract: Access the United States National Provider Identifier Registry API <https://npiregistry.cms.hhs.gov/api/>.
+  Obtain and transform administrative data linked to a specific individual or organizational
+  healthcare provider, or perform advanced searches based on provider name, location,
+  type of service, credentials, and other attributes exposed by the API.
 authors:
 - family-names: Farach
   given-names: Frank
@@ -30,6 +29,7 @@ preferred-citation:
   year: '2022'
   url: https://github.com/ropensci/npi
   doi: 10.5281/zenodo.6326729
+repository: https://CRAN.R-project.org/package=npi
 repository-code: https://github.com/ropensci/npi/issues/
 url: https://github.com/ropensci/npi/
 contact:
