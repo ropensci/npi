@@ -78,7 +78,8 @@
 
 
 
-<script src="advanced-use_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Advanced Uses</h1>
             
@@ -93,17 +94,40 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span></code></pre></div>
 <p>This vignette explores advanced uses of the npi package.</p>
-<p><code>npi</code> is an R package that allows R users to access the <a href="https://npiregistry.cms.hhs.gov/" class="external-link">U.S. National Provider Identifier (NPI) Registry</a> API by the Center for Medicare and Medicaid Services (CMS). The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.</p>
+<p><code>npi</code> is an R package that allows R users to access the <a href="https://npiregistry.cms.hhs.gov/" class="external-link">U.S. National Provider
+Identifier (NPI) Registry</a> API by the Center for Medicare and
+Medicaid Services (CMS). The package makes it easy to obtain
+administrative data linked to a specific individual or organizational
+healthcare provider. Additionally, users can perform advanced searches
+based on provider name, location, type of service, credentials, and many
+other attributes.</p>
 <p>See the npi::npi vignette for an introduction to the package.</p>
 <div class="section level2">
 <h2 id="note-on-npi-downloadable-files">Note on NPI Downloadable Files<a class="anchor" aria-label="anchor" href="#note-on-npi-downloadable-files"></a>
 </h2>
-<p>CMS regularly releases full NPI data files <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">here</a>. We recommend that users download the data file if they need to work with the entire dataset. The API and <code><a href="../reference/npi_search.html">npi_search()</a></code> returns a maximum of 1,200 records. Also consider downloading the entire data if you need to work with more than the maximum. Data dissemination files are zipped and will exceed 4GB upon decompression.</p>
+<p>CMS regularly releases full NPI data files <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">here</a>. We
+recommend that users download the data file if they need to work with
+the entire dataset. The API and <code><a href="../reference/npi_search.html">npi_search()</a></code> returns a
+maximum of 1,200 records. Also consider downloading the entire data if
+you need to work with more than the maximum. Data dissemination files
+are zipped and will exceed 4GB upon decompression.</p>
 </div>
 <div class="section level2">
 <h2 id="run-npi_search-on-multiple-search-terms">Run <code>npi_search()</code> on multiple search terms<a class="anchor" aria-label="anchor" href="#run-npi_search-on-multiple-search-terms"></a>
 </h2>
-<p><code><a href="../reference/npi_search.html">npi_search()</a></code> enables search for a defined set query parameters. The function is not designed for search on multiple values of the same argument at once, as for example in the case of multiple NPI numbers in a single function call. However, users can still serially execute searches for multiple values of a single query parameter by using <code>npi</code> in combination with the <a href="https://purrr.tidyverse.org/" class="external-link"><code>purrr</code></a> package. In the example below, we search multiple NPI numbers. A single tibble is returned with record information corresponding to matching records. The <a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr:map()</a> function is used to apply the <code><a href="../reference/npi_search.html">npi_search()</a></code> function on each element of the vector. Thereafter, the <a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">dplyr::bind_rows()</a> function is used to combine the list of dataframes together into a single dataframe.</p>
+<p><code><a href="../reference/npi_search.html">npi_search()</a></code> enables search for a defined set query
+parameters. The function is not designed for search on multiple values
+of the same argument at once, as for example in the case of multiple NPI
+numbers in a single function call. However, users can still serially
+execute searches for multiple values of a single query parameter by
+using <code>npi</code> in combination with the <a href="https://purrr.tidyverse.org/" class="external-link"><code>purrr</code></a> package. In
+the example below, we search multiple NPI numbers. A single tibble is
+returned with record information corresponding to matching records. The
+<a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr:map()</a>
+function is used to apply the <code><a href="../reference/npi_search.html">npi_search()</a></code> function on each
+element of the vector. Thereafter, the <a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">dplyr::bind_rows()</a>
+function is used to combine the list of dataframes together into a
+single dataframe.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1992708929</span>, <span class="fl">1831192848</span>, <span class="fl">1699778688</span>, <span class="fl">1111111111</span><span class="op">)</span>  <span class="co"># Last element doesn't exist</span></span>
 <span></span>
@@ -163,8 +187,10 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_last_name &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_telephone_number &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_title_or_position &lt;chr&gt;, …</span></span></span></code></pre></div>
-<p>Consult the R for Data Science <a href="https://r4ds.had.co.nz/iteration.html" class="external-link">chapter on iteration</a> to learn more about using the <code>purrr</code> package.</p>
-<p>Alternatively, you can use a simple for loop instead if you are unfamiliar with the tidyverse approach.</p>
+<p>Consult the R for Data Science <a href="https://r4ds.had.co.nz/iteration.html" class="external-link">chapter on iteration</a> to
+learn more about using the <code>purrr</code> package.</p>
+<p>Alternatively, you can use a simple for loop instead if you are
+unfamiliar with the tidyverse approach.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">npis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1992708929</span>, <span class="fl">1831192848</span>, <span class="fl">1699778688</span>, <span class="fl">1111111111</span><span class="op">)</span>  <span class="co"># Last element doesn't exist</span></span>
 <span><span class="va">combined_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>

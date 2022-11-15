@@ -78,7 +78,8 @@
 
 
 
-<script src="npi_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Introduction to npi</h1>
             
@@ -92,12 +93,23 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
 <p>This vignette provides an brief introduction to the npi package.</p>
-<p><code>npi</code> is an R package that allows R users to access the <a href="https://npiregistry.cms.hhs.gov/" class="external-link">U.S. National Provider Identifier (NPI) Registry</a> API by the Center for Medicare and Medicaid Services (CMS).</p>
-<p>The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.</p>
+<p><code>npi</code> is an R package that allows R users to access the <a href="https://npiregistry.cms.hhs.gov/" class="external-link">U.S. National Provider
+Identifier (NPI) Registry</a> API by the Center for Medicare and
+Medicaid Services (CMS).</p>
+<p>The package makes it easy to obtain administrative data linked to a
+specific individual or organizational healthcare provider. Additionally,
+users can perform advanced searches based on provider name, location,
+type of service, credentials, and many other attributes.</p>
 <div class="section level2">
 <h2 id="search-registry">Search registry<a class="anchor" aria-label="anchor" href="#search-registry"></a>
 </h2>
-<p>To explore organizational providers with primary locations in New York City, we could use the <code>city</code> argument in the <code><a href="../reference/npi_search.html">npi_search()</a></code>. The nyc dataset here finds 10 organizational providers with primary locations in New York City, since 10 is the default number of records that are returned in <code><a href="../reference/npi_search.html">npi_search()</a></code>. The response is a tibble that has high-cardinality data organized into list columns.</p>
+<p>To explore organizational providers with primary locations in New
+York City, we could use the <code>city</code> argument in the
+<code><a href="../reference/npi_search.html">npi_search()</a></code>. The nyc dataset here finds 10 organizational
+providers with primary locations in New York City, since 10 is the
+default number of records that are returned in
+<code><a href="../reference/npi_search.html">npi_search()</a></code>. The response is a tibble that has
+high-cardinality data organized into list columns.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 10 records requested</span></span>
@@ -119,7 +131,13 @@
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;, and</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   abbreviated variable names ¹​enumeration_type, ²​other_names, ³​identifiers,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations, ⁷​endpoints</span></span></span></code></pre></div>
-<p>Other search arguments for the function include <code>number</code>, <code>enumeration_type</code>, <code>taxonomy_description</code>, <code>first_name</code>, <code>last_name</code>, <code>use_first_name_alias</code>, <code>organization_name</code>, <code>address_purpose</code>, <code>state</code>, <code>postal_code</code>, <code>country_code</code>, and <code>limit</code>.</p>
+<p>Other search arguments for the function include <code>number</code>,
+<code>enumeration_type</code>, <code>taxonomy_description</code>,
+<code>first_name</code>, <code>last_name</code>,
+<code>use_first_name_alias</code>, <code>organization_name</code>,
+<code>address_purpose</code>, <code>state</code>,
+<code>postal_code</code>, <code>country_code</code>, and
+<code>limit</code>.</p>
 <p>Additionally, more than one search argument can be used at once.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, state <span class="op">=</span> <span class="st">"NY"</span>, enumeration_type <span class="op">=</span> <span class="st">"org"</span><span class="op">)</span></span>
@@ -142,12 +160,15 @@
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 2 more variables: created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;, and</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   abbreviated variable names ¹​enumeration_type, ²​other_names, ³​identifiers,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations, ⁷​endpoints</span></span></span></code></pre></div>
-<p>Visit the function’s help page via <code><a href="../reference/npi_search.html">?npi_search</a></code> after installing and loading the package for more details.</p>
+<p>Visit the function’s help page via <code><a href="../reference/npi_search.html">?npi_search</a></code> after
+installing and loading the package for more details.</p>
 </div>
 <div class="section level2">
 <h2 id="increasing-number-of-records-returned">Increasing number of records returned<a class="anchor" aria-label="anchor" href="#increasing-number-of-records-returned"></a>
 </h2>
-<p>The <code>limit</code> argument of <code><a href="../reference/npi_search.html">npi_search()</a></code> lets you set the maximum records to return from 1 to 1200 inclusive, defaulting to 10 records if no value is specified.</p>
+<p>The <code>limit</code> argument of <code><a href="../reference/npi_search.html">npi_search()</a></code> lets you
+set the maximum records to return from 1 to 1200 inclusive, defaulting
+to 10 records if no value is specified.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_25</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 25 records requested</span></span>
@@ -170,7 +191,17 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   last_updated_date &lt;dttm&gt;, and abbreviated variable names ¹​enumeration_type,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​other_names, ³​identifiers, ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁷​endpoints</span></span></span></code></pre></div>
-<p>When using <code><a href="../reference/npi_search.html">npi_search()</a></code>, searches with greater than 200 records (for example 300 records) may result in multiple API calls. This is because the API itself returns up to 200 records per request, but allows previously requested records to be skipped. <code><a href="../reference/npi_search.html">npi_search()</a></code> will automatically make additional API calls up to the API’s limit of 1200 records for a unique set of query parameter values, and will still return a single tibble. However, to save time, the function only makes additional requests if needed. For example, if you request 1200 records, and 199 are returned in the first request, then the function does not need to make a second request because there are no more records to return.</p>
+<p>When using <code><a href="../reference/npi_search.html">npi_search()</a></code>, searches with greater than 200
+records (for example 300 records) may result in multiple API calls. This
+is because the API itself returns up to 200 records per request, but
+allows previously requested records to be skipped.
+<code><a href="../reference/npi_search.html">npi_search()</a></code> will automatically make additional API calls
+up to the API’s limit of 1200 records for a unique set of query
+parameter values, and will still return a single tibble. However, to
+save time, the function only makes additional requests if needed. For
+example, if you request 1200 records, and 199 are returned in the first
+request, then the function does not need to make a second request
+because there are no more records to return.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_300</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 300 records requested</span></span>
@@ -194,12 +225,16 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   last_updated_date &lt;dttm&gt;, and abbreviated variable names ¹​enumeration_type,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​other_names, ³​identifiers, ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁷​endpoints</span></span></span></code></pre></div>
-<p>The NPPES API documentation does not specify additional API rate limitations. However, if you need more than 1200 NPI records for a set of search terms, you will need to download the <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">NPPES Data Dissemination File</a>.</p>
+<p>The NPPES API documentation does not specify additional API rate
+limitations. However, if you need more than 1200 NPI records for a set
+of search terms, you will need to download the <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">NPPES Data
+Dissemination File</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="obtaining-more-human-readable-output">Obtaining more human-readable output<a class="anchor" aria-label="anchor" href="#obtaining-more-human-readable-output"></a>
 </h2>
-<p><code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> provides a more human-readable overview of output already obtained through <code><a href="../reference/npi_search.html">npi_search()</a></code>.</p>
+<p><code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> provides a more human-readable overview
+of output already obtained through <code><a href="../reference/npi_search.html">npi_search()</a></code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_summarize.html">npi_summarize</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
@@ -217,7 +252,8 @@
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1093868499 BENJAMIN SADOCK    Individual       <span style="color: #BB0000;">NA</span>               212-… Day Tr…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​primary_practice_address,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​primary_taxonomy</span></span></span></code></pre></div>
-<p>Additionally, users can flatten all the list columns using <code><a href="../reference/npi_flatten.html">npi_flatten()</a></code>.</p>
+<p>Additionally, users can flatten all the list columns using
+<code><a href="../reference/npi_flatten.html">npi_flatten()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 30 × 48</span></span></span>
@@ -240,7 +276,9 @@
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_last_name &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_middle_name &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_telephone_number &lt;chr&gt;, …</span></span></span></code></pre></div>
-<p>Alternatively, individual columns can be flattened for each npi by using the <code>cols</code> argument. Only the columns specified will be flattened and returned with the npi column by default.</p>
+<p>Alternatively, individual columns can be flattened for each npi by
+using the <code>cols</code> argument. Only the columns specified will be
+flattened and returned with the npi column by default.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"taxonomies"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 26</span></span></span>

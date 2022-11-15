@@ -91,23 +91,32 @@
 <img src="logo.png" class="logo" alt=""><h1 id="npi-">npi <a class="anchor" aria-label="anchor" href="#npi-"></a>
 </h1>
 </div>
-<blockquote><p>Access the U.S. National Provider Identifier Registry API</p></blockquote>
+<blockquote>
+<p>Access the U.S. National Provider Identifier Registry API</p>
+</blockquote>
 <!-- badges: start -->
+
 <p>Use R to access the U.S. National Provider Identifier (NPI) Registry API (v2.1) by the Center for Medicare and Medicaid Services (CMS): <a href="https://npiregistry.cms.hhs.gov/" class="external-link uri">https://npiregistry.cms.hhs.gov/</a>. Obtain rich administrative data linked to a specific individual or organizational healthcare provider, or perform advanced searches based on provider name, location, type of service, credentials, and many other attributes. <code>npi</code> provides convenience functions for data extraction so you can spend less time wrangling data and more time putting data to work.</p>
 <p>Analysts working with healthcare and public health data frequently need to join data from multiple sources to answer their business or research questions. Unfortunately, joining data in healthcare is hard because so few entities have unique, consistent identifiers across organizational boundaries. NPI numbers, however, do not suffer from these limitations, as all U.S. providers meeting certain common criteria must have an NPI number in order to be reimbursed for the services they provide. This makes NPI numbers incredibly useful for joining multiple datasets by provider, which is the primary motivation for developing this package.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>There are three ways to install the <code>npi</code> package:</p>
-<ol style="list-style-type: decimal"><li>Install from CRAN:</li></ol>
+<ol style="list-style-type: decimal">
+<li>Install from CRAN:</li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"npi"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal"><li>Install from <a href="https://ropensci.org/r-universe/" class="external-link">R-universe</a>:</li></ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Install from <a href="https://ropensci.org/r-universe/" class="external-link">R-universe</a>:</li>
+</ol>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"npi"</span>, repos <span class="op">=</span> <span class="st">"https://ropensci.r-universe.dev"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal"><li>Install from GitHub using the <code>devtools</code> package:</li></ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Install from GitHub using the <code>devtools</code> package:</li>
+</ol>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropensci/npi"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
