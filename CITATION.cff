@@ -8,7 +8,7 @@ message: 'To cite package "npi" in publications use:'
 type: software
 license: MIT
 title: 'npi: Access the U.S. National Provider Identifier Registry API'
-version: 0.2.0
+version: 0.2.0.9000
 doi: 10.5281/zenodo.6326729
 abstract: Access the United States National Provider Identifier Registry API <https://npiregistry.cms.hhs.gov/api/>.
   Obtain and transform administrative data linked to a specific individual or organizational
