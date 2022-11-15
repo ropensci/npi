@@ -1,5 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+CRAN-SUBMISSION
+cran-comments.md
 docs
 inst/doc
