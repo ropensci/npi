@@ -17,6 +17,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Codecov test
 coverage](https://codecov.io/gh/ropensci/npi/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ropensci/npi?branch=master)
 [![DOI](https://zenodo.org/badge/122857655.svg)](https://zenodo.org/badge/latestdoi/122857655)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/npi)](https://CRAN.R-project.org/package=npi)
 <!-- badges: end -->
 
 Use R to access the U.S. National Provider Identifier (NPI) Registry API
