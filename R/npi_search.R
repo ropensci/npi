@@ -4,7 +4,9 @@
 #' Registry using parameters exposed by the registry's API (Version 2.1).
 #' Results are combined and returned
 #' as a tibble with an S3 class of \code{npi_results}. See \code{Value} below
-#' for a description of the returned object.
+#' for a description of the returned object. API documentation may differ from
+#' what is shown here. Consult \url{https://npiregistry.cms.hhs.gov/api-page}
+#' for the latest documentation.
 #'
 #' @details By default, the function requests up to 10 records, but the
 #' \code{limit} argument accepts values from 1 to the API's limit of 1200.
@@ -13,10 +15,9 @@
 #' @param enumeration_type (Optional) Type of provider associated with the NPI,
 #'   one of: \describe{ \item{"ind"}{Individual provider (NPI-1)}
 #'   \item{"org"}{Organizational provider (NPI-2)} }
-#' @param taxonomy_description (Optional) Scalar character vector with a
-#'   taxonomy description or code from the
-#'   \href{https://taxonomy.nucc.org}{NUCC
-#'   Healthcare Provider Taxonomy}.
+#' @param taxonomy_description (Optional) Scalar character vector with an exact
+#'   description or exact specialty or wildcard * after 2 characters from the
+#'   \href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}.
 #' @param first_name (Optional) This field only applies to Individual Providers.
 #'   Trailing wildcard entries are permitted requiring at least two characters
 #'   to be entered (e.g. "jo*" ). This field allows the following special
@@ -71,9 +72,7 @@
 #'   criterion as long as the value selected is not US (United States). Valid
 #'   values for country codes:
 #'   \url{https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr}
-#' @param limit Maximum number of records to return, from 1 to 1200 inclusive.
-#'   The default is 10. Because the API returns up to 200 records per request,
-#'   values of \code{limit} greater than 200 will result in multiple API calls.
+#' @param limit Maximum number of records to return, from 1 to 1200 inclusive. The default is 10. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.
 #' @family search functions
 #' @examples
 #' \dontrun{
@@ -116,7 +115,7 @@ npi_search <- function(number = NULL,
                        country_code = NULL,
                        limit = 10L) {
   if (!is.null(enumeration_type) &&
-    !enumeration_type %in% c("ind", "org")) {
+      !enumeration_type %in% c("ind", "org")) {
     rlang::abort("`enumeration_type` must be one of: NULL, 'ind', or 'org'.")
   }
 
@@ -127,29 +126,25 @@ npi_search <- function(number = NULL,
   legal_2 <- "[^[:alnum:][:space:]()&:,-.#;'/\"@\\*]"
 
   if (any(stringr::str_detect(c(first_name, last_name, city), legal_1)) ||
-    any(stringr::str_detect(organization_name, legal_2))) {
+      any(stringr::str_detect(organization_name, legal_2))) {
     msg <- "Field contains at least one illegal character. See `?npi_search`."
     rlang::abort(msg, class = "illegal_character")
   }
 
   if (!is.logical(use_first_name_alias) &&
-    !is.null(use_first_name_alias)) {
+      !is.null(use_first_name_alias)) {
     rlang::abort("`use_first_name_alias` must be TRUE or FALSE if specified.")
   }
 
   if (!is.null(use_first_name_alias)) {
-    use_first_name_alias <- ifelse(isTRUE(use_first_name_alias),
-      "True", "False"
-    )
+    use_first_name_alias <- ifelse(isTRUE(use_first_name_alias), "True", "False")
   }
 
   if (!is.null(address_purpose)) {
-    vals <- c("location", "mailing", "primary", "secondary")
+    vals <- c("location", "mailing", "primary", "SECONDARY")
     if (!address_purpose %in% vals) {
-      msg <- paste(
-        "`address_purpose` must be one of:",
-        stringr::str_c(vals, collapse = ", ")
-      )
+      msg <- paste("`address_purpose` must be one of:",
+                   stringr::str_c(vals, collapse = ", "))
       rlang::abort(msg)
     }
   }
@@ -159,8 +154,15 @@ npi_search <- function(number = NULL,
   }
 
   # Validate wildcard rules on applicable fields
-  wild_args <- list(taxonomy_description, first_name, last_name, organization_name, city, postal_code)
-  lapply(wild_args, function(x) if (!is.null(x)) validate_wildcard_rules(x))
+  wild_args <- list(taxonomy_description,
+                    first_name,
+                    last_name,
+                    organization_name,
+                    city,
+                    postal_code)
+  lapply(wild_args, function(x)
+    if (!is.null(x))
+      validate_wildcard_rules(x))
 
   npi_process_results(
     list(

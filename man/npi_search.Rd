@@ -27,10 +27,9 @@ npi_search(
 one of: \describe{ \item{"ind"}{Individual provider (NPI-1)}
 \item{"org"}{Organizational provider (NPI-2)} }}
 
-\item{taxonomy_description}{(Optional) Scalar character vector with a
-taxonomy description or code from the
-\href{https://taxonomy.nucc.org}{NUCC
-Healthcare Provider Taxonomy}.}
+\item{taxonomy_description}{(Optional) Scalar character vector with an exact
+description or exact specialty or wildcard * after 2 characters from the
+\href{https://taxonomy.nucc.org}{NUCC Healthcare Provider Taxonomy}.}
 
 \item{first_name}{(Optional) This field only applies to Individual Providers.
 Trailing wildcard entries are permitted requiring at least two characters
@@ -95,9 +94,7 @@ criterion as long as the value selected is not US (United States). Valid
 values for country codes:
 \url{https://npiregistry.cms.hhs.gov/registry/API-Country-Abbr}}
 
-\item{limit}{Maximum number of records to return, from 1 to 1200 inclusive.
-The default is 10. Because the API returns up to 200 records per request,
-values of \code{limit} greater than 200 will result in multiple API calls.}
+\item{limit}{Maximum number of records to return, from 1 to 1200 inclusive. The default is 10. Because the API returns up to 200 records per request, values of \code{limit} greater than 200 will result in multiple API calls.}
 }
 \value{
 Data frame (tibble) containing the results of the search.
@@ -107,7 +104,9 @@ Search the U.S. National Provider Identifier (NPI)
 Registry using parameters exposed by the registry's API (Version 2.1).
 Results are combined and returned
 as a tibble with an S3 class of \code{npi_results}. See \code{Value} below
-for a description of the returned object.
+for a description of the returned object. API documentation may differ from
+what is shown here. Consult \url{https://npiregistry.cms.hhs.gov/api-page}
+for the latest documentation.
 }
 \details{
 By default, the function requests up to 10 records, but the
