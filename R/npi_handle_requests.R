@@ -9,7 +9,7 @@ npi_get_results <- function(results = list(), ...) {
   msg <- glue::glue(
     "Requesting records {...$skip}-{...$skip + ...$limit}..."
   )
-  rlang::inform("status_pre_request", message = msg)
+  rlang::inform(msg, class = "status_pre_request")
 
   result <- npi_get(npi_url(), query = ...)
   append(results, list(result))

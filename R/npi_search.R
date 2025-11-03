@@ -141,12 +141,14 @@ npi_search <- function(number = NULL,
   }
 
   if (!is.null(address_purpose)) {
-    vals <- c("location", "mailing", "primary", "SECONDARY")
-    if (!address_purpose %in% vals) {
+    vals <- c("location", "mailing", "primary", "secondary")
+    address_purpose_lower <- tolower(address_purpose)
+    if (!address_purpose_lower %in% vals) {
       msg <- paste("`address_purpose` must be one of:",
                    stringr::str_c(vals, collapse = ", "))
       rlang::abort(msg)
     }
+    address_purpose <- vals[match(address_purpose_lower, vals)]
   }
 
   if (limit < 1L || limit > 1200) {
@@ -192,7 +194,7 @@ npi_process_results <- function(params) {
   user_n <- params[["limit"]]
 
   msg <- glue::glue("{user_n} record", ifelse(user_n > 1, "s", ""), " requested")
-  rlang::inform("status_pre_request", message = msg)
+  rlang::inform(msg, class = "status_pre_request")
 
   results <- npi_control_requests(params, user_n)
 
