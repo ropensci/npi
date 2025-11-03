@@ -85,3 +85,39 @@ test_that("address extractor works", {
     "115 WEST 27TH STREET 4TH FLOOR, NEW YORK CITY, NY 100016217"
   )
 })
+
+
+test_that("tidy_results() extracts practiceLocations from API response (issue #80)", {
+  # Mock API response structure with practiceLocations (camelCase as returned by CMS API)
+  mock_content <- list(
+    list(
+      number = "1234567890",
+      enumeration_type = "NPI-2",
+      basic = list(organization_name = "Test Hospital"),
+      other_names = list(),
+      identifiers = list(),
+      taxonomies = list(),
+      addresses = list(
+        list(address_purpose = "LOCATION", city = "Boston"),
+        list(address_purpose = "MAILING", city = "Boston")
+      ),
+      # API returns practiceLocations in camelCase, not snake_case
+      practiceLocations = list(
+        list(address_purpose = "LOCATION", city = "Cambridge"),
+        list(address_purpose = "LOCATION", city = "Somerville")
+      ),
+      endpoints = list(),
+      created_epoch = "1234567890000",
+      last_updated_epoch = "1234567890000"
+    )
+  )
+
+  # Test that tidy_results extracts practiceLocations correctly
+  result <- tidy_results(list(results = mock_content))
+
+  expect_true("practice_locations" %in% names(result))
+  expect_equal(length(result$practice_locations), 1)
+  expect_equal(nrow(result$practice_locations[[1]]), 2)
+  expect_equal(result$practice_locations[[1]]$city[1], "Cambridge")
+  expect_equal(result$practice_locations[[1]]$city[2], "Somerville")
+})
