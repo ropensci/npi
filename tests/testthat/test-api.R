@@ -247,7 +247,8 @@ test_that("The initial message accurately reports the requested number of record
 with_mock_api({
   test_that("npi_process_results returns an empty tibble when npi_search returns zero records", {
     res <- npi_search(city = "ZZZZZZZ")
-    expect_identical(res, tibble::tibble())
+    expect_s3_class(res, "npi_results")
+    expect_identical(res, new_empty_npi_results())
   })
 })
 

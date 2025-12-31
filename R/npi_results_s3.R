@@ -15,6 +15,28 @@ new_npi_results <- function(x, ...) {
   )
 }
 
+#' Construct an empty \code{npi_results} object
+#'
+#' @return A 0-row tibble with \code{npi_results} class
+#' @keywords internal
+new_empty_npi_results <- function() {
+  new_npi_results(
+    tibble::tibble(
+      npi = integer(),
+      enumeration_type = character(),
+      basic = vector("list", 0),
+      other_names = vector("list", 0),
+      identifiers = vector("list", 0),
+      taxonomies = vector("list", 0),
+      addresses = vector("list", 0),
+      practice_locations = vector("list", 0),
+      endpoints = vector("list", 0),
+      created_date = as.POSIXct(numeric(), origin = "1970-01-01", tz = "UTC"),
+      last_updated_date = as.POSIXct(numeric(), origin = "1970-01-01", tz = "UTC")
+    )
+  )
+}
+
 
 
 #' Validate input as S3 \code{npi_results} object

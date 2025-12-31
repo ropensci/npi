@@ -214,7 +214,7 @@ npi_process_results <- function(params) {
   results <- npi_control_requests(params, user_n)
 
   if (rlang::is_empty(results)) {
-    return(tibble::tibble())
+    return(new_empty_npi_results())
   }
 
   results %>%
