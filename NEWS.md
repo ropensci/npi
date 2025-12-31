@@ -1,5 +1,15 @@
 # npi (development version)
 
+## MINOR IMPROVEMENTS
+
+  * `npi_search()` now normalizes `address_purpose` values to API constants and accepts case-insensitive input.
+  * `npi_is_valid()` now supports vector inputs and returns logical vectors.
+  * `npi_search()` returns a typed empty `npi_results` object when no records are found.
+
+## DOCUMENTATION FIXES
+
+  * Clarified `npi_summarize()` taxonomy fallback behavior when no primary taxonomy is marked.
+
 # npi 0.2.0
 
 ## MINOR IMPROVEMENTS

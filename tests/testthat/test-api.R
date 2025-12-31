@@ -152,6 +152,12 @@ test_that("npi_search() throws an error when argument values are invalid", {
   expect_error(npi_search(city = arg), class = err)
 })
 
+test_that("npi_search() normalizes address_purpose values", {
+  mockery::stub(npi_search, "npi_process_results", function(params) params)
+  res <- npi_search(address_purpose = "secondary")
+  expect_equal(res$address_purpose, "SECONDARY")
+})
+
 
 with_mock_api({
   test_that("We can catch request logic errors in the API response", {
@@ -241,7 +247,8 @@ test_that("The initial message accurately reports the requested number of record
 with_mock_api({
   test_that("npi_process_results returns an empty tibble when npi_search returns zero records", {
     res <- npi_search(city = "ZZZZZZZ")
-    expect_identical(res, tibble::tibble())
+    expect_s3_class(res, "npi_results")
+    expect_identical(res, new_empty_npi_results())
   })
 })
 

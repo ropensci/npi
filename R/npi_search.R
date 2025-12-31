@@ -140,14 +140,7 @@ npi_search <- function(number = NULL,
     use_first_name_alias <- ifelse(isTRUE(use_first_name_alias), "True", "False")
   }
 
-  if (!is.null(address_purpose)) {
-    vals <- c("location", "mailing", "primary", "SECONDARY")
-    if (!address_purpose %in% vals) {
-      msg <- paste("`address_purpose` must be one of:",
-                   stringr::str_c(vals, collapse = ", "))
-      rlang::abort(msg)
-    }
-  }
+  address_purpose <- normalize_address_purpose(address_purpose)
 
   if (limit < 1L || limit > 1200) {
     rlang::abort("`limit` must be a number between 1 and 1200.")
@@ -186,6 +179,30 @@ npi_search <- function(number = NULL,
 
 
 
+#' Normalize address_purpose input
+#' @param address_purpose Optional address purpose value
+#' @return Normalized address purpose or NULL
+#' @noRd
+normalize_address_purpose <- function(address_purpose) {
+  if (is.null(address_purpose)) {
+    return(NULL)
+  }
+
+  vals <- c("LOCATION", "MAILING", "PRIMARY", "SECONDARY")
+  address_purpose_norm <- toupper(address_purpose)
+
+  if (!address_purpose_norm %in% vals) {
+    msg <- paste("`address_purpose` must be one of:",
+      stringr::str_c(vals, collapse = ", ")
+    )
+    rlang::abort(msg)
+  }
+
+  address_purpose_norm
+}
+
+
+
 #' Processing pipeline for NPI search results
 #' @noRd
 npi_process_results <- function(params) {
@@ -197,7 +214,7 @@ npi_process_results <- function(params) {
   results <- npi_control_requests(params, user_n)
 
   if (rlang::is_empty(results)) {
-    return(tibble::tibble())
+    return(new_empty_npi_results())
   }
 
   results %>%

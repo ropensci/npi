@@ -15,6 +15,28 @@ new_npi_results <- function(x, ...) {
   )
 }
 
+#' Construct an empty \code{npi_results} object
+#'
+#' @return A 0-row tibble with \code{npi_results} class
+#' @noRd
+new_empty_npi_results <- function() {
+  new_npi_results(
+    tibble::tibble(
+      npi = integer(),
+      enumeration_type = character(),
+      basic = vector("list", 0),
+      other_names = vector("list", 0),
+      identifiers = vector("list", 0),
+      taxonomies = vector("list", 0),
+      addresses = vector("list", 0),
+      practice_locations = vector("list", 0),
+      endpoints = vector("list", 0),
+      created_date = as.POSIXct(numeric(), origin = "1970-01-01", tz = "UTC"),
+      last_updated_date = as.POSIXct(numeric(), origin = "1970-01-01", tz = "UTC")
+    )
+  )
+}
+
 
 
 #' Validate input as S3 \code{npi_results} object
@@ -80,7 +102,9 @@ validate_npi_results <- function(x, ...) {
 #'     \item{\code{primary_practice_address}}{Full address of the provider's
 #'       primary practice location}
 #'     \item{\code{phone}}{Provider's telephone number}
-#'     \item{\code{primary_taxonomy}}{Primary taxonomy description}
+#'     \item{\code{primary_taxonomy}}{Primary taxonomy description. If no
+#'       taxonomy is marked as primary for a record, the first listed taxonomy
+#'       is used.}
 #'   }
 #' @examples
 #' data(npis)
@@ -137,7 +161,9 @@ npi_summarize.npi_results <- function(object, ...) {
 #'     \item{\code{primary_practice_address}}{Full address of the provider's
 #'       primary practice location}
 #'     \item{\code{phone}}{Provider's telephone number}
-#'     \item{\code{primary_taxonomy}}{Primary taxonomy description}
+#'     \item{\code{primary_taxonomy}}{Primary taxonomy description. If no
+#'       taxonomy is marked as primary for a record, the first listed taxonomy
+#'       is used.}
 #'   }
 #' @family summary functions
 #' @examples

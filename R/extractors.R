@@ -12,7 +12,7 @@ tidy_results <- function(content) {
   content <- unlist(content, recursive = FALSE)
 
   tibble::tibble(
-    npi = pluck_vector_from_content(content, "number"),
+    npi = as.integer(pluck_vector_from_content(content, "number")),
     enumeration_type = pluck_vector_from_content(content, "enumeration_type"),
     basic = list_to_tibble(content, "basic", 1),
     other_names = list_to_tibble(content, "other_names", 2),
