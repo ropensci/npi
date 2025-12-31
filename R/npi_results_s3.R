@@ -18,7 +18,7 @@ new_npi_results <- function(x, ...) {
 #' Construct an empty \code{npi_results} object
 #'
 #' @return A 0-row tibble with \code{npi_results} class
-#' @keywords internal
+#' @noRd
 new_empty_npi_results <- function() {
   new_npi_results(
     tibble::tibble(
