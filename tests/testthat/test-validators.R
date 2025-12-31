@@ -11,6 +11,14 @@ test_that("npi_is_valid() uses the Luhn algorithm", {
   expect_false(npi_is_valid(1234567898))
 })
 
+test_that("npi_is_valid() works with vector inputs", {
+  expect_equal(
+    npi_is_valid(c(1234567893, 1234567898)),
+    c(TRUE, FALSE)
+  )
+  expect_error(npi_is_valid(c(1234567893, "bad")))
+})
+
 test_that("hyphenate_full_zip() works correctly", {
   bad_zips_chr <- c(
     "902100201", "90210", "9021", "90210-", "90210-0",

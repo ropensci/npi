@@ -62,21 +62,21 @@ abort_bad_argument <- function(arg, must, not = NULL,
 #' npi_is_valid(1234567898) # FALSE
 #' @export
 npi_is_valid <- function(x) {
-  if (stringr::str_length(x) != 10 ||
-    stringr::str_detect(x, "\\d{10}",
-      negate = TRUE
-    )) {
+  x <- as.character(x)
+
+  invalid <- stringr::str_length(x) != 10 |
+    stringr::str_detect(x, "^\\d{10}$", negate = TRUE)
+
+  if (any(invalid)) {
     rlang::abort("`x` must be a 10-digit number.")
   }
-
-  x <- as.character(x)
 
   # Prefix the NPI with code for US health applications per US governement
   # requirements
   x <- paste0("80840", x)
 
   # Validate number using the Luhn algorithm
-  checkLuhn::checkLuhn(x)
+  unname(vapply(x, checkLuhn::checkLuhn, logical(1L)))
 }
 
 
