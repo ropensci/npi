@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # npi <img src="man/figures/logo.png" align="right" height="139" />
@@ -46,24 +45,24 @@ There are three ways to install the `npi` package:
 
 1.  Install from CRAN:
 
-``` r
-install.packages("npi")
-library(npi)
-```
+<!-- -->
 
-2.  Install from [R-universe](https://ropensci.org/r-universe/):
+    install.packages("npi")
+    library(npi)
 
-``` r
-install.packages("npi", repos = "https://ropensci.r-universe.dev")
-library(npi)
-```
+1.  Install from [R-universe](https://ropensci.org/r-universe/):
 
-3.  Install from GitHub using the `devtools` package:
+<!-- -->
 
-``` r
-devtools::install_github("ropensci/npi")
-library(npi)
-```
+    install.packages("npi", repos = "https://ropensci.r-universe.dev")
+    library(npi)
+
+1.  Install from GitHub using the `devtools` package:
+
+<!-- -->
+
+    devtools::install_github("ropensci/npi")
+    library(npi)
 
 ## Usage
 
@@ -86,30 +85,25 @@ parameters](https://npiregistry.cms.hhs.gov/registry/help-api). Let’s
 say we wanted to find up to 10 providers with primary locations in New
 York City:
 
-``` r
-nyc <- npi_search(city = "New York City")
-```
+    nyc <- npi_search(city = "New York City")
 
-``` r
-# Your results may differ since the data in the NPPES database changes over time
-nyc
-#> # A tibble: 10 × 11
-#>       npi enume…¹ basic    other_…² identi…³ taxono…⁴ addres…⁵ practi…⁶ endpoi…⁷
-#>  *  <int> <chr>   <list>   <list>   <list>   <list>   <list>   <list>   <list>  
-#>  1 1.19e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  2 1.31e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  3 1.64e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  4 1.35e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  5 1.56e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  6 1.79e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  7 1.56e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  8 1.96e9 Organi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#>  9 1.43e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#> 10 1.33e9 Indivi… <tibble> <tibble> <tibble> <tibble> <tibble> <tibble> <tibble>
-#> # … with 2 more variables: created_date <dttm>, last_updated_date <dttm>, and
-#> #   abbreviated variable names ¹​enumeration_type, ²​other_names, ³​identifiers,
-#> #   ⁴​taxonomies, ⁵​addresses, ⁶​practice_locations, ⁷​endpoints
-```
+    # Your results may differ since the data in the NPPES database changes over time
+    nyc
+    #> # A tibble: 10 × 11
+    #>       npi enumeration_type basic    other_names identifiers taxonomies addresses
+    #>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
+    #>  1 1.19e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  2 1.31e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  3 1.64e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  4 1.35e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  5 1.56e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  6 1.79e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  7 1.56e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  8 1.96e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #>  9 1.43e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #> 10 1.33e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+    #> # ℹ 4 more variables: practice_locations <list>, endpoints <list>,
+    #> #   created_date <dttm>, last_updated_date <dttm>
 
 The full search results have four regular vector columns, `npi`,
 `enumeration_type`, `created_date`, and `last_updated_date` and seven
@@ -144,26 +138,24 @@ Run `npi_summarize()` on your results to see a more human-readable
 overview of your search results. Specifically, the function returns the
 NPI number, provider’s name, enumeration type (individual or
 organizational provider), primary address, phone number, and primary
-taxonomy (area of practice):
+taxonomy (area of practice). If no taxonomy is marked as primary for a
+record, the first taxonomy listed for that NPI is returned:
 
-``` r
-npi_summarize(nyc)
-#> # A tibble: 10 × 6
-#>           npi name                                 enume…¹ prima…² phone prima…³
-#>         <int> <chr>                                <chr>   <chr>   <chr> <chr>  
-#>  1 1194276360 ALYSSA COWNAN                        Indivi… 5 E 98… 212-… Physic…
-#>  2 1306849641 MARK MOHRMANN                        Indivi… 16 PAR… 212-… Orthop…
-#>  3 1639173065 SAKSHI DUA                           Indivi… 10 E 1… 212-… Nurse …
-#>  4 1346604592 SARAH LOWRY                          Indivi… 1335 D… 614-… Occupa…
-#>  5 1558362566 AMY TIERSTEN                         Indivi… 1176 5… 212-… Psychi…
-#>  6 1790786416 NOAH GOLDMAN                         Indivi… 140 BE… 973-… Intern…
-#>  7 1558713628 ROBYN NOHLING                        Indivi… 9 HOPE… 781-… Nurse …
-#>  8 1962983775 LENOX HILL MEDICAL ANESTHESIOLOGY, … Organi… 100 E … 212-… Intern…
-#>  9 1427454529 YONGHONG TAN                         Indivi… 34 MAP… 203-… Obstet…
-#> 10 1326403213 RAJEE KRAUSE                         Indivi… 12401 … 347-… Nurse …
-#> # … with abbreviated variable names ¹​enumeration_type,
-#> #   ²​primary_practice_address, ³​primary_taxonomy
-```
+    npi_summarize(nyc)
+    #> # A tibble: 10 × 6
+    #>         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy
+    #>       <int> <chr> <chr>            <chr>                  <chr> <chr>           
+    #>  1   1.19e9 ALYS… Individual       5 E 98TH ST FL SREET4… 212-… Physician Assis…
+    #>  2   1.31e9 MARK… Individual       16 PARK PL, NEW YORK,… 212-… Orthopaedic Sur…
+    #>  3   1.64e9 SAKS… Individual       10 E 102ND ST, NEW YO… 212-… Nurse Practitio…
+    #>  4   1.35e9 SARA… Individual       1335 DUBLIN RD STE 20… 614-… Occupational Th…
+    #>  5   1.56e9 AMY … Individual       1176 5TH AVE, NEW YOR… 212-… Psychiatry & Ne…
+    #>  6   1.79e9 NOAH… Individual       140 BERGEN STREET LEV… 973-… Internal Medici…
+    #>  7   1.56e9 ROBY… Individual       9 HOPE AVE STE 500, W… 781-… Nurse Practitio…
+    #>  8   1.96e9 LENO… Organization     100 E 77TH ST, NEW YO… 212-… Internal Medici…
+    #>  9   1.43e9 YONG… Individual       34 MAPLE ST, NORWALK,… 203-… Obstetrics & Gy…
+    #> 10   1.33e9 RAJE… Individual       12401 E 17TH AVE, AUR… 347-… Nurse Anestheti…
+    #> # ℹ abbreviated name: ¹​primary_practice_address
 
 ### Flattening results
 
@@ -188,29 +180,27 @@ a flatter (i.e., unnested and merged) structure that’s easier to use.
 results from `npi_search()`. One extreme is to flatten everything at
 once:
 
-``` r
-npi_flatten(nyc)
-#> # A tibble: 48 × 42
-#>           npi basic_fi…¹ basic…² basic…³ basic…⁴ basic…⁵ basic…⁶ basic…⁷ basic…⁸
-#>         <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <chr>   <chr>  
-#>  1 1194276360 ALYSSA     COWNAN  PA      NO      F       2016-1… 2018-0… A      
-#>  2 1194276360 ALYSSA     COWNAN  PA      NO      F       2016-1… 2018-0… A      
-#>  3 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
-#>  4 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
-#>  5 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
-#>  6 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
-#>  7 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#>  8 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#>  9 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#> 10 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#> # … with 38 more rows, 33 more variables: basic_name <chr>,
-#> #   basic_name_prefix <chr>, basic_middle_name <chr>,
-#> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
-#> #   basic_authorized_official_credential <chr>,
-#> #   basic_authorized_official_first_name <chr>,
-#> #   basic_authorized_official_last_name <chr>,
-#> #   basic_authorized_official_middle_name <chr>, …
-```
+    npi_flatten(nyc)
+    #> # A tibble: 48 × 42
+    #>           npi basic_first_name basic_last_name basic_credential
+    #>         <int> <chr>            <chr>           <chr>           
+    #>  1 1194276360 ALYSSA           COWNAN          PA              
+    #>  2 1194276360 ALYSSA           COWNAN          PA              
+    #>  3 1306849641 MARK             MOHRMANN        MD              
+    #>  4 1306849641 MARK             MOHRMANN        MD              
+    #>  5 1306849641 MARK             MOHRMANN        MD              
+    #>  6 1306849641 MARK             MOHRMANN        MD              
+    #>  7 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+    #>  8 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+    #>  9 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+    #> 10 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+    #> # ℹ 38 more rows
+    #> # ℹ 38 more variables: basic_sole_proprietor <chr>, basic_gender <chr>,
+    #> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
+    #> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
+    #> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
+    #> #   basic_authorized_official_credential <chr>,
+    #> #   basic_authorized_official_first_name <chr>, …
 
 However, due to the number of fields and the large number of potential
 combinations of values, this approach is best suited to small datasets.
@@ -220,41 +210,39 @@ list columns you want and merging after the fact. For example, to
 flatten basic provider and provider taxonomy information, supply the
 corresponding list columns as a vector of names to the `cols` argument:
 
-``` r
-# Flatten basic provider info and provider taxonomy, preserving the relationship
-# of each to NPI number and discarding other list columns.
-npi_flatten(nyc, cols = c("basic", "taxonomies"))
-#> # A tibble: 20 × 26
-#>           npi basic_fi…¹ basic…² basic…³ basic…⁴ basic…⁵ basic…⁶ basic…⁷ basic…⁸
-#>         <int> <chr>      <chr>   <chr>   <chr>   <chr>   <chr>   <chr>   <chr>  
-#>  1 1194276360 ALYSSA     COWNAN  PA      NO      F       2016-1… 2018-0… A      
-#>  2 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
-#>  3 1306849641 MARK       MOHRMA… MD      NO      M       2005-0… 2019-0… A      
-#>  4 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#>  5 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#>  6 1326403213 RAJEE      KRAUSE  AGPCNP… NO      F       2015-1… 2019-0… A      
-#>  7 1346604592 SARAH      LOWRY   OTR/L   YES     F       2016-0… 2018-0… A      
-#>  8 1346604592 SARAH      LOWRY   OTR/L   YES     F       2016-0… 2018-0… A      
-#>  9 1427454529 YONGHONG   TAN     <NA>    NO      F       2014-1… 2018-1… A      
-#> 10 1558362566 AMY        TIERST… M.D.    YES     F       2005-0… 2019-0… A      
-#> 11 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
-#> 12 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
-#> 13 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
-#> 14 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
-#> 15 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
-#> 16 1558713628 ROBYN      NOHLING FNP-BC… YES     F       2016-0… 2018-0… A      
-#> 17 1639173065 SAKSHI     DUA     M.D.    YES     F       2005-0… 2019-0… A      
-#> 18 1639173065 SAKSHI     DUA     M.D.    YES     F       2005-0… 2019-0… A      
-#> 19 1790786416 NOAH       GOLDMAN M.D.    NO      M       2005-0… 2018-0… A      
-#> 20 1962983775 <NA>       <NA>    <NA>    <NA>    <NA>    2018-0… 2018-0… A      
-#> # … with 17 more variables: basic_name <chr>, basic_name_prefix <chr>,
-#> #   basic_middle_name <chr>, basic_organization_name <chr>,
-#> #   basic_organizational_subpart <chr>,
-#> #   basic_authorized_official_credential <chr>,
-#> #   basic_authorized_official_first_name <chr>,
-#> #   basic_authorized_official_last_name <chr>,
-#> #   basic_authorized_official_middle_name <chr>, …
-```
+    # Flatten basic provider info and provider taxonomy, preserving the relationship
+    # of each to NPI number and discarding other list columns.
+    npi_flatten(nyc, cols = c("basic", "taxonomies"))
+    #> # A tibble: 20 × 26
+    #>           npi basic_first_name basic_last_name basic_credential    
+    #>         <int> <chr>            <chr>           <chr>               
+    #>  1 1194276360 ALYSSA           COWNAN          PA                  
+    #>  2 1306849641 MARK             MOHRMANN        MD                  
+    #>  3 1306849641 MARK             MOHRMANN        MD                  
+    #>  4 1326403213 RAJEE            KRAUSE          AGPCNP-C            
+    #>  5 1326403213 RAJEE            KRAUSE          AGPCNP-C            
+    #>  6 1326403213 RAJEE            KRAUSE          AGPCNP-C            
+    #>  7 1346604592 SARAH            LOWRY           OTR/L               
+    #>  8 1346604592 SARAH            LOWRY           OTR/L               
+    #>  9 1427454529 YONGHONG         TAN             <NA>                
+    #> 10 1558362566 AMY              TIERSTEN        M.D.                
+    #> 11 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+    #> 12 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+    #> 13 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+    #> 14 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+    #> 15 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+    #> 16 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+    #> 17 1639173065 SAKSHI           DUA             M.D.                
+    #> 18 1639173065 SAKSHI           DUA             M.D.                
+    #> 19 1790786416 NOAH             GOLDMAN         M.D.                
+    #> 20 1962983775 <NA>             <NA>            <NA>                
+    #> # ℹ 22 more variables: basic_sole_proprietor <chr>, basic_gender <chr>,
+    #> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
+    #> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
+    #> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
+    #> #   basic_authorized_official_credential <chr>,
+    #> #   basic_authorized_official_first_name <chr>,
+    #> #   basic_authorized_official_last_name <chr>, …
 
 ### Validating NPIs
 
@@ -264,13 +252,11 @@ digit](https://en.wikipedia.org/wiki/Check_digit) for error-checking
 purposes. Use `npi_is_valid()` to check whether an NPI number you’ve
 encountered is validly constructed:
 
-``` r
-# Validate NPIs
-npi_is_valid(1234567893)
-#> [1] TRUE
-npi_is_valid(1234567898)
-#> [1] FALSE
-```
+    # Validate NPIs
+    npi_is_valid(1234567893)
+    #> [1] TRUE
+    npi_is_valid(1234567898)
+    #> [1] FALSE
 
 Note that this function doesn’t check whether the NPI numbers are
 activated or deactivated (see
@@ -286,15 +272,13 @@ the software interacting with an API to tell it who or what is making
 the request. This helps the API’s maintainers understand what systems
 are using the API. By default, when `npi` makes a request to the NPPES
 API, the request header references the name of the package and the URL
-for the repository (e.g., ‘npi/0.2.0
+for the repository (e.g., ‘npi/0.2.0.9000
 (<https://github.com/ropensci/npi>)’). If you want to set a custom user
 agent, update the value of the `npi_user_agent` option. For example, for
-version 1.0.0 of an app called “my_app”, you could run the following
+version 1.0.0 of an app called “my\_app”, you could run the following
 code:
 
-``` r
-options(npi_user_agent = "my_app/1.0.0")
-```
+    options(npi_user_agent = "my_app/1.0.0")
 
 ## Package Website
 

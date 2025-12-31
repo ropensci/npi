@@ -103,7 +103,7 @@ If you're comfortable [working with list columns](https://r4ds.had.co.nz/many-mo
 
 ### Summarizing results
 
-Run `npi_summarize()` on your results to see a more human-readable overview of your search results. Specifically, the function returns the NPI number, provider's name, enumeration type (individual or organizational provider), primary address, phone number, and primary taxonomy (area of practice):
+Run `npi_summarize()` on your results to see a more human-readable overview of your search results. Specifically, the function returns the NPI number, provider's name, enumeration type (individual or organizational provider), primary address, phone number, and primary taxonomy (area of practice). If no taxonomy is marked as primary for a record, the first taxonomy listed for that NPI is returned:
 
 ```{r summarize-nyc}
 npi_summarize(nyc)

@@ -102,7 +102,9 @@ validate_npi_results <- function(x, ...) {
 #'     \item{\code{primary_practice_address}}{Full address of the provider's
 #'       primary practice location}
 #'     \item{\code{phone}}{Provider's telephone number}
-#'     \item{\code{primary_taxonomy}}{Primary taxonomy description}
+#'     \item{\code{primary_taxonomy}}{Primary taxonomy description. If no
+#'       taxonomy is marked as primary for a record, the first listed taxonomy
+#'       is used.}
 #'   }
 #' @examples
 #' data(npis)
@@ -159,7 +161,9 @@ npi_summarize.npi_results <- function(object, ...) {
 #'     \item{\code{primary_practice_address}}{Full address of the provider's
 #'       primary practice location}
 #'     \item{\code{phone}}{Provider's telephone number}
-#'     \item{\code{primary_taxonomy}}{Primary taxonomy description}
+#'     \item{\code{primary_taxonomy}}{Primary taxonomy description. If no
+#'       taxonomy is marked as primary for a record, the first listed taxonomy
+#'       is used.}
 #'   }
 #' @family summary functions
 #' @examples
