@@ -11,6 +11,11 @@ Authors@R: c(
     person(c("Emily", "C."), "Zabor", , "zabore2@ccf.org", role = "rev", 
            comment = c(ORCID = "0000-0002-1402-4498"))
   )
+Author: Frank Farach [aut, cre, cph],
+    Sam Parmar [ctb],
+    Matthias Grenié [rev],
+    Emily C. Zabor [rev]
+Maintainer: Frank Farach <frank.farach@gmail.com>
 Description: Access the United States National Provider Identifier
     Registry API <https://npiregistry.cms.hhs.gov/api/>. Obtain and transform
     administrative data linked to a specific individual or organizational
