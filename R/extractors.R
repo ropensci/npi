@@ -19,7 +19,7 @@ tidy_results <- function(content) {
     identifiers = list_to_tibble(content, "identifiers", 2),
     taxonomies = list_to_tibble(content, "taxonomies", 2),
     addresses = list_to_tibble(content, "addresses", 2),
-    practice_locations = list_to_tibble(content, "practice_locations", 2),
+    practice_locations = list_to_tibble(content, "practiceLocations", 2),
     endpoints = list_to_tibble(content, "endpoints", 2),
     created_date = pluck_vector_from_content(content, "created_epoch"),
     last_updated_date = pluck_vector_from_content(content, "last_updated_epoch")
