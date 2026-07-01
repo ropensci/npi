@@ -283,3 +283,34 @@ with_mock_api({
     expect_identical(names(npi_summarize(atl)), expect_names)
   })
 })
+
+test_that("npi_summarize() handles empty results", {
+  res <- npi_summarize(new_empty_npi_results())
+  expect_types <- c("integer", rep("character", 5))
+  expect_names <- c(
+    "npi", "name", "enumeration_type",
+    "primary_practice_address", "phone",
+    "primary_taxonomy"
+  )
+
+  checkmate::expect_tibble(res, types = expect_types, nrows = 0L)
+  expect_identical(names(res), expect_names)
+})
+
+test_that("npi_summarize() keeps rows aligned when nested data is missing", {
+  data(npis)
+  res <- npis[1:2, ]
+  res$addresses[[1]] <- tibble::tibble()
+  res$taxonomies[[1]] <- tibble::tibble()
+
+  summarized <- npi_summarize(res)
+
+  expect_identical(summarized$npi, res$npi)
+  expect_true(is.na(summarized$primary_practice_address[1]))
+  expect_true(is.na(summarized$phone[1]))
+  expect_true(is.na(summarized$primary_taxonomy[1]))
+  expect_equal(
+    summarized$primary_practice_address[2],
+    npi_summarize(npis[2, ])$primary_practice_address
+  )
+})
