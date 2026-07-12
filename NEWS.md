@@ -1,10 +1,15 @@
-# npi (development version)
+# npi 0.3.0 (2026-07-01)
 
 ## MINOR IMPROVEMENTS
 
   * `npi_search()` now normalizes `address_purpose` values to API constants and accepts case-insensitive input.
   * `npi_is_valid()` now supports vector inputs and returns logical vectors.
   * `npi_search()` returns a typed empty `npi_results` object when no records are found.
+
+## BUG FIXES
+
+  * `npi_summarize()` now preserves input rows when NPI records have empty or missing nested address or taxonomy data.
+  * Updated the package CITATION file to use `bibentry()` instead of the deprecated `citEntry()` format.
 
 ## DOCUMENTATION FIXES
 

@@ -83,6 +83,29 @@ validate_npi_results <- function(x, ...) {
 }
 
 
+empty_npi_summary <- function() {
+  tibble::tibble(
+    npi = integer(),
+    name = character(),
+    enumeration_type = character(),
+    primary_practice_address = character(),
+    phone = character(),
+    primary_taxonomy = character()
+  )
+}
+
+
+add_missing_columns <- function(df, columns, default = NA_character_) {
+  for (column in columns) {
+    if (!column %in% names(df)) {
+      df[[column]] <- rep(default, nrow(df))
+    }
+  }
+
+  df
+}
+
+
 
 #' Summary method for \code{npi_results} S3 object
 #'
@@ -112,39 +135,87 @@ validate_npi_results <- function(x, ...) {
 #' @importFrom rlang .data
 #' @export
 npi_summarize.npi_results <- function(object, ...) {
-  basic <- get_list_col(object, "basic")
+  validate_npi_results(object)
+
+  if (nrow(object) == 0L) {
+    return(empty_npi_summary())
+  }
+
+  basic <- get_list_col(object, "basic") %>%
+    add_missing_columns(
+      c(
+        "basic_first_name", "basic_last_name",
+        "basic_organization_name"
+      )
+    ) %>%
+    dplyr::group_by(.data$npi) %>%
+    dplyr::slice_head(n = 1L) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(
+      .data$npi, .data$basic_first_name, .data$basic_last_name,
+      .data$basic_organization_name
+    )
+
   address_loc <- get_list_col(object, "addresses") %>%
+    add_missing_columns(
+      c(
+        "addresses_address_purpose", "addresses_address_1",
+        "addresses_address_2", "addresses_city", "addresses_state",
+        "addresses_postal_code", "addresses_telephone_number"
+      )
+    ) %>%
     dplyr::filter(.data$addresses_address_purpose == "LOCATION") %>%
     dplyr::mutate(
-      postal_code = hyphenate_full_zip(.data$addresses_postal_code)
+      addresses_postal_code = hyphenate_full_zip(.data$addresses_postal_code)
     )
+
+  address_loc$primary_practice_address <- make_full_address(
+    address_loc,
+    "addresses_address_1",
+    "addresses_address_2",
+    "addresses_city",
+    "addresses_state",
+    "addresses_postal_code"
+  )
+  address_loc$phone <- address_loc$addresses_telephone_number
+
+  address_loc <- address_loc %>%
+    dplyr::group_by(.data$npi) %>%
+    dplyr::slice_head(n = 1L) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(.data$npi, .data$primary_practice_address, .data$phone)
 
   # Some NPI records have only one taxonomy row with primary == FALSE;
   # include these along with those where primary == TRUE
   tax_primary <- get_list_col(object, "taxonomies") %>%
+    add_missing_columns("taxonomies_primary", default = FALSE) %>%
+    add_missing_columns("taxonomies_desc") %>%
     dplyr::group_by(.data$npi) %>%
-    dplyr::mutate(n_primary = sum(.data$taxonomies_primary == TRUE)) %>%
-    dplyr::filter(.data$taxonomies_primary == TRUE | .data$n_primary == 0) %>%
-    dplyr::slice_head()
+    dplyr::mutate(n_primary = sum(.data$taxonomies_primary %in% TRUE)) %>%
+    dplyr::filter(.data$taxonomies_primary %in% TRUE | .data$n_primary == 0L) %>%
+    dplyr::slice_head(n = 1L) %>%
+    dplyr::ungroup() %>%
+    dplyr::transmute(
+      npi = .data$npi,
+      primary_taxonomy = .data$taxonomies_desc
+    )
 
-  tibble::tibble(
-    npi = object$npi,
-    name = ifelse(object$enumeration_type == "Individual",
-      paste(basic$basic_first_name, basic$basic_last_name),
-      basic$basic_organization_name
-    ),
-    enumeration_type = object$enumeration_type,
-    primary_practice_address = address_loc %>%
-      make_full_address(
-        "addresses_address_1",
-        "addresses_address_2",
-        "addresses_city",
-        "addresses_state",
-        "addresses_postal_code"
-      ),
-    phone = address_loc$addresses_telephone_number,
-    primary_taxonomy = tax_primary$taxonomies_desc
-  )
+  object %>%
+    dplyr::select(.data$npi, .data$enumeration_type) %>%
+    dplyr::left_join(basic, by = "npi") %>%
+    dplyr::mutate(
+      name = ifelse(
+        .data$enumeration_type == "Individual",
+        stringr::str_c(.data$basic_first_name, " ", .data$basic_last_name),
+        .data$basic_organization_name
+      )
+    ) %>%
+    dplyr::left_join(address_loc, by = "npi") %>%
+    dplyr::left_join(tax_primary, by = "npi") %>%
+    dplyr::select(
+      .data$npi, .data$name, .data$enumeration_type,
+      .data$primary_practice_address, .data$phone, .data$primary_taxonomy
+    )
 }
 
 
