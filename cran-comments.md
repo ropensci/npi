@@ -14,6 +14,14 @@ Standard local check:
 
 0 errors | 0 warnings | 0 notes
 
+Win-builder R-devel Windows check:
+
+* Platform: x86_64-w64-mingw32
+* R version: R Under development (unstable) (2026-07-11 r90235 ucrt)
+* Running under: Windows Server 2022 x64 (build 20348)
+* Check time: 2026-07-12 07:21:01 UTC
+* Result: OK
+
 `R CMD check --as-cran npi_0.3.0.tar.gz` reported 0 errors, 0 warnings, and
 2 notes in this local macOS environment:
 
