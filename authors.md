@@ -18,21 +18,10 @@
 Source:
 [`inst/CITATION`](https://github.com/ropensci/npi/blob/master/inst/CITATION)
 
-Farach, F. J. (2022). npi: Access the U.S. National Provider Identifier
-Registry API (Version 0.2.0). https://github.com/ropensci/npi
-
-    @Manual{,
-      title = {npi: Access the U.S. National Provider Identifier Registry API (Version 0.2.0)},
-      author = {Frank J Farach},
-      year = {2022},
-      url = {https://github.com/ropensci/npi},
-      doi = {10.5281/zenodo.6326729},
-    }
-
 Farach F (2022). *npi: Access the U.S. National Provider Identifier
 Registry API*.
-[doi:10.5281/zenodo.6326729](https://doi.org/10.5281/zenodo.6326729), R
-package version 0.2.0, <https://github.com/ropensci/npi>.
+[doi:10.5281/zenodo.6326729](https://doi.org/10.5281/zenodo.6326729). R
+package version 0.3.0, <https://github.com/ropensci/npi>.
 
     @Manual{,
       title = {{npi}: Access the U.S. National Provider Identifier Registry API},
@@ -40,5 +29,5 @@ package version 0.2.0, <https://github.com/ropensci/npi>.
       url = {https://github.com/ropensci/npi},
       year = {2022},
       doi = {10.5281/zenodo.6326729},
-      note = {R package version 0.2.0},
+      note = {R package version 0.3.0},
     }

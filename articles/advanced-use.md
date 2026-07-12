@@ -1,6 +1,7 @@
 # Advanced Uses
 
 ``` r
+
 library(npi)
 library(purrr)
 ```
@@ -46,6 +47,7 @@ function is used to combine the list of dataframes together into a
 single dataframe.
 
 ``` r
+
 npis <- c(1992708929, 1831192848, 1699778688, 1111111111)  # Last element doesn't exist
 
 out <- npis %>% 
@@ -64,14 +66,15 @@ npi_summarize(out)
 #> # A tibble: 2 × 6
 #>         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy
 #>       <int> <chr> <chr>            <chr>                  <chr> <chr>           
-#> 1    1.99e9 NOVA… Organization     3200 DOWNWOOD CIR NW … 404-… Orthopaedic Sur…
-#> 2    1.83e9 MATT… Individual       NA                     770-… Clinic/Center, …
+#> 1    1.99e9 NOVA… Organization     NA                     404-… Clinic/Center, …
+#> 2    1.83e9 MATT… Individual       NA                     770-… Orthopaedic Sur…
 #> # ℹ abbreviated name: ¹​primary_practice_address
 ```
 
 Here we search for multiple zip codes in Los Angeles County.
 
 ``` r
+
 codes <- c(90210, 90211, 90212)
 
 zip_3 <- codes %>% 
@@ -86,24 +89,24 @@ zip_3 <- codes %>%
 
 npi_flatten(zip_3)
 #> # A tibble: 104 × 47
-#>         npi basic_organization_n…¹ basic_organizational…² basic_enumeration_date
+#>         npi basic_authorized_off…¹ basic_authorized_off…² basic_authorized_off…³
 #>       <int> <chr>                  <chr>                  <chr>                 
-#>  1   1.07e9 A R T REPRODUCTIVE CE… NO                     2007-07-25            
-#>  2   1.07e9 A R T REPRODUCTIVE CE… NO                     2007-07-25            
-#>  3   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#>  4   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#>  5   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#>  6   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#>  7   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#>  8   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#>  9   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
-#> 10   1.15e9 AARON M PERLMUTTER M … NO                     2008-01-11            
+#>  1   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  2   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  3   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  4   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  5   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  6   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  7   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  8   1.15e9 AARON                  PERLMUTTER             NA                    
+#>  9   1.15e9 AARON                  PERLMUTTER             NA                    
+#> 10   1.15e9 AARON                  PERLMUTTER             NA                    
 #> # ℹ 94 more rows
-#> # ℹ abbreviated names: ¹​basic_organization_name, ²​basic_organizational_subpart
-#> # ℹ 43 more variables: basic_last_updated <chr>, basic_status <chr>,
-#> #   basic_authorized_official_first_name <chr>,
-#> #   basic_authorized_official_last_name <chr>,
-#> #   basic_authorized_official_middle_name <chr>,
+#> # ℹ abbreviated names: ¹​basic_authorized_official_first_name,
+#> #   ²​basic_authorized_official_last_name,
+#> #   ³​basic_authorized_official_middle_name
+#> # ℹ 43 more variables: basic_authorized_official_name_prefix <chr>,
+#> #   basic_authorized_official_name_suffix <chr>,
 #> #   basic_authorized_official_telephone_number <chr>, …
 ```
 
@@ -115,6 +118,7 @@ Alternatively, you can use a simple for loop instead if you are
 unfamiliar with the tidyverse approach.
 
 ``` r
+
 npis <- c(1992708929, 1831192848, 1699778688, 1111111111)  # Last element doesn't exist
 combined_df  <- data.frame()
 for (i in npis) {
@@ -133,7 +137,7 @@ npi_summarize(combined_df)
 #> # A tibble: 2 × 6
 #>         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy
 #>       <int> <chr> <chr>            <chr>                  <chr> <chr>           
-#> 1    1.99e9 NOVA… Organization     3200 DOWNWOOD CIR NW … 404-… Orthopaedic Sur…
-#> 2    1.83e9 MATT… Individual       NA                     770-… Clinic/Center, …
+#> 1    1.99e9 NOVA… Organization     NA                     404-… Clinic/Center, …
+#> 2    1.83e9 MATT… Individual       NA                     770-… Orthopaedic Sur…
 #> # ℹ abbreviated name: ¹​primary_practice_address
 ```

@@ -1,6 +1,7 @@
 # Introduction to npi
 
 ``` r
+
 library(npi)
 ```
 
@@ -26,6 +27,7 @@ since 10 is the default number of records that are returned in
 that has high-cardinality data organized into list columns.
 
 ``` r
+
 nyc <- npi_search(city = "New York City")
 #> 10 records requested
 #> Requesting records 0-10...
@@ -33,7 +35,7 @@ nyc
 #> # A tibble: 10 × 11
 #>       npi enumeration_type basic    other_names identifiers taxonomies addresses
 #>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.21e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+#>  1 1.99e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  2 1.27e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  3 1.68e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  4 1.98e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
@@ -55,6 +57,7 @@ Other search arguments for the function include `number`,
 Additionally, more than one search argument can be used at once.
 
 ``` r
+
 nyc_multi <- npi_search(city = "New York City", state = "NY", enumeration_type = "org")
 #> 10 records requested
 #> Requesting records 0-10...
@@ -87,6 +90,7 @@ lets you set the maximum records to return from 1 to 1200 inclusive,
 defaulting to 10 records if no value is specified.
 
 ``` r
+
 nyc_25 <- npi_search(city = "New York City", limit = 25)
 #> 25 records requested
 #> Requesting records 0-25...
@@ -94,7 +98,7 @@ nyc_25
 #> # A tibble: 25 × 11
 #>       npi enumeration_type basic    other_names identifiers taxonomies addresses
 #>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.21e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+#>  1 1.99e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  2 1.27e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  3 1.68e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  4 1.98e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
@@ -122,6 +126,7 @@ are returned in the first request, then the function does not need to
 make a second request because there are no more records to return.
 
 ``` r
+
 nyc_300 <- npi_search(city = "New York City", limit = 300)
 #> 300 records requested
 #> Requesting records 0-200...
@@ -130,7 +135,7 @@ nyc_300
 #> # A tibble: 300 × 11
 #>       npi enumeration_type basic    other_names identifiers taxonomies addresses
 #>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.21e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
+#>  1 1.99e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  2 1.27e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  3 1.68e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
 #>  4 1.98e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
@@ -157,20 +162,21 @@ human-readable overview of output already obtained through
 [`npi_search()`](../reference/npi_search.md).
 
 ``` r
+
 npi_summarize(nyc)
 #> # A tibble: 10 × 6
 #>         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy
 #>       <int> <chr> <chr>            <chr>                  <chr> <chr>           
-#>  1   1.21e9 MOHA… Individual       506 LENOX AVENUE, HAR… 212-… Student in an O…
+#>  1   1.99e9 SYED… Individual       NA                     718-… Student in an O…
 #>  2   1.27e9 MARK… Individual       1090 AMSTERDAM AVENUE… 212-… Psychiatry & Ne…
-#>  3   1.68e9 JUDI… Individual       425 RIVERSIDE DR #8C,… 212-… Student in an O…
-#>  4   1.98e9 UNKN… Individual       WESTCHESTER MEDICAL C… 914-… Internal Medici…
+#>  3   1.68e9 JUDI… Individual       425 RIVERSIDE DR #8C,… 212-… Social Worker, …
+#>  4   1.98e9 UNKN… Individual       WESTCHESTER MEDICAL C… 914-… Student in an O…
 #>  5   1.49e9 RAKS… Individual       JACOBI MEDICAL CENTER… 718-… Student in an O…
-#>  6   1.59e9 DANI… Individual       NA                     212-… Social Worker   
-#>  7   1.94e9 AJAN… Individual       NA                     718-… Social Worker, …
+#>  6   1.59e9 DANI… Individual       NA                     212-… Internal Medici…
+#>  7   1.94e9 AJAN… Individual       NA                     718-… Student in an O…
 #>  8   1.73e9 SAI … Individual       1545 ATLANTIC AVENUE,… 718-… Student in an O…
-#>  9   1.63e9 MOHA… Individual       NA                     212-… Student in an O…
-#> 10   1.64e9 MIRI… Individual       325 EAST 80TH ST #1C,… 212-… Student in an O…
+#>  9   1.63e9 MOHA… Individual       NA                     212-… Transplant Surg…
+#> 10   1.64e9 MIRI… Individual       325 EAST 80TH ST #1C,… 212-… Social Worker   
 #> # ℹ abbreviated name: ¹​primary_practice_address
 ```
 
@@ -178,25 +184,26 @@ Additionally, users can flatten all the list columns using
 [`npi_flatten()`](../reference/npi_flatten.md).
 
 ``` r
+
 npi_flatten(nyc)
-#> # A tibble: 28 × 56
-#>          npi basic_first_name basic_last_name basic_middle_name basic_credential
-#>        <int> <chr>            <chr>           <chr>             <chr>           
-#>  1    1.21e9 MOHAMED          ABDELGADER      SATI SHAMPOOL     M.B.B.S         
-#>  2    1.21e9 MOHAMED          ABDELGADER      SATI SHAMPOOL     M.B.B.S         
-#>  3    1.27e9 MARK             ABROMS          NA                NA              
-#>  4    1.27e9 MARK             ABROMS          NA                NA              
-#>  5    1.49e9 RAKSHEETH        AGARWAL         NA                M.D.            
-#>  6    1.49e9 RAKSHEETH        AGARWAL         NA                M.D.            
-#>  7    1.59e9 DANISH           AHMAD           A                 M.D.            
-#>  8    1.59e9 DANISH           AHMAD           A                 M.D.            
-#>  9    1.59e9 DANISH           AHMAD           A                 M.D.            
-#> 10    1.59e9 DANISH           AHMAD           A                 M.D.            
-#> # ℹ 18 more rows
-#> # ℹ 51 more variables: basic_sole_proprietor <chr>, basic_sex <chr>,
-#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
-#> #   basic_certification_date <chr>, basic_name_prefix <chr>,
-#> #   basic_name_suffix <chr>, other_names_type <chr>, other_names_code <chr>,
+#> # A tibble: 30 × 60
+#>           npi basic_certification_date basic_enumeration_date basic_first_name
+#>         <int> <chr>                    <chr>                  <chr>           
+#>  1 1265829667 2026-05-11               2015-04-23             MARK            
+#>  2 1265829667 2026-05-11               2015-04-23             MARK            
+#>  3 1265829667 2026-05-11               2015-04-23             MARK            
+#>  4 1265829667 2026-05-11               2015-04-23             MARK            
+#>  5 1487341442 2023-04-20               2023-04-20             RAKSHEETH       
+#>  6 1487341442 2023-04-20               2023-04-20             RAKSHEETH       
+#>  7 1588940472 2025-05-19               2011-10-24             DANISH          
+#>  8 1588940472 2025-05-19               2011-10-24             DANISH          
+#>  9 1588940472 2025-05-19               2011-10-24             DANISH          
+#> 10 1588940472 2025-05-19               2011-10-24             DANISH          
+#> # ℹ 20 more rows
+#> # ℹ 56 more variables: basic_last_name <chr>, basic_last_updated <chr>,
+#> #   basic_sex <chr>, basic_sole_proprietor <chr>, basic_status <chr>,
+#> #   basic_credential <chr>, basic_middle_name <chr>, basic_name_prefix <chr>,
+#> #   basic_name_suffix <chr>, other_names_code <chr>,
 #> #   other_names_first_name <chr>, other_names_last_name <chr>,
 #> #   other_names_middle_name <chr>, other_names_prefix <chr>, …
 ```
@@ -206,26 +213,27 @@ the `cols` argument. Only the columns specified will be flattened and
 returned with the npi column by default.
 
 ``` r
+
 npi_flatten(nyc, cols = c("basic", "taxonomies"))
 #> # A tibble: 12 × 19
-#>          npi basic_first_name basic_last_name basic_middle_name basic_credential
-#>        <int> <chr>            <chr>           <chr>             <chr>           
-#>  1    1.21e9 MOHAMED          ABDELGADER      SATI SHAMPOOL     M.B.B.S         
-#>  2    1.27e9 MARK             ABROMS          NA                NA              
-#>  3    1.49e9 RAKSHEETH        AGARWAL         NA                M.D.            
-#>  4    1.59e9 DANISH           AHMAD           A                 M.D.            
-#>  5    1.59e9 DANISH           AHMAD           A                 M.D.            
-#>  6    1.63e9 MOHAMMED         AKHTAR          ZEESHAN           MD PhD          
-#>  7    1.64e9 MIRIAM           AKINS           F                 LCSW            
-#>  8    1.64e9 MIRIAM           AKINS           F                 LCSW            
-#>  9    1.68e9 JUDITH           ADELSON         D                 LCSW            
-#> 10    1.73e9 SAI ANUSHA       AKELLA          NA                M.D             
-#> 11    1.94e9 AJANG            AJZACHI         NA                DMD             
-#> 12    1.98e9 UNKNOWN          ADILA           NA                NA              
-#> # ℹ 14 more variables: basic_sole_proprietor <chr>, basic_sex <chr>,
-#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
-#> #   basic_certification_date <chr>, basic_name_prefix <chr>,
-#> #   basic_name_suffix <chr>, taxonomies_code <chr>,
-#> #   taxonomies_taxonomy_group <chr>, taxonomies_desc <chr>,
-#> #   taxonomies_primary <lgl>, taxonomies_state <chr>, taxonomies_license <chr>
+#>           npi basic_certification_date basic_enumeration_date basic_first_name
+#>         <int> <chr>                    <chr>                  <chr>           
+#>  1 1265829667 2026-05-11               2015-04-23             MARK            
+#>  2 1487341442 2023-04-20               2023-04-20             RAKSHEETH       
+#>  3 1588940472 2025-05-19               2011-10-24             DANISH          
+#>  4 1588940472 2025-05-19               2011-10-24             DANISH          
+#>  5 1629701396 2026-05-15               2022-07-08             MOHAMMED        
+#>  6 1639133937 NA                       2006-04-13             MIRIAM          
+#>  7 1639133937 NA                       2006-04-13             MIRIAM          
+#>  8 1679656128 NA                       2006-10-20             JUDITH          
+#>  9 1730931452 NA                       2024-04-04             SAI ANUSHA      
+#> 10 1942059605 NA                       2024-05-15             AJANG           
+#> 11 1982278313 2024-06-22               2021-05-19             UNKNOWN         
+#> 12 1992633028 2026-05-12               2026-05-11             SYEDA MAHNOOR   
+#> # ℹ 15 more variables: basic_last_name <chr>, basic_last_updated <chr>,
+#> #   basic_sex <chr>, basic_sole_proprietor <chr>, basic_status <chr>,
+#> #   basic_credential <chr>, basic_middle_name <chr>, basic_name_prefix <chr>,
+#> #   basic_name_suffix <chr>, taxonomies_code <chr>, taxonomies_desc <chr>,
+#> #   taxonomies_primary <lgl>, taxonomies_taxonomy_group <chr>,
+#> #   taxonomies_license <chr>, taxonomies_state <chr>
 ```

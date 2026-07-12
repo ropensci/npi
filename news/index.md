@@ -1,6 +1,6 @@
 # Changelog
 
-## npi (development version)
+## npi 0.3.0 (2026-07-01)
 
 ### MINOR IMPROVEMENTS
 
@@ -11,6 +11,16 @@
   inputs and returns logical vectors.
 - [`npi_search()`](../reference/npi_search.md) returns a typed empty
   `npi_results` object when no records are found.
+
+### BUG FIXES
+
+- [`npi_summarize()`](../reference/npi_summarize.md) now preserves input
+  rows when NPI records have empty or missing nested address or taxonomy
+  data.
+- Updated the package CITATION file to use
+  [`bibentry()`](https://rdrr.io/r/utils/bibentry.html) instead of the
+  deprecated [`citEntry()`](https://rdrr.io/r/utils/citEntry.html)
+  format.
 
 ### DOCUMENTATION FIXES
 

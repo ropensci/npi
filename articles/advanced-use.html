@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Advanced Uses • npi</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Advanced Uses">
 </head>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">npi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,8 +122,8 @@ single dataframe.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
 <span><span class="co">#&gt;         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy</span></span>
 <span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    1.99<span style="color: #949494;">e</span>9 NOVA… Organization     3200 DOWNWOOD CIR NW … 404-… Orthopaedic Sur…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    1.83<span style="color: #949494;">e</span>9 MATT… Individual       <span style="color: #BB0000;">NA</span>                     770-… Clinic/Center, …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    1.99<span style="color: #949494;">e</span>9 NOVA… Organization     <span style="color: #BB0000;">NA</span>                     404-… Clinic/Center, …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    1.83<span style="color: #949494;">e</span>9 MATT… Individual       <span style="color: #BB0000;">NA</span>                     770-… Orthopaedic Sur…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_practice_address</span></span></span></code></pre></div>
 <p>Here we search for multiple zip codes in Los Angeles County.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -141,24 +141,24 @@ single dataframe.</p>
 <span></span>
 <span><span class="fu"><a href="../reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">zip_3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 104 × 47</span></span></span>
-<span><span class="co">#&gt;         npi basic_organization_n…¹ basic_organizational…² basic_enumeration_date</span></span>
+<span><span class="co">#&gt;         npi basic_authorized_off…¹ basic_authorized_off…² basic_authorized_off…³</span></span>
 <span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   1.07<span style="color: #949494;">e</span>9 A R T REPRODUCTIVE CE… NO                     2007-07-25            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   1.07<span style="color: #949494;">e</span>9 A R T REPRODUCTIVE CE… NO                     2007-07-25            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   1.15<span style="color: #949494;">e</span>9 AARON M PERLMUTTER M … NO                     2008-01-11            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   1.15<span style="color: #949494;">e</span>9 AARON                  PERLMUTTER             <span style="color: #BB0000;">NA</span>                    </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 94 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​basic_organization_name, ²​basic_organizational_subpart</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 43 more variables: basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_first_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_last_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_middle_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated names: ¹​basic_authorized_official_first_name,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ²​basic_authorized_official_last_name,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   ³​basic_authorized_official_middle_name</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 43 more variables: basic_authorized_official_name_prefix &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_name_suffix &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_telephone_number &lt;chr&gt;, …</span></span></span></code></pre></div>
 <p>Consult the R for Data Science <a href="https://r4ds.had.co.nz/iteration.html" class="external-link">chapter on iteration</a> to
 learn more about using the <code>purrr</code> package.</p>
@@ -183,8 +183,8 @@ unfamiliar with the tidyverse approach.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
 <span><span class="co">#&gt;         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy</span></span>
 <span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    1.99<span style="color: #949494;">e</span>9 NOVA… Organization     3200 DOWNWOOD CIR NW … 404-… Orthopaedic Sur…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    1.83<span style="color: #949494;">e</span>9 MATT… Individual       <span style="color: #BB0000;">NA</span>                     770-… Clinic/Center, …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    1.99<span style="color: #949494;">e</span>9 NOVA… Organization     <span style="color: #BB0000;">NA</span>                     404-… Clinic/Center, …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    1.83<span style="color: #949494;">e</span>9 MATT… Individual       <span style="color: #BB0000;">NA</span>                     770-… Orthopaedic Sur…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_practice_address</span></span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -198,7 +198,7 @@ unfamiliar with the tidyverse approach.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
