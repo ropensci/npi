@@ -1,14 +1,14 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "npi" in publications use:'
 type: software
 license: MIT
 title: 'npi: Access the U.S. National Provider Identifier Registry API'
-version: 0.2.0.9000
+version: 0.3.0
 doi: 10.5281/zenodo.6326729
 identifiers:
 - type: doi
@@ -28,14 +28,16 @@ authors:
   orcid: https://orcid.org/0000-0002-2145-0145
 preferred-citation:
   type: manual
-  title: 'npi: Access the U.S. National Provider Identifier Registry API (Version
-    0.2.0)'
+  title: 'npi: Access the U.S. National Provider Identifier Registry API'
   authors:
   - family-names: Farach
-    given-names: Frank J
-  year: '2022'
+    given-names: Frank
+    email: frank.farach@gmail.com
+    orcid: https://orcid.org/0000-0002-2145-0145
   url: https://github.com/ropensci/npi
+  year: '2022'
   doi: 10.5281/zenodo.6326729
+  notes: R package version 0.3.0
 repository: https://CRAN.R-project.org/package=npi
 repository-code: https://github.com/ropensci/npi/issues/
 url: https://github.com/ropensci/npi/
@@ -45,25 +47,19 @@ contact:
   email: frank.farach@gmail.com
   orcid: https://orcid.org/0000-0002-2145-0145
 references:
-- type: manual
-  title: 'npi: Access the U.S. National Provider Identifier Registry API'
-  authors:
-  - family-names: Farach
-    given-names: Frank
-  url: https://github.com/ropensci/npi
-  year: '2022'
-  doi: 10.5281/zenodo.6326729
-  notes: R package version 0.2.0
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
   notes: Depends
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
     name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
+  doi: 10.32614/R.manuals
   version: '>= 3.1'
 - type: software
   title: checkLuhn
@@ -75,7 +71,7 @@ references:
   - family-names: Deacon
     given-names: Adam
     email: adam@deaconsworld.org.uk
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.checkLuhn
 - type: software
   title: checkmate
@@ -88,7 +84,7 @@ references:
     given-names: Michel
     email: michellang@gmail.com
     orcid: https://orcid.org/0000-0001-9754-0393
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.checkmate
 - type: software
   title: curl
@@ -101,7 +97,7 @@ references:
     given-names: Jeroen
     email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.curl
 - type: software
   title: dplyr
@@ -126,7 +122,7 @@ references:
     given-names: Davis
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.dplyr
 - type: software
   title: glue
@@ -142,7 +138,7 @@ references:
     given-names: Jennifer
     email: jenny@posit.co
     orcid: https://orcid.org/0000-0002-6983-2759
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.glue
 - type: software
   title: httr
@@ -154,7 +150,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.httr
 - type: software
   title: magrittr
@@ -169,7 +165,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.magrittr
 - type: software
   title: purrr
@@ -185,7 +181,7 @@ references:
   - family-names: Henry
     given-names: Lionel
     email: lionel@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.purrr
 - type: software
   title: rlang
@@ -200,7 +196,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rlang
 - type: software
   title: stringr
@@ -212,7 +208,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.stringr
 - type: software
   title: tibble
@@ -228,7 +224,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.tibble
 - type: software
   title: tidyr
@@ -245,7 +241,7 @@ references:
     email: davis@posit.co
   - family-names: Girlich
     given-names: Maximilian
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.tidyr
 - type: software
   title: utils
@@ -253,10 +249,13 @@ references:
   notes: Imports
   authors:
   - name: R Core Team
+    website: https://ror.org/02zz1nj61
   institution:
     name: R Foundation for Statistical Computing
+    website: https://ror.org/05qewa988
     address: Vienna, Austria
-  year: '2025'
+  year: '2026'
+  doi: 10.32614/R.manuals
 - type: software
   title: covr
   abstract: 'covr: Test Coverage for Packages'
@@ -267,7 +266,7 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.f.hester@gmail.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.covr
 - type: software
   title: httptest
@@ -280,7 +279,7 @@ references:
     given-names: Neal
     email: neal.p.richardson@gmail.com
     orcid: https://orcid.org/0009-0002-7992-3520
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.httptest
 - type: software
   title: knitr
@@ -293,7 +292,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: mockery
@@ -311,7 +310,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.mockery
 - type: software
   title: rmarkdown
@@ -355,7 +354,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: spelling
@@ -371,7 +370,7 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.hester@rstudio.com
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.spelling
 - type: software
   title: testthat
@@ -383,7 +382,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2025'
+  year: '2026'
   doi: 10.32614/CRAN.package.testthat
   version: '>= 2.1.0'
 
