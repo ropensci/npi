@@ -2,6 +2,8 @@
 
 ## npi 0.3.0 (2026-07-01)
 
+CRAN release: 2026-07-12
+
 ### MINOR IMPROVEMENTS
 
 - [`npi_search()`](../reference/npi_search.md) now normalizes

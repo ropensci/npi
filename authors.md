@@ -16,7 +16,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/ropensci/npi/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/ropensci/npi/blob/v0.3.0/inst/CITATION)
 
 Farach F (2022). *npi: Access the U.S. National Provider Identifier
 Registry API*.
