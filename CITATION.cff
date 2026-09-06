@@ -39,7 +39,7 @@ preferred-citation:
   doi: 10.5281/zenodo.6326729
   notes: R package version 0.3.1
 repository: https://CRAN.R-project.org/package=npi
-repository-code: https://github.com/ropensci/npi/
+repository-code: https://github.com/ropensci/npi/issues/
 url: https://github.com/ropensci/npi/
 contact:
 - family-names: Farach
