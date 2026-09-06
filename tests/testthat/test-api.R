@@ -25,15 +25,15 @@ test_that("npi_config() sets default user_agent correctly", {
 
 
 test_that("npi_config() uses customized user agent option if defined", {
-  options(npi_user_agent = "foo")
+  old <- options(npi_user_agent = "foo")
+  on.exit(options(old))
   expect_identical(npi_config(), httr::config(useragent = "foo"))
-  options(npi_user_agent = USER_AGENT)
 })
 
 
 # npi_api() & npi_get() ----------------------------------------------------
 
-with_mock_api({
+with_npi_mock_api({
   params <- list(version = API_VERSION, city = "Atlanta", limit = 10)
   expected_url <- paste0(BASE_URL, "?version=2.1&city=Atlanta&limit=10")
 
@@ -88,7 +88,7 @@ test_that("We throw a custom error when the API doesn't return JSON.", {
 
 ## Argument validation and error-handling
 
-with_mock_api({
+with_npi_mock_api({
   test_that("Response validation catches logic errors returned by API", {
     expect_error(npi_search(), class = "request_logic_error")
   })
@@ -159,7 +159,7 @@ test_that("npi_search() normalizes address_purpose values", {
 })
 
 
-with_mock_api({
+with_npi_mock_api({
   test_that("We can catch request logic errors in the API response", {
     expect_error(npi_search(enumeration_type = "ind"),
       class = "request_logic_error"
@@ -168,7 +168,7 @@ with_mock_api({
 })
 
 
-with_mock_api({
+with_npi_mock_api({
   test_that("A valid npi_search() call meets structural expectations", {
     res <- npi_search(city = "Atlanta")
     expected_types <- c(
@@ -192,9 +192,8 @@ with_mock_api({
 
 ## Validate elements of API contract
 
-with_mock_api({
-  test_that("enumeration_type controls values of `enumeration_type` in
-            response", {
+with_npi_mock_api({
+  test_that("enumeration_type controls provider types in the response", {
     atl_ind <- npi_search(city = "Atlanta", enumeration_type = "ind")
     atl_org <- npi_search(city = "Atlanta", enumeration_type = "org")
 
@@ -204,7 +203,7 @@ with_mock_api({
 })
 
 
-with_mock_api({
+with_npi_mock_api({
   test_that("npi_search() returns an NPI", {
     res <- npi_search(
       enumeration_type = "ind",
@@ -217,15 +216,15 @@ with_mock_api({
 })
 
 
-with_mock_api({
-  test_that("Multiple requests happen as needed", {
+with_npi_mock_api({
+  test_that("npi_search tidies short results with a multi-page limit", {
     res <- npi_search(city = "Atlanta", limit = 201L)
     expect_identical(dim(res), c(2L, 11L)) # Recorded responses manually edited
   })
 })
 
 
-with_mock_api({
+with_npi_mock_api({
   test_that("If we search for an existing NPI, we get back the correct one", {
     npi <- 1568946812 # returned from a prior search
     res <- npi_search(number = npi)
@@ -234,18 +233,26 @@ with_mock_api({
 })
 
 
-test_that("The initial message accurately reports the requested number of records", {
+test_that("The initial message reports the requested number of records", {
+  stub(npi_process_results, "npi_control_requests", list())
+  stub(npi_search, "npi_process_results", npi_process_results)
   msg_1 <- "1 record requested"
   msg_10 <- "10 records requested"
   expect_message(npi_search(city = "Atlanta", limit = 1), msg_1)
   expect_message(npi_search(city = "Atlanta", limit = 10), msg_10)
 })
 
+test_that("npi_api reports unavailable internet without making a request", {
+  stub(npi_api, "curl::has_internet", FALSE)
+  stub(npi_api, "get", function(...) stop("Unexpected request"))
+  expect_error(npi_api("GET", npi_url()), class = "internet_error")
+})
+
 
 # npi_process_results() --------------------------------------------------
 
-with_mock_api({
-  test_that("npi_process_results returns an empty tibble when npi_search returns zero records", {
+with_npi_mock_api({
+  test_that("npi_process_results returns typed empty results", {
     res <- npi_search(city = "ZZZZZZZ")
     expect_s3_class(res, "npi_results")
     expect_identical(res, new_empty_npi_results())
@@ -254,7 +261,7 @@ with_mock_api({
 
 # validate_npi_results() --------------------------------------------------
 
-with_mock_api({
+with_npi_mock_api({
   test_that("validate_npi_results throws a `bad_class_error` appropriately", {
     npi <- 1568946812
     res <- npi_search(number = npi)
@@ -269,7 +276,7 @@ with_mock_api({
 
 # npi_summarize() ---------------------------------------------------------
 
-with_mock_api({
+with_npi_mock_api({
   test_that("npi_summarize() method works as expected", {
     atl <- npi_search(city = "Atlanta")
     expect_types <- c("integer", rep("character", 5))
