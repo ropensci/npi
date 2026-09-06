@@ -1,0 +1,19 @@
+name: Feature request
+description: Suggest a focused improvement to npi.
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What user problem or workflow would this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the smallest useful behavior and any compatibility implications.
+    validations:
+      required: true
