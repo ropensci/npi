@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a reproducible problem with npi.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please search existing issues first and remove sensitive provider data from examples.
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the behavior you expected and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reprex
+    attributes:
+      label: Reproducible example
+      description: Provide the smallest code example that reproduces the problem.
+      render: r
+    validations:
+      required: true
+  - type: input
+    id: package-version
+    attributes:
+      label: npi version
+      placeholder: "0.3.1"
+    validations:
+      required: true
+  - type: input
+    id: r-version
+    attributes:
+      label: R version
+      placeholder: "4.5.1"
+    validations:
+      required: true
+  - type: textarea
+    id: session
+    attributes:
+      label: Session information
+      description: Paste the output of sessionInfo().
+      render: r
+    validations:
+      required: true

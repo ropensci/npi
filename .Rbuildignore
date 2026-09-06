@@ -14,4 +14,7 @@
 ^pkgdown$
 ^\.github$
 ^cran-comments\.md$
+^AGENTS\.md$
+^MAINTENANCE\.md$
+^tools$
 ^CRAN-SUBMISSION$
