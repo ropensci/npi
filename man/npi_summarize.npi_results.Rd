@@ -32,6 +32,10 @@ Print a human-readable overview of each record return in the results from a
 call to \code{\link{npi_search}}. The format of the summary is modeled after
 the one offered on the NPI registry website.
 }
+\details{
+Missing optional second address lines are treated as empty strings.
+  Missing required address components leave the full address missing.
+}
 \examples{
 data(npis)
 npi_summarize(npis)

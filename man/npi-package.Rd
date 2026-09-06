@@ -50,6 +50,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID}) [copyright holder]
 
+Authors:
+\itemize{
+  \item Frank Farach \email{frank.farach@gmail.com} (\href{https://orcid.org/0000-0002-2145-0145}{ORCID}) [copyright holder]
+}
+
 Other contributors:
 \itemize{
   \item Sam Parmar \email{parmartsam@gmail.com} [contributor]

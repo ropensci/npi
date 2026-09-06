@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 library(npi)
 ``` 
 
-This vignette provides an brief introduction to the npi package. 
+This vignette provides a brief introduction to the npi package.
 
 `npi` is an R package that allows R users to access the [U.S. National Provider Identifier (NPI) Registry](https://npiregistry.cms.hhs.gov/) API by the Center for Medicare and Medicaid Services (CMS). 
 
@@ -28,9 +28,11 @@ The package makes it easy to obtain administrative data linked to a specific ind
 
 ## Search registry
 
-To explore organizational providers with primary locations in New York City, we could use the `city` argument in the `npi_search()`. The nyc dataset here finds 10 organizational providers with primary locations in New York City, since 10 is the default number of records that are returned in `npi_search()`. The response is a tibble that has high-cardinality data organized into list columns.
+To search for providers in New York City, use the `city` argument in `npi_search()`. By default, the search returns up to 10 records as a tibble organized into list columns.
 
-```{r}
+The live search examples below are shown without execution so this vignette can be built without internet access. Run them in an interactive session to retrieve current registry data.
+
+```{r, eval = FALSE}
 nyc <- npi_search(city = "New York City")
 nyc
 ```
@@ -39,7 +41,7 @@ Other search arguments for the function include `number`, `enumeration_type`, `t
 
 Additionally, more than one search argument can be used at once.
 
-```{r}
+```{r, eval = FALSE}
 nyc_multi <- npi_search(city = "New York City", state = "NY", enumeration_type = "org")
 nyc_multi
 ```
@@ -50,14 +52,14 @@ Visit the function's help page via `?npi_search` after installing and loading th
 
 The `limit` argument of `npi_search()` lets you set the maximum records to return from 1 to 1200 inclusive, defaulting to 10 records if no value is specified.
 
-```{r}
+```{r, eval = FALSE}
 nyc_25 <- npi_search(city = "New York City", limit = 25)
 nyc_25
 ```
 
 When using `npi_search()`, searches with greater than 200 records (for example 300 records) may result in multiple API calls. This is because the API itself returns up to 200 records per request, but allows previously requested records to be skipped. `npi_search()` will automatically make additional API calls up to the API's limit of 1200 records for a unique set of query parameter values, and will still return a single tibble. However, to save time, the function only makes additional requests if needed. For example, if you request 1200 records, and 199 are returned in the first request, then the function does not need to make a second request because there are no more records to return.
 
-```{r}
+```{r, eval = FALSE}
 nyc_300 <- npi_search(city = "New York City", limit = 300)
 nyc_300
 ```
@@ -66,7 +68,11 @@ The NPPES API documentation does not specify additional API rate limitations. Ho
 
 ## Obtaining more human-readable output
 
-`npi_summarize()` provides a more human-readable overview of output already obtained through `npi_search()`. 
+`npi_summarize()` provides a more human-readable overview of search results. For the executable examples below, we use the bundled `npis` dataset: a saved sample of 10 provider records, not the output of the live searches above.
+
+```{r}
+nyc <- npi::npis
+```
 
 ```{r}
 npi_summarize(nyc)
@@ -83,4 +89,3 @@ Alternatively, individual columns can be flattened for each npi by using the `co
 ```{r}
 npi_flatten(nyc, cols = c("basic", "taxonomies"))
 ```
-

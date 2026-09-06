@@ -11,6 +11,9 @@ Accepts an object, \code{x}, and determines whether it meets the criteria
   to be an S3 \code{npi_results} S3 object. The criteria include tests for
   data types, column names, and class attributes. They are intentionally
   strict to provide a contract to functions that interact with it.
+  The NPI column must be integer, enumeration type must be character, and
+  the seven nested columns must be lists. Both timestamp columns must be
+  double-backed \code{POSIXct} vectors. Missing values are permitted.
 }
 \seealso{
 \code{\link{new_npi_results}}

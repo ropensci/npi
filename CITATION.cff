@@ -8,7 +8,7 @@ message: 'To cite package "npi" in publications use:'
 type: software
 license: MIT
 title: 'npi: Access the U.S. National Provider Identifier Registry API'
-version: 0.3.0
+version: 0.3.1
 doi: 10.5281/zenodo.6326729
 identifiers:
 - type: doi
@@ -37,9 +37,9 @@ preferred-citation:
   url: https://github.com/ropensci/npi
   year: '2022'
   doi: 10.5281/zenodo.6326729
-  notes: R package version 0.3.0
+  notes: R package version 0.3.1
 repository: https://CRAN.R-project.org/package=npi
-repository-code: https://github.com/ropensci/npi/issues/
+repository-code: https://github.com/ropensci/npi/
 url: https://github.com/ropensci/npi/
 contact:
 - family-names: Farach

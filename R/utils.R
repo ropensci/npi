@@ -155,10 +155,13 @@ make_full_address <-
       ) %in% names(df))
     )
 
+    second_line <- df[[address_2]]
+    second_line[is.na(second_line)] <- ""
+
     stringr::str_c(
       stringr::str_trim(df[[address_1]], "both"),
-      ifelse(df[[address_2]] == "", "", " "),
-      stringr::str_trim(df[[address_2]], "both"),
+      ifelse(second_line == "", "", " "),
+      stringr::str_trim(second_line, "both"),
       ", ",
       stringr::str_trim(df[[city]], "both"),
       ", ",

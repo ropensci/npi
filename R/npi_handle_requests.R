@@ -60,14 +60,14 @@ npi_control_requests <- function(params, user_n, results = list()) {
 
   # Avoid an endless loop when the API returns no records
   if (!rlang::is_empty(results) && result_stats[["last_n_returned"]] == 0L) {
-    return(tibble::tibble())
+    return(utils::head(results, -1L))
   }
 
   # Return `results` when either (1) we have `user_n` number of records, or
   # (2) there were some records in the last result but not the max possible.
   if (result_stats[["n_remaining"]] == 0L ||
-    (result_stats[["last_n_returned"]] > 0L &&
-      result_stats[["last_n_returned"]] < MAX_N_PER_REQUEST)) {
+        (result_stats[["last_n_returned"]] > 0L &&
+           result_stats[["last_n_returned"]] < MAX_N_PER_REQUEST)) {
     return(results)
   }
 

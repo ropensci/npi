@@ -22,6 +22,16 @@ A data frame (tibble) with flattened list columns.
 \description{
 S3 method to flatten an \code{npi_results} object
 }
+\details{
+The names of unnested columns are prefixed by the name of their
+originating list column to avoid name clashes and show their lineage. List
+columns containing all NULL data will be absent from the result because there
+are no columns to unnest.
+All input keys are retained even when their selected nested data is empty,
+regardless of the order of \code{cols}. If all selected nested data is empty,
+only the keys are returned. When multiple nested tables have more than one
+row for a key, their rows are combined in all possible combinations.
+}
 \examples{
 # Flatten all list columns
 data(npis)

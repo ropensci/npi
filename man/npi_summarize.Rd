@@ -30,6 +30,10 @@ Tibble containing the following columns:
 \description{
 S3 method to summarize an \code{npi_results} object
 }
+\details{
+Missing optional second address lines are treated as empty strings.
+  Missing required address components leave the full address missing.
+}
 \examples{
 data(npis)
 npi_summarize(npis)

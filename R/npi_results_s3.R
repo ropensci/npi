@@ -32,7 +32,9 @@ new_empty_npi_results <- function() {
       practice_locations = vector("list", 0),
       endpoints = vector("list", 0),
       created_date = as.POSIXct(numeric(), origin = "1970-01-01", tz = "UTC"),
-      last_updated_date = as.POSIXct(numeric(), origin = "1970-01-01", tz = "UTC")
+      last_updated_date = as.POSIXct(
+        numeric(), origin = "1970-01-01", tz = "UTC"
+      )
     )
   )
 }
@@ -45,6 +47,9 @@ new_empty_npi_results <- function() {
 #'   to be an S3 \code{npi_results} S3 object. The criteria include tests for
 #'   data types, column names, and class attributes. They are intentionally
 #'   strict to provide a contract to functions that interact with it.
+#'   The NPI column must be integer, enumeration type must be character, and
+#'   the seven nested columns must be lists. Both timestamp columns must be
+#'   double-backed \code{POSIXct} vectors. Missing values are permitted.
 #' @seealso \code{\link{new_npi_results}}
 #' @keywords internal
 validate_npi_results <- function(x, ...) {
@@ -61,13 +66,31 @@ validate_npi_results <- function(x, ...) {
   )
 
   # Ensure type- and column-safety
-  checkmate::assert_tibble(x, types = obj_types, ncols = 11)
+  checkmate::assert_tibble(x, ncols = 11)
 
   if (!identical(names(x), obj_col_names)) {
     rlang::abort(
       "Columns names do not match expected names.",
       "bad_names_error"
     )
+  }
+
+  for (i in seq_along(obj_col_names)) {
+    column <- obj_col_names[[i]]
+    if (typeof(x[[column]]) != obj_types[[i]]) {
+      rlang::abort(
+        paste0("`", column, "` must have type ", obj_types[[i]], "."),
+        "bad_type_error"
+      )
+    }
+  }
+  for (column in c("created_date", "last_updated_date")) {
+    if (!inherits(x[[column]], "POSIXct")) {
+      rlang::abort(
+        paste0("`", column, "` must be a POSIXct vector."),
+        "bad_type_error"
+      )
+    }
   }
 
   # `npi_results` has to be the first element of the class
@@ -129,6 +152,8 @@ add_missing_columns <- function(df, columns, default = NA_character_) {
 #'       taxonomy is marked as primary for a record, the first listed taxonomy
 #'       is used.}
 #'   }
+#' @details Missing optional second address lines are treated as empty strings.
+#'   Missing required address components leave the full address missing.
 #' @examples
 #' data(npis)
 #' npi_summarize(npis)
@@ -152,8 +177,7 @@ npi_summarize.npi_results <- function(object, ...) {
     dplyr::slice_head(n = 1L) %>%
     dplyr::ungroup() %>%
     dplyr::select(
-      .data$npi, .data$basic_first_name, .data$basic_last_name,
-      .data$basic_organization_name
+      "npi", "basic_first_name", "basic_last_name", "basic_organization_name"
     )
 
   address_loc <- get_list_col(object, "addresses") %>%
@@ -183,7 +207,7 @@ npi_summarize.npi_results <- function(object, ...) {
     dplyr::group_by(.data$npi) %>%
     dplyr::slice_head(n = 1L) %>%
     dplyr::ungroup() %>%
-    dplyr::select(.data$npi, .data$primary_practice_address, .data$phone)
+    dplyr::select("npi", "primary_practice_address", "phone")
 
   # Some NPI records have only one taxonomy row with primary == FALSE;
   # include these along with those where primary == TRUE
@@ -192,7 +216,9 @@ npi_summarize.npi_results <- function(object, ...) {
     add_missing_columns("taxonomies_desc") %>%
     dplyr::group_by(.data$npi) %>%
     dplyr::mutate(n_primary = sum(.data$taxonomies_primary %in% TRUE)) %>%
-    dplyr::filter(.data$taxonomies_primary %in% TRUE | .data$n_primary == 0L) %>%
+    dplyr::filter(
+      .data$taxonomies_primary %in% TRUE | .data$n_primary == 0L
+    ) %>%
     dplyr::slice_head(n = 1L) %>%
     dplyr::ungroup() %>%
     dplyr::transmute(
@@ -201,7 +227,7 @@ npi_summarize.npi_results <- function(object, ...) {
     )
 
   object %>%
-    dplyr::select(.data$npi, .data$enumeration_type) %>%
+    dplyr::select("npi", "enumeration_type") %>%
     dplyr::left_join(basic, by = "npi") %>%
     dplyr::mutate(
       name = ifelse(
@@ -213,8 +239,8 @@ npi_summarize.npi_results <- function(object, ...) {
     dplyr::left_join(address_loc, by = "npi") %>%
     dplyr::left_join(tax_primary, by = "npi") %>%
     dplyr::select(
-      .data$npi, .data$name, .data$enumeration_type,
-      .data$primary_practice_address, .data$phone, .data$primary_taxonomy
+      "npi", "name", "enumeration_type",
+      "primary_practice_address", "phone", "primary_taxonomy"
     )
 }
 
@@ -222,6 +248,7 @@ npi_summarize.npi_results <- function(object, ...) {
 
 #' S3 method to summarize an \code{npi_results} object
 #' @inheritParams npi_summarize.npi_results
+#' @inherit npi_summarize.npi_results details
 #' @return Tibble containing the following columns:
 #'   \describe{
 #'     \item{\code{npi}}{National Provider Identifier (NPI) number}
@@ -258,6 +285,10 @@ npi_summarize <- function(object, ...) {
 #' originating list column to avoid name clashes and show their lineage. List
 #' columns containing all NULL data will be absent from the result because there
 #' are no columns to unnest.
+#' All input keys are retained even when their selected nested data is empty,
+#' regardless of the order of \code{cols}. If all selected nested data is empty,
+#' only the keys are returned. When multiple nested tables have more than one
+#' row for a key, their rows are combined in all possible combinations.
 #'
 #' @param df A data frame containing the results of a call to
 #'   \code{\link{npi_search}}.
@@ -281,10 +312,16 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
     df <- df[, c(key, cols)]
   }
 
-  list_cols <- names(Filter(is.list, df))
+  list_cols <- names(Filter(function(x) {
+    is.list(x) && any(vapply(x, length, integer(1L)) > 0L)
+  }, df))
 
-  out <- lapply(list_cols, function(x) get_list_col(df, list_col = x, key = key))
-  out <- Reduce(function(x, y) merge(x, y, by = key, all.x = TRUE), out)
+  out <- lapply(list_cols, function(x) {
+    get_list_col(df, list_col = x, key = key)
+  })
+  keys <- unique(as.data.frame(df[key]))
+  out <- Reduce(function(x, y) merge(x, y, by = key, all.x = TRUE),
+                out, init = keys)
   tibble::as_tibble(out)
 }
 
@@ -292,6 +329,7 @@ npi_flatten.npi_results <- function(df, cols = NULL, key = "npi") {
 
 #' S3 method to flatten an \code{npi_results} object
 #' @inheritParams npi_flatten.npi_results
+#' @inherit npi_flatten.npi_results details
 #' @return A data frame (tibble) with flattened list columns.
 #' @family data wrangling functions
 #' @examples

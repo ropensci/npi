@@ -1,6 +1,6 @@
 Package: npi
 Title: Access the U.S. National Provider Identifier Registry API
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person("Frank", "Farach", , "frank.farach@gmail.com", 
            role = c("cre", "aut", "cph"),
@@ -52,4 +52,4 @@ VignetteBuilder:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.1.0
