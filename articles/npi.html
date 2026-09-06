@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">npi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Introduction to npi</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ropensci/npi/blob/v0.3.0/vignettes/npi.Rmd" class="external-link"><code>vignettes/npi.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/npi/blob/master/vignettes/npi.Rmd" class="external-link"><code>vignettes/npi.Rmd</code></a></small>
       <div class="d-none name"><code>npi.Rmd</code></div>
     </div>
 
@@ -67,7 +67,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/npi" class="external-link">npi</a></span><span class="op">)</span></span></code></pre></div>
-<p>This vignette provides an brief introduction to the npi package.</p>
+<p>This vignette provides a brief introduction to the npi package.</p>
 <p><code>npi</code> is an R package that allows R users to access the <a href="https://npiregistry.cms.hhs.gov/" class="external-link">U.S. National Provider
 Identifier (NPI) Registry</a> API by the Center for Medicare and
 Medicaid Services (CMS).</p>
@@ -78,33 +78,15 @@ type of service, credentials, and many other attributes.</p>
 <div class="section level2">
 <h2 id="search-registry">Search registry<a class="anchor" aria-label="anchor" href="#search-registry"></a>
 </h2>
-<p>To explore organizational providers with primary locations in New
-York City, we could use the <code>city</code> argument in the
-<code><a href="../reference/npi_search.html">npi_search()</a></code>. The nyc dataset here finds 10 organizational
-providers with primary locations in New York City, since 10 is the
-default number of records that are returned in
-<code><a href="../reference/npi_search.html">npi_search()</a></code>. The response is a tibble that has
-high-cardinality data organized into list columns.</p>
+<p>To search for providers in New York City, use the <code>city</code>
+argument in <code><a href="../reference/npi_search.html">npi_search()</a></code>. By default, the search returns up
+to 10 records as a tibble organized into list columns.</p>
+<p>The live search examples below are shown without execution so this
+vignette can be built without internet access. Run them in an
+interactive session to retrieve current registry data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 10 records requested</span></span>
-<span><span class="co">#&gt; Requesting records 0-10...</span></span>
-<span><span class="va">nyc</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 11</span></span></span>
-<span><span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span></span>
-<span><span class="co">#&gt;  <span style="color: #BCBCBC;">*</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1.99<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1.27<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1.68<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1.98<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1.49<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1.59<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1.94<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1.73<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1.63<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1.64<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: practice_locations &lt;list&gt;, endpoints &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;</span></span></span></code></pre></div>
+<span><span class="va">nyc</span></span></code></pre></div>
 <p>Other search arguments for the function include <code>number</code>,
 <code>enumeration_type</code>, <code>taxonomy_description</code>,
 <code>first_name</code>, <code>last_name</code>,
@@ -115,24 +97,7 @@ high-cardinality data organized into list columns.</p>
 <p>Additionally, more than one search argument can be used at once.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_multi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, state <span class="op">=</span> <span class="st">"NY"</span>, enumeration_type <span class="op">=</span> <span class="st">"org"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 10 records requested</span></span>
-<span><span class="co">#&gt; Requesting records 0-10...</span></span>
-<span><span class="va">nyc_multi</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 11</span></span></span>
-<span><span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span></span>
-<span><span class="co">#&gt;  <span style="color: #BCBCBC;">*</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1.77<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1.64<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1.95<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1.00<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1.35<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1.97<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1.23<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1.34<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1.63<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1.73<span style="color: #949494;">e</span>9 Organization     <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: practice_locations &lt;list&gt;, endpoints &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;</span></span></span></code></pre></div>
+<span><span class="va">nyc_multi</span></span></code></pre></div>
 <p>Visit the function’s help page via <code><a href="../reference/npi_search.html">?npi_search</a></code> after
 installing and loading the package for more details.</p>
 </div>
@@ -144,25 +109,7 @@ set the maximum records to return from 1 to 1200 inclusive, defaulting
 to 10 records if no value is specified.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_25</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 25 records requested</span></span>
-<span><span class="co">#&gt; Requesting records 0-25...</span></span>
-<span><span class="va">nyc_25</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 25 × 11</span></span></span>
-<span><span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span></span>
-<span><span class="co">#&gt;  <span style="color: #BCBCBC;">*</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1.99<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1.27<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1.68<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1.98<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1.49<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1.59<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1.94<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1.73<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1.63<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1.64<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 15 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: practice_locations &lt;list&gt;, endpoints &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;</span></span></span></code></pre></div>
+<span><span class="va">nyc_25</span></span></code></pre></div>
 <p>When using <code><a href="../reference/npi_search.html">npi_search()</a></code>, searches with greater than 200
 records (for example 300 records) may result in multiple API calls. This
 is because the API itself returns up to 200 records per request, but
@@ -176,26 +123,7 @@ request, then the function does not need to make a second request
 because there are no more records to return.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nyc_300</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/npi_search.html">npi_search</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"New York City"</span>, limit <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 300 records requested</span></span>
-<span><span class="co">#&gt; Requesting records 0-200...</span></span>
-<span><span class="co">#&gt; Requesting records 200-300...</span></span>
-<span><span class="va">nyc_300</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 300 × 11</span></span></span>
-<span><span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span></span>
-<span><span class="co">#&gt;  <span style="color: #BCBCBC;">*</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1.99<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1.27<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1.68<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1.98<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1.49<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1.59<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1.94<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1.73<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1.63<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1.64<span style="color: #949494;">e</span>9 Individual       <span style="color: #949494;">&lt;tibble&gt;</span> <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>    <span style="color: #949494;">&lt;tibble&gt;</span>   <span style="color: #949494;">&lt;tibble&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 290 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: practice_locations &lt;list&gt;, endpoints &lt;list&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   created_date &lt;dttm&gt;, last_updated_date &lt;dttm&gt;</span></span></span></code></pre></div>
+<span><span class="va">nyc_300</span></span></code></pre></div>
 <p>The NPPES API documentation does not specify additional API rate
 limitations. However, if you need more than 1200 NPI records for a set
 of search terms, you will need to download the <a href="https://download.cms.gov/nppes/NPI_Files.html" class="external-link">NPPES Data
@@ -205,73 +133,86 @@ Dissemination File</a>.</p>
 <h2 id="obtaining-more-human-readable-output">Obtaining more human-readable output<a class="anchor" aria-label="anchor" href="#obtaining-more-human-readable-output"></a>
 </h2>
 <p><code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> provides a more human-readable overview
-of output already obtained through <code><a href="../reference/npi_search.html">npi_search()</a></code>.</p>
+of search results. For the executable examples below, we use the bundled
+<code>npis</code> dataset: a saved sample of 10 provider records, not
+the output of the live searches above.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nyc</span> <span class="op">&lt;-</span> <span class="fu">npi</span><span class="fu">::</span><span class="va"><a href="../reference/npis.html">npis</a></span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_summarize.html">npi_summarize</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
 <span><span class="co">#&gt;         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy</span></span>
 <span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   1.99<span style="color: #949494;">e</span>9 SYED… Individual       <span style="color: #BB0000;">NA</span>                     718-… Student in an O…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   1.27<span style="color: #949494;">e</span>9 MARK… Individual       1090 AMSTERDAM AVENUE… 212-… Psychiatry &amp; Ne…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   1.68<span style="color: #949494;">e</span>9 JUDI… Individual       425 RIVERSIDE DR #8C,… 212-… Social Worker, …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   1.98<span style="color: #949494;">e</span>9 UNKN… Individual       WESTCHESTER MEDICAL C… 914-… Student in an O…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   1.49<span style="color: #949494;">e</span>9 RAKS… Individual       JACOBI MEDICAL CENTER… 718-… Student in an O…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   1.59<span style="color: #949494;">e</span>9 DANI… Individual       <span style="color: #BB0000;">NA</span>                     212-… Internal Medici…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   1.94<span style="color: #949494;">e</span>9 AJAN… Individual       <span style="color: #BB0000;">NA</span>                     718-… Student in an O…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   1.73<span style="color: #949494;">e</span>9 SAI … Individual       1545 ATLANTIC AVENUE,… 718-… Student in an O…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   1.63<span style="color: #949494;">e</span>9 MOHA… Individual       <span style="color: #BB0000;">NA</span>                     212-… Transplant Surg…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   1.64<span style="color: #949494;">e</span>9 MIRI… Individual       325 EAST 80TH ST #1C,… 212-… Social Worker   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>   1.19<span style="color: #949494;">e</span>9 ALYS… Individual       5 E 98TH ST FL SREET4… 212-… Physician Assis…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>   1.31<span style="color: #949494;">e</span>9 MARK… Individual       16 PARK PL, NEW YORK,… 212-… Orthopaedic Sur…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>   1.64<span style="color: #949494;">e</span>9 SAKS… Individual       10 E 102ND ST, NEW YO… 212-… Internal Medici…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>   1.35<span style="color: #949494;">e</span>9 SARA… Individual       1335 DUBLIN RD STE 20… 614-… Occupational Th…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>   1.56<span style="color: #949494;">e</span>9 AMY … Individual       1176 5TH AVE, NEW YOR… 212-… Internal Medici…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>   1.79<span style="color: #949494;">e</span>9 NOAH… Individual       140 BERGEN STREET LEV… 973-… Obstetrics &amp; Gy…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>   1.56<span style="color: #949494;">e</span>9 ROBY… Individual       9 HOPE AVE STE 500, W… 781-… Nurse Practitio…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>   1.96<span style="color: #949494;">e</span>9 LENO… Organization     100 E 77TH ST, NEW YO… 212-… Nurse Anestheti…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>   1.43<span style="color: #949494;">e</span>9 YONG… Individual       34 MAPLE ST, NORWALK,… 203-… Psychiatry &amp; Ne…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>   1.33<span style="color: #949494;">e</span>9 RAJE… Individual       12401 E 17TH AVE, AUR… 347-… Nurse Practitio…</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​primary_practice_address</span></span></span></code></pre></div>
 <p>Additionally, users can flatten all the list columns using
 <code><a href="../reference/npi_flatten.html">npi_flatten()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 30 × 60</span></span></span>
-<span><span class="co">#&gt;           npi basic_certification_date basic_enumeration_date basic_first_name</span></span>
-<span><span class="co">#&gt;         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">1</span>265<span style="text-decoration: underline;">829</span>667 2026-05-11               2015-04-23             MARK            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">1</span>265<span style="text-decoration: underline;">829</span>667 2026-05-11               2015-04-23             MARK            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">1</span>265<span style="text-decoration: underline;">829</span>667 2026-05-11               2015-04-23             MARK            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">1</span>265<span style="text-decoration: underline;">829</span>667 2026-05-11               2015-04-23             MARK            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">1</span>487<span style="text-decoration: underline;">341</span>442 2023-04-20               2023-04-20             RAKSHEETH       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">1</span>487<span style="text-decoration: underline;">341</span>442 2023-04-20               2023-04-20             RAKSHEETH       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">1</span>588<span style="text-decoration: underline;">940</span>472 2025-05-19               2011-10-24             DANISH          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">1</span>588<span style="text-decoration: underline;">940</span>472 2025-05-19               2011-10-24             DANISH          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">1</span>588<span style="text-decoration: underline;">940</span>472 2025-05-19               2011-10-24             DANISH          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">1</span>588<span style="text-decoration: underline;">940</span>472 2025-05-19               2011-10-24             DANISH          </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 20 more rows</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 56 more variables: basic_last_name &lt;chr&gt;, basic_last_updated &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_sex &lt;chr&gt;, basic_sole_proprietor &lt;chr&gt;, basic_status &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_credential &lt;chr&gt;, basic_middle_name &lt;chr&gt;, basic_name_prefix &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_name_suffix &lt;chr&gt;, other_names_code &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   other_names_first_name &lt;chr&gt;, other_names_last_name &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   other_names_middle_name &lt;chr&gt;, other_names_prefix &lt;chr&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 48 × 42</span></span></span>
+<span><span class="co">#&gt;           npi basic_first_name basic_last_name basic_credential</span></span>
+<span><span class="co">#&gt;         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">1</span>194<span style="text-decoration: underline;">276</span>360 ALYSSA           COWNAN          PA              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">1</span>194<span style="text-decoration: underline;">276</span>360 ALYSSA           COWNAN          PA              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK             MOHRMANN        MD              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK             MOHRMANN        MD              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK             MOHRMANN        MD              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK             MOHRMANN        MD              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C        </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C        </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 38 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 38 more variables: basic_sole_proprietor &lt;chr&gt;, basic_gender &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_enumeration_date &lt;chr&gt;, basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_name &lt;chr&gt;, basic_name_prefix &lt;chr&gt;, basic_middle_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_organization_name &lt;chr&gt;, basic_organizational_subpart &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_credential &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_first_name &lt;chr&gt;, …</span></span></span></code></pre></div>
 <p>Alternatively, individual columns can be flattened for each npi by
 using the <code>cols</code> argument. Only the columns specified will be
 flattened and returned with the npi column by default.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/npi_flatten.html">npi_flatten</a></span><span class="op">(</span><span class="va">nyc</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"basic"</span>, <span class="st">"taxonomies"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 19</span></span></span>
-<span><span class="co">#&gt;           npi basic_certification_date basic_enumeration_date basic_first_name</span></span>
-<span><span class="co">#&gt;         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">1</span>265<span style="text-decoration: underline;">829</span>667 2026-05-11               2015-04-23             MARK            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">1</span>487<span style="text-decoration: underline;">341</span>442 2023-04-20               2023-04-20             RAKSHEETH       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">1</span>588<span style="text-decoration: underline;">940</span>472 2025-05-19               2011-10-24             DANISH          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">1</span>588<span style="text-decoration: underline;">940</span>472 2025-05-19               2011-10-24             DANISH          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">1</span>629<span style="text-decoration: underline;">701</span>396 2026-05-15               2022-07-08             MOHAMMED        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">1</span>639<span style="text-decoration: underline;">133</span>937 <span style="color: #BB0000;">NA</span>                       2006-04-13             MIRIAM          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">1</span>639<span style="text-decoration: underline;">133</span>937 <span style="color: #BB0000;">NA</span>                       2006-04-13             MIRIAM          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">1</span>679<span style="text-decoration: underline;">656</span>128 <span style="color: #BB0000;">NA</span>                       2006-10-20             JUDITH          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">1</span>730<span style="text-decoration: underline;">931</span>452 <span style="color: #BB0000;">NA</span>                       2024-04-04             SAI ANUSHA      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">1</span>942<span style="text-decoration: underline;">059</span>605 <span style="color: #BB0000;">NA</span>                       2024-05-15             AJANG           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> <span style="text-decoration: underline;">1</span>982<span style="text-decoration: underline;">278</span>313 2024-06-22               2021-05-19             UNKNOWN         </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> <span style="text-decoration: underline;">1</span>992<span style="text-decoration: underline;">633</span>028 2026-05-12               2026-05-11             SYEDA MAHNOOR   </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 15 more variables: basic_last_name &lt;chr&gt;, basic_last_updated &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_sex &lt;chr&gt;, basic_sole_proprietor &lt;chr&gt;, basic_status &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_credential &lt;chr&gt;, basic_middle_name &lt;chr&gt;, basic_name_prefix &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   basic_name_suffix &lt;chr&gt;, taxonomies_code &lt;chr&gt;, taxonomies_desc &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   taxonomies_primary &lt;lgl&gt;, taxonomies_taxonomy_group &lt;chr&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   taxonomies_license &lt;chr&gt;, taxonomies_state &lt;chr&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 26</span></span></span>
+<span><span class="co">#&gt;           npi basic_first_name basic_last_name basic_credential    </span></span>
+<span><span class="co">#&gt;         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">1</span>194<span style="text-decoration: underline;">276</span>360 ALYSSA           COWNAN          PA                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK             MOHRMANN        MD                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">1</span>306<span style="text-decoration: underline;">849</span>641 MARK             MOHRMANN        MD                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">1</span>326<span style="text-decoration: underline;">403</span>213 RAJEE            KRAUSE          AGPCNP-C            </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">1</span>346<span style="text-decoration: underline;">604</span>592 SARAH            LOWRY           OTR/L               </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">1</span>346<span style="text-decoration: underline;">604</span>592 SARAH            LOWRY           OTR/L               </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">1</span>427<span style="text-decoration: underline;">454</span>529 YONGHONG         TAN             <span style="color: #BB0000;">NA</span>                  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">362</span>566 AMY              TIERSTEN        M.D.                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> <span style="text-decoration: underline;">1</span>558<span style="text-decoration: underline;">713</span>628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> <span style="text-decoration: underline;">1</span>639<span style="text-decoration: underline;">173</span>065 SAKSHI           DUA             M.D.                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> <span style="text-decoration: underline;">1</span>639<span style="text-decoration: underline;">173</span>065 SAKSHI           DUA             M.D.                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> <span style="text-decoration: underline;">1</span>790<span style="text-decoration: underline;">786</span>416 NOAH             GOLDMAN         M.D.                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> <span style="text-decoration: underline;">1</span>962<span style="text-decoration: underline;">983</span>775 <span style="color: #BB0000;">NA</span>               <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>                  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 22 more variables: basic_sole_proprietor &lt;chr&gt;, basic_gender &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_enumeration_date &lt;chr&gt;, basic_last_updated &lt;chr&gt;, basic_status &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_name &lt;chr&gt;, basic_name_prefix &lt;chr&gt;, basic_middle_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_organization_name &lt;chr&gt;, basic_organizational_subpart &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_credential &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_first_name &lt;chr&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   basic_authorized_official_last_name &lt;chr&gt;, …</span></span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

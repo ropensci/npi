@@ -1,5 +1,31 @@
 # Changelog
 
+## npi 0.3.1 (2026-09-05)
+
+### BUG FIXES
+
+- [`npi_search()`](../reference/npi_search.md) retains previously
+  retrieved records when a later page is empty.
+- [`npi_flatten()`](../reference/npi_flatten.md) preserves all input
+  keys when selected nested data is empty, regardless of column order.
+- [`npi_summarize()`](../reference/npi_summarize.md) formats complete
+  addresses when an optional second address line is absent or missing.
+- Result validation now checks each column’s expected type and requires
+  `POSIXct` timestamps.
+
+### MINOR IMPROVEMENTS
+
+- Tests no longer require live API connectivity or pagination delays.
+- Summary column selection no longer triggers tidyselect deprecation
+  warnings.
+
+### DOCUMENTATION FIXES
+
+- Vignettes build without API access and clearly distinguish live search
+  examples from executable examples using bundled data.
+- Documented flattening behavior for empty nested data and the existing
+  result type contract.
+
 ## npi 0.3.0 (2026-07-01)
 
 CRAN release: 2026-07-12

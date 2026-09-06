@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">npi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,9 +33,32 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/ropensci/npi/blob/v0.3.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/ropensci/npi/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="npi-031-2026-09-05">npi 0.3.1 (2026-09-05)<a class="anchor" aria-label="anchor" href="#npi-031-2026-09-05"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-1">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-1"></a></h3>
+<ul><li>
+<code><a href="../reference/npi_search.html">npi_search()</a></code> retains previously retrieved records when a later page is empty.</li>
+<li>
+<code><a href="../reference/npi_flatten.html">npi_flatten()</a></code> preserves all input keys when selected nested data is empty, regardless of column order.</li>
+<li>
+<code><a href="../reference/npi_summarize.html">npi_summarize()</a></code> formats complete addresses when an optional second address line is absent or missing.</li>
+<li>Result validation now checks each column’s expected type and requires <code>POSIXct</code> timestamps.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-improvements-0-3-1">MINOR IMPROVEMENTS<a class="anchor" aria-label="anchor" href="#minor-improvements-0-3-1"></a></h3>
+<ul><li>Tests no longer require live API connectivity or pagination delays.</li>
+<li>Summary column selection no longer triggers tidyselect deprecation warnings.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-fixes-0-3-1">DOCUMENTATION FIXES<a class="anchor" aria-label="anchor" href="#documentation-fixes-0-3-1"></a></h3>
+<ul><li>Vignettes build without API access and clearly distinguish live search examples from executable examples using bundled data.</li>
+<li>Documented flattening behavior for empty nested data and the existing result type contract.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="npi-030-2026-07-01">npi 0.3.0 (2026-07-01)<a class="anchor" aria-label="anchor" href="#npi-030-2026-07-01"></a></h2><p class="text-muted">CRAN release: 2026-07-12</p>
 <div class="section level3">

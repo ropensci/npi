@@ -49,6 +49,11 @@ Tibble containing the following columns:
   Primary taxonomy description. If no taxonomy is marked as primary for
   a record, the first listed taxonomy is used.
 
+## Details
+
+Missing optional second address lines are treated as empty strings.
+Missing required address components leave the full address missing.
+
 ## Examples
 
 ``` r

@@ -52,6 +52,11 @@ Useful links:
 **Maintainer**: Frank Farach <frank.farach@gmail.com>
 ([ORCID](https://orcid.org/0000-0002-2145-0145)) \[copyright holder\]
 
+Authors:
+
+- Frank Farach <frank.farach@gmail.com>
+  ([ORCID](https://orcid.org/0000-0002-2145-0145)) \[copyright holder\]
+
 Other contributors:
 
 - Sam Parmar <parmartsam@gmail.com> \[contributor\]

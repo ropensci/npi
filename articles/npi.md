@@ -5,7 +5,7 @@
 library(npi)
 ```
 
-This vignette provides an brief introduction to the npi package.
+This vignette provides a brief introduction to the npi package.
 
 `npi` is an R package that allows R users to access the [U.S. National
 Provider Identifier (NPI) Registry](https://npiregistry.cms.hhs.gov/)
@@ -18,35 +18,18 @@ type of service, credentials, and many other attributes.
 
 ## Search registry
 
-To explore organizational providers with primary locations in New York
-City, we could use the `city` argument in the
-[`npi_search()`](../reference/npi_search.md). The nyc dataset here finds
-10 organizational providers with primary locations in New York City,
-since 10 is the default number of records that are returned in
-[`npi_search()`](../reference/npi_search.md). The response is a tibble
-that has high-cardinality data organized into list columns.
+To search for providers in New York City, use the `city` argument in
+[`npi_search()`](../reference/npi_search.md). By default, the search
+returns up to 10 records as a tibble organized into list columns.
+
+The live search examples below are shown without execution so this
+vignette can be built without internet access. Run them in an
+interactive session to retrieve current registry data.
 
 ``` r
 
 nyc <- npi_search(city = "New York City")
-#> 10 records requested
-#> Requesting records 0-10...
 nyc
-#> # A tibble: 10 × 11
-#>       npi enumeration_type basic    other_names identifiers taxonomies addresses
-#>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.99e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  2 1.27e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  3 1.68e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  4 1.98e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  5 1.49e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  6 1.59e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  7 1.94e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  8 1.73e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  9 1.63e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> 10 1.64e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> # ℹ 4 more variables: practice_locations <list>, endpoints <list>,
-#> #   created_date <dttm>, last_updated_date <dttm>
 ```
 
 Other search arguments for the function include `number`,
@@ -59,24 +42,7 @@ Additionally, more than one search argument can be used at once.
 ``` r
 
 nyc_multi <- npi_search(city = "New York City", state = "NY", enumeration_type = "org")
-#> 10 records requested
-#> Requesting records 0-10...
 nyc_multi
-#> # A tibble: 10 × 11
-#>       npi enumeration_type basic    other_names identifiers taxonomies addresses
-#>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.77e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  2 1.64e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  3 1.95e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  4 1.00e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  5 1.35e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  6 1.97e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  7 1.23e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  8 1.34e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  9 1.63e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> 10 1.73e9 Organization     <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> # ℹ 4 more variables: practice_locations <list>, endpoints <list>,
-#> #   created_date <dttm>, last_updated_date <dttm>
 ```
 
 Visit the function’s help page via
@@ -92,25 +58,7 @@ defaulting to 10 records if no value is specified.
 ``` r
 
 nyc_25 <- npi_search(city = "New York City", limit = 25)
-#> 25 records requested
-#> Requesting records 0-25...
 nyc_25
-#> # A tibble: 25 × 11
-#>       npi enumeration_type basic    other_names identifiers taxonomies addresses
-#>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.99e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  2 1.27e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  3 1.68e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  4 1.98e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  5 1.49e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  6 1.59e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  7 1.94e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  8 1.73e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  9 1.63e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> 10 1.64e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> # ℹ 15 more rows
-#> # ℹ 4 more variables: practice_locations <list>, endpoints <list>,
-#> #   created_date <dttm>, last_updated_date <dttm>
 ```
 
 When using [`npi_search()`](../reference/npi_search.md), searches with
@@ -128,26 +76,7 @@ make a second request because there are no more records to return.
 ``` r
 
 nyc_300 <- npi_search(city = "New York City", limit = 300)
-#> 300 records requested
-#> Requesting records 0-200...
-#> Requesting records 200-300...
 nyc_300
-#> # A tibble: 300 × 11
-#>       npi enumeration_type basic    other_names identifiers taxonomies addresses
-#>  *  <int> <chr>            <list>   <list>      <list>      <list>     <list>   
-#>  1 1.99e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  2 1.27e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  3 1.68e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  4 1.98e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  5 1.49e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  6 1.59e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  7 1.94e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  8 1.73e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#>  9 1.63e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> 10 1.64e9 Individual       <tibble> <tibble>    <tibble>    <tibble>   <tibble> 
-#> # ℹ 290 more rows
-#> # ℹ 4 more variables: practice_locations <list>, endpoints <list>,
-#> #   created_date <dttm>, last_updated_date <dttm>
 ```
 
 The NPPES API documentation does not specify additional API rate
@@ -158,8 +87,14 @@ File](https://download.cms.gov/nppes/NPI_Files.html).
 ## Obtaining more human-readable output
 
 [`npi_summarize()`](../reference/npi_summarize.md) provides a more
-human-readable overview of output already obtained through
-[`npi_search()`](../reference/npi_search.md).
+human-readable overview of search results. For the executable examples
+below, we use the bundled `npis` dataset: a saved sample of 10 provider
+records, not the output of the live searches above.
+
+``` r
+
+nyc <- npi::npis
+```
 
 ``` r
 
@@ -167,16 +102,16 @@ npi_summarize(nyc)
 #> # A tibble: 10 × 6
 #>         npi name  enumeration_type primary_practice_add…¹ phone primary_taxonomy
 #>       <int> <chr> <chr>            <chr>                  <chr> <chr>           
-#>  1   1.99e9 SYED… Individual       NA                     718-… Student in an O…
-#>  2   1.27e9 MARK… Individual       1090 AMSTERDAM AVENUE… 212-… Psychiatry & Ne…
-#>  3   1.68e9 JUDI… Individual       425 RIVERSIDE DR #8C,… 212-… Social Worker, …
-#>  4   1.98e9 UNKN… Individual       WESTCHESTER MEDICAL C… 914-… Student in an O…
-#>  5   1.49e9 RAKS… Individual       JACOBI MEDICAL CENTER… 718-… Student in an O…
-#>  6   1.59e9 DANI… Individual       NA                     212-… Internal Medici…
-#>  7   1.94e9 AJAN… Individual       NA                     718-… Student in an O…
-#>  8   1.73e9 SAI … Individual       1545 ATLANTIC AVENUE,… 718-… Student in an O…
-#>  9   1.63e9 MOHA… Individual       NA                     212-… Transplant Surg…
-#> 10   1.64e9 MIRI… Individual       325 EAST 80TH ST #1C,… 212-… Social Worker   
+#>  1   1.19e9 ALYS… Individual       5 E 98TH ST FL SREET4… 212-… Physician Assis…
+#>  2   1.31e9 MARK… Individual       16 PARK PL, NEW YORK,… 212-… Orthopaedic Sur…
+#>  3   1.64e9 SAKS… Individual       10 E 102ND ST, NEW YO… 212-… Internal Medici…
+#>  4   1.35e9 SARA… Individual       1335 DUBLIN RD STE 20… 614-… Occupational Th…
+#>  5   1.56e9 AMY … Individual       1176 5TH AVE, NEW YOR… 212-… Internal Medici…
+#>  6   1.79e9 NOAH… Individual       140 BERGEN STREET LEV… 973-… Obstetrics & Gy…
+#>  7   1.56e9 ROBY… Individual       9 HOPE AVE STE 500, W… 781-… Nurse Practitio…
+#>  8   1.96e9 LENO… Organization     100 E 77TH ST, NEW YO… 212-… Nurse Anestheti…
+#>  9   1.43e9 YONG… Individual       34 MAPLE ST, NORWALK,… 203-… Psychiatry & Ne…
+#> 10   1.33e9 RAJE… Individual       12401 E 17TH AVE, AUR… 347-… Nurse Practitio…
 #> # ℹ abbreviated name: ¹​primary_practice_address
 ```
 
@@ -186,26 +121,26 @@ Additionally, users can flatten all the list columns using
 ``` r
 
 npi_flatten(nyc)
-#> # A tibble: 30 × 60
-#>           npi basic_certification_date basic_enumeration_date basic_first_name
-#>         <int> <chr>                    <chr>                  <chr>           
-#>  1 1265829667 2026-05-11               2015-04-23             MARK            
-#>  2 1265829667 2026-05-11               2015-04-23             MARK            
-#>  3 1265829667 2026-05-11               2015-04-23             MARK            
-#>  4 1265829667 2026-05-11               2015-04-23             MARK            
-#>  5 1487341442 2023-04-20               2023-04-20             RAKSHEETH       
-#>  6 1487341442 2023-04-20               2023-04-20             RAKSHEETH       
-#>  7 1588940472 2025-05-19               2011-10-24             DANISH          
-#>  8 1588940472 2025-05-19               2011-10-24             DANISH          
-#>  9 1588940472 2025-05-19               2011-10-24             DANISH          
-#> 10 1588940472 2025-05-19               2011-10-24             DANISH          
-#> # ℹ 20 more rows
-#> # ℹ 56 more variables: basic_last_name <chr>, basic_last_updated <chr>,
-#> #   basic_sex <chr>, basic_sole_proprietor <chr>, basic_status <chr>,
-#> #   basic_credential <chr>, basic_middle_name <chr>, basic_name_prefix <chr>,
-#> #   basic_name_suffix <chr>, other_names_code <chr>,
-#> #   other_names_first_name <chr>, other_names_last_name <chr>,
-#> #   other_names_middle_name <chr>, other_names_prefix <chr>, …
+#> # A tibble: 48 × 42
+#>           npi basic_first_name basic_last_name basic_credential
+#>         <int> <chr>            <chr>           <chr>           
+#>  1 1194276360 ALYSSA           COWNAN          PA              
+#>  2 1194276360 ALYSSA           COWNAN          PA              
+#>  3 1306849641 MARK             MOHRMANN        MD              
+#>  4 1306849641 MARK             MOHRMANN        MD              
+#>  5 1306849641 MARK             MOHRMANN        MD              
+#>  6 1306849641 MARK             MOHRMANN        MD              
+#>  7 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+#>  8 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+#>  9 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+#> 10 1326403213 RAJEE            KRAUSE          AGPCNP-C        
+#> # ℹ 38 more rows
+#> # ℹ 38 more variables: basic_sole_proprietor <chr>, basic_gender <chr>,
+#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
+#> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
+#> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
+#> #   basic_authorized_official_credential <chr>,
+#> #   basic_authorized_official_first_name <chr>, …
 ```
 
 Alternatively, individual columns can be flattened for each npi by using
@@ -215,25 +150,34 @@ returned with the npi column by default.
 ``` r
 
 npi_flatten(nyc, cols = c("basic", "taxonomies"))
-#> # A tibble: 12 × 19
-#>           npi basic_certification_date basic_enumeration_date basic_first_name
-#>         <int> <chr>                    <chr>                  <chr>           
-#>  1 1265829667 2026-05-11               2015-04-23             MARK            
-#>  2 1487341442 2023-04-20               2023-04-20             RAKSHEETH       
-#>  3 1588940472 2025-05-19               2011-10-24             DANISH          
-#>  4 1588940472 2025-05-19               2011-10-24             DANISH          
-#>  5 1629701396 2026-05-15               2022-07-08             MOHAMMED        
-#>  6 1639133937 NA                       2006-04-13             MIRIAM          
-#>  7 1639133937 NA                       2006-04-13             MIRIAM          
-#>  8 1679656128 NA                       2006-10-20             JUDITH          
-#>  9 1730931452 NA                       2024-04-04             SAI ANUSHA      
-#> 10 1942059605 NA                       2024-05-15             AJANG           
-#> 11 1982278313 2024-06-22               2021-05-19             UNKNOWN         
-#> 12 1992633028 2026-05-12               2026-05-11             SYEDA MAHNOOR   
-#> # ℹ 15 more variables: basic_last_name <chr>, basic_last_updated <chr>,
-#> #   basic_sex <chr>, basic_sole_proprietor <chr>, basic_status <chr>,
-#> #   basic_credential <chr>, basic_middle_name <chr>, basic_name_prefix <chr>,
-#> #   basic_name_suffix <chr>, taxonomies_code <chr>, taxonomies_desc <chr>,
-#> #   taxonomies_primary <lgl>, taxonomies_taxonomy_group <chr>,
-#> #   taxonomies_license <chr>, taxonomies_state <chr>
+#> # A tibble: 20 × 26
+#>           npi basic_first_name basic_last_name basic_credential    
+#>         <int> <chr>            <chr>           <chr>               
+#>  1 1194276360 ALYSSA           COWNAN          PA                  
+#>  2 1306849641 MARK             MOHRMANN        MD                  
+#>  3 1306849641 MARK             MOHRMANN        MD                  
+#>  4 1326403213 RAJEE            KRAUSE          AGPCNP-C            
+#>  5 1326403213 RAJEE            KRAUSE          AGPCNP-C            
+#>  6 1326403213 RAJEE            KRAUSE          AGPCNP-C            
+#>  7 1346604592 SARAH            LOWRY           OTR/L               
+#>  8 1346604592 SARAH            LOWRY           OTR/L               
+#>  9 1427454529 YONGHONG         TAN             NA                  
+#> 10 1558362566 AMY              TIERSTEN        M.D.                
+#> 11 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+#> 12 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+#> 13 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+#> 14 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+#> 15 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+#> 16 1558713628 ROBYN            NOHLING         FNP-BC, RD, LDN, MSN
+#> 17 1639173065 SAKSHI           DUA             M.D.                
+#> 18 1639173065 SAKSHI           DUA             M.D.                
+#> 19 1790786416 NOAH             GOLDMAN         M.D.                
+#> 20 1962983775 NA               NA              NA                  
+#> # ℹ 22 more variables: basic_sole_proprietor <chr>, basic_gender <chr>,
+#> #   basic_enumeration_date <chr>, basic_last_updated <chr>, basic_status <chr>,
+#> #   basic_name <chr>, basic_name_prefix <chr>, basic_middle_name <chr>,
+#> #   basic_organization_name <chr>, basic_organizational_subpart <chr>,
+#> #   basic_authorized_official_credential <chr>,
+#> #   basic_authorized_official_first_name <chr>,
+#> #   basic_authorized_official_last_name <chr>, …
 ```
