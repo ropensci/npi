@@ -26,6 +26,8 @@ This vignette provides a brief introduction to the npi package.
 
 The package makes it easy to obtain administrative data linked to a specific individual or organizational healthcare provider. Additionally, users can perform advanced searches based on provider name, location, type of service, credentials, and many other attributes.
 
+The NPPES database is refreshed daily, so search results may change as records are added or updated.
+
 ## Search registry
 
 To search for providers in New York City, use the `city` argument in `npi_search()`. By default, the search returns up to 10 records as a tibble organized into list columns.
