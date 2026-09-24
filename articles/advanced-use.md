@@ -31,8 +31,8 @@ files are zipped and will exceed 4GB upon decompression.
 ## Run `npi_search()` on multiple search terms
 
 These live search examples are shown without execution. They require
-internet access when run interactively; registry results may change over
-time.
+internet access when run interactively; the NPPES database is refreshed
+daily, so registry results may change over time.
 
 [`npi_search()`](../reference/npi_search.md) enables search for a
 defined set query parameters. The function is not designed for search on

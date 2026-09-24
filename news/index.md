@@ -2,6 +2,8 @@
 
 ## npi 0.3.1 (2026-09-05)
 
+CRAN release: 2026-09-06
+
 ### BUG FIXES
 
 - [`npi_search()`](../reference/npi_search.md) retains previously

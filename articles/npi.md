@@ -16,6 +16,9 @@ specific individual or organizational healthcare provider. Additionally,
 users can perform advanced searches based on provider name, location,
 type of service, credentials, and many other attributes.
 
+The NPPES database is refreshed daily, so search results may change as
+records are added or updated.
+
 ## Search registry
 
 To search for providers in New York City, use the `city` argument in

@@ -106,7 +106,7 @@
 <p><code><a href="reference/npi_search.html">npi_search()</a></code> exposes nearly all of the NPPES API’s <a href="https://npiregistry.cms.hhs.gov/registry/help-api" class="external-link">search parameters</a>. Let’s say we wanted to find up to 10 providers with primary locations in New York City:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>nyc <span class="ot">&lt;-</span> <span class="fu">npi_search</span>(<span class="at">city =</span> <span class="st">"New York City"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># Your results may differ since the data in the NPPES database changes over time</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co"># The NPPES database is refreshed daily, so results may differ over time</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>nyc</span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 11</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;       npi enumeration_type basic    other_names identifiers taxonomies addresses</span></span>

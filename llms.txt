@@ -72,7 +72,7 @@ York City:
 ``` R
 nyc <- npi_search(city = "New York City")
 
-# Your results may differ since the data in the NPPES database changes over time
+# The NPPES database is refreshed daily, so results may differ over time
 nyc
 #> # A tibble: 10 × 11
 #>       npi enumeration_type basic    other_names identifiers taxonomies addresses
